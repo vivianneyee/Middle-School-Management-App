@@ -38,3 +38,15 @@ WireFrame:
 - meeting with client and her class (grade 6 students)
 - presentation of wireframe and initial requirements
 - get feedback from students and answer questions
+
+## Sprints
+Winter Semester 2023
+Sprint 1: 02-12-2023 - 02-25-2023
+
+Sprint 2: 02-26-2023 - 03-11-2023
+
+Sprint 3: 03-12-2023 - 03-25-2023
+
+Sprint 4: 03-26-2023 - 04-08-2023
+
+Sprint 5: 04-09-2023 - 04-22-2023
