@@ -39,6 +39,27 @@ WireFrame:
 - presentation of wireframe and initial requirements
 - get feedback from students and answer questions
 
+02-16-2023
+- discuss client/end users feedback
+- discuss sprint dates
+- discuss/create github projects board 
+- create xcode project 
+
+03-03-2023
+- discuss project
+- discuss goals for the end of the semester
+- begin working on sprint 2 (see projects board)
+- update projects board
+- update client with progress
+
+03-13-2023
+- discuss backend (realm db, er diagram)
+- discuss progress
+- recreated xcode project due to decision to use swift storyboards/uikit instead of swiftUI
+- continue/finish up sprint 2 this week
+- update projects board
+- update client with progress
+
 ## Sprints
 #### Winter Semester 2023
 | Sprint | Start Date | End Date |
