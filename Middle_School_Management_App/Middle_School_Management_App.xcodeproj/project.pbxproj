@@ -7,61 +7,66 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B527DBA329AA5B9E00A6DCF5 /* Middle_School_Management_AppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B527DBA229AA5B9E00A6DCF5 /* Middle_School_Management_AppApp.swift */; };
-		B527DBA529AA5B9E00A6DCF5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B527DBA429AA5B9E00A6DCF5 /* ContentView.swift */; };
-		B527DBA729AA5BA600A6DCF5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B527DBA629AA5BA600A6DCF5 /* Assets.xcassets */; };
-		B527DBAA29AA5BA600A6DCF5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B527DBA929AA5BA600A6DCF5 /* Preview Assets.xcassets */; };
-		B527DBB429AA5BA700A6DCF5 /* Middle_School_Management_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B527DBB329AA5BA700A6DCF5 /* Middle_School_Management_AppTests.swift */; };
-		B527DBBE29AA5BA700A6DCF5 /* Middle_School_Management_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B527DBBD29AA5BA700A6DCF5 /* Middle_School_Management_AppUITests.swift */; };
-		B527DBC029AA5BA700A6DCF5 /* Middle_School_Management_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B527DBBF29AA5BA700A6DCF5 /* Middle_School_Management_AppUITestsLaunchTests.swift */; };
+		B53ED10B29BF7AD50087A59A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53ED10A29BF7AD50087A59A /* AppDelegate.swift */; };
+		B53ED10D29BF7AD50087A59A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53ED10C29BF7AD50087A59A /* SceneDelegate.swift */; };
+		B53ED10F29BF7AD50087A59A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53ED10E29BF7AD50087A59A /* ViewController.swift */; };
+		B53ED11229BF7AD50087A59A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B53ED11029BF7AD50087A59A /* Main.storyboard */; };
+		B53ED11429BF7AD90087A59A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B53ED11329BF7AD90087A59A /* Assets.xcassets */; };
+		B53ED11729BF7AD90087A59A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B53ED11529BF7AD90087A59A /* LaunchScreen.storyboard */; };
+		B53ED12229BF7ADA0087A59A /* Middle_School_Management_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53ED12129BF7ADA0087A59A /* Middle_School_Management_AppTests.swift */; };
+		B53ED12C29BF7ADA0087A59A /* Middle_School_Management_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53ED12B29BF7ADA0087A59A /* Middle_School_Management_AppUITests.swift */; };
+		B53ED12E29BF7ADA0087A59A /* Middle_School_Management_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53ED12D29BF7ADA0087A59A /* Middle_School_Management_AppUITestsLaunchTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		B527DBB029AA5BA700A6DCF5 /* PBXContainerItemProxy */ = {
+		B53ED11E29BF7ADA0087A59A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = B527DB9729AA5B9E00A6DCF5 /* Project object */;
+			containerPortal = B53ED0FF29BF7AD50087A59A /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = B527DB9E29AA5B9E00A6DCF5;
-			remoteInfo = "Middle School Management App";
+			remoteGlobalIDString = B53ED10629BF7AD50087A59A;
+			remoteInfo = Middle_School_Management_App;
 		};
-		B527DBBA29AA5BA700A6DCF5 /* PBXContainerItemProxy */ = {
+		B53ED12829BF7ADA0087A59A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = B527DB9729AA5B9E00A6DCF5 /* Project object */;
+			containerPortal = B53ED0FF29BF7AD50087A59A /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = B527DB9E29AA5B9E00A6DCF5;
-			remoteInfo = "Middle School Management App";
+			remoteGlobalIDString = B53ED10629BF7AD50087A59A;
+			remoteInfo = Middle_School_Management_App;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B527DB9F29AA5B9E00A6DCF5 /* Middle School Management App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Middle School Management App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B527DBA229AA5B9E00A6DCF5 /* Middle_School_Management_AppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Middle_School_Management_AppApp.swift; sourceTree = "<group>"; };
-		B527DBA429AA5B9E00A6DCF5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		B527DBA629AA5BA600A6DCF5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		B527DBA929AA5BA600A6DCF5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		B527DBAF29AA5BA700A6DCF5 /* Middle School Management AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Middle School Management AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B527DBB329AA5BA700A6DCF5 /* Middle_School_Management_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Middle_School_Management_AppTests.swift; sourceTree = "<group>"; };
-		B527DBB929AA5BA700A6DCF5 /* Middle School Management AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Middle School Management AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B527DBBD29AA5BA700A6DCF5 /* Middle_School_Management_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Middle_School_Management_AppUITests.swift; sourceTree = "<group>"; };
-		B527DBBF29AA5BA700A6DCF5 /* Middle_School_Management_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Middle_School_Management_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B53ED10729BF7AD50087A59A /* Middle_School_Management_App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Middle_School_Management_App.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B53ED10A29BF7AD50087A59A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		B53ED10C29BF7AD50087A59A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		B53ED10E29BF7AD50087A59A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B53ED11129BF7AD50087A59A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B53ED11329BF7AD90087A59A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B53ED11629BF7AD90087A59A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B53ED11829BF7AD90087A59A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B53ED11D29BF7ADA0087A59A /* Middle_School_Management_AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Middle_School_Management_AppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B53ED12129BF7ADA0087A59A /* Middle_School_Management_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Middle_School_Management_AppTests.swift; sourceTree = "<group>"; };
+		B53ED12729BF7ADA0087A59A /* Middle_School_Management_AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Middle_School_Management_AppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B53ED12B29BF7ADA0087A59A /* Middle_School_Management_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Middle_School_Management_AppUITests.swift; sourceTree = "<group>"; };
+		B53ED12D29BF7ADA0087A59A /* Middle_School_Management_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Middle_School_Management_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		B527DB9C29AA5B9E00A6DCF5 /* Frameworks */ = {
+		B53ED10429BF7AD50087A59A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B527DBAC29AA5BA700A6DCF5 /* Frameworks */ = {
+		B53ED11A29BF7ADA0087A59A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B527DBB629AA5BA700A6DCF5 /* Frameworks */ = {
+		B53ED12429BF7ADA0087A59A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -71,142 +76,137 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B527DB9629AA5B9E00A6DCF5 = {
+		B53ED0FE29BF7AD50087A59A = {
 			isa = PBXGroup;
 			children = (
-				B527DBA129AA5B9E00A6DCF5 /* Middle School Management App */,
-				B527DBB229AA5BA700A6DCF5 /* Middle School Management AppTests */,
-				B527DBBC29AA5BA700A6DCF5 /* Middle School Management AppUITests */,
-				B527DBA029AA5B9E00A6DCF5 /* Products */,
+				B53ED10929BF7AD50087A59A /* Middle_School_Management_App */,
+				B53ED12029BF7ADA0087A59A /* Middle_School_Management_AppTests */,
+				B53ED12A29BF7ADA0087A59A /* Middle_School_Management_AppUITests */,
+				B53ED10829BF7AD50087A59A /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		B527DBA029AA5B9E00A6DCF5 /* Products */ = {
+		B53ED10829BF7AD50087A59A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B527DB9F29AA5B9E00A6DCF5 /* Middle School Management App.app */,
-				B527DBAF29AA5BA700A6DCF5 /* Middle School Management AppTests.xctest */,
-				B527DBB929AA5BA700A6DCF5 /* Middle School Management AppUITests.xctest */,
+				B53ED10729BF7AD50087A59A /* Middle_School_Management_App.app */,
+				B53ED11D29BF7ADA0087A59A /* Middle_School_Management_AppTests.xctest */,
+				B53ED12729BF7ADA0087A59A /* Middle_School_Management_AppUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		B527DBA129AA5B9E00A6DCF5 /* Middle School Management App */ = {
+		B53ED10929BF7AD50087A59A /* Middle_School_Management_App */ = {
 			isa = PBXGroup;
 			children = (
-				B527DBA229AA5B9E00A6DCF5 /* Middle_School_Management_AppApp.swift */,
-				B527DBA429AA5B9E00A6DCF5 /* ContentView.swift */,
-				B527DBA629AA5BA600A6DCF5 /* Assets.xcassets */,
-				B527DBA829AA5BA600A6DCF5 /* Preview Content */,
+				B53ED10A29BF7AD50087A59A /* AppDelegate.swift */,
+				B53ED10C29BF7AD50087A59A /* SceneDelegate.swift */,
+				B53ED10E29BF7AD50087A59A /* ViewController.swift */,
+				B53ED11029BF7AD50087A59A /* Main.storyboard */,
+				B53ED11329BF7AD90087A59A /* Assets.xcassets */,
+				B53ED11529BF7AD90087A59A /* LaunchScreen.storyboard */,
+				B53ED11829BF7AD90087A59A /* Info.plist */,
 			);
-			path = "Middle School Management App";
+			path = Middle_School_Management_App;
 			sourceTree = "<group>";
 		};
-		B527DBA829AA5BA600A6DCF5 /* Preview Content */ = {
+		B53ED12029BF7ADA0087A59A /* Middle_School_Management_AppTests */ = {
 			isa = PBXGroup;
 			children = (
-				B527DBA929AA5BA600A6DCF5 /* Preview Assets.xcassets */,
+				B53ED12129BF7ADA0087A59A /* Middle_School_Management_AppTests.swift */,
 			);
-			path = "Preview Content";
+			path = Middle_School_Management_AppTests;
 			sourceTree = "<group>";
 		};
-		B527DBB229AA5BA700A6DCF5 /* Middle School Management AppTests */ = {
+		B53ED12A29BF7ADA0087A59A /* Middle_School_Management_AppUITests */ = {
 			isa = PBXGroup;
 			children = (
-				B527DBB329AA5BA700A6DCF5 /* Middle_School_Management_AppTests.swift */,
+				B53ED12B29BF7ADA0087A59A /* Middle_School_Management_AppUITests.swift */,
+				B53ED12D29BF7ADA0087A59A /* Middle_School_Management_AppUITestsLaunchTests.swift */,
 			);
-			path = "Middle School Management AppTests";
-			sourceTree = "<group>";
-		};
-		B527DBBC29AA5BA700A6DCF5 /* Middle School Management AppUITests */ = {
-			isa = PBXGroup;
-			children = (
-				B527DBBD29AA5BA700A6DCF5 /* Middle_School_Management_AppUITests.swift */,
-				B527DBBF29AA5BA700A6DCF5 /* Middle_School_Management_AppUITestsLaunchTests.swift */,
-			);
-			path = "Middle School Management AppUITests";
+			path = Middle_School_Management_AppUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		B527DB9E29AA5B9E00A6DCF5 /* Middle School Management App */ = {
+		B53ED10629BF7AD50087A59A /* Middle_School_Management_App */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B527DBC329AA5BA700A6DCF5 /* Build configuration list for PBXNativeTarget "Middle School Management App" */;
+			buildConfigurationList = B53ED13129BF7ADA0087A59A /* Build configuration list for PBXNativeTarget "Middle_School_Management_App" */;
 			buildPhases = (
-				B527DB9B29AA5B9E00A6DCF5 /* Sources */,
-				B527DB9C29AA5B9E00A6DCF5 /* Frameworks */,
-				B527DB9D29AA5B9E00A6DCF5 /* Resources */,
+				B53ED10329BF7AD50087A59A /* Sources */,
+				B53ED10429BF7AD50087A59A /* Frameworks */,
+				B53ED10529BF7AD50087A59A /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "Middle School Management App";
-			productName = "Middle School Management App";
-			productReference = B527DB9F29AA5B9E00A6DCF5 /* Middle School Management App.app */;
+			name = Middle_School_Management_App;
+			productName = Middle_School_Management_App;
+			productReference = B53ED10729BF7AD50087A59A /* Middle_School_Management_App.app */;
 			productType = "com.apple.product-type.application";
 		};
-		B527DBAE29AA5BA700A6DCF5 /* Middle School Management AppTests */ = {
+		B53ED11C29BF7ADA0087A59A /* Middle_School_Management_AppTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B527DBC629AA5BA700A6DCF5 /* Build configuration list for PBXNativeTarget "Middle School Management AppTests" */;
+			buildConfigurationList = B53ED13429BF7ADA0087A59A /* Build configuration list for PBXNativeTarget "Middle_School_Management_AppTests" */;
 			buildPhases = (
-				B527DBAB29AA5BA700A6DCF5 /* Sources */,
-				B527DBAC29AA5BA700A6DCF5 /* Frameworks */,
-				B527DBAD29AA5BA700A6DCF5 /* Resources */,
+				B53ED11929BF7ADA0087A59A /* Sources */,
+				B53ED11A29BF7ADA0087A59A /* Frameworks */,
+				B53ED11B29BF7ADA0087A59A /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				B527DBB129AA5BA700A6DCF5 /* PBXTargetDependency */,
+				B53ED11F29BF7ADA0087A59A /* PBXTargetDependency */,
 			);
-			name = "Middle School Management AppTests";
-			productName = "Middle School Management AppTests";
-			productReference = B527DBAF29AA5BA700A6DCF5 /* Middle School Management AppTests.xctest */;
+			name = Middle_School_Management_AppTests;
+			productName = Middle_School_Management_AppTests;
+			productReference = B53ED11D29BF7ADA0087A59A /* Middle_School_Management_AppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		B527DBB829AA5BA700A6DCF5 /* Middle School Management AppUITests */ = {
+		B53ED12629BF7ADA0087A59A /* Middle_School_Management_AppUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B527DBC929AA5BA700A6DCF5 /* Build configuration list for PBXNativeTarget "Middle School Management AppUITests" */;
+			buildConfigurationList = B53ED13729BF7ADA0087A59A /* Build configuration list for PBXNativeTarget "Middle_School_Management_AppUITests" */;
 			buildPhases = (
-				B527DBB529AA5BA700A6DCF5 /* Sources */,
-				B527DBB629AA5BA700A6DCF5 /* Frameworks */,
-				B527DBB729AA5BA700A6DCF5 /* Resources */,
+				B53ED12329BF7ADA0087A59A /* Sources */,
+				B53ED12429BF7ADA0087A59A /* Frameworks */,
+				B53ED12529BF7ADA0087A59A /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				B527DBBB29AA5BA700A6DCF5 /* PBXTargetDependency */,
+				B53ED12929BF7ADA0087A59A /* PBXTargetDependency */,
 			);
-			name = "Middle School Management AppUITests";
-			productName = "Middle School Management AppUITests";
-			productReference = B527DBB929AA5BA700A6DCF5 /* Middle School Management AppUITests.xctest */;
+			name = Middle_School_Management_AppUITests;
+			productName = Middle_School_Management_AppUITests;
+			productReference = B53ED12729BF7ADA0087A59A /* Middle_School_Management_AppUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		B527DB9729AA5B9E00A6DCF5 /* Project object */ = {
+		B53ED0FF29BF7AD50087A59A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1420;
 				TargetAttributes = {
-					B527DB9E29AA5B9E00A6DCF5 = {
+					B53ED10629BF7AD50087A59A = {
 						CreatedOnToolsVersion = 14.2;
 					};
-					B527DBAE29AA5BA700A6DCF5 = {
+					B53ED11C29BF7ADA0087A59A = {
 						CreatedOnToolsVersion = 14.2;
-						TestTargetID = B527DB9E29AA5B9E00A6DCF5;
+						TestTargetID = B53ED10629BF7AD50087A59A;
 					};
-					B527DBB829AA5BA700A6DCF5 = {
+					B53ED12629BF7ADA0087A59A = {
 						CreatedOnToolsVersion = 14.2;
-						TestTargetID = B527DB9E29AA5B9E00A6DCF5;
+						TestTargetID = B53ED10629BF7AD50087A59A;
 					};
 				};
 			};
-			buildConfigurationList = B527DB9A29AA5B9E00A6DCF5 /* Build configuration list for PBXProject "Middle School Management App" */;
+			buildConfigurationList = B53ED10229BF7AD50087A59A /* Build configuration list for PBXProject "Middle_School_Management_App" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -214,36 +214,37 @@
 				en,
 				Base,
 			);
-			mainGroup = B527DB9629AA5B9E00A6DCF5;
-			productRefGroup = B527DBA029AA5B9E00A6DCF5 /* Products */;
+			mainGroup = B53ED0FE29BF7AD50087A59A;
+			productRefGroup = B53ED10829BF7AD50087A59A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B527DB9E29AA5B9E00A6DCF5 /* Middle School Management App */,
-				B527DBAE29AA5BA700A6DCF5 /* Middle School Management AppTests */,
-				B527DBB829AA5BA700A6DCF5 /* Middle School Management AppUITests */,
+				B53ED10629BF7AD50087A59A /* Middle_School_Management_App */,
+				B53ED11C29BF7ADA0087A59A /* Middle_School_Management_AppTests */,
+				B53ED12629BF7ADA0087A59A /* Middle_School_Management_AppUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		B527DB9D29AA5B9E00A6DCF5 /* Resources */ = {
+		B53ED10529BF7AD50087A59A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B527DBAA29AA5BA600A6DCF5 /* Preview Assets.xcassets in Resources */,
-				B527DBA729AA5BA600A6DCF5 /* Assets.xcassets in Resources */,
+				B53ED11729BF7AD90087A59A /* LaunchScreen.storyboard in Resources */,
+				B53ED11429BF7AD90087A59A /* Assets.xcassets in Resources */,
+				B53ED11229BF7AD50087A59A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B527DBAD29AA5BA700A6DCF5 /* Resources */ = {
+		B53ED11B29BF7ADA0087A59A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B527DBB729AA5BA700A6DCF5 /* Resources */ = {
+		B53ED12529BF7ADA0087A59A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -253,49 +254,69 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		B527DB9B29AA5B9E00A6DCF5 /* Sources */ = {
+		B53ED10329BF7AD50087A59A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B527DBA529AA5B9E00A6DCF5 /* ContentView.swift in Sources */,
-				B527DBA329AA5B9E00A6DCF5 /* Middle_School_Management_AppApp.swift in Sources */,
+				B53ED10F29BF7AD50087A59A /* ViewController.swift in Sources */,
+				B53ED10B29BF7AD50087A59A /* AppDelegate.swift in Sources */,
+				B53ED10D29BF7AD50087A59A /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B527DBAB29AA5BA700A6DCF5 /* Sources */ = {
+		B53ED11929BF7ADA0087A59A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B527DBB429AA5BA700A6DCF5 /* Middle_School_Management_AppTests.swift in Sources */,
+				B53ED12229BF7ADA0087A59A /* Middle_School_Management_AppTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B527DBB529AA5BA700A6DCF5 /* Sources */ = {
+		B53ED12329BF7ADA0087A59A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B527DBC029AA5BA700A6DCF5 /* Middle_School_Management_AppUITestsLaunchTests.swift in Sources */,
-				B527DBBE29AA5BA700A6DCF5 /* Middle_School_Management_AppUITests.swift in Sources */,
+				B53ED12E29BF7ADA0087A59A /* Middle_School_Management_AppUITestsLaunchTests.swift in Sources */,
+				B53ED12C29BF7ADA0087A59A /* Middle_School_Management_AppUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		B527DBB129AA5BA700A6DCF5 /* PBXTargetDependency */ = {
+		B53ED11F29BF7ADA0087A59A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B527DB9E29AA5B9E00A6DCF5 /* Middle School Management App */;
-			targetProxy = B527DBB029AA5BA700A6DCF5 /* PBXContainerItemProxy */;
+			target = B53ED10629BF7AD50087A59A /* Middle_School_Management_App */;
+			targetProxy = B53ED11E29BF7ADA0087A59A /* PBXContainerItemProxy */;
 		};
-		B527DBBB29AA5BA700A6DCF5 /* PBXTargetDependency */ = {
+		B53ED12929BF7ADA0087A59A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B527DB9E29AA5B9E00A6DCF5 /* Middle School Management App */;
-			targetProxy = B527DBBA29AA5BA700A6DCF5 /* PBXContainerItemProxy */;
+			target = B53ED10629BF7AD50087A59A /* Middle_School_Management_App */;
+			targetProxy = B53ED12829BF7ADA0087A59A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		B53ED11029BF7AD50087A59A /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B53ED11129BF7AD50087A59A /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		B53ED11529BF7AD90087A59A /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B53ED11629BF7AD90087A59A /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
-		B527DBC129AA5BA700A6DCF5 /* Debug */ = {
+		B53ED12F29BF7ADA0087A59A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -355,7 +376,7 @@
 			};
 			name = Debug;
 		};
-		B527DBC229AA5BA700A6DCF5 /* Release */ = {
+		B53ED13029BF7ADA0087A59A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -409,20 +430,19 @@
 			};
 			name = Release;
 		};
-		B527DBC429AA5BA700A6DCF5 /* Debug */ = {
+		B53ED13229BF7ADA0087A59A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Middle School Management App/Preview Content\"";
 				DEVELOPMENT_TEAM = HZ96R889CP;
-				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_FILE = Middle_School_Management_App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -438,20 +458,19 @@
 			};
 			name = Debug;
 		};
-		B527DBC529AA5BA700A6DCF5 /* Release */ = {
+		B53ED13329BF7ADA0087A59A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Middle School Management App/Preview Content\"";
 				DEVELOPMENT_TEAM = HZ96R889CP;
-				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_FILE = Middle_School_Management_App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -467,7 +486,7 @@
 			};
 			name = Release;
 		};
-		B527DBC729AA5BA700A6DCF5 /* Debug */ = {
+		B53ED13529BF7ADA0087A59A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -483,11 +502,11 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Middle School Management App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Middle School Management App";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Middle_School_Management_App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Middle_School_Management_App";
 			};
 			name = Debug;
 		};
-		B527DBC829AA5BA700A6DCF5 /* Release */ = {
+		B53ED13629BF7ADA0087A59A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -503,11 +522,11 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Middle School Management App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Middle School Management App";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Middle_School_Management_App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Middle_School_Management_App";
 			};
 			name = Release;
 		};
-		B527DBCA29AA5BA700A6DCF5 /* Debug */ = {
+		B53ED13829BF7ADA0087A59A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -521,11 +540,11 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Middle School Management App";
+				TEST_TARGET_NAME = Middle_School_Management_App;
 			};
 			name = Debug;
 		};
-		B527DBCB29AA5BA700A6DCF5 /* Release */ = {
+		B53ED13929BF7ADA0087A59A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -539,50 +558,50 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Middle School Management App";
+				TEST_TARGET_NAME = Middle_School_Management_App;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B527DB9A29AA5B9E00A6DCF5 /* Build configuration list for PBXProject "Middle School Management App" */ = {
+		B53ED10229BF7AD50087A59A /* Build configuration list for PBXProject "Middle_School_Management_App" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B527DBC129AA5BA700A6DCF5 /* Debug */,
-				B527DBC229AA5BA700A6DCF5 /* Release */,
+				B53ED12F29BF7ADA0087A59A /* Debug */,
+				B53ED13029BF7ADA0087A59A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B527DBC329AA5BA700A6DCF5 /* Build configuration list for PBXNativeTarget "Middle School Management App" */ = {
+		B53ED13129BF7ADA0087A59A /* Build configuration list for PBXNativeTarget "Middle_School_Management_App" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B527DBC429AA5BA700A6DCF5 /* Debug */,
-				B527DBC529AA5BA700A6DCF5 /* Release */,
+				B53ED13229BF7ADA0087A59A /* Debug */,
+				B53ED13329BF7ADA0087A59A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B527DBC629AA5BA700A6DCF5 /* Build configuration list for PBXNativeTarget "Middle School Management AppTests" */ = {
+		B53ED13429BF7ADA0087A59A /* Build configuration list for PBXNativeTarget "Middle_School_Management_AppTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B527DBC729AA5BA700A6DCF5 /* Debug */,
-				B527DBC829AA5BA700A6DCF5 /* Release */,
+				B53ED13529BF7ADA0087A59A /* Debug */,
+				B53ED13629BF7ADA0087A59A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B527DBC929AA5BA700A6DCF5 /* Build configuration list for PBXNativeTarget "Middle School Management AppUITests" */ = {
+		B53ED13729BF7ADA0087A59A /* Build configuration list for PBXNativeTarget "Middle_School_Management_AppUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B527DBCA29AA5BA700A6DCF5 /* Debug */,
-				B527DBCB29AA5BA700A6DCF5 /* Release */,
+				B53ED13829BF7ADA0087A59A /* Debug */,
+				B53ED13929BF7ADA0087A59A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = B527DB9729AA5B9E00A6DCF5 /* Project object */;
+	rootObject = B53ED0FF29BF7AD50087A59A /* Project object */;
 }

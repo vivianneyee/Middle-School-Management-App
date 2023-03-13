@@ -1,8 +1,8 @@
 //
 //  Middle_School_Management_AppUITestsLaunchTests.swift
-//  Middle School Management AppUITests
+//  Middle_School_Management_AppUITests
 //
-//  Created by Vivianne Yee on 2023-02-25.
+//  Created by Vivianne Yee on 2023-03-13.
 //
 
 import XCTest
