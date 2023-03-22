@@ -59,6 +59,13 @@ WireFrame:
 - continue/finish up sprint 2 this week
 - update projects board
 - update client with progress
+ 
+03-20-2023
+- present db schema 
+- discuss progress
+- discuss the goals for this week (finish up more pages + push them, figure out realm + create/push the schema)
+- update projects board
+- update client with progress
 
 ## Sprints
 #### Winter Semester 2023
