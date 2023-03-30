@@ -25,13 +25,13 @@ WireFrame:
 - The system shall not store any personal subscriber data such as their name, birthday, etc.
 - The system shall allow users to personalize which notifications they can receive
 
-## Client Meeting Minutes
+## Meeting Minutes
 01-19-2023
-- brainstorm ideas
+- brainstorm ideas with client
 - narrow down core functionalities
 
 02-03-2023
-- show sketch of app and get feedback
+- show sketch of app to client and get feedback
 - plan for next meeting
 
 02-09-2023
@@ -66,6 +66,11 @@ WireFrame:
 - discuss the goals for this week (finish up more pages + push them, figure out realm + create/push the schema)
 - update projects board
 - update client with progress
+
+03-30-2023
+- discuss goals for sprint 4
+- update and add new tasks for current sprint
+- discuss sprint 3 (retrospective)
 
 ## Sprints
 #### Winter Semester 2023
