@@ -12,6 +12,7 @@ class User: Object {
     @Persisted(primaryKey: true) var _id: ObjectId
     @Persisted var email: String
     @Persisted var password: String
+    @Persisted var userType: String
 }
 
 class Teacher: User {
