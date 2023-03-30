@@ -12,6 +12,7 @@ class Post: Object {
     @Persisted(primaryKey: true) var _id: ObjectId
     @Persisted var title: String
     @Persisted var date: Date
+    @Persisted var postType: String
 }
 
 class Event: Post {
