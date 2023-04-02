@@ -12,15 +12,19 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        let realm = try! Realm()
+
+        do {
+            let realm = try Realm()
+            
+            // for debugging
+            print(Realm.Configuration.defaultConfiguration.fileURL!)
+            
+            // test class
+            createClass(realm: realm, name: "test class", color: "blue")
+        } catch let error as NSError {
+            print("Error initializing Realm: \(error.localizedDescription)")
+        }
         
-        // for debugging
-        print(Realm.Configuration.defaultConfiguration.fileURL)
-        
-        // test class
-        createClass(realm: realm, name: "test class", color: "red")
-    }
 
     func createClass(realm: Realm, name: String, color: String) {
         let code = generateClassCode(realm: realm)
