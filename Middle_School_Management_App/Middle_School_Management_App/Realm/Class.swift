@@ -14,4 +14,11 @@ class Class: Object {
     @Persisted var color: String = ""
     @Persisted var code: String = ""
     @Persisted var posts: List<Post>
+    
+    convenience init(name: String, color: String, code: String) {
+        self.init()
+        self.name = name
+        self.color = color
+        self.code = code
+    }
 }
