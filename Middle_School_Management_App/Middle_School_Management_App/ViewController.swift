@@ -17,6 +17,9 @@ class ViewController: UIViewController {
         
         // for debugging
         print(Realm.Configuration.defaultConfiguration.fileURL)
+        
+        // test class
+        createClass(realm: realm, name: "test class", color: "red")
     }
 
     func createClass(realm: Realm, name: String, color: String) {
