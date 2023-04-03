@@ -61,5 +61,40 @@ class ViewController: UIViewController {
         return code
     }
     
+    // create a new post object in db
+//    func createPost(realm: Realm, title: String, date: Date, postType: String) {
+//        let newPost = Post(title: title, date: date, postType: postType)
+//        try! realm.write {
+//             realm.add(newPost)
+//        }
+//    }
+    
+    func createEvent(realm: Realm, title: String, date: Date, files: List<String>) {
+        let newEvent = Event(title: title, date: date, files: files)
+        try! realm.write {
+             realm.add(newEvent)
+        }
+    }
+    
+    func createAssignment(realm: Realm, title: String, date: Date, files: List<String>) {
+        let newAssignment = Assignment(title: title, date: date, files: files)
+        try! realm.write {
+             realm.add(newAssignment)
+        }
+    }
+    
+    func createAlert(realm: Realm, title: String, date: Date, files: List<String>) {
+        let newAlert = Alert(title: title, date: date, files: files)
+        try! realm.write {
+             realm.add(newAlert)
+        }
+    }
+    
+    func createStudentInput(realm: Realm, title: String, date: Date, inputType: String) {
+        let newStudentInput = StudentInput(title: title, date: date, inputType: inputType)
+        try! realm.write {
+             realm.add(newStudentInput)
+        }
+    }
 }
 
