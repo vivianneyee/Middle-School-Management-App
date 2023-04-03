@@ -13,6 +13,13 @@ class Post: Object {
     @Persisted var title: String
     @Persisted var date: Date
     @Persisted var postType: String
+    
+    convenience init(title: String, date: Date, postType: String) {
+        self.init()
+        self.title = title
+        self.date = date
+        self.postType = postType
+    }
 }
 
 class Event: Post {

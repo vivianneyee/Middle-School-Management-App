@@ -21,6 +21,14 @@ class ViewController: UIViewController {
             
             // test class
             createClass(realm: realm, name: "test class", color: "blue")
+            
+            // test posts
+            let date = Date()
+            let files = List<String>()
+            createEvent(realm: realm, title: "testEvent", date: date, files: files)
+            createAlert(realm: realm, title: "testAlert", date: date, files: files)
+            createAssignment(realm: realm, title: "testAssignment", date: date, files: files)
+            createStudentInput(realm: realm, title: "testStudentInput", date: date, inputType: "TEXT")
         } catch let error as NSError {
             print("Error initializing Realm: \(error.localizedDescription)")
         }
@@ -62,18 +70,19 @@ class ViewController: UIViewController {
     }
     
     // create a new post object in db
-//    func createPost(realm: Realm, title: String, date: Date, postType: String) {
-//        let newPost = Post(title: title, date: date, postType: postType)
-//        try! realm.write {
-//             realm.add(newPost)
-//        }
-//    }
+    func createPost(realm: Realm, title: String, date: Date, postType: String) {
+        let newPost = Post(title: title, date: date, postType: postType)
+        try! realm.write {
+             realm.add(newPost)
+        }
+    }
     
     func createEvent(realm: Realm, title: String, date: Date, files: List<String>) {
         let newEvent = Event(title: title, date: date, files: files)
         try! realm.write {
              realm.add(newEvent)
         }
+        createPost(realm: realm, title: title, date: date, postType: newEvent.postType)
     }
     
     func createAssignment(realm: Realm, title: String, date: Date, files: List<String>) {
@@ -81,6 +90,7 @@ class ViewController: UIViewController {
         try! realm.write {
              realm.add(newAssignment)
         }
+        createPost(realm: realm, title: title, date: date, postType: newAssignment.postType)
     }
     
     func createAlert(realm: Realm, title: String, date: Date, files: List<String>) {
@@ -88,6 +98,7 @@ class ViewController: UIViewController {
         try! realm.write {
              realm.add(newAlert)
         }
+        createPost(realm: realm, title: title, date: date, postType: newAlert.postType)
     }
     
     func createStudentInput(realm: Realm, title: String, date: Date, inputType: String) {
@@ -95,6 +106,7 @@ class ViewController: UIViewController {
         try! realm.write {
              realm.add(newStudentInput)
         }
+        createPost(realm: realm, title: title, date: date, postType: newStudentInput.postType)
     }
 }
 
