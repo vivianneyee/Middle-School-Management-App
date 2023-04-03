@@ -1,0 +1,7 @@
+# Xcode project files
+*.pbxuser
+*.xcworkspace
+xcuserdata/
+
+# macOS
+.DS_Store
