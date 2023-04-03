@@ -117,7 +117,7 @@
         <!--Home-->
         <scene sceneID="5xU-94-LAC">
             <objects>
-                <viewController id="Bnn-Tb-UEa" sceneMemberID="viewController">
+                <viewController id="Bnn-Tb-UEa" customClass="ViewController" customModule="Middle_School_Management_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="F1o-gk-hg0">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

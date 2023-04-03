@@ -12,7 +12,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         do {
             let realm = try Realm()
             
@@ -24,6 +24,7 @@ class ViewController: UIViewController {
         } catch let error as NSError {
             print("Error initializing Realm: \(error.localizedDescription)")
         }
+    }
         
 
     func createClass(realm: Realm, name: String, color: String) {
