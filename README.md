@@ -72,6 +72,10 @@ WireFrame:
 - update and add new tasks for current sprint
 - discuss sprint 3 (retrospective)
 
+04-02-2023
+- worked on fixing issues after merging frontend and backend to main
+- discussed next steps and what to have done by presentation
+
 ## Sprints
 #### Winter Semester 2023
 | Sprint | Start Date | End Date |
