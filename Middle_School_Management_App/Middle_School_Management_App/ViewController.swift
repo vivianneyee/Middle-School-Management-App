@@ -17,6 +17,8 @@ class ViewController: UIViewController {
 
 }
 
+
+
 class ProfileViewController: UIViewController {
     
     @IBAction func tapToSettings(_ sender: Any) {
@@ -106,7 +108,7 @@ class NotificationPrefViewController: UIViewController {
     }
 }
 
-class ScheduleViewController: UIViewController, EKEventViewDelegate {
+class ScheduleViewController: UIViewController, EKEventViewDelegate, UICalendarViewDelegate {
     
     let store = EKEventStore()
     
@@ -114,6 +116,32 @@ class ScheduleViewController: UIViewController, EKEventViewDelegate {
         super.viewDidLoad()
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didTapAdd))
+        createCalendar()
+    }
+    
+    func createCalendar() {
+        let calendarView = UICalendarView()
+        calendarView.translatesAutoresizingMaskIntoConstraints = false
+        
+        calendarView.calendar = .current
+        calendarView.locale = .current
+        calendarView.fontDesign = .rounded
+        calendarView.delegate = self
+        
+        let today = Date()
+        let startOfWeek = today.startOfWeek
+        let endOfWeek = today.endOfWeek
+        calendarView.visibleRange = DateRange(start: startOfWeek, end: endOfWeek)
+
+        
+        view.addSubview(calendarView)
+        
+        NSLayoutConstraint.activate([
+            calendarView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            calendarView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            calendarView.heightAnchor.constraint(equalToConstant: 300),
+            calendarView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
+        ])
     }
     
     @objc func didTapAdd() {
@@ -144,7 +172,10 @@ class ScheduleViewController: UIViewController, EKEventViewDelegate {
     func eventViewController(_ controller: EKEventViewController, didCompleteWith action: EKEventViewAction) {
         controller.dismiss(animated: true, completion: nil)
     }
+}
 
-
-
+extension ViewController: UICalendarViewDelegate {
+    func calendarView(_ calendarView: UICalendarView, decorationFor dateComponents: DateComponents) -> UICalendarView.Decoration? {
+        return nil
+    }
 }
