@@ -8,6 +8,46 @@
 import UIKit
 import EventKitUI
 
+struct PostInfo {
+    let name: String
+    let date: Date
+   // let file:
+}
+
+struct StudentInput {
+    let name: String
+    let date: Date
+    let inputType: String
+}
+
+// hardcoded data for testing, actual object will have a file field
+let eventData: [PostInfo] = [
+    PostInfo(name: "Unit 2 Test", date: Date.now),
+    PostInfo(name: "Unit 3 Quiz", date: Date.distantFuture),
+    PostInfo(name: "Guest Speaker", date: Date.distantFuture),
+    PostInfo(name: "Unit 3 Test", date: Date.now)
+]
+
+let assignData: [PostInfo] = [
+    PostInfo(name: "Assignment 2", date: Date.distantFuture),
+    PostInfo(name: "Assignment 3", date: Date.distantFuture),
+    PostInfo(name: "Assignment 4", date: Date.distantFuture)
+]
+
+let alertData: [PostInfo] = [
+    PostInfo(name: "Alert 1", date: Date.distantFuture),
+    PostInfo(name: "Alert 2", date: Date.distantFuture),
+    PostInfo(name: "Alert 3", date: Date.distantFuture),
+    PostInfo(name: "Alert 4", date: Date.distantFuture)
+]
+
+let studentInputData: [StudentInput] = [
+    StudentInput(name: "Input 1", date: Date.distantFuture, inputType: "Type 1"),
+    StudentInput(name: "Input 2", date: Date.distantFuture, inputType: "Type 2"),
+    StudentInput(name: "Input 3", date: Date.distantFuture, inputType: "Type 3"),
+    StudentInput(name: "Input 4", date: Date.distantFuture, inputType: "Type 4")
+]
+
 class ViewController: UIViewController {
     
     override func viewDidLoad() {
@@ -128,12 +168,6 @@ class ScheduleViewController: UIViewController, EKEventViewDelegate, UICalendarV
         calendarView.fontDesign = .rounded
         calendarView.delegate = self
         
-        let today = Date()
-        let startOfWeek = today.startOfWeek
-        let endOfWeek = today.endOfWeek
-        calendarView.visibleRange = DateRange(start: startOfWeek, end: endOfWeek)
-
-        
         view.addSubview(calendarView)
         
         NSLayoutConstraint.activate([
@@ -177,5 +211,536 @@ class ScheduleViewController: UIViewController, EKEventViewDelegate, UICalendarV
 extension ViewController: UICalendarViewDelegate {
     func calendarView(_ calendarView: UICalendarView, decorationFor dateComponents: DateComponents) -> UICalendarView.Decoration? {
         return nil
+    }
+}
+
+class ClassesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    @IBOutlet weak var table: UITableView!
+    
+    struct ClassInfo {
+        let subject: String
+        let eventCount: String
+        let assignCount: String
+        let alertCount: String
+    }
+    
+    // hardcoded data for testing
+    let data: [ClassInfo] = [
+        ClassInfo(subject: "French", eventCount: "3", assignCount: "1", alertCount: "2"),
+        ClassInfo(subject: "Math", eventCount: "1", assignCount: "2", alertCount: "2"),
+        ClassInfo(subject: "English", eventCount: "3", assignCount: "1", alertCount: "1"),
+        ClassInfo(subject: "Gym", eventCount: "2", assignCount: "2", alertCount: "2")
+    ]
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didTapAdd))
+        
+        table.dataSource = self
+        table.delegate = self
+    }
+    
+    @objc func didTapAdd() {
+        let vc = storyboard?.instantiateViewController(identifier: "createClass") as! CreateClassViewController
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return eventData.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let classCell = data[indexPath.row]
+        let cell = table.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ClassTableViewCell
+        cell.className.text = classCell.subject
+        cell.events.text = "Events - " + classCell.eventCount
+        cell.assignments.text = "Assignments - " + classCell.assignCount
+        cell.alerts.text = "Alerts - " + classCell.alertCount
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 200
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let classCell = data[indexPath.row]
+        let vc = storyboard?.instantiateViewController(identifier: "classInfo") as! ClassInfoViewController
+        navigationController?.pushViewController(vc, animated: true)
+        
+        vc.title = classCell.subject
+    }
+}
+
+class CreateClassViewController: UIViewController {
+    
+    @IBOutlet var field: UITextField!
+    @IBOutlet var colour: UIColorWell!
+    @IBOutlet var button: UIButton!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        title = "Create New Class"
+    }
+
+    @IBAction func tappedSubmit() {
+        // add submit stuff
+    }
+}
+
+class ClassInfoViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    @IBOutlet weak var table: UITableView!
+    
+    let labels: [String] = [
+        "Events",
+        "Assignments",
+        "Alerts",
+        "Student Input"
+    ]
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        table.dataSource = self
+        table.delegate = self
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return labels.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let labelCell = labels[indexPath.row]
+        let cell = table.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! LinkTableViewCell
+        cell.labelName.text = labelCell
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let labelCell = labels[indexPath.row]
+        
+        let vc = storyboard?.instantiateViewController(identifier: "event") as! EventViewController
+        
+        if (labelCell == "Events") {
+            let vc = storyboard?.instantiateViewController(identifier: "event") as! EventViewController
+            navigationController?.pushViewController(vc, animated: true)
+            vc.title = "Events"
+        } else if (labelCell == "Assignments") {
+            let vc = storyboard?.instantiateViewController(identifier: "assign") as! AssignmentViewController
+            navigationController?.pushViewController(vc, animated: true)
+            vc.title = "Assignments"
+        } else if (labelCell == "Alerts") {
+            let vc = storyboard?.instantiateViewController(identifier: "alert") as! AlertViewController
+            navigationController?.pushViewController(vc, animated: true)
+            vc.title = "Alerts"
+        } else if (labelCell == "Student Input") {
+            let vc = storyboard?.instantiateViewController(identifier: "sInput") as! StudentInputViewController
+            navigationController?.pushViewController(vc, animated: true)
+            vc.title = "Student Input"
+        }
+        
+        vc.title = labelCell
+    }
+    
+}
+
+class EventViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    @IBOutlet weak var table: UITableView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didTapAdd))
+        
+        table.dataSource = self
+        table.delegate = self
+    }
+    
+    @objc func didTapAdd() {
+        let vc = storyboard?.instantiateViewController(identifier: "createPost") as! CreatePostViewController
+        navigationController?.pushViewController(vc, animated: true)
+        
+        vc.title = "Create New Event"
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return eventData.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMMM dd yyyy"
+        let eventCell = eventData[indexPath.row]
+        let cell = table.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! PostTableViewCell
+        cell.name.text = eventCell.name
+        cell.date.text = formatter.string(from: eventCell.date)
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 200
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "mySegueIdentifier" {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "MMMM dd yyyy"
+
+//            let pTitle = postTitle.text
+//            let pDate = postDate.text
+//            let destinationVC = segue.destination as! EditViewController
+//            destinationVC.postTitle = pTitle
+//            destinationVC.postDate = pDate
+        }
+    }
+
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let eventCell = eventData[indexPath.row]
+        let vc = storyboard?.instantiateViewController(identifier: "edit") as! EditViewController
+        navigationController?.pushViewController(vc, animated: true)
+        
+        vc.title = "Edit " + eventCell.name
+        
+    }
+}
+
+class AssignmentViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    @IBOutlet weak var table: UITableView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didTapAdd))
+        
+        table.dataSource = self
+        table.delegate = self
+    }
+    
+    @objc func didTapAdd() {
+        let vc = storyboard?.instantiateViewController(identifier: "createPost") as! CreatePostViewController
+        navigationController?.pushViewController(vc, animated: true)
+        
+        vc.title = "Create New Assignment"
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return assignData.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMMM dd yyyy"
+        let eventCell = assignData[indexPath.row]
+        let cell = table.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! PostTableViewCell
+        cell.name.text = eventCell.name
+        cell.date.text = formatter.string(from: eventCell.date)
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 200
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "mySegueIdentifier" {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "MMMM dd yyyy"
+
+//            let pTitle = postTitle.text
+//            let pDate = postDate.text
+//            let destinationVC = segue.destination as! EditViewController
+//            destinationVC.postTitle = pTitle
+//            destinationVC.postDate = pDate
+        }
+    }
+
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let eventCell = assignData[indexPath.row]
+        let vc = storyboard?.instantiateViewController(identifier: "edit") as! EditViewController
+        navigationController?.pushViewController(vc, animated: true)
+        
+        vc.title = "Edit " + eventCell.name
+        
+    }
+}
+
+class AlertViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    @IBOutlet weak var table: UITableView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didTapAdd))
+        
+        table.dataSource = self
+        table.delegate = self
+    }
+    
+    @objc func didTapAdd() {
+        let vc = storyboard?.instantiateViewController(identifier: "createPost") as! CreatePostViewController
+        navigationController?.pushViewController(vc, animated: true)
+        
+        vc.title = "Create New Alert"
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return alertData.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMMM dd yyyy"
+        let eventCell = alertData[indexPath.row]
+        let cell = table.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! PostTableViewCell
+        cell.name.text = eventCell.name
+        cell.date.text = formatter.string(from: eventCell.date)
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 200
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "mySegueIdentifier" {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "MMMM dd yyyy"
+
+//            let pTitle = postTitle.text
+//            let pDate = postDate.text
+//            let destinationVC = segue.destination as! EditViewController
+//            destinationVC.postTitle = pTitle
+//            destinationVC.postDate = pDate
+        }
+    }
+
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let eventCell = alertData[indexPath.row]
+        let vc = storyboard?.instantiateViewController(identifier: "edit") as! EditViewController
+        navigationController?.pushViewController(vc, animated: true)
+        
+        vc.title = "Edit " + eventCell.name
+        
+    }
+}
+
+// EVENT, ASSIGNMENT, ALERT
+class CreatePostViewController: UIViewController {
+    @IBOutlet weak var dateTF: UITextField!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let datePicker = UIDatePicker()
+        datePicker.datePickerMode = .date
+        datePicker.addTarget(self, action: #selector(dateChange(datePicker:)), for: UIControl.Event.valueChanged)
+        datePicker.frame.size = CGSize(width: 0, height: 300)
+        datePicker.preferredDatePickerStyle = .wheels
+        
+        dateTF.inputView = datePicker
+                
+        dateTF.text = formatDate(date: Date())
+    }
+    
+    @objc func dateChange(datePicker: UIDatePicker) {
+        dateTF.text = formatDate(date: datePicker.date)
+    }
+    
+    func formatDate(date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMMM dd yyyy"
+        return formatter.string(from: date)
+    }
+    
+    @IBAction func tappedCreate() {
+        // add create stuff
+    }
+
+}
+
+// EVENT, ASSIGNMENT, ALERT
+class EditViewController: UIViewController {
+    
+    @IBOutlet weak var dateTF: UITextField!
+    var postTitle: String?
+    var postDate: String?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let datePicker = UIDatePicker()
+        datePicker.datePickerMode = .date
+        datePicker.addTarget(self, action: #selector(dateChange(datePicker:)), for: UIControl.Event.valueChanged)
+        datePicker.frame.size = CGSize(width: 0, height: 300)
+        datePicker.preferredDatePickerStyle = .wheels
+        
+        dateTF.inputView = datePicker
+                
+        dateTF.text = formatDate(date: Date())
+    }
+    
+    @objc func dateChange(datePicker: UIDatePicker) {
+        dateTF.text = formatDate(date: datePicker.date)
+    }
+    
+    func formatDate(date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMMM dd yyyy"
+        return formatter.string(from: date)
+    }
+    
+    @IBAction func tappedSave() {
+        // add save stuff
+    }
+}
+
+class StudentInputViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    @IBOutlet weak var table: UITableView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didTapAdd))
+        
+        table.dataSource = self
+        table.delegate = self
+    }
+    
+    @objc func didTapAdd() {
+        let vc = storyboard?.instantiateViewController(identifier: "createSI") as! CreateStudentInputViewController
+        navigationController?.pushViewController(vc, animated: true)
+        
+        vc.title = "Create New Student Input"
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return studentInputData.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMMM dd yyyy"
+        let eventCell = studentInputData[indexPath.row]
+        let cell = table.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! PostTableViewCell
+        cell.name.text = eventCell.name
+        cell.date.text = formatter.string(from: eventCell.date)
+        cell.inputType.text = eventCell.inputType
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 200
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "mySegueIdentifier" {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "MMMM dd yyyy"
+
+//            let pTitle = postTitle.text
+//            let pDate = postDate.text
+//            let destinationVC = segue.destination as! EditViewController
+//            destinationVC.postTitle = pTitle
+//            destinationVC.postDate = pDate
+        }
+    }
+
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let eventCell = studentInputData[indexPath.row]
+        let vc = storyboard?.instantiateViewController(identifier: "editSI") as! EditStudentInputViewController
+        navigationController?.pushViewController(vc, animated: true)
+        
+        vc.title = "Edit " + eventCell.name
+    }
+}
+
+class CreateStudentInputViewController: UIViewController {
+    @IBOutlet weak var dateTF: UITextField!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let datePicker = UIDatePicker()
+        datePicker.datePickerMode = .date
+        datePicker.addTarget(self, action: #selector(dateChange(datePicker:)), for: UIControl.Event.valueChanged)
+        datePicker.frame.size = CGSize(width: 0, height: 300)
+        datePicker.preferredDatePickerStyle = .wheels
+        
+        dateTF.inputView = datePicker
+                
+        dateTF.text = formatDate(date: Date())
+    }
+    
+    @objc func dateChange(datePicker: UIDatePicker) {
+        dateTF.text = formatDate(date: datePicker.date)
+    }
+    
+    func formatDate(date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMMM dd yyyy"
+        return formatter.string(from: date)
+    }
+    
+    @IBAction func tappedCreate() {
+        // add create stuff
+    }
+}
+
+class EditStudentInputViewController: UIViewController {
+    @IBOutlet weak var dateTF: UITextField!
+    var postTitle: String?
+    var postDate: String?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let datePicker = UIDatePicker()
+        datePicker.datePickerMode = .date
+        datePicker.addTarget(self, action: #selector(dateChange(datePicker:)), for: UIControl.Event.valueChanged)
+        datePicker.frame.size = CGSize(width: 0, height: 300)
+        datePicker.preferredDatePickerStyle = .wheels
+        
+        dateTF.inputView = datePicker
+                
+        dateTF.text = formatDate(date: Date())
+    }
+    
+    @objc func dateChange(datePicker: UIDatePicker) {
+        dateTF.text = formatDate(date: datePicker.date)
+    }
+    
+    func formatDate(date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMMM dd yyyy"
+        return formatter.string(from: date)
+    }
+    
+    @IBAction func tappedSave() {
+        // add save stuff
+    }
+}
+
+class JoinClassViewController: UIViewController {
+    
+    @IBOutlet var field: UITextField!
+    @IBOutlet var button: UIButton!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+
+    @IBAction func tappedSubmit() {
+        // add submit stuff
     }
 }
