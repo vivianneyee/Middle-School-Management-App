@@ -10,42 +10,42 @@ import EventKitUI
 
 struct PostInfo {
     let name: String
-    let date: Date
+    let date: DateComponents
    // let file:
 }
 
 struct StudentInput {
     let name: String
-    let date: Date
+    let date: DateComponents
     let inputType: String
 }
 
 // hardcoded data for testing, actual object will have a file field
 let eventData: [PostInfo] = [
-    PostInfo(name: "Unit 2 Test", date: Date.now),
-    PostInfo(name: "Unit 3 Quiz", date: Date.distantFuture),
-    PostInfo(name: "Guest Speaker", date: Date.distantFuture),
-    PostInfo(name: "Unit 3 Test", date: Date.now)
+    PostInfo(name: "Unit 2 Test", date: DateComponents(year: 2023, month: 4, day: 18)),
+    PostInfo(name: "Unit 3 Quiz", date: DateComponents(year: 2023, month: 4, day: 22)),
+    PostInfo(name: "Guest Speaker", date: DateComponents(year: 2023, month: 5, day: 12)),
+    PostInfo(name: "Unit 3 Test", date: DateComponents(year: 2023, month: 5, day: 16))
 ]
 
 let assignData: [PostInfo] = [
-    PostInfo(name: "Assignment 2", date: Date.distantFuture),
-    PostInfo(name: "Assignment 3", date: Date.distantFuture),
-    PostInfo(name: "Assignment 4", date: Date.distantFuture)
+    PostInfo(name: "Assignment 2", date: DateComponents(year: 2023, month: 4, day: 18)),
+    PostInfo(name: "Assignment 3", date: DateComponents(year: 2023, month: 4, day: 24)),
+    PostInfo(name: "Assignment 4", date: DateComponents(year: 2023, month: 5, day: 8))
 ]
 
 let alertData: [PostInfo] = [
-    PostInfo(name: "Alert 1", date: Date.distantFuture),
-    PostInfo(name: "Alert 2", date: Date.distantFuture),
-    PostInfo(name: "Alert 3", date: Date.distantFuture),
-    PostInfo(name: "Alert 4", date: Date.distantFuture)
+    PostInfo(name: "Alert 1", date: DateComponents(year: 2023, month: 4, day: 18)),
+    PostInfo(name: "Alert 2", date: DateComponents(year: 2023, month: 4, day: 21)),
+    PostInfo(name: "Alert 3", date: DateComponents(year: 2023, month: 4, day: 26)),
+    PostInfo(name: "Alert 4", date: DateComponents(year: 2023, month: 5, day: 5))
 ]
 
 let studentInputData: [StudentInput] = [
-    StudentInput(name: "Input 1", date: Date.distantFuture, inputType: "Type 1"),
-    StudentInput(name: "Input 2", date: Date.distantFuture, inputType: "Type 2"),
-    StudentInput(name: "Input 3", date: Date.distantFuture, inputType: "Type 3"),
-    StudentInput(name: "Input 4", date: Date.distantFuture, inputType: "Type 4")
+    StudentInput(name: "Input 1", date: DateComponents(year: 2023, month: 4, day: 16), inputType: "Type 1"),
+    StudentInput(name: "Input 2", date: DateComponents(year: 2023, month: 4, day: 18), inputType: "Type 2"),
+    StudentInput(name: "Input 3", date: DateComponents(year: 2023, month: 4, day: 22), inputType: "Type 3"),
+    StudentInput(name: "Input 4", date: DateComponents(year: 2023, month: 5, day: 2), inputType: "Type 4")
 ]
 
 class ViewController: UIViewController {
@@ -375,12 +375,20 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MMMM dd yyyy"
+        let dcFormatter = DateComponentsFormatter()
+        dcFormatter.includesApproximationPhrase = false
+        dcFormatter.allowedUnits = [.month, .day, .year]
+        
         let eventCell = eventData[indexPath.row]
         let cell = table.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! PostTableViewCell
+        
+        let date = Calendar.current.date(from: eventCell.date)
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMMM dd yyyy"
+        cell.date.text = formatter.string(from : date!)
+        
         cell.name.text = eventCell.name
-        cell.date.text = formatter.string(from: eventCell.date)
+        
         return cell
     }
     
@@ -436,12 +444,20 @@ class AssignmentViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let dcFormatter = DateComponentsFormatter()
+        dcFormatter.includesApproximationPhrase = false
+        dcFormatter.allowedUnits = [.month, .day, .year]
+        
+        let eventCell = eventData[indexPath.row]
+        let cell = table.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! PostTableViewCell
+        
+        let date = Calendar.current.date(from: eventCell.date)
         let formatter = DateFormatter()
         formatter.dateFormat = "MMMM dd yyyy"
-        let eventCell = assignData[indexPath.row]
-        let cell = table.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! PostTableViewCell
+        cell.date.text = formatter.string(from : date!)
+        
         cell.name.text = eventCell.name
-        cell.date.text = formatter.string(from: eventCell.date)
+        
         return cell
     }
     
@@ -497,12 +513,20 @@ class AlertViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let dcFormatter = DateComponentsFormatter()
+        dcFormatter.includesApproximationPhrase = false
+        dcFormatter.allowedUnits = [.month, .day, .year]
+        
+        let eventCell = eventData[indexPath.row]
+        let cell = table.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! PostTableViewCell
+        
+        let date = Calendar.current.date(from: eventCell.date)
         let formatter = DateFormatter()
         formatter.dateFormat = "MMMM dd yyyy"
-        let eventCell = alertData[indexPath.row]
-        let cell = table.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! PostTableViewCell
+        cell.date.text = formatter.string(from : date!)
+        
         cell.name.text = eventCell.name
-        cell.date.text = formatter.string(from: eventCell.date)
+        
         return cell
     }
     
@@ -628,13 +652,22 @@ class StudentInputViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MMMM dd yyyy"
+        let dcFormatter = DateComponentsFormatter()
+        dcFormatter.includesApproximationPhrase = false
+        dcFormatter.allowedUnits = [.month, .day, .year]
+        
         let eventCell = studentInputData[indexPath.row]
         let cell = table.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! PostTableViewCell
+        
+        let date = Calendar.current.date(from: eventCell.date)
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMMM dd yyyy"
+        cell.date.text = formatter.string(from : date!)
+        
         cell.name.text = eventCell.name
-        cell.date.text = formatter.string(from: eventCell.date)
+
         cell.inputType.text = eventCell.inputType
+        
         return cell
     }
     
