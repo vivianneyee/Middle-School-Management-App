@@ -12,6 +12,5 @@ class ClassTableViewCell: UITableViewCell {
     @IBOutlet weak var events: UILabel!
     @IBOutlet weak var assignments: UILabel!
     @IBOutlet weak var alerts: UILabel!
-
-
+    @IBOutlet var colour: UIImageView!
 }

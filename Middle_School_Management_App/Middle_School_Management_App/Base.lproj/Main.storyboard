@@ -158,6 +158,13 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="s74-Vx-F1g">
+                                                    <rect key="frame" x="101" y="25" width="30" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="FiX-1a-jhj"/>
+                                                        <constraint firstAttribute="width" constant="30" id="ulr-zz-Rx2"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="yHx-Km-5Bp" firstAttribute="leading" secondItem="21s-WJ-OCI" secondAttribute="leading" id="4CL-oq-Pbk"/>
@@ -168,12 +175,15 @@
                                                 <constraint firstItem="bas-gD-M1Z" firstAttribute="leading" secondItem="tAt-oM-58w" secondAttribute="leadingMargin" constant="14" id="gXB-yX-d1m"/>
                                                 <constraint firstItem="21s-WJ-OCI" firstAttribute="top" secondItem="yHx-Km-5Bp" secondAttribute="bottom" constant="8" id="rgF-iz-IOX"/>
                                                 <constraint firstItem="yHx-Km-5Bp" firstAttribute="top" secondItem="bas-gD-M1Z" secondAttribute="bottom" constant="32" id="s9o-hw-CrH"/>
+                                                <constraint firstItem="s74-Vx-F1g" firstAttribute="bottom" secondItem="21s-WJ-OCI" secondAttribute="bottom" constant="-82" id="v4d-xj-qbw"/>
+                                                <constraint firstItem="s74-Vx-F1g" firstAttribute="leading" secondItem="bas-gD-M1Z" secondAttribute="trailing" constant="8" id="zWT-uB-tFl"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="alerts" destination="W1D-Mg-dJe" id="lf9-3d-cge"/>
                                             <outlet property="assignments" destination="21s-WJ-OCI" id="Dh1-f4-IEs"/>
                                             <outlet property="className" destination="bas-gD-M1Z" id="rsg-wq-c8j"/>
+                                            <outlet property="colour" destination="s74-Vx-F1g" id="HFr-Q1-mhK"/>
                                             <outlet property="events" destination="yHx-Km-5Bp" id="PCW-q4-GnE"/>
                                         </connections>
                                     </tableViewCell>
@@ -205,20 +215,8 @@
                     <view key="view" contentMode="scaleToFill" id="v6y-pl-OeO">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ksN-Gd-9Mv">
-                                <rect key="frame" x="0.0" y="103" width="393" height="342"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </view>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="ylm-D8-rXo"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstAttribute="bottom" secondItem="ksN-Gd-9Mv" secondAttribute="bottom" constant="407" id="6LN-n5-zUj"/>
-                            <constraint firstItem="ksN-Gd-9Mv" firstAttribute="centerX" secondItem="v6y-pl-OeO" secondAttribute="centerX" id="AEl-1j-AY9"/>
-                            <constraint firstItem="ksN-Gd-9Mv" firstAttribute="top" secondItem="ylm-D8-rXo" secondAttribute="top" id="FQO-Bn-TQT"/>
-                            <constraint firstItem="ksN-Gd-9Mv" firstAttribute="leading" secondItem="ylm-D8-rXo" secondAttribute="leading" id="v8d-xS-iE0"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Schedule" id="2Ra-aL-0ji"/>
                 </viewController>
@@ -822,6 +820,7 @@
                     </view>
                     <connections>
                         <outlet property="dateTF" destination="X68-Qc-YPz" id="GEg-CE-3Ov"/>
+                        <outlet property="titleTF" destination="8PF-8S-kZL" id="sIh-Iy-Wt4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q9H-Yb-Mh4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

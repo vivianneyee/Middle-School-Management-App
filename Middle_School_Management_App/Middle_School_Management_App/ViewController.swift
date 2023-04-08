@@ -57,8 +57,6 @@ class ViewController: UIViewController {
 
 }
 
-
-
 class ProfileViewController: UIViewController {
     
     @IBAction func tapToSettings(_ sender: Any) {
@@ -151,7 +149,8 @@ class NotificationPrefViewController: UIViewController {
 class ScheduleViewController: UIViewController, EKEventViewDelegate, UICalendarViewDelegate {
     
     let store = EKEventStore()
-    
+    var eventDates: [DateComponents] = []
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -167,6 +166,13 @@ class ScheduleViewController: UIViewController, EKEventViewDelegate, UICalendarV
         calendarView.locale = .current
         calendarView.fontDesign = .rounded
         calendarView.delegate = self
+        calendarView.wantsDateDecorations = true
+        
+        func shouldHighlightDate(_ date: Date) -> Bool {
+                let calendar = Calendar.current
+                let components = calendar.dateComponents([.month, .day], from: date)
+                return components.month == 4 && components.day == 5 // Highlight April 5th
+            }
         
         view.addSubview(calendarView)
         
@@ -206,11 +212,19 @@ class ScheduleViewController: UIViewController, EKEventViewDelegate, UICalendarV
     func eventViewController(_ controller: EKEventViewController, didCompleteWith action: EKEventViewAction) {
         controller.dismiss(animated: true, completion: nil)
     }
+    
+    func calendarView(_ calendarView: UICalendarView, decorationFor dateComponents: DateComponents) -> UICalendarView.Decoration? {
+        let font = UIFont.systemFont(ofSize: 10)
+        let configuration = UIImage.SymbolConfiguration(font: font)
+        let image = UIImage(systemName: "circle.fill", withConfiguration: configuration)?.withRenderingMode(.alwaysOriginal).withTintColor(UIColor.red)
+        return .image(image)
+    }
+    
 }
 
-extension ViewController: UICalendarViewDelegate {
-    func calendarView(_ calendarView: UICalendarView, decorationFor dateComponents: DateComponents) -> UICalendarView.Decoration? {
-        return nil
+class NotificationsViewController: UIViewController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
     }
 }
 
@@ -223,14 +237,15 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
         let eventCount: String
         let assignCount: String
         let alertCount: String
+        let colour: UIColor
     }
     
     // hardcoded data for testing
     let data: [ClassInfo] = [
-        ClassInfo(subject: "French", eventCount: "3", assignCount: "1", alertCount: "2"),
-        ClassInfo(subject: "Math", eventCount: "1", assignCount: "2", alertCount: "2"),
-        ClassInfo(subject: "English", eventCount: "3", assignCount: "1", alertCount: "1"),
-        ClassInfo(subject: "Gym", eventCount: "2", assignCount: "2", alertCount: "2")
+        ClassInfo(subject: "French", eventCount: "3", assignCount: "1", alertCount: "2", colour: UIColor.green),
+        ClassInfo(subject: "Math", eventCount: "1", assignCount: "2", alertCount: "2", colour: UIColor.red),
+        ClassInfo(subject: "English", eventCount: "3", assignCount: "1", alertCount: "1", colour: UIColor.blue),
+        ClassInfo(subject: "Gym", eventCount: "2", assignCount: "2", alertCount: "2", colour: UIColor.orange)
     ]
     
     override func viewDidLoad() {
@@ -258,6 +273,10 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
         cell.events.text = "Events - " + classCell.eventCount
         cell.assignments.text = "Assignments - " + classCell.assignCount
         cell.alerts.text = "Alerts - " + classCell.alertCount
+        let font = UIFont.systemFont(ofSize: 25)
+        let configuration = UIImage.SymbolConfiguration(font: font)
+        let im = UIImage(systemName: "circle.fill", withConfiguration: configuration)?.withRenderingMode(.alwaysOriginal).withTintColor(classCell.colour)
+        cell.colour.image = im
         return cell
     }
     
@@ -448,7 +467,7 @@ class AssignmentViewController: UIViewController, UITableViewDataSource, UITable
         dcFormatter.includesApproximationPhrase = false
         dcFormatter.allowedUnits = [.month, .day, .year]
         
-        let eventCell = eventData[indexPath.row]
+        let eventCell = assignData[indexPath.row]
         let cell = table.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! PostTableViewCell
         
         let date = Calendar.current.date(from: eventCell.date)
@@ -464,20 +483,6 @@ class AssignmentViewController: UIViewController, UITableViewDataSource, UITable
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 200
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "mySegueIdentifier" {
-            let formatter = DateFormatter()
-            formatter.dateFormat = "MMMM dd yyyy"
-
-//            let pTitle = postTitle.text
-//            let pDate = postDate.text
-//            let destinationVC = segue.destination as! EditViewController
-//            destinationVC.postTitle = pTitle
-//            destinationVC.postDate = pDate
-        }
-    }
-
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let eventCell = assignData[indexPath.row]
@@ -517,7 +522,7 @@ class AlertViewController: UIViewController, UITableViewDataSource, UITableViewD
         dcFormatter.includesApproximationPhrase = false
         dcFormatter.allowedUnits = [.month, .day, .year]
         
-        let eventCell = eventData[indexPath.row]
+        let eventCell = alertData[indexPath.row]
         let cell = table.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! PostTableViewCell
         
         let date = Calendar.current.date(from: eventCell.date)
@@ -593,9 +598,11 @@ class CreatePostViewController: UIViewController {
 }
 
 // EVENT, ASSIGNMENT, ALERT
+// code functionality later...
 class EditViewController: UIViewController {
     
     @IBOutlet weak var dateTF: UITextField!
+    @IBOutlet weak var titleTF: UITextField!
     var postTitle: String?
     var postDate: String?
     
@@ -609,8 +616,41 @@ class EditViewController: UIViewController {
         datePicker.preferredDatePickerStyle = .wheels
         
         dateTF.inputView = datePicker
+        
+        for (index, event) in eventData.enumerated() {
+            if "Edit " + event.name == title {
+                let date = Calendar.current.date(from: eventData[index].date)
+                let formatter = DateFormatter()
+                formatter.dateFormat = "MMMM dd yyyy"
+                dateTF.text = formatter.string(from : date!)
                 
-        dateTF.text = formatDate(date: Date())
+                titleTF.text = event.name
+            }
+        }
+        
+        for (index, assign) in assignData.enumerated() {
+            if "Edit " + assign.name == title {
+                let date = Calendar.current.date(from: assignData[index].date)
+                let formatter = DateFormatter()
+                formatter.dateFormat = "MMMM dd yyyy"
+                dateTF.text = formatter.string(from : date!)
+                
+                titleTF.text = assign.name
+            }
+        }
+        
+        for (index, alert) in alertData.enumerated() {
+            if "Edit " + alert.name == title {
+                print(true)
+                let date = Calendar.current.date(from: alertData[index].date)
+                let formatter = DateFormatter()
+                formatter.dateFormat = "MMMM dd yyyy"
+                dateTF.text = formatter.string(from : date!)
+                
+                titleTF.text = alertData[index].name
+ 
+            }
+        }
     }
     
     @objc func dateChange(datePicker: UIDatePicker) {
@@ -674,20 +714,6 @@ class StudentInputViewController: UIViewController, UITableViewDataSource, UITab
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 200
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "mySegueIdentifier" {
-            let formatter = DateFormatter()
-            formatter.dateFormat = "MMMM dd yyyy"
-
-//            let pTitle = postTitle.text
-//            let pDate = postDate.text
-//            let destinationVC = segue.destination as! EditViewController
-//            destinationVC.postTitle = pTitle
-//            destinationVC.postDate = pDate
-        }
-    }
-
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let eventCell = studentInputData[indexPath.row]
