@@ -76,6 +76,9 @@ WireFrame:
 - worked on fixing issues after merging frontend and backend to main
 - discussed next steps and what to have done by presentation
 
+04-09-2023
+- discussed capstone presentation content and plan for demo
+
 ## Sprints
 #### Winter Semester 2023
 | Sprint | Start Date | End Date |
