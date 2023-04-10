@@ -14,10 +14,27 @@ struct PostInfo {
    // let file:
 }
 
+struct NotifInfo {
+    let name: String
+    let notif: String
+    let date: DateComponents
+   // let file:
+}
+
 struct StudentInput {
     let name: String
     let date: DateComponents
     let inputType: String
+}
+
+struct DailySche {
+    let period1: String
+    let period2: String
+    let period3: String
+    let period4: String
+    let period5: String
+    let period6: String
+    let period7: String
 }
 
 // hardcoded data for testing, actual object will have a file field
@@ -41,11 +58,42 @@ let alertData: [PostInfo] = [
     PostInfo(name: "Alert 4", date: DateComponents(year: 2023, month: 5, day: 5))
 ]
 
+var allNotifs: [NotifInfo] = [
+    NotifInfo(name: "Art", notif: "Unit 2 Test", date: DateComponents(year: 2023, month: 4, day: 18)),
+    NotifInfo(name: "French", notif: "Assignment 2 Due", date: DateComponents(year: 2023, month: 4, day: 19)),
+    NotifInfo(name: "Junior Girls Volleyball", notif: "Volleyball game", date: DateComponents(year: 2023, month: 4, day: 19)),
+    NotifInfo(name:"Social Studies", notif: "Unit 3 Quiz", date: DateComponents(year: 2023, month: 4, day: 21)),
+    NotifInfo(name:"Music", notif: "Guest Speaker", date: DateComponents(year: 2023, month: 4, day: 22)),
+    NotifInfo(name: "Math", notif: "Unit 3 Test", date: DateComponents(year: 2023, month: 4, day: 25)),
+    NotifInfo(name:"French", notif: "Assignment 3 Due", date: DateComponents(year: 2023, month: 4, day: 27)),
+    NotifInfo(name: "Track and Field", notif: "Track meet", date: DateComponents(year: 2023, month: 5, day: 1))
+]
+
 let studentInputData: [StudentInput] = [
     StudentInput(name: "Input 1", date: DateComponents(year: 2023, month: 4, day: 16), inputType: "Type 1"),
     StudentInput(name: "Input 2", date: DateComponents(year: 2023, month: 4, day: 18), inputType: "Type 2"),
     StudentInput(name: "Input 3", date: DateComponents(year: 2023, month: 4, day: 22), inputType: "Type 3"),
     StudentInput(name: "Input 4", date: DateComponents(year: 2023, month: 5, day: 2), inputType: "Type 4")
+]
+
+// using this for capstone demo
+let weeklySche: [DailySche] = [
+    DailySche(period1: "Math", period2: "Art", period3: "Gym", period4: "Music", period5: "French", period6: "Social Studies", period7: "Science"),
+    DailySche(period1: "Languages", period2: "Math", period3: "Science", period4: "Art", period5: "Gym", period6: "Music", period7: "French"),
+    DailySche(period1: "Social Studies", period2: "Science", period3: "Gym", period4: "French", period5: "Music", period6: "Languages", period7: "Math"),
+    DailySche(period1: "Music", period2: "French", period3: "Art", period4: "Languages", period5: "Science", period6: "Math", period7: "Gym"),
+    DailySche(period1: "Science", period2: "Gym", period3: "Music", period4: "Math", period5: "Art", period6: "French", period7: "Languages")
+]
+
+let classColours = [
+    "Math": UIColor.red,
+    "Art": UIColor.blue,
+    "Gym": UIColor.green,
+    "Music": UIColor.yellow,
+    "French": UIColor.purple,
+    "Social Studies": UIColor.orange,
+    "Science": UIColor.cyan,
+    "Languages": UIColor.systemPink
 ]
 
 class ViewController: UIViewController {
@@ -84,10 +132,44 @@ class SettingsViewController: UIViewController {
         title = "Settings"
     }
 
-
 }
 
-class NotificationPrefViewController: UIViewController {
+class NotificationPrefViewController: UITableViewController {
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return 6
+//    }
+//
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+////        let labelCell = labels[indexPath.row]
+//        let cell = table.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+////        // Configure the cell based on the row number
+//        switch indexPath.row {
+//        case 0:
+//            cell.textLabel?.text = "Push Notifications"
+////            cell.detailTextLabel?.text = "This is cell 1"
+//        case 1:
+//            cell.textLabel?.text = "Notify me of:"
+//            cell.detailTextLabel?.text = "This is cell 2"
+//        case 2:
+//            cell.textLabel?.text = "Events"
+//            cell.detailTextLabel?.text = "This is cell 3"
+//        case 3:
+//            cell.textLabel?.text = "Assignments"
+//            cell.detailTextLabel?.text = "This is cell 4"
+//        case 4:
+//            cell.textLabel?.text = "Alerts"
+//            cell.detailTextLabel?.text = "This is cell 5"
+//        case 5:
+//            cell.textLabel?.text = "New Content"
+//            cell.detailTextLabel?.text = "This is cell6"
+//        default:
+//            cell.textLabel?.text = "Unknown cell"
+//            cell.detailTextLabel?.text = ""
+//        }
+//
+//        return cell
+//    }
+//
     
     @IBOutlet var switchNotif: UISwitch!
     @IBOutlet var switchEvents: UISwitch!
@@ -95,8 +177,11 @@ class NotificationPrefViewController: UIViewController {
     @IBOutlet var switchAlerts: UISwitch!
     @IBOutlet var switchContent: UISwitch!
     
+    @IBOutlet weak var table: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+
         title = "Notification Preferences"
     }
 
@@ -168,12 +253,6 @@ class ScheduleViewController: UIViewController, EKEventViewDelegate, UICalendarV
         calendarView.delegate = self
         calendarView.wantsDateDecorations = true
         
-        func shouldHighlightDate(_ date: Date) -> Bool {
-                let calendar = Calendar.current
-                let components = calendar.dateComponents([.month, .day], from: date)
-                return components.month == 4 && components.day == 5 // Highlight April 5th
-            }
-        
         view.addSubview(calendarView)
         
         NSLayoutConstraint.activate([
@@ -222,9 +301,54 @@ class ScheduleViewController: UIViewController, EKEventViewDelegate, UICalendarV
     
 }
 
-class NotificationsViewController: UIViewController {
+class NotificationsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    @IBOutlet weak var table: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didTapAdd))
+        
+        table.dataSource = self
+        table.delegate = self
+
+    }
+    
+//    @objc func didTapAdd() {
+//        let vc = storyboard?.instantiateViewController(identifier: "createPost") as! CreatePostViewController
+//        navigationController?.pushViewController(vc, animated: true)
+//
+//        vc.title = "Create New Event"
+//    }
+//
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return allNotifs.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let dcFormatter = DateComponentsFormatter()
+        dcFormatter.includesApproximationPhrase = false
+        dcFormatter.allowedUnits = [.month, .day, .year]
+        
+        let eventCell = allNotifs[indexPath.row]
+        let cell = table.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! NotifTableViewCell
+        
+        let date = Calendar.current.date(from: eventCell.date)
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMMM dd yyyy"
+        
+        
+        cell.date.text = formatter.string(from : date!)
+        
+        cell.className.text = eventCell.name
+        
+        cell.notif.text = eventCell.notif
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 120
     }
 }
 
@@ -239,13 +363,13 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
         let alertCount: String
         let colour: UIColor
     }
-    
+
     // hardcoded data for testing
     let data: [ClassInfo] = [
-        ClassInfo(subject: "French", eventCount: "3", assignCount: "1", alertCount: "2", colour: UIColor.green),
+        ClassInfo(subject: "French", eventCount: "3", assignCount: "1", alertCount: "2", colour: UIColor.purple),
         ClassInfo(subject: "Math", eventCount: "1", assignCount: "2", alertCount: "2", colour: UIColor.red),
-        ClassInfo(subject: "English", eventCount: "3", assignCount: "1", alertCount: "1", colour: UIColor.blue),
-        ClassInfo(subject: "Gym", eventCount: "2", assignCount: "2", alertCount: "2", colour: UIColor.orange)
+        ClassInfo(subject: "Social Studies", eventCount: "3", assignCount: "1", alertCount: "1", colour: UIColor.orange),
+        ClassInfo(subject: "Gym", eventCount: "2", assignCount: "2", alertCount: "2", colour: UIColor.green)
     ]
     
     override func viewDidLoad() {
