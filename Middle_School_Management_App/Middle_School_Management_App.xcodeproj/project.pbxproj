@@ -10,6 +10,11 @@
 		8126D2CD29DCEE3B00BD8CA7 /* ClassTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8126D2CC29DCEE3B00BD8CA7 /* ClassTableViewCell.swift */; };
 		8126D2D129DD13C700BD8CA7 /* LinkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8126D2D029DD13C700BD8CA7 /* LinkTableViewCell.swift */; };
 		8126D2D329DD1F0E00BD8CA7 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8126D2D229DD1F0E00BD8CA7 /* PostTableViewCell.swift */; };
+		8126D2D529DE1B2000BD8CA7 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 8126D2D429DE1B2000BD8CA7 /* .gitignore */; };
+		8126D2D729E3225E00BD8CA7 /* NotifTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8126D2D629E3225E00BD8CA7 /* NotifTableViewCell.swift */; };
+		8126D2DA29E3A39B00BD8CA7 /* CalendarKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8126D2D929E3A39B00BD8CA7 /* CalendarKit */; };
+		8126D2DD29E5188400BD8CA7 /* KVKCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 8126D2DC29E5188400BD8CA7 /* KVKCalendar */; };
+		8126D2E029E5DFC100BD8CA7 /* ECWeekView in Frameworks */ = {isa = PBXBuildFile; productRef = 8126D2DF29E5DFC100BD8CA7 /* ECWeekView */; };
 		B53ED10B29BF7AD50087A59A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53ED10A29BF7AD50087A59A /* AppDelegate.swift */; };
 		B53ED10D29BF7AD50087A59A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53ED10C29BF7AD50087A59A /* SceneDelegate.swift */; };
 		B53ED10F29BF7AD50087A59A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53ED10E29BF7AD50087A59A /* ViewController.swift */; };
@@ -42,6 +47,8 @@
 		8126D2CC29DCEE3B00BD8CA7 /* ClassTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassTableViewCell.swift; sourceTree = "<group>"; };
 		8126D2D029DD13C700BD8CA7 /* LinkTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkTableViewCell.swift; sourceTree = "<group>"; };
 		8126D2D229DD1F0E00BD8CA7 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		8126D2D429DE1B2000BD8CA7 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = .gitignore; path = ../.gitignore; sourceTree = "<group>"; };
+		8126D2D629E3225E00BD8CA7 /* NotifTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifTableViewCell.swift; sourceTree = "<group>"; };
 		B53ED10729BF7AD50087A59A /* Middle_School_Management_App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Middle_School_Management_App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B53ED10A29BF7AD50087A59A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B53ED10C29BF7AD50087A59A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -62,6 +69,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8126D2DA29E3A39B00BD8CA7 /* CalendarKit in Frameworks */,
+				8126D2DD29E5188400BD8CA7 /* KVKCalendar in Frameworks */,
+				8126D2E029E5DFC100BD8CA7 /* ECWeekView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +95,7 @@
 		B53ED0FE29BF7AD50087A59A = {
 			isa = PBXGroup;
 			children = (
+				8126D2D429DE1B2000BD8CA7 /* .gitignore */,
 				B53ED10929BF7AD50087A59A /* Middle_School_Management_App */,
 				B53ED12029BF7ADA0087A59A /* Middle_School_Management_AppTests */,
 				B53ED12A29BF7ADA0087A59A /* Middle_School_Management_AppUITests */,
@@ -115,6 +126,7 @@
 				8126D2CC29DCEE3B00BD8CA7 /* ClassTableViewCell.swift */,
 				8126D2D029DD13C700BD8CA7 /* LinkTableViewCell.swift */,
 				8126D2D229DD1F0E00BD8CA7 /* PostTableViewCell.swift */,
+				8126D2D629E3225E00BD8CA7 /* NotifTableViewCell.swift */,
 			);
 			path = Middle_School_Management_App;
 			sourceTree = "<group>";
@@ -152,6 +164,11 @@
 			dependencies = (
 			);
 			name = Middle_School_Management_App;
+			packageProductDependencies = (
+				8126D2D929E3A39B00BD8CA7 /* CalendarKit */,
+				8126D2DC29E5188400BD8CA7 /* KVKCalendar */,
+				8126D2DF29E5DFC100BD8CA7 /* ECWeekView */,
+			);
 			productName = Middle_School_Management_App;
 			productReference = B53ED10729BF7AD50087A59A /* Middle_School_Management_App.app */;
 			productType = "com.apple.product-type.application";
@@ -224,6 +241,11 @@
 				Base,
 			);
 			mainGroup = B53ED0FE29BF7AD50087A59A;
+			packageReferences = (
+				8126D2D829E3A39B00BD8CA7 /* XCRemoteSwiftPackageReference "CalendarKit" */,
+				8126D2DB29E5188400BD8CA7 /* XCRemoteSwiftPackageReference "KVKCalendar" */,
+				8126D2DE29E5DFC100BD8CA7 /* XCRemoteSwiftPackageReference "swift-week-view" */,
+			);
 			productRefGroup = B53ED10829BF7AD50087A59A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -240,6 +262,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8126D2D529DE1B2000BD8CA7 /* .gitignore in Resources */,
 				B53ED11729BF7AD90087A59A /* LaunchScreen.storyboard in Resources */,
 				B53ED11429BF7AD90087A59A /* Assets.xcassets in Resources */,
 				B53ED11229BF7AD50087A59A /* Main.storyboard in Resources */,
@@ -268,6 +291,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8126D2D329DD1F0E00BD8CA7 /* PostTableViewCell.swift in Sources */,
+				8126D2D729E3225E00BD8CA7 /* NotifTableViewCell.swift in Sources */,
 				8126D2CD29DCEE3B00BD8CA7 /* ClassTableViewCell.swift in Sources */,
 				B53ED10F29BF7AD50087A59A /* ViewController.swift in Sources */,
 				B53ED10B29BF7AD50087A59A /* AppDelegate.swift in Sources */,
@@ -614,6 +638,51 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8126D2D829E3A39B00BD8CA7 /* XCRemoteSwiftPackageReference "CalendarKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/richardtop/CalendarKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		8126D2DB29E5188400BD8CA7 /* XCRemoteSwiftPackageReference "KVKCalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kvyatkovskys/KVKCalendar.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.6.13;
+			};
+		};
+		8126D2DE29E5DFC100BD8CA7 /* XCRemoteSwiftPackageReference "swift-week-view" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/EvanCooper9/swift-week-view.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8126D2D929E3A39B00BD8CA7 /* CalendarKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8126D2D829E3A39B00BD8CA7 /* XCRemoteSwiftPackageReference "CalendarKit" */;
+			productName = CalendarKit;
+		};
+		8126D2DC29E5188400BD8CA7 /* KVKCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8126D2DB29E5188400BD8CA7 /* XCRemoteSwiftPackageReference "KVKCalendar" */;
+			productName = KVKCalendar;
+		};
+		8126D2DF29E5DFC100BD8CA7 /* ECWeekView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8126D2DE29E5DFC100BD8CA7 /* XCRemoteSwiftPackageReference "swift-week-view" */;
+			productName = ECWeekView;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B53ED0FF29BF7AD50087A59A /* Project object */;
 }
