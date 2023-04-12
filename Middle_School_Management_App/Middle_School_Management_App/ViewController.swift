@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import RealmSwift
 import ECWeekView
 import SwiftDate
 
@@ -122,27 +121,9 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        do {
-            let realm = try Realm()
-            
-            // for debugging
-            print(Realm.Configuration.defaultConfiguration.fileURL!)
-            
-            // test class
-            createClass(realm: realm, name: "test class", color: "blue")
-            
-            // test posts
-            let date = Date()
-            let files = List<String>()
-            createEvent(realm: realm, title: "testEvent", date: date, files: files)
-            createAlert(realm: realm, title: "testAlert", date: date, files: files)
-            createAssignment(realm: realm, title: "testAssignment", date: date, files: files)
-            createStudentInput(realm: realm, title: "testStudentInput", date: date, inputType: "TEXT")
-        } catch let error as NSError {
-            print("Error initializing Realm: \(error.localizedDescription)")
-        }
-    }    
+        // Do any additional setup after loading the view.
+    }
+    
     
 }
 
