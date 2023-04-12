@@ -339,7 +339,7 @@ class ScheduleViewController: UIViewController, ECWeekViewDataSource, ECWeekView
         
         if let classColor = classes[event.title] {
             print(classes)
-            eventView.backgroundColor = classColor
+            eventView.backgroundColor = UIColor.clear
             eventView.layer.borderColor = classColor.cgColor // Set border color to match background color
             eventView.layer.borderWidth = 1.0 // Set border width to 1.0 point
         } else {
@@ -378,7 +378,7 @@ class MyWeekViewStyler: ECWeekViewStyler {
     // Creates the view for an event
     func weekViewStylerECEventView(_ weekView: ECWeekView, eventContainer: CGRect, event: ECWeekViewEvent) -> UIView {
         let eventView = UIView(frame: eventContainer)
-        eventView.layer.cornerRadius = 10
+        eventView.layer.cornerRadius = 0
         eventView.layer.masksToBounds = true
         
         // Create a dictionary of classes and their colors
@@ -397,8 +397,8 @@ class MyWeekViewStyler: ECWeekViewStyler {
         
         if let classColor = classes[event.title] {
             print(classes)
-            eventView.backgroundColor = classColor
-            eventView.layer.borderColor = classColor.cgColor // Set border color to match background color
+            eventView.backgroundColor = classColor.withAlphaComponent(0.25)
+            eventView.layer.borderColor = classColor.withAlphaComponent(0.25).cgColor // Set border color to match background color
             eventView.layer.borderWidth = 1.0 // Set border width to 1.0 point
             
             if eventView.backgroundColor == UIColor.blue || eventView.backgroundColor == UIColor.purple {
@@ -515,15 +515,15 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
     
     // hardcoded data for testing
     let data: [ClassInfo] = [
-        ClassInfo(subject: "French", eventCount: "3", assignCount: "1", alertCount: "2", colour: UIColor.purple),
-        ClassInfo(subject: "6A - Art", eventCount: "1", assignCount: "2", alertCount: "2", colour: UIColor.blue),
-        ClassInfo(subject: "6B - Art", eventCount: "1", assignCount: "2", alertCount: "2", colour: UIColor.blue),
-        ClassInfo(subject: "Social Studies", eventCount: "3", assignCount: "1", alertCount: "1", colour: UIColor.orange),
-        ClassInfo(subject: "Gym", eventCount: "2", assignCount: "2", alertCount: "2", colour: UIColor.green),
-        ClassInfo(subject: "Music", eventCount: "1", assignCount: "2", alertCount: "0", colour: UIColor.yellow),
-        ClassInfo(subject: "Languages", eventCount: "0", assignCount: "2", alertCount: "2", colour: UIColor.systemPink),
-        ClassInfo(subject: "Junior Girls Volleyball", eventCount: "2", assignCount: "0", alertCount: "2", colour: UIColor.systemMint),
-        ClassInfo(subject: "Track and Field", eventCount: "1", assignCount: "0", alertCount: "1", colour: UIColor.systemGray)
+        ClassInfo(subject: "French", eventCount: "3", assignCount: "1", alertCount: "2", colour: UIColor.purple.withAlphaComponent(0.25)),
+        ClassInfo(subject: "6A - Art", eventCount: "1", assignCount: "2", alertCount: "2", colour: UIColor.blue.withAlphaComponent(0.25)),
+        ClassInfo(subject: "6B - Art", eventCount: "1", assignCount: "2", alertCount: "2", colour: UIColor.blue.withAlphaComponent(0.25)),
+        ClassInfo(subject: "Social Studies", eventCount: "3", assignCount: "1", alertCount: "1", colour: UIColor.orange.withAlphaComponent(0.25)),
+        ClassInfo(subject: "Gym", eventCount: "2", assignCount: "2", alertCount: "2", colour: UIColor.green.withAlphaComponent(0.25)),
+        ClassInfo(subject: "Music", eventCount: "1", assignCount: "2", alertCount: "0", colour: UIColor.systemYellow.withAlphaComponent(0.25)),
+        ClassInfo(subject: "Languages", eventCount: "0", assignCount: "2", alertCount: "2", colour: UIColor.systemPink.withAlphaComponent(0.25)),
+        ClassInfo(subject: "Junior Girls Volleyball", eventCount: "2", assignCount: "0", alertCount: "2", colour: UIColor.systemMint.withAlphaComponent(0.25)),
+        ClassInfo(subject: "Track and Field", eventCount: "1", assignCount: "0", alertCount: "1", colour: UIColor.systemGray.withAlphaComponent(0.25))
     ]
     
     override func viewDidLoad() {
