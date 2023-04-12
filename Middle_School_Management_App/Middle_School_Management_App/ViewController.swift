@@ -232,6 +232,7 @@ class ScheduleViewController: UIViewController, ECWeekViewDataSource, ECWeekView
         weekView.dataSource = self
         weekView.delegate = self
         weekView.styler = myStyler
+        weekView.initDate = DateInRegion()
     }
     
     override func viewDidAppear(_ animated: Bool) {
