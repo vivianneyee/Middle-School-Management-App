@@ -12,14 +12,14 @@ import SwiftDate
 struct PostInfo {
     let name: String
     let date: DateComponents
-   // let file:
+    // let file:
 }
 
 struct NotifInfo {
     let name: String
     let notif: String
     let date: DateComponents
-   // let file:
+    // let file:
 }
 
 struct StudentInput {
@@ -104,7 +104,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-
+    
 }
 
 class ProfileViewController: UIViewController {
@@ -123,8 +123,8 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-
-
+    
+    
 }
 
 class SettingsViewController: UIViewController {
@@ -133,11 +133,11 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         title = "Settings"
     }
-
+    
 }
 
 class NotificationPrefViewController: UITableViewController {
-
+    
     @IBOutlet var switchNotif: UISwitch!
     @IBOutlet var switchEvents: UISwitch!
     @IBOutlet var switchAssignments: UISwitch!
@@ -148,10 +148,10 @@ class NotificationPrefViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         title = "Notification Preferences"
     }
-
+    
     @IBAction func switchNotifChanged (_ sender: UISwitch) {
         if sender.isOn {
             // CHANGE LATER TO TURN ON NOTIF this is just for testing ....
@@ -204,16 +204,16 @@ class ScheduleViewController: UIViewController, ECWeekViewDataSource, ECWeekView
     
     func weekViewStylerHeaderView(_ weekView: ECWeekView, with date: DateInRegion, in cell: UICollectionViewCell) -> UIView? {
         let headerView = UIView(frame: CGRect(x: 0, y: 5, width: cell.bounds.width, height: 40))
-            let label = UILabel(frame: CGRect(x: 0, y: 0, width: headerView.bounds.width, height: headerView.bounds.height))
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: headerView.bounds.width, height: headerView.bounds.height))
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEEE, MMMM d"
         let dateString = date.toFormat(dateFormatter.dateFormat)
-            label.text = dateString
-            label.textAlignment = .center
-            label.textColor = UIColor.black
-
-            headerView.addSubview(label)
-            return headerView
+        label.text = dateString
+        label.textAlignment = .center
+        label.textColor = UIColor.black
+        
+        headerView.addSubview(label)
+        return headerView
     }
     
     var font: UIFont = UIFont.systemFont(ofSize: 12)
@@ -222,7 +222,7 @@ class ScheduleViewController: UIViewController, ECWeekViewDataSource, ECWeekView
     
     var dateHeaderHeight: CGFloat = 12
     var myStyler: ECWeekViewStyler = MyWeekViewStyler()
-
+    
     
     
     //    let eventDetailLauncher = EventDetailLauncher()
@@ -293,9 +293,9 @@ class ScheduleViewController: UIViewController, ECWeekViewDataSource, ECWeekView
             let event = ECWeekViewEvent(title: className, subtitle: "Period " + String(index+1), start: startDate, end: endDate)
             
             // Set the event color based on the class
-//            if let color = classes[className] {
-//                event.color = color
-//            }
+            //            if let color = classes[className] {
+            //                event.color = color
+            //            }
             
             events.append(event)
         }
@@ -306,7 +306,7 @@ class ScheduleViewController: UIViewController, ECWeekViewDataSource, ECWeekView
         
         return nil
     }
-
+    
     func weekViewDidClickOnEvent(_ weekView: ECWeekView, event: ECWeekViewEvent, view: UIView) {
         //        eventDetailLauncher.event = event
         //        eventDetailLauncher.present()
@@ -319,9 +319,9 @@ class ScheduleViewController: UIViewController, ECWeekViewDataSource, ECWeekView
     // Creates the view for an event
     func weekViewStylerECEventView(_ weekView: ECWeekView, eventContainer: CGRect, event: ECWeekViewEvent) -> UIView {
         let eventView = UIView(frame: eventContainer)
-            eventView.layer.cornerRadius = 10
-            eventView.layer.masksToBounds = true
-            
+        eventView.layer.cornerRadius = 10
+        eventView.layer.masksToBounds = true
+        
         // Create a dictionary of classes and their colors
         let classes = [
             "Math": UIColor.red,
@@ -334,36 +334,36 @@ class ScheduleViewController: UIViewController, ECWeekViewDataSource, ECWeekView
             "Planning Time": UIColor.cyan,
             "Languages": UIColor.systemPink
         ]
-            
+        
         
         if let classColor = classes[event.title] {
             print(classes)
-                eventView.backgroundColor = classColor
+            eventView.backgroundColor = classColor
             eventView.layer.borderColor = classColor.cgColor // Set border color to match background color
-                eventView.layer.borderWidth = 1.0 // Set border width to 1.0 point
-            } else {
-                eventView.backgroundColor = UIColor.gray
-            }
-
-            
-            return eventView
+            eventView.layer.borderWidth = 1.0 // Set border width to 1.0 point
+        } else {
+            eventView.backgroundColor = UIColor.gray
+        }
+        
+        
+        return eventView
     }
 }
 
 class MyWeekViewStyler: ECWeekViewStyler {
     func weekViewStylerHeaderView(_ weekView: ECWeekView, with date: DateInRegion, in cell: UICollectionViewCell) -> UIView? {
-
+        
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: cell.bounds.width, height: 12))
-            let label = UILabel(frame: CGRect(x: 0, y: 0, width: headerView.bounds.width, height: headerView.bounds.height))
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: headerView.bounds.width, height: headerView.bounds.height))
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEE d"
         let dateString = date.toFormat(dateFormatter.dateFormat)
-            label.text = dateString
-            label.textAlignment = .center
+        label.text = dateString
+        label.textAlignment = .center
         label.textColor = UIColor.black
-
-            headerView.addSubview(label)
-            return headerView
+        
+        headerView.addSubview(label)
+        return headerView
     }
     
     var font: UIFont = UIFont.systemFont(ofSize: 10)
@@ -377,9 +377,9 @@ class MyWeekViewStyler: ECWeekViewStyler {
     // Creates the view for an event
     func weekViewStylerECEventView(_ weekView: ECWeekView, eventContainer: CGRect, event: ECWeekViewEvent) -> UIView {
         let eventView = UIView(frame: eventContainer)
-            eventView.layer.cornerRadius = 10
-            eventView.layer.masksToBounds = true
-            
+        eventView.layer.cornerRadius = 10
+        eventView.layer.masksToBounds = true
+        
         // Create a dictionary of classes and their colors
         let classes = [
             "Math": UIColor.red,
@@ -392,13 +392,13 @@ class MyWeekViewStyler: ECWeekViewStyler {
             "Planning Time": UIColor.cyan,
             "Languages": UIColor.systemPink
         ]
-            
+        
         
         if let classColor = classes[event.title] {
             print(classes)
-                eventView.backgroundColor = classColor
+            eventView.backgroundColor = classColor
             eventView.layer.borderColor = classColor.cgColor // Set border color to match background color
-                eventView.layer.borderWidth = 1.0 // Set border width to 1.0 point
+            eventView.layer.borderWidth = 1.0 // Set border width to 1.0 point
             
             if eventView.backgroundColor == UIColor.blue || eventView.backgroundColor == UIColor.purple {
                 let labelTitle = UILabel(frame: CGRect(x: 5, y: 2, width: eventView.bounds.width - 5, height: eventView.bounds.height / 2))
@@ -442,8 +442,8 @@ class MyWeekViewStyler: ECWeekViewStyler {
         } else {
             eventView.backgroundColor = UIColor.gray
         }
-
-            return eventView
+        
+        return eventView
     }
 }
 
@@ -455,20 +455,20 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didTapAdd))
+        //        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didTapAdd))
         
         table.dataSource = self
         table.delegate = self
-
+        
     }
     
-//    @objc func didTapAdd() {
-//        let vc = storyboard?.instantiateViewController(identifier: "createPost") as! CreatePostViewController
-//        navigationController?.pushViewController(vc, animated: true)
-//
-//        vc.title = "Create New Event"
-//    }
-//
+    //    @objc func didTapAdd() {
+    //        let vc = storyboard?.instantiateViewController(identifier: "createPost") as! CreatePostViewController
+    //        navigationController?.pushViewController(vc, animated: true)
+    //
+    //        vc.title = "Create New Event"
+    //    }
+    //
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return allNotifs.count
     }
@@ -511,7 +511,7 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
         let alertCount: String
         let colour: UIColor
     }
-
+    
     // hardcoded data for testing
     let data: [ClassInfo] = [
         ClassInfo(subject: "French", eventCount: "3", assignCount: "1", alertCount: "2", colour: UIColor.purple),
@@ -580,7 +580,7 @@ class CreateClassViewController: UIViewController {
         super.viewDidLoad()
         title = "Create New Class"
     }
-
+    
     @IBAction func tappedSubmit() {
         // add submit stuff
     }
@@ -691,7 +691,7 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 200
     }
-
+    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let eventCell = eventData[indexPath.row]
@@ -827,7 +827,7 @@ class CreatePostViewController: UIViewController {
         datePicker.preferredDatePickerStyle = .wheels
         
         dateTF.inputView = datePicker
-                
+        
         dateTF.text = formatDate(date: Date())
     }
     
@@ -844,7 +844,7 @@ class CreatePostViewController: UIViewController {
     @IBAction func tappedCreate() {
         // add create stuff
     }
-
+    
 }
 
 // EVENT, ASSIGNMENT, ALERT
@@ -898,7 +898,7 @@ class EditViewController: UIViewController {
                 dateTF.text = formatter.string(from : date!)
                 
                 titleTF.text = alertData[index].name
- 
+                
             }
         }
     }
@@ -955,7 +955,7 @@ class StudentInputViewController: UIViewController, UITableViewDataSource, UITab
         cell.date.text = formatter.string(from : date!)
         
         cell.name.text = eventCell.name
-
+        
         cell.inputType.text = eventCell.inputType
         
         return cell
@@ -987,7 +987,7 @@ class CreateStudentInputViewController: UIViewController {
         datePicker.preferredDatePickerStyle = .wheels
         
         dateTF.inputView = datePicker
-                
+        
         dateTF.text = formatDate(date: Date())
     }
     
@@ -1021,7 +1021,7 @@ class EditStudentInputViewController: UIViewController {
         datePicker.preferredDatePickerStyle = .wheels
         
         dateTF.inputView = datePicker
-                
+        
         dateTF.text = formatDate(date: Date())
     }
     
@@ -1048,7 +1048,7 @@ class JoinClassViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
+    
     @IBAction func tappedSubmit() {
         // add submit stuff
     }
