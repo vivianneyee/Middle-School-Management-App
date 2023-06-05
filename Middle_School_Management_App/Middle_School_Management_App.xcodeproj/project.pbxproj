@@ -109,7 +109,6 @@
 		B53ED0FE29BF7AD50087A59A = {
 			isa = PBXGroup;
 			children = (
-				8126D2D429DE1B2000BD8CA7 /* .gitignore */,
 				B53ED10929BF7AD50087A59A /* Middle_School_Management_App */,
 				B53ED12029BF7ADA0087A59A /* Middle_School_Management_AppTests */,
 				B53ED12A29BF7ADA0087A59A /* Middle_School_Management_AppUITests */,
@@ -284,7 +283,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8126D2D529DE1B2000BD8CA7 /* .gitignore in Resources */,
 				B53ED11729BF7AD90087A59A /* LaunchScreen.storyboard in Resources */,
 				B53ED11429BF7AD90087A59A /* Assets.xcassets in Resources */,
 				B53ED11229BF7AD50087A59A /* Main.storyboard in Resources */,

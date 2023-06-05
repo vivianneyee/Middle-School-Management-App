@@ -101,26 +101,7 @@ let classColours = [
 ]
 
 class ViewController: UIViewController {
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    }
-    
-}
 
-class ProfileViewController: UIViewController {
-    
-    @IBAction func tapToSettings(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(identifier: "settings") as! SettingsViewController
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    @IBAction func tapToNotifPref(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(identifier: "notifpref") as! NotificationPrefViewController
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -134,180 +115,61 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Settings"
+        
+        do {
+            let realm = try Realm()
+            
+            // for debugging
+            print(Realm.Configuration.defaultConfiguration.fileURL!)
+            
+            // test class
+            createClass(realm: realm, name: "test class", color: "blue")
+            
+            // test posts
+            let date = Date()
+            let files = List<String>()
+            createEvent(realm: realm, title: "testEvent", date: date, files: files)
+            createAlert(realm: realm, title: "testAlert", date: date, files: files)
+            createAssignment(realm: realm, title: "testAssignment", date: date, files: files)
+            createStudentInput(realm: realm, title: "testStudentInput", date: date, inputType: "TEXT")
+        } catch let error as NSError {
+            print("Error initializing Realm: \(error.localizedDescription)")
+        }
     }
-    
-}
+        
 
-class NotificationPrefViewController: UITableViewController {
-    
-    @IBOutlet var switchNotif: UISwitch!
-    @IBOutlet var switchEvents: UISwitch!
-    @IBOutlet var switchAssignments: UISwitch!
-    @IBOutlet var switchAlerts: UISwitch!
-    @IBOutlet var switchContent: UISwitch!
-    
-    @IBOutlet weak var table: UITableView!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        title = "Notification Preferences"
-    }
-    
-    @IBAction func switchNotifChanged (_ sender: UISwitch) {
-        if sender.isOn {
-            // CHANGE LATER TO TURN ON NOTIF this is just for testing ....
-            view.backgroundColor = .systemPink
-        } else {
-            view.backgroundColor = .white
+    func createClass(realm: Realm, name: String, color: String) {
+        let code = generateClassCode(realm: realm)
+        let newClass = Class(name: name, color: color, code: code)
+        try! realm.write {
+             realm.add(newClass)
         }
     }
     
-    @IBAction func switchEventsChanged (_ sender: UISwitch) {
-        if sender.isOn {
-            // CHANGE LATER TO TURN ON NOTIF this is just for testing ....
-            view.backgroundColor = .systemBlue
-        } else {
-            view.backgroundColor = .white
+    // generate random 6-character code made up of 3 letters and 3 numbers
+    func generateCode() -> String {
+        var code = ""
+        let letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        let nums = "1234567890"
+        for _ in 0..<3 {
+            let letterIndex = Int.random(in: 0..<letters.count)
+            code.append(letters[letters.index(letters.startIndex, offsetBy: letterIndex)])
         }
-    }
-    
-    @IBAction func switchAssignmentsChanged (_ sender: UISwitch) {
-        if sender.isOn {
-            // CHANGE LATER TO TURN ON NOTIF this is just for testing ....
-            view.backgroundColor = .systemRed
-        } else {
-            view.backgroundColor = .white
-        }
-    }
-    
-    @IBAction func switchAlertsChanged (_ sender: UISwitch) {
-        if sender.isOn {
-            // CHANGE LATER TO TURN ON NOTIF this is just for testing ....
-            view.backgroundColor = .systemMint
-        } else {
-            view.backgroundColor = .white
-        }
-    }
-    
-    @IBAction func switchContentChanged (_ sender: UISwitch) {
-        if sender.isOn {
-            // CHANGE LATER TO TURN ON NOTIF this is just for testing ....
-            view.backgroundColor = .systemPurple
-        } else {
-            view.backgroundColor = .white
-        }
-    }
-}
-
-class ScheduleViewController: UIViewController, ECWeekViewDataSource, ECWeekViewDelegate, ECWeekViewStyler {
-    
-    @IBOutlet private var weekView: ECWeekView!
-    
-    func weekViewStylerHeaderView(_ weekView: ECWeekView, with date: DateInRegion, in cell: UICollectionViewCell) -> UIView? {
-        let headerView = UIView(frame: CGRect(x: 0, y: 5, width: cell.bounds.width, height: 40))
-        let label = UILabel(frame: CGRect(x: 0, y: 0, width: headerView.bounds.width, height: headerView.bounds.height))
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EEEE, MMMM d"
-        let dateString = date.toFormat(dateFormatter.dateFormat)
-        label.text = dateString
-        label.textAlignment = .center
-        label.textColor = UIColor.black
-        
-        headerView.addSubview(label)
-        return headerView
-    }
-    
-    var font: UIFont = UIFont.systemFont(ofSize: 12)
-    
-    var showsDateHeader: Bool = true
-    
-    var dateHeaderHeight: CGFloat = 12
-    var myStyler: ECWeekViewStyler = MyWeekViewStyler()
-    
-    
-    
-    //    let eventDetailLauncher = EventDetailLauncher()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        weekView.dataSource = self
-        weekView.delegate = self
-        weekView.styler = myStyler
-        weekView.initDate = DateInRegion()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        weekView.dataSource = self
-        weekView.delegate = self
-    }
-    
-    func weekViewGenerateEvents(_ weekView: ECWeekView, date: DateInRegion, eventCompletion: @escaping ([ECWeekViewEvent]?) -> Void) -> [ECWeekViewEvent]? {
-        let weekday = date.weekday
-        if weekday == 7 || weekday == 1 {
-            // No classes on Saturday and Sunday
-            DispatchQueue.global(qos: .background).async {
-                eventCompletion([])
-            }
-            return nil
+        for _ in 0..<3 {
+            let numIndex = Int.random(in: 0..<nums.count)
+            code.append(nums[nums.index(nums.startIndex, offsetBy: numIndex)])
         }
         
-        // Create a dictionary of classes and their colors
-        let classes = [
-            "Math": UIColor.red,
-            "6B - Art": UIColor.blue,
-            "6A - Art": UIColor.blue,
-            "Gym": UIColor.green,
-            "Music": UIColor.yellow,
-            "French": UIColor.purple,
-            "Social Studies": UIColor.orange,
-            "Planning Time": UIColor.cyan,
-            "Languages": UIColor.systemPink
-        ]
-        
-        // Create an array of schedules
-        let schedules = [
-            ["6B - Art", "6A - Art", "Gym", "Music", "French", "Social Studies", "Planning Time"],
-            ["Gym", "6A - Art", "Music", "French", "Planning Time", "Languages", "Social Studies"],
-            ["Music", "6A - Art", "6B - Art", "Gym", "Social Studies", "Languages", "French"],
-            ["Social Studies", "Languages", "6B - Art", "6A - Art", "Planning Time", "Gym", "Music"],
-            ["6A - Art", "Music", "Languages", "Social Studies", "6B - Art", "French", "Gym"],
-            ["6B - Art", "Planning Time", "6A - Art", "Gym", "French", "Music", "Languages"],
-            ["French", "Social Studies", "6A - Art", "Music", "Gym", "Languages", "Math"],
-            ["Languages", "Social Studies", "6A - Art", "6B - Art", "Music", "Gym", "Planning Time"],
-            ["Gym", "6A - Art", "Music", "French", "6B - Art", "Planning Time", "Languages"],
-            ["Music", "6A - Art", "6B - Art", "Social Studies", "Languages", "Planning Time", "Gym"]
-        ]
-        
-        // Get the schedule index for the current weekday
-        let scheduleIndex = (weekday - 2) % 10
-        
-        // Get the schedule for the current weekday
-        let schedule = schedules[scheduleIndex]
-        
-        var events = [ECWeekViewEvent]()
-        for (index, className) in schedule.enumerated() {
-            let startHour = 9 + index
-            let startDate = date.dateBySet(hour: startHour, min: 0, secs: 0)!
-            let endDate = date.dateBySet(hour: startHour + 1, min: 0, secs: 0)!
-            
-            // Create a new event for the class
-            let event = ECWeekViewEvent(title: className, subtitle: "Period " + String(index+1), start: startDate, end: endDate)
-            
-            // Set the event color based on the class
-            //            if let color = classes[className] {
-            //                event.color = color
-            //            }
-            
-            events.append(event)
+        return code
+    }
+    
+    // use generateCode() to create a random class code and ensure it is not already in use
+    func generateClassCode(realm: Realm) -> String {
+        var code = generateCode()
+        while realm.objects(Class.self).filter("code == %@", code).count > 0 {
+            code = generateCode()
         }
-        
-        DispatchQueue.global(qos: .background).async {
-            eventCompletion(events)
-        }
-        
-        return nil
+        return code
     }
     
     func weekViewDidClickOnEvent(_ weekView: ECWeekView, event: ECWeekViewEvent, view: UIView) {
@@ -347,26 +209,6 @@ class ScheduleViewController: UIViewController, ECWeekViewDataSource, ECWeekView
         } else {
             eventView.backgroundColor = UIColor.gray
         }
-        
-        
-        return eventView
-    }
-}
-
-class MyWeekViewStyler: ECWeekViewStyler {
-    func weekViewStylerHeaderView(_ weekView: ECWeekView, with date: DateInRegion, in cell: UICollectionViewCell) -> UIView? {
-        
-        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: cell.bounds.width, height: 12))
-        let label = UILabel(frame: CGRect(x: 0, y: 0, width: headerView.bounds.width, height: headerView.bounds.height))
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EEE d"
-        let dateString = date.toFormat(dateFormatter.dateFormat)
-        label.text = dateString
-        label.textAlignment = .center
-        label.textColor = UIColor.black
-        
-        headerView.addSubview(label)
-        return headerView
     }
     
     var font: UIFont = UIFont.systemFont(ofSize: 10)
@@ -606,453 +448,28 @@ class ClassInfoViewController: UIViewController, UITableViewDataSource, UITableV
         table.delegate = self
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return labels.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let labelCell = labels[indexPath.row]
-        let cell = table.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! LinkTableViewCell
-        cell.labelName.text = labelCell
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let labelCell = labels[indexPath.row]
-        
-        let vc = storyboard?.instantiateViewController(identifier: "event") as! EventViewController
-        
-        if (labelCell == "Events") {
-            let vc = storyboard?.instantiateViewController(identifier: "event") as! EventViewController
-            navigationController?.pushViewController(vc, animated: true)
-            vc.title = "Events"
-        } else if (labelCell == "Assignments") {
-            let vc = storyboard?.instantiateViewController(identifier: "assign") as! AssignmentViewController
-            navigationController?.pushViewController(vc, animated: true)
-            vc.title = "Assignments"
-        } else if (labelCell == "Alerts") {
-            let vc = storyboard?.instantiateViewController(identifier: "alert") as! AlertViewController
-            navigationController?.pushViewController(vc, animated: true)
-            vc.title = "Alerts"
-        } else if (labelCell == "Student Input") {
-            let vc = storyboard?.instantiateViewController(identifier: "sInput") as! StudentInputViewController
-            navigationController?.pushViewController(vc, animated: true)
-            vc.title = "Student Input"
+    func createAssignment(realm: Realm, title: String, date: Date, files: List<String>) {
+        let newAssignment = Assignment(title: title, date: date, files: files)
+        try! realm.write {
+             realm.add(newAssignment)
         }
-        
-        vc.title = labelCell
+        createPost(realm: realm, title: title, date: date, postType: newAssignment.postType)
     }
     
-}
-
-class EventViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    
-    @IBOutlet weak var table: UITableView!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didTapAdd))
-        
-        table.dataSource = self
-        table.delegate = self
-    }
-    
-    @objc func didTapAdd() {
-        let vc = storyboard?.instantiateViewController(identifier: "createPost") as! CreatePostViewController
-        navigationController?.pushViewController(vc, animated: true)
-        
-        vc.title = "Create New Event"
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return eventData.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let dcFormatter = DateComponentsFormatter()
-        dcFormatter.includesApproximationPhrase = false
-        dcFormatter.allowedUnits = [.month, .day, .year]
-        
-        let eventCell = eventData[indexPath.row]
-        let cell = table.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! PostTableViewCell
-        
-        let date = Calendar.current.date(from: eventCell.date)
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MMMM dd yyyy"
-        cell.date.text = formatter.string(from : date!)
-        
-        cell.name.text = eventCell.name
-        
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200
-    }
-    
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let eventCell = eventData[indexPath.row]
-        let vc = storyboard?.instantiateViewController(identifier: "edit") as! EditViewController
-        navigationController?.pushViewController(vc, animated: true)
-        
-        vc.title = "Edit " + eventCell.name
-        
-    }
-}
-
-class AssignmentViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    @IBOutlet weak var table: UITableView!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didTapAdd))
-        
-        table.dataSource = self
-        table.delegate = self
-    }
-    
-    @objc func didTapAdd() {
-        let vc = storyboard?.instantiateViewController(identifier: "createPost") as! CreatePostViewController
-        navigationController?.pushViewController(vc, animated: true)
-        
-        vc.title = "Create New Assignment"
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return assignData.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let dcFormatter = DateComponentsFormatter()
-        dcFormatter.includesApproximationPhrase = false
-        dcFormatter.allowedUnits = [.month, .day, .year]
-        
-        let eventCell = assignData[indexPath.row]
-        let cell = table.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! PostTableViewCell
-        
-        let date = Calendar.current.date(from: eventCell.date)
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MMMM dd yyyy"
-        cell.date.text = formatter.string(from : date!)
-        
-        cell.name.text = eventCell.name
-        
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let eventCell = assignData[indexPath.row]
-        let vc = storyboard?.instantiateViewController(identifier: "edit") as! EditViewController
-        navigationController?.pushViewController(vc, animated: true)
-        
-        vc.title = "Edit " + eventCell.name
-        
-    }
-}
-
-class AlertViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    @IBOutlet weak var table: UITableView!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didTapAdd))
-        
-        table.dataSource = self
-        table.delegate = self
-    }
-    
-    @objc func didTapAdd() {
-        let vc = storyboard?.instantiateViewController(identifier: "createPost") as! CreatePostViewController
-        navigationController?.pushViewController(vc, animated: true)
-        
-        vc.title = "Create New Alert"
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return alertData.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let dcFormatter = DateComponentsFormatter()
-        dcFormatter.includesApproximationPhrase = false
-        dcFormatter.allowedUnits = [.month, .day, .year]
-        
-        let eventCell = alertData[indexPath.row]
-        let cell = table.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! PostTableViewCell
-        
-        let date = Calendar.current.date(from: eventCell.date)
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MMMM dd yyyy"
-        cell.date.text = formatter.string(from : date!)
-        
-        cell.name.text = eventCell.name
-        
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let eventCell = alertData[indexPath.row]
-        let vc = storyboard?.instantiateViewController(identifier: "edit") as! EditViewController
-        navigationController?.pushViewController(vc, animated: true)
-        
-        vc.title = "Edit " + eventCell.name
-        
-    }
-}
-
-// EVENT, ASSIGNMENT, ALERT
-class CreatePostViewController: UIViewController {
-    @IBOutlet weak var dateTF: UITextField!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        let datePicker = UIDatePicker()
-        datePicker.datePickerMode = .date
-        datePicker.addTarget(self, action: #selector(dateChange(datePicker:)), for: UIControl.Event.valueChanged)
-        datePicker.frame.size = CGSize(width: 0, height: 300)
-        datePicker.preferredDatePickerStyle = .wheels
-        
-        dateTF.inputView = datePicker
-        
-        dateTF.text = formatDate(date: Date())
-    }
-    
-    @objc func dateChange(datePicker: UIDatePicker) {
-        dateTF.text = formatDate(date: datePicker.date)
-    }
-    
-    func formatDate(date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MMMM dd yyyy"
-        return formatter.string(from: date)
-    }
-    
-    @IBAction func tappedCreate() {
-        // add create stuff
-    }
-    
-}
-
-// EVENT, ASSIGNMENT, ALERT
-// code functionality later...
-class EditViewController: UIViewController {
-    
-    @IBOutlet weak var dateTF: UITextField!
-    @IBOutlet weak var titleTF: UITextField!
-    var postTitle: String?
-    var postDate: String?
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        let datePicker = UIDatePicker()
-        datePicker.datePickerMode = .date
-        datePicker.addTarget(self, action: #selector(dateChange(datePicker:)), for: UIControl.Event.valueChanged)
-        datePicker.frame.size = CGSize(width: 0, height: 300)
-        datePicker.preferredDatePickerStyle = .wheels
-        
-        dateTF.inputView = datePicker
-        
-        for (index, event) in eventData.enumerated() {
-            if "Edit " + event.name == title {
-                let date = Calendar.current.date(from: eventData[index].date)
-                let formatter = DateFormatter()
-                formatter.dateFormat = "MMMM dd yyyy"
-                dateTF.text = formatter.string(from : date!)
-                
-                titleTF.text = event.name
-            }
+    func createAlert(realm: Realm, title: String, date: Date, files: List<String>) {
+        let newAlert = Alert(title: title, date: date, files: files)
+        try! realm.write {
+             realm.add(newAlert)
         }
-        
-        for (index, assign) in assignData.enumerated() {
-            if "Edit " + assign.name == title {
-                let date = Calendar.current.date(from: assignData[index].date)
-                let formatter = DateFormatter()
-                formatter.dateFormat = "MMMM dd yyyy"
-                dateTF.text = formatter.string(from : date!)
-                
-                titleTF.text = assign.name
-            }
+        createPost(realm: realm, title: title, date: date, postType: newAlert.postType)
+    }
+    
+    func createStudentInput(realm: Realm, title: String, date: Date, inputType: String) {
+        let newStudentInput = StudentInput(title: title, date: date, inputType: inputType)
+        try! realm.write {
+             realm.add(newStudentInput)
         }
-        
-        for (index, alert) in alertData.enumerated() {
-            if "Edit " + alert.name == title {
-                print(true)
-                let date = Calendar.current.date(from: alertData[index].date)
-                let formatter = DateFormatter()
-                formatter.dateFormat = "MMMM dd yyyy"
-                dateTF.text = formatter.string(from : date!)
-                
-                titleTF.text = alertData[index].name
-                
-            }
-        }
-    }
-    
-    @objc func dateChange(datePicker: UIDatePicker) {
-        dateTF.text = formatDate(date: datePicker.date)
-    }
-    
-    func formatDate(date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MMMM dd yyyy"
-        return formatter.string(from: date)
-    }
-    
-    @IBAction func tappedSave() {
-        // add save stuff
+        createPost(realm: realm, title: title, date: date, postType: newStudentInput.postType)
     }
 }
 
-class StudentInputViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    @IBOutlet weak var table: UITableView!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didTapAdd))
-        
-        table.dataSource = self
-        table.delegate = self
-    }
-    
-    @objc func didTapAdd() {
-        let vc = storyboard?.instantiateViewController(identifier: "createSI") as! CreateStudentInputViewController
-        navigationController?.pushViewController(vc, animated: true)
-        
-        vc.title = "Create New Student Input"
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return studentInputData.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let dcFormatter = DateComponentsFormatter()
-        dcFormatter.includesApproximationPhrase = false
-        dcFormatter.allowedUnits = [.month, .day, .year]
-        
-        let eventCell = studentInputData[indexPath.row]
-        let cell = table.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! PostTableViewCell
-        
-        let date = Calendar.current.date(from: eventCell.date)
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MMMM dd yyyy"
-        cell.date.text = formatter.string(from : date!)
-        
-        cell.name.text = eventCell.name
-        
-        cell.inputType.text = eventCell.inputType
-        
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let eventCell = studentInputData[indexPath.row]
-        let vc = storyboard?.instantiateViewController(identifier: "editSI") as! EditStudentInputViewController
-        navigationController?.pushViewController(vc, animated: true)
-        
-        vc.title = "Edit " + eventCell.name
-    }
-}
-
-class CreateStudentInputViewController: UIViewController {
-    @IBOutlet weak var dateTF: UITextField!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        let datePicker = UIDatePicker()
-        datePicker.datePickerMode = .date
-        datePicker.addTarget(self, action: #selector(dateChange(datePicker:)), for: UIControl.Event.valueChanged)
-        datePicker.frame.size = CGSize(width: 0, height: 300)
-        datePicker.preferredDatePickerStyle = .wheels
-        
-        dateTF.inputView = datePicker
-        
-        dateTF.text = formatDate(date: Date())
-    }
-    
-    @objc func dateChange(datePicker: UIDatePicker) {
-        dateTF.text = formatDate(date: datePicker.date)
-    }
-    
-    func formatDate(date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MMMM dd yyyy"
-        return formatter.string(from: date)
-    }
-    
-    @IBAction func tappedCreate() {
-        // add create stuff
-    }
-}
-
-class EditStudentInputViewController: UIViewController {
-    @IBOutlet weak var dateTF: UITextField!
-    var postTitle: String?
-    var postDate: String?
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        let datePicker = UIDatePicker()
-        datePicker.datePickerMode = .date
-        datePicker.addTarget(self, action: #selector(dateChange(datePicker:)), for: UIControl.Event.valueChanged)
-        datePicker.frame.size = CGSize(width: 0, height: 300)
-        datePicker.preferredDatePickerStyle = .wheels
-        
-        dateTF.inputView = datePicker
-        
-        dateTF.text = formatDate(date: Date())
-    }
-    
-    @objc func dateChange(datePicker: UIDatePicker) {
-        dateTF.text = formatDate(date: datePicker.date)
-    }
-    
-    func formatDate(date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MMMM dd yyyy"
-        return formatter.string(from: date)
-    }
-    
-    @IBAction func tappedSave() {
-        // add save stuff
-    }
-}
-
-class JoinClassViewController: UIViewController {
-    
-    @IBOutlet var field: UITextField!
-    @IBOutlet var button: UIButton!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
-    @IBAction func tappedSubmit() {
-        // add submit stuff
-    }
-}
