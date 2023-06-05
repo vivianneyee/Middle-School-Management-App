@@ -8,7 +8,9 @@
 import UIKit
 import ECWeekView
 import SwiftDate
+import RealmSwift
 
+// will remove in the future and use swift object models
 struct PostInfo {
     let name: String
     let date: DateComponents
@@ -22,7 +24,7 @@ struct NotifInfo {
     // let file:
 }
 
-struct StudentInput {
+struct StuInput {
     let name: String
     let date: DateComponents
     let inputType: String
@@ -71,11 +73,11 @@ var allNotifs: [NotifInfo] = [
     NotifInfo(name: "Track and Field", notif: "Track meet", date: DateComponents(year: 2023, month: 5, day: 1))
 ]
 
-let studentInputData: [StudentInput] = [
-    StudentInput(name: "Input 1", date: DateComponents(year: 2023, month: 4, day: 16), inputType: "Type 1"),
-    StudentInput(name: "Input 2", date: DateComponents(year: 2023, month: 4, day: 18), inputType: "Type 2"),
-    StudentInput(name: "Input 3", date: DateComponents(year: 2023, month: 4, day: 22), inputType: "Type 3"),
-    StudentInput(name: "Input 4", date: DateComponents(year: 2023, month: 5, day: 2), inputType: "Type 4")
+let studentInputData: [StuInput] = [
+    StuInput(name: "Input 1", date: DateComponents(year: 2023, month: 4, day: 16), inputType: "Type 1"),
+    StuInput(name: "Input 2", date: DateComponents(year: 2023, month: 4, day: 18), inputType: "Type 2"),
+    StuInput(name: "Input 3", date: DateComponents(year: 2023, month: 4, day: 22), inputType: "Type 3"),
+    StuInput(name: "Input 4", date: DateComponents(year: 2023, month: 5, day: 2), inputType: "Type 4")
 ]
 
 // using this for capstone demo

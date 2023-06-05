@@ -15,6 +15,13 @@
 		8126D2DA29E3A39B00BD8CA7 /* CalendarKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8126D2D929E3A39B00BD8CA7 /* CalendarKit */; };
 		8126D2DD29E5188400BD8CA7 /* KVKCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 8126D2DC29E5188400BD8CA7 /* KVKCalendar */; };
 		8126D2E029E5DFC100BD8CA7 /* ECWeekView in Frameworks */ = {isa = PBXBuildFile; productRef = 8126D2DF29E5DFC100BD8CA7 /* ECWeekView */; };
+		B5021C6C2A2E4C66000325BF /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = B5021C6B2A2E4C66000325BF /* Realm */; };
+		B5021C6E2A2E4C66000325BF /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B5021C6D2A2E4C66000325BF /* RealmSwift */; };
+		B5021C702A2E4C8E000325BF /* Class.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5021C6F2A2E4C8E000325BF /* Class.swift */; };
+		B5021C722A2E4C9E000325BF /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5021C712A2E4C9E000325BF /* Post.swift */; };
+		B5021C742A2E4DDE000325BF /* ClassController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5021C732A2E4DDE000325BF /* ClassController.swift */; };
+		B5021C762A2E4DE9000325BF /* PostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5021C752A2E4DE9000325BF /* PostController.swift */; };
+		B5021C782A2E52C9000325BF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5021C772A2E52C9000325BF /* User.swift */; };
 		B53ED10B29BF7AD50087A59A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53ED10A29BF7AD50087A59A /* AppDelegate.swift */; };
 		B53ED10D29BF7AD50087A59A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53ED10C29BF7AD50087A59A /* SceneDelegate.swift */; };
 		B53ED10F29BF7AD50087A59A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53ED10E29BF7AD50087A59A /* ViewController.swift */; };
@@ -49,6 +56,11 @@
 		8126D2D229DD1F0E00BD8CA7 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		8126D2D429DE1B2000BD8CA7 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = .gitignore; path = ../.gitignore; sourceTree = "<group>"; };
 		8126D2D629E3225E00BD8CA7 /* NotifTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifTableViewCell.swift; sourceTree = "<group>"; };
+		B5021C6F2A2E4C8E000325BF /* Class.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Class.swift; sourceTree = "<group>"; };
+		B5021C712A2E4C9E000325BF /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		B5021C732A2E4DDE000325BF /* ClassController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassController.swift; sourceTree = "<group>"; };
+		B5021C752A2E4DE9000325BF /* PostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostController.swift; sourceTree = "<group>"; };
+		B5021C772A2E52C9000325BF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B53ED10729BF7AD50087A59A /* Middle_School_Management_App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Middle_School_Management_App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B53ED10A29BF7AD50087A59A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B53ED10C29BF7AD50087A59A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -71,6 +83,8 @@
 			files = (
 				8126D2DA29E3A39B00BD8CA7 /* CalendarKit in Frameworks */,
 				8126D2DD29E5188400BD8CA7 /* KVKCalendar in Frameworks */,
+				B5021C6C2A2E4C66000325BF /* Realm in Frameworks */,
+				B5021C6E2A2E4C66000325BF /* RealmSwift in Frameworks */,
 				8126D2E029E5DFC100BD8CA7 /* ECWeekView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -127,6 +141,11 @@
 				8126D2D029DD13C700BD8CA7 /* LinkTableViewCell.swift */,
 				8126D2D229DD1F0E00BD8CA7 /* PostTableViewCell.swift */,
 				8126D2D629E3225E00BD8CA7 /* NotifTableViewCell.swift */,
+				B5021C6F2A2E4C8E000325BF /* Class.swift */,
+				B5021C712A2E4C9E000325BF /* Post.swift */,
+				B5021C732A2E4DDE000325BF /* ClassController.swift */,
+				B5021C752A2E4DE9000325BF /* PostController.swift */,
+				B5021C772A2E52C9000325BF /* User.swift */,
 			);
 			path = Middle_School_Management_App;
 			sourceTree = "<group>";
@@ -168,6 +187,8 @@
 				8126D2D929E3A39B00BD8CA7 /* CalendarKit */,
 				8126D2DC29E5188400BD8CA7 /* KVKCalendar */,
 				8126D2DF29E5DFC100BD8CA7 /* ECWeekView */,
+				B5021C6B2A2E4C66000325BF /* Realm */,
+				B5021C6D2A2E4C66000325BF /* RealmSwift */,
 			);
 			productName = Middle_School_Management_App;
 			productReference = B53ED10729BF7AD50087A59A /* Middle_School_Management_App.app */;
@@ -245,6 +266,7 @@
 				8126D2D829E3A39B00BD8CA7 /* XCRemoteSwiftPackageReference "CalendarKit" */,
 				8126D2DB29E5188400BD8CA7 /* XCRemoteSwiftPackageReference "KVKCalendar" */,
 				8126D2DE29E5DFC100BD8CA7 /* XCRemoteSwiftPackageReference "swift-week-view" */,
+				B5021C6A2A2E4C66000325BF /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = B53ED10829BF7AD50087A59A /* Products */;
 			projectDirPath = "";
@@ -294,7 +316,12 @@
 				8126D2D729E3225E00BD8CA7 /* NotifTableViewCell.swift in Sources */,
 				8126D2CD29DCEE3B00BD8CA7 /* ClassTableViewCell.swift in Sources */,
 				B53ED10F29BF7AD50087A59A /* ViewController.swift in Sources */,
+				B5021C762A2E4DE9000325BF /* PostController.swift in Sources */,
+				B5021C702A2E4C8E000325BF /* Class.swift in Sources */,
 				B53ED10B29BF7AD50087A59A /* AppDelegate.swift in Sources */,
+				B5021C742A2E4DDE000325BF /* ClassController.swift in Sources */,
+				B5021C782A2E52C9000325BF /* User.swift in Sources */,
+				B5021C722A2E4C9E000325BF /* Post.swift in Sources */,
 				8126D2D129DD13C700BD8CA7 /* LinkTableViewCell.swift in Sources */,
 				B53ED10D29BF7AD50087A59A /* SceneDelegate.swift in Sources */,
 			);
@@ -664,6 +691,14 @@
 				kind = branch;
 			};
 		};
+		B5021C6A2A2E4C66000325BF /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -681,6 +716,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8126D2DE29E5DFC100BD8CA7 /* XCRemoteSwiftPackageReference "swift-week-view" */;
 			productName = ECWeekView;
+		};
+		B5021C6B2A2E4C66000325BF /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B5021C6A2A2E4C66000325BF /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		B5021C6D2A2E4C66000325BF /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B5021C6A2A2E4C66000325BF /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
