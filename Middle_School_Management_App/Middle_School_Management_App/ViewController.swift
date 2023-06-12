@@ -122,16 +122,6 @@ class SettingsViewController: UIViewController {
             // for debugging
             print(Realm.Configuration.defaultConfiguration.fileURL!)
             
-            // test class
-            createClass(realm: realm, name: "test class", color: "blue")
-            
-            // test posts
-            let date = Date()
-            let files = List<String>()
-            createEvent(realm: realm, title: "testEvent", date: date, files: files)
-            createAlert(realm: realm, title: "testAlert", date: date, files: files)
-            createAssignment(realm: realm, title: "testAssignment", date: date, files: files)
-            createStudentInput(realm: realm, title: "testStudentInput", date: date, inputType: "TEXT")
         } catch let error as NSError {
             print("Error initializing Realm: \(error.localizedDescription)")
         }
@@ -446,30 +436,6 @@ class ClassInfoViewController: UIViewController, UITableViewDataSource, UITableV
         super.viewDidLoad()
         table.dataSource = self
         table.delegate = self
-    }
-    
-    func createAssignment(realm: Realm, title: String, date: Date, files: List<String>) {
-        let newAssignment = Assignment(title: title, date: date, files: files)
-        try! realm.write {
-             realm.add(newAssignment)
-        }
-        createPost(realm: realm, title: title, date: date, postType: newAssignment.postType)
-    }
-    
-    func createAlert(realm: Realm, title: String, date: Date, files: List<String>) {
-        let newAlert = Alert(title: title, date: date, files: files)
-        try! realm.write {
-             realm.add(newAlert)
-        }
-        createPost(realm: realm, title: title, date: date, postType: newAlert.postType)
-    }
-    
-    func createStudentInput(realm: Realm, title: String, date: Date, inputType: String) {
-        let newStudentInput = StudentInput(title: title, date: date, inputType: inputType)
-        try! realm.write {
-             realm.add(newStudentInput)
-        }
-        createPost(realm: realm, title: title, date: date, postType: newStudentInput.postType)
     }
 }
 
