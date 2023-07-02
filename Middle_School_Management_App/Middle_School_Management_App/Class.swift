@@ -9,11 +9,13 @@ import Foundation
 import RealmSwift
 
 class Class: Object {
-    @Persisted(primaryKey: true) var _id: ObjectId
     @Persisted var name: String = ""
     @Persisted var color: String = ""
     @Persisted var code: String = ""
-    @Persisted var posts: List<Post>
+    @Persisted var events: List<Event>
+    @Persisted var assignments: List<Assignment>
+    @Persisted var alerts: List<Alert>
+    @Persisted var studentInputs: List<StudentInput>
     
     convenience init(name: String, color: String, code: String) {
         self.init()

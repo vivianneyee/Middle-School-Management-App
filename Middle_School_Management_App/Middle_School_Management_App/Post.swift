@@ -11,64 +11,27 @@ import RealmSwift
 class Post: Object {
     @Persisted(primaryKey: true) var _id: ObjectId
     @Persisted var title: String
+    @Persisted var desc: String
     @Persisted var date: Date
     @Persisted var postType: String
-    
-    convenience init(title: String, date: Date, postType: String) {
-        self.init()
-        self.title = title
-        self.date = date
-        self.postType = postType
-    }
 }
 
 class Event: Post {
     @Persisted var files: List<String>
-    
-    convenience init(title: String, date: Date, files: List<String>) {
-        self.init()
-        self.title = title
-        self.date = date
-        self.postType = "EVENT"
-        self.files = files
-    }
+    @Persisted var startDate: Date
+    @Persisted var endDate: Date
 }
 
 class Assignment: Post {
     @Persisted var files: List<String>
-    
-    convenience init(title: String, date: Date, files: List<String>) {
-        self.init()
-        self.title = title
-        self.date = date
-        self.postType = "ASSIGNMENT"
-        self.files = files
-    }
+    @Persisted var dueDate: Date
 }
 
 class Alert: Post {
-    @Persisted var files: List<String>
-    
-    convenience init(title: String, date: Date, files: List<String>) {
-        self.init()
-        self.title = title
-        self.date = date
-        self.postType = "ALERT"
-        self.files = files
-    }
+    @Persisted var priority: String
 }
 
 class StudentInput: Post {
     @Persisted var inputType: String
     @Persisted var responses: List<String>
-    
-    convenience init(title: String, date: Date, inputType: String) {
-        self.init()
-        self.title = title
-        self.date = date
-        self.postType = "STUDENTINPUT"
-        self.inputType = inputType
-        self.responses = List<String>()
-    }
-
 }

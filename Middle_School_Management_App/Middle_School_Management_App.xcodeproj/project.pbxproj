@@ -21,6 +21,8 @@
 		B53ED12E29BF7ADA0087A59A /* Middle_School_Management_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53ED12D29BF7ADA0087A59A /* Middle_School_Management_AppUITestsLaunchTests.swift */; };
 		B53ED13C29BFCFC50087A59A /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = B53ED13B29BFCFC50087A59A /* Realm */; };
 		B53ED13E29BFCFC50087A59A /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B53ED13D29BFCFC50087A59A /* RealmSwift */; };
+		B5A5D46329E62598004175E8 /* ClassController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A5D46229E62598004175E8 /* ClassController.swift */; };
+		B5A5D46529E625AC004175E8 /* PostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A5D46429E625AC004175E8 /* PostController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,8 @@
 		B53ED12729BF7ADA0087A59A /* Middle_School_Management_AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Middle_School_Management_AppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B53ED12B29BF7ADA0087A59A /* Middle_School_Management_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Middle_School_Management_AppUITests.swift; sourceTree = "<group>"; };
 		B53ED12D29BF7ADA0087A59A /* Middle_School_Management_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Middle_School_Management_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B5A5D46229E62598004175E8 /* ClassController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassController.swift; sourceTree = "<group>"; };
+		B5A5D46429E625AC004175E8 /* PostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +123,8 @@
 				B53ED11329BF7AD90087A59A /* Assets.xcassets */,
 				B53ED11529BF7AD90087A59A /* LaunchScreen.storyboard */,
 				B53ED11829BF7AD90087A59A /* Info.plist */,
+				B5A5D46229E62598004175E8 /* ClassController.swift */,
+				B5A5D46429E625AC004175E8 /* PostController.swift */,
 			);
 			path = Middle_School_Management_App;
 			sourceTree = "<group>";
@@ -279,11 +285,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B504A22629DA080100D0F532 /* Class.swift in Sources */,
+				B5A5D46529E625AC004175E8 /* PostController.swift in Sources */,
 				B53ED10F29BF7AD50087A59A /* ViewController.swift in Sources */,
 				B504A22829DA080100D0F532 /* User.swift in Sources */,
 				B53ED10B29BF7AD50087A59A /* AppDelegate.swift in Sources */,
 				B53ED10D29BF7AD50087A59A /* SceneDelegate.swift in Sources */,
 				B504A22729DA080100D0F532 /* Post.swift in Sources */,
+				B5A5D46329E62598004175E8 /* ClassController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
