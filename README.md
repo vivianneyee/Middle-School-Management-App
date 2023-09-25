@@ -96,6 +96,12 @@ WireFrame:
 - discussed progress and any new issues 
 - updated github projects board
 
+09-25-2023
+- discussed progress and any new issues
+- discussed how to incorporate this project with SEG4105 class (deliverable 1)
+- update client on project progress
+- started planning QA/design presentation 
+
 ## Sprints
 #### Winter Semester 2023
 | Sprint | Start Date | End Date |
