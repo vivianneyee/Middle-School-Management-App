@@ -1,4 +1,6 @@
 # Middle School Management App
+Vivianne Yee 300118867
+Vivienne Cruz 300106639
 
 ## Description
 A mobile app for students and teachers to keep their classes and clubs organized. Students will be notified about what they need for each day of their schedule, and if there is anything important going on in their classes or extra-curriculars. Teachers will be able to broadcast information for the classes and clubs they are in charged of, which will be received by students.
@@ -79,6 +81,27 @@ WireFrame:
 04-09-2023
 - discussed capstone presentation content and plan for demo
 
+08-23-2023
+- discussed work done over the summer
+- discussed high level goals for the beginning of the semester
+- allocated tasks 
+
+09-06-2023
+- discussed sprint dates
+- progress update
+- meeting with client to discuss new semester goals, progress
+- discussed presentation plan for client's new students (new set of end users)
+
+09-18-2023
+- discussed progress and any new issues 
+- updated github projects board
+
+09-25-2023
+- discussed progress and any new issues
+- discussed how to incorporate this project with SEG4105 class (deliverable 1)
+- update client on project progress
+- started planning QA/design presentation 
+
 ## Sprints
 #### Winter Semester 2023
 | Sprint | Start Date | End Date |
@@ -88,3 +111,13 @@ WireFrame:
 | Sprint 3| 03-12-2023 | 03-25-2023|
 | Sprint 4| 03-26-2023 | 04-08-2023|
 | Sprint 5| 04-09-2023 | 04-22-2023|
+
+#### Fall Semester 2023
+| Sprint | Start Date | End Date |
+|--------|------------|----------|
+| Sprint 6| 09-03-2023 | 09-16-2023|
+| Sprint 7| 09-17-2023 | 09-30-2023|
+| Sprint 8| 10-01-2023 | 10-14-2023|
+| Sprint 9| 10-15-2023 | 10-28-2023|
+| Sprint 10| 10-29-2023 | 11-11-2023|
+| Sprint 11| 11-12-2023 | 11-25-2023|

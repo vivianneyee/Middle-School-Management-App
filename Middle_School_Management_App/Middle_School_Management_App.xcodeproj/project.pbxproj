@@ -74,6 +74,8 @@
 		B53ED12729BF7ADA0087A59A /* Middle_School_Management_AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Middle_School_Management_AppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B53ED12B29BF7ADA0087A59A /* Middle_School_Management_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Middle_School_Management_AppUITests.swift; sourceTree = "<group>"; };
 		B53ED12D29BF7ADA0087A59A /* Middle_School_Management_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Middle_School_Management_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B5A5D46229E62598004175E8 /* ClassController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassController.swift; sourceTree = "<group>"; };
+		B5A5D46429E625AC004175E8 /* PostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */

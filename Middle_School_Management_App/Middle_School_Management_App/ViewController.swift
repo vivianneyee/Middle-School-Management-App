@@ -141,12 +141,10 @@ class SettingsViewController: UIViewController {
             
             // for debugging
             print(Realm.Configuration.defaultConfiguration.fileURL!)
-            
         } catch let error as NSError {
             print("Error initializing Realm: \(error.localizedDescription)")
         }
     }
-        
 
     func createClass(realm: Realm, name: String, color: String) {
         let code = generateClassCode(realm: realm)
