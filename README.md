@@ -100,7 +100,11 @@ WireFrame:
 - discussed progress and any new issues
 - discussed how to incorporate this project with SEG4105 class (deliverable 1)
 - update client on project progress
-- started planning QA/design presentation 
+- started planning QA/design presentation
+
+09-28-2023
+- discussed feasibility of project scope, deciding where we can make tradeoffs if necessary
+- planned out tasks to be done for SEG4105 deliverable 1 (breadboarding)
 
 ## Sprints
 #### Winter Semester 2023
