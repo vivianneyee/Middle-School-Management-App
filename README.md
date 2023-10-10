@@ -106,6 +106,12 @@ WireFrame:
 - discussed feasibility of project scope, deciding where we can make tradeoffs if necessary
 - planned out tasks to be done for SEG4105 deliverable 1 (breadboarding)
 
+10-06-2023
+- dicussed progress and issues
+- plan for the next sprint
+- discussed topics for QA/design presentation
+- updated client on progress
+  
 ## Sprints
 #### Winter Semester 2023
 | Sprint | Start Date | End Date |
