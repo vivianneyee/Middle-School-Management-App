@@ -111,6 +111,14 @@ WireFrame:
 - plan for the next sprint
 - discussed topics for QA/design presentation
 - updated client on progress
+
+10-15-2023
+- discussed progress and issues (with work-arounds)
+- discussed what to work on for the next sprint
+- created new tickets for upcoming sprint
+- started working on presentation
+- talked to client about progress
+- discussed design changes with client
   
 ## Sprints
 #### Winter Semester 2023
