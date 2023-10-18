@@ -118,6 +118,7 @@
 		B593B8932ADEDE7500E3552C /* ClassControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B593B8922ADEDE7500E3552C /* ClassControllerTests.swift */; };
 		B593B8982ADF1FE800E3552C /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B593B8972ADF1FE800E3552C /* RealmSwift */; };
 		B593B89A2ADF21F200E3552C /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = B593B8992ADF21F200E3552C /* Realm */; };
+		B593B89C2AE0438500E3552C /* PostControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B593B89B2AE0438500E3552C /* PostControllerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -184,6 +185,7 @@
 		B53ED12B29BF7ADA0087A59A /* Middle_School_Management_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Middle_School_Management_AppUITests.swift; sourceTree = "<group>"; };
 		B53ED12D29BF7ADA0087A59A /* Middle_School_Management_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Middle_School_Management_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		B593B8922ADEDE7500E3552C /* ClassControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassControllerTests.swift; sourceTree = "<group>"; };
+		B593B89B2AE0438500E3552C /* PostControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostControllerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -314,6 +316,7 @@
 			children = (
 				B593B8922ADEDE7500E3552C /* ClassControllerTests.swift */,
 				B53ED12129BF7ADA0087A59A /* Middle_School_Management_AppTests.swift */,
+				B593B89B2AE0438500E3552C /* PostControllerTests.swift */,
 			);
 			path = Middle_School_Management_AppTests;
 			sourceTree = "<group>";
@@ -552,6 +555,7 @@
 				81035CB12ADDF21500CADFE2 /* NotificationsViewController.swift in Sources */,
 				B593B8932ADEDE7500E3552C /* ClassControllerTests.swift in Sources */,
 				B53ED12229BF7ADA0087A59A /* Middle_School_Management_AppTests.swift in Sources */,
+				B593B89C2AE0438500E3552C /* PostControllerTests.swift in Sources */,
 				81035C782ADDF21500CADFE2 /* LinkTableViewCell.swift in Sources */,
 				81035C992ADDF21500CADFE2 /* AlertViewController.swift in Sources */,
 				81035CA22ADDF21500CADFE2 /* CreatePostViewController.swift in Sources */,
