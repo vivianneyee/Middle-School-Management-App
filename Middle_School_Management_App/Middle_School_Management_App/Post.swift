@@ -17,13 +17,11 @@ class Post: Object {
 }
 
 class Event: Post {
-    @Persisted var files: List<String>
     @Persisted var startDate: Date
     @Persisted var endDate: Date
 }
 
 class Assignment: Post {
-    @Persisted var files: List<String>
     @Persisted var dueDate: Date
 }
 
