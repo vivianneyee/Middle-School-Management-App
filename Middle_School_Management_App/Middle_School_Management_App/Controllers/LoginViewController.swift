@@ -9,13 +9,9 @@ import Foundation
 import UIKit
 import ECWeekView
 import SwiftDate
-import RealmSwift
+//import RealmSwift
 
 class LoginViewController: UIViewController {
-//    @IBOutlet weak var dateTF: UITextField!
-//    var postTitle: String?
-//    var postDate: String?
-    
     // Email or username input field
     private let emailTextField: UITextField = {
         let textField = UITextField()
@@ -51,11 +47,6 @@ class LoginViewController: UIViewController {
         return label
     }()
     
-//    @IBAction func tapToHomePage(_ sender: Any) {
-//        let vc = storyboard?.instantiateViewController(identifier: "home") as! UITabBarController
-//        navigationController?.pushViewController(vc, animated: true)
-//    }
-//
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -67,8 +58,6 @@ class LoginViewController: UIViewController {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(signupLinkTapped))
         signupLink.addGestureRecognizer(tapGesture)
         signupLink.isUserInteractionEnabled = true
-//        signupLink.addTarget(self, action: #selector(signupLinkTapped), for: .touchUpInside)
-
 
        // Add subviews
        view.addSubview(emailTextField)
@@ -111,9 +100,8 @@ class LoginViewController: UIViewController {
 
         // If login is successful, navigate to the "home" view controller
         let vc = storyboard?.instantiateViewController(identifier: "home") as! UITabBarController
-//        navigationController?.pushViewController(vc, animated: true)
         // add sign in logic
-        vc.modalPresentationStyle = .fullScreen  // Optional: Set the presentation style
+        vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true, completion: nil)
     }
     

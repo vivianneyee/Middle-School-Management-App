@@ -9,13 +9,9 @@ import Foundation
 import UIKit
 import ECWeekView
 import SwiftDate
-import RealmSwift
+//import RealmSwift
 
 class SignupViewController: UIViewController {
-//    @IBOutlet weak var dateTF: UITextField!
-//    var postTitle: String?
-//    var postDate: String?
-    
     // Email or username input field
     private let emailTextField: UITextField = {
         let textField = UITextField()
@@ -42,12 +38,7 @@ class SignupViewController: UIViewController {
         button.tintColor = .white
         return button
     }()
-    
-//    @IBAction func tapToHomePage(_ sender: Any) {
-//        let vc = storyboard?.instantiateViewController(identifier: "home") as! UITabBarController
-//        navigationController?.pushViewController(vc, animated: true)
-//    }
-//
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -89,9 +80,8 @@ class SignupViewController: UIViewController {
 
         // If login is successful, navigate to the "home" view controller
         let vc = storyboard?.instantiateViewController(identifier: "home") as! UITabBarController
-//        navigationController?.pushViewController(vc, animated: true)
         // add sign up logic
-        vc.modalPresentationStyle = .fullScreen  // Optional: Set the presentation style
+        vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true, completion: nil)
     }
 }
