@@ -78,6 +78,10 @@
 		81035CB52ADDF21500CADFE2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C702ADDF21500CADFE2 /* SettingsViewController.swift */; };
 		81035CB82ADF125700CADFE2 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 81035CB72ADF125700CADFE2 /* Realm */; };
 		81035CBA2ADF125700CADFE2 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 81035CB92ADF125700CADFE2 /* RealmSwift */; };
+		8126D2CD29DCEE3B00BD8CA7 /* ClassTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8126D2CC29DCEE3B00BD8CA7 /* ClassTableViewCell.swift */; };
+		8126D2D129DD13C700BD8CA7 /* LinkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8126D2D029DD13C700BD8CA7 /* LinkTableViewCell.swift */; };
+		8126D2D329DD1F0E00BD8CA7 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8126D2D229DD1F0E00BD8CA7 /* PostTableViewCell.swift */; };
+		8126D2D729E3225E00BD8CA7 /* NotifTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8126D2D629E3225E00BD8CA7 /* NotifTableViewCell.swift */; };
 		8126D2DA29E3A39B00BD8CA7 /* CalendarKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8126D2D929E3A39B00BD8CA7 /* CalendarKit */; };
 		8126D2DD29E5188400BD8CA7 /* KVKCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 8126D2DC29E5188400BD8CA7 /* KVKCalendar */; };
 		8126D2E029E5DFC100BD8CA7 /* ECWeekView in Frameworks */ = {isa = PBXBuildFile; productRef = 8126D2DF29E5DFC100BD8CA7 /* ECWeekView */; };
@@ -97,7 +101,6 @@
 		81B7648D2ADF390B0014F9AB /* ECWeekView in Frameworks */ = {isa = PBXBuildFile; productRef = 81B7648C2ADF390B0014F9AB /* ECWeekView */; };
 		81B7648E2AE045D00014F9AB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5021C772A2E52C9000325BF /* User.swift */; };
 		B5021C6C2A2E4C66000325BF /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = B5021C6B2A2E4C66000325BF /* Realm */; };
-		B5021C6E2A2E4C66000325BF /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B5021C6D2A2E4C66000325BF /* RealmSwift */; };
 		B5021C702A2E4C8E000325BF /* Class.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5021C6F2A2E4C8E000325BF /* Class.swift */; };
 		B5021C722A2E4C9E000325BF /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5021C712A2E4C9E000325BF /* Post.swift */; };
 		B5021C742A2E4DDE000325BF /* ClassController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5021C732A2E4DDE000325BF /* ClassController.swift */; };
@@ -112,6 +115,9 @@
 		B53ED12229BF7ADA0087A59A /* Middle_School_Management_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53ED12129BF7ADA0087A59A /* Middle_School_Management_AppTests.swift */; };
 		B53ED12C29BF7ADA0087A59A /* Middle_School_Management_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53ED12B29BF7ADA0087A59A /* Middle_School_Management_AppUITests.swift */; };
 		B53ED12E29BF7ADA0087A59A /* Middle_School_Management_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53ED12D29BF7ADA0087A59A /* Middle_School_Management_AppUITestsLaunchTests.swift */; };
+		B593B8932ADEDE7500E3552C /* ClassControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B593B8922ADEDE7500E3552C /* ClassControllerTests.swift */; };
+		B593B8982ADF1FE800E3552C /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B593B8972ADF1FE800E3552C /* RealmSwift */; };
+		B593B89A2ADF21F200E3552C /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = B593B8992ADF21F200E3552C /* Realm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -155,6 +161,10 @@
 		81035C6E2ADDF21500CADFE2 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		81035C6F2ADDF21500CADFE2 /* NotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		81035C702ADDF21500CADFE2 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		8126D2CC29DCEE3B00BD8CA7 /* ClassTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassTableViewCell.swift; sourceTree = "<group>"; };
+		8126D2D029DD13C700BD8CA7 /* LinkTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkTableViewCell.swift; sourceTree = "<group>"; };
+		8126D2D229DD1F0E00BD8CA7 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		8126D2D629E3225E00BD8CA7 /* NotifTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifTableViewCell.swift; sourceTree = "<group>"; };
 		B5021C6F2A2E4C8E000325BF /* Class.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Class.swift; sourceTree = "<group>"; };
 		B5021C712A2E4C9E000325BF /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		B5021C732A2E4DDE000325BF /* ClassController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassController.swift; sourceTree = "<group>"; };
@@ -173,6 +183,7 @@
 		B53ED12729BF7ADA0087A59A /* Middle_School_Management_AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Middle_School_Management_AppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B53ED12B29BF7ADA0087A59A /* Middle_School_Management_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Middle_School_Management_AppUITests.swift; sourceTree = "<group>"; };
 		B53ED12D29BF7ADA0087A59A /* Middle_School_Management_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Middle_School_Management_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B593B8922ADEDE7500E3552C /* ClassControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassControllerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,7 +194,7 @@
 				8126D2DA29E3A39B00BD8CA7 /* CalendarKit in Frameworks */,
 				8126D2DD29E5188400BD8CA7 /* KVKCalendar in Frameworks */,
 				B5021C6C2A2E4C66000325BF /* Realm in Frameworks */,
-				B5021C6E2A2E4C66000325BF /* RealmSwift in Frameworks */,
+				B593B8982ADF1FE800E3552C /* RealmSwift in Frameworks */,
 				8126D2E029E5DFC100BD8CA7 /* ECWeekView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -194,6 +205,7 @@
 			files = (
 				81B764852ADF36DC0014F9AB /* RealmSwift in Frameworks */,
 				81B764832ADF36DC0014F9AB /* Realm in Frameworks */,
+				B593B89A2ADF21F200E3552C /* Realm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,6 +275,7 @@
 				B53ED12A29BF7ADA0087A59A /* Middle_School_Management_AppUITests */,
 				B53ED10829BF7AD50087A59A /* Products */,
 				81035CB62ADF121C00CADFE2 /* Frameworks */,
+				B593B8942ADF106F00E3552C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -299,6 +312,7 @@
 		B53ED12029BF7ADA0087A59A /* Middle_School_Management_AppTests */ = {
 			isa = PBXGroup;
 			children = (
+				B593B8922ADEDE7500E3552C /* ClassControllerTests.swift */,
 				B53ED12129BF7ADA0087A59A /* Middle_School_Management_AppTests.swift */,
 			);
 			path = Middle_School_Management_AppTests;
@@ -311,6 +325,13 @@
 				B53ED12D29BF7ADA0087A59A /* Middle_School_Management_AppUITestsLaunchTests.swift */,
 			);
 			path = Middle_School_Management_AppUITests;
+			sourceTree = "<group>";
+		};
+		B593B8942ADF106F00E3552C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -334,7 +355,7 @@
 				8126D2DC29E5188400BD8CA7 /* KVKCalendar */,
 				8126D2DF29E5DFC100BD8CA7 /* ECWeekView */,
 				B5021C6B2A2E4C66000325BF /* Realm */,
-				B5021C6D2A2E4C66000325BF /* RealmSwift */,
+				B593B8972ADF1FE800E3552C /* RealmSwift */,
 			);
 			productName = Middle_School_Management_App;
 			productReference = B53ED10729BF7AD50087A59A /* Middle_School_Management_App.app */;
@@ -357,6 +378,7 @@
 			packageProductDependencies = (
 				81B764822ADF36DC0014F9AB /* Realm */,
 				81B764842ADF36DC0014F9AB /* RealmSwift */,
+				B593B8992ADF21F200E3552C /* Realm */,
 			);
 			productName = Middle_School_Management_AppTests;
 			productReference = B53ED11D29BF7ADA0087A59A /* Middle_School_Management_AppTests.xctest */;
@@ -528,6 +550,7 @@
 				81035C9F2ADDF21500CADFE2 /* NotificationPrefViewController.swift in Sources */,
 				81035C8A2ADDF21500CADFE2 /* JoinClassViewController.swift in Sources */,
 				81035CB12ADDF21500CADFE2 /* NotificationsViewController.swift in Sources */,
+				B593B8932ADEDE7500E3552C /* ClassControllerTests.swift in Sources */,
 				B53ED12229BF7ADA0087A59A /* Middle_School_Management_AppTests.swift in Sources */,
 				81035C782ADDF21500CADFE2 /* LinkTableViewCell.swift in Sources */,
 				81035C992ADDF21500CADFE2 /* AlertViewController.swift in Sources */,
@@ -978,10 +1001,15 @@
 			package = B5021C6A2A2E4C66000325BF /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = Realm;
 		};
-		B5021C6D2A2E4C66000325BF /* RealmSwift */ = {
+		B593B8972ADF1FE800E3552C /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = B5021C6A2A2E4C66000325BF /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
+		};
+		B593B8992ADF21F200E3552C /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B5021C6A2A2E4C66000325BF /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
