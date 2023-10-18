@@ -7,6 +7,77 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		81035C712ADDF21500CADFE2 /* ClassTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C592ADDF21500CADFE2 /* ClassTableViewCell.swift */; };
+		81035C722ADDF21500CADFE2 /* ClassTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C592ADDF21500CADFE2 /* ClassTableViewCell.swift */; };
+		81035C732ADDF21500CADFE2 /* ClassTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C592ADDF21500CADFE2 /* ClassTableViewCell.swift */; };
+		81035C742ADDF21500CADFE2 /* NotifTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C5A2ADDF21500CADFE2 /* NotifTableViewCell.swift */; };
+		81035C752ADDF21500CADFE2 /* NotifTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C5A2ADDF21500CADFE2 /* NotifTableViewCell.swift */; };
+		81035C762ADDF21500CADFE2 /* NotifTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C5A2ADDF21500CADFE2 /* NotifTableViewCell.swift */; };
+		81035C772ADDF21500CADFE2 /* LinkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C5B2ADDF21500CADFE2 /* LinkTableViewCell.swift */; };
+		81035C782ADDF21500CADFE2 /* LinkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C5B2ADDF21500CADFE2 /* LinkTableViewCell.swift */; };
+		81035C792ADDF21500CADFE2 /* LinkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C5B2ADDF21500CADFE2 /* LinkTableViewCell.swift */; };
+		81035C7A2ADDF21500CADFE2 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C5C2ADDF21500CADFE2 /* PostTableViewCell.swift */; };
+		81035C7B2ADDF21500CADFE2 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C5C2ADDF21500CADFE2 /* PostTableViewCell.swift */; };
+		81035C7C2ADDF21500CADFE2 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C5C2ADDF21500CADFE2 /* PostTableViewCell.swift */; };
+		81035C7D2ADDF21500CADFE2 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C5E2ADDF21500CADFE2 /* SignupViewController.swift */; };
+		81035C7E2ADDF21500CADFE2 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C5E2ADDF21500CADFE2 /* SignupViewController.swift */; };
+		81035C7F2ADDF21500CADFE2 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C5E2ADDF21500CADFE2 /* SignupViewController.swift */; };
+		81035C802ADDF21500CADFE2 /* CreateStudentInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C5F2ADDF21500CADFE2 /* CreateStudentInputViewController.swift */; };
+		81035C812ADDF21500CADFE2 /* CreateStudentInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C5F2ADDF21500CADFE2 /* CreateStudentInputViewController.swift */; };
+		81035C822ADDF21500CADFE2 /* CreateStudentInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C5F2ADDF21500CADFE2 /* CreateStudentInputViewController.swift */; };
+		81035C832ADDF21500CADFE2 /* StudentInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C602ADDF21500CADFE2 /* StudentInputViewController.swift */; };
+		81035C842ADDF21500CADFE2 /* StudentInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C602ADDF21500CADFE2 /* StudentInputViewController.swift */; };
+		81035C852ADDF21500CADFE2 /* StudentInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C602ADDF21500CADFE2 /* StudentInputViewController.swift */; };
+		81035C862ADDF21500CADFE2 /* ClassesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C612ADDF21500CADFE2 /* ClassesViewController.swift */; };
+		81035C872ADDF21500CADFE2 /* ClassesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C612ADDF21500CADFE2 /* ClassesViewController.swift */; };
+		81035C882ADDF21500CADFE2 /* ClassesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C612ADDF21500CADFE2 /* ClassesViewController.swift */; };
+		81035C892ADDF21500CADFE2 /* JoinClassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C622ADDF21500CADFE2 /* JoinClassViewController.swift */; };
+		81035C8A2ADDF21500CADFE2 /* JoinClassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C622ADDF21500CADFE2 /* JoinClassViewController.swift */; };
+		81035C8B2ADDF21500CADFE2 /* JoinClassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C622ADDF21500CADFE2 /* JoinClassViewController.swift */; };
+		81035C8C2ADDF21500CADFE2 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C632ADDF21500CADFE2 /* EventViewController.swift */; };
+		81035C8D2ADDF21500CADFE2 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C632ADDF21500CADFE2 /* EventViewController.swift */; };
+		81035C8E2ADDF21500CADFE2 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C632ADDF21500CADFE2 /* EventViewController.swift */; };
+		81035C8F2ADDF21500CADFE2 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C642ADDF21500CADFE2 /* ScheduleViewController.swift */; };
+		81035C902ADDF21500CADFE2 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C642ADDF21500CADFE2 /* ScheduleViewController.swift */; };
+		81035C912ADDF21500CADFE2 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C642ADDF21500CADFE2 /* ScheduleViewController.swift */; };
+		81035C922ADDF21500CADFE2 /* AssignmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C652ADDF21500CADFE2 /* AssignmentViewController.swift */; };
+		81035C932ADDF21500CADFE2 /* AssignmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C652ADDF21500CADFE2 /* AssignmentViewController.swift */; };
+		81035C942ADDF21500CADFE2 /* AssignmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C652ADDF21500CADFE2 /* AssignmentViewController.swift */; };
+		81035C952ADDF21500CADFE2 /* EditStudentInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C662ADDF21500CADFE2 /* EditStudentInputViewController.swift */; };
+		81035C962ADDF21500CADFE2 /* EditStudentInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C662ADDF21500CADFE2 /* EditStudentInputViewController.swift */; };
+		81035C972ADDF21500CADFE2 /* EditStudentInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C662ADDF21500CADFE2 /* EditStudentInputViewController.swift */; };
+		81035C982ADDF21500CADFE2 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C672ADDF21500CADFE2 /* AlertViewController.swift */; };
+		81035C992ADDF21500CADFE2 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C672ADDF21500CADFE2 /* AlertViewController.swift */; };
+		81035C9A2ADDF21500CADFE2 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C672ADDF21500CADFE2 /* AlertViewController.swift */; };
+		81035C9B2ADDF21500CADFE2 /* ClassInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C682ADDF21500CADFE2 /* ClassInfoViewController.swift */; };
+		81035C9C2ADDF21500CADFE2 /* ClassInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C682ADDF21500CADFE2 /* ClassInfoViewController.swift */; };
+		81035C9D2ADDF21500CADFE2 /* ClassInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C682ADDF21500CADFE2 /* ClassInfoViewController.swift */; };
+		81035C9E2ADDF21500CADFE2 /* NotificationPrefViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C692ADDF21500CADFE2 /* NotificationPrefViewController.swift */; };
+		81035C9F2ADDF21500CADFE2 /* NotificationPrefViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C692ADDF21500CADFE2 /* NotificationPrefViewController.swift */; };
+		81035CA02ADDF21500CADFE2 /* NotificationPrefViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C692ADDF21500CADFE2 /* NotificationPrefViewController.swift */; };
+		81035CA12ADDF21500CADFE2 /* CreatePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C6A2ADDF21500CADFE2 /* CreatePostViewController.swift */; };
+		81035CA22ADDF21500CADFE2 /* CreatePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C6A2ADDF21500CADFE2 /* CreatePostViewController.swift */; };
+		81035CA32ADDF21500CADFE2 /* CreatePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C6A2ADDF21500CADFE2 /* CreatePostViewController.swift */; };
+		81035CA42ADDF21500CADFE2 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C6B2ADDF21500CADFE2 /* EditViewController.swift */; };
+		81035CA52ADDF21500CADFE2 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C6B2ADDF21500CADFE2 /* EditViewController.swift */; };
+		81035CA62ADDF21500CADFE2 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C6B2ADDF21500CADFE2 /* EditViewController.swift */; };
+		81035CA72ADDF21500CADFE2 /* CreateClassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C6C2ADDF21500CADFE2 /* CreateClassViewController.swift */; };
+		81035CA82ADDF21500CADFE2 /* CreateClassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C6C2ADDF21500CADFE2 /* CreateClassViewController.swift */; };
+		81035CA92ADDF21500CADFE2 /* CreateClassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C6C2ADDF21500CADFE2 /* CreateClassViewController.swift */; };
+		81035CAA2ADDF21500CADFE2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C6D2ADDF21500CADFE2 /* LoginViewController.swift */; };
+		81035CAB2ADDF21500CADFE2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C6D2ADDF21500CADFE2 /* LoginViewController.swift */; };
+		81035CAC2ADDF21500CADFE2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C6D2ADDF21500CADFE2 /* LoginViewController.swift */; };
+		81035CAD2ADDF21500CADFE2 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C6E2ADDF21500CADFE2 /* ProfileViewController.swift */; };
+		81035CAE2ADDF21500CADFE2 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C6E2ADDF21500CADFE2 /* ProfileViewController.swift */; };
+		81035CAF2ADDF21500CADFE2 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C6E2ADDF21500CADFE2 /* ProfileViewController.swift */; };
+		81035CB02ADDF21500CADFE2 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C6F2ADDF21500CADFE2 /* NotificationsViewController.swift */; };
+		81035CB12ADDF21500CADFE2 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C6F2ADDF21500CADFE2 /* NotificationsViewController.swift */; };
+		81035CB22ADDF21500CADFE2 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C6F2ADDF21500CADFE2 /* NotificationsViewController.swift */; };
+		81035CB32ADDF21500CADFE2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C702ADDF21500CADFE2 /* SettingsViewController.swift */; };
+		81035CB42ADDF21500CADFE2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C702ADDF21500CADFE2 /* SettingsViewController.swift */; };
+		81035CB52ADDF21500CADFE2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C702ADDF21500CADFE2 /* SettingsViewController.swift */; };
+		81035CB82ADF125700CADFE2 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 81035CB72ADF125700CADFE2 /* Realm */; };
+		81035CBA2ADF125700CADFE2 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 81035CB92ADF125700CADFE2 /* RealmSwift */; };
 		8126D2CD29DCEE3B00BD8CA7 /* ClassTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8126D2CC29DCEE3B00BD8CA7 /* ClassTableViewCell.swift */; };
 		8126D2D129DD13C700BD8CA7 /* LinkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8126D2D029DD13C700BD8CA7 /* LinkTableViewCell.swift */; };
 		8126D2D329DD1F0E00BD8CA7 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8126D2D229DD1F0E00BD8CA7 /* PostTableViewCell.swift */; };
@@ -14,6 +85,21 @@
 		8126D2DA29E3A39B00BD8CA7 /* CalendarKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8126D2D929E3A39B00BD8CA7 /* CalendarKit */; };
 		8126D2DD29E5188400BD8CA7 /* KVKCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 8126D2DC29E5188400BD8CA7 /* KVKCalendar */; };
 		8126D2E029E5DFC100BD8CA7 /* ECWeekView in Frameworks */ = {isa = PBXBuildFile; productRef = 8126D2DF29E5DFC100BD8CA7 /* ECWeekView */; };
+		81B7647D2ADF33DA0014F9AB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53ED10E29BF7AD50087A59A /* ViewController.swift */; };
+		81B7647E2ADF34730014F9AB /* Class.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5021C6F2A2E4C8E000325BF /* Class.swift */; };
+		81B7647F2ADF34730014F9AB /* ClassController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5021C732A2E4DDE000325BF /* ClassController.swift */; };
+		81B764802ADF34990014F9AB /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5021C712A2E4C9E000325BF /* Post.swift */; };
+		81B764812ADF34990014F9AB /* PostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5021C752A2E4DE9000325BF /* PostController.swift */; };
+		81B764832ADF36DC0014F9AB /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 81B764822ADF36DC0014F9AB /* Realm */; };
+		81B764852ADF36DC0014F9AB /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 81B764842ADF36DC0014F9AB /* RealmSwift */; };
+		81B764862ADF37E70014F9AB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53ED10E29BF7AD50087A59A /* ViewController.swift */; };
+		81B764872ADF38910014F9AB /* Class.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5021C6F2A2E4C8E000325BF /* Class.swift */; };
+		81B764882ADF38910014F9AB /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5021C712A2E4C9E000325BF /* Post.swift */; };
+		81B764892ADF38910014F9AB /* ClassController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5021C732A2E4DDE000325BF /* ClassController.swift */; };
+		81B7648A2ADF38910014F9AB /* PostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5021C752A2E4DE9000325BF /* PostController.swift */; };
+		81B7648B2ADF38910014F9AB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5021C772A2E52C9000325BF /* User.swift */; };
+		81B7648D2ADF390B0014F9AB /* ECWeekView in Frameworks */ = {isa = PBXBuildFile; productRef = 81B7648C2ADF390B0014F9AB /* ECWeekView */; };
+		81B7648E2AE045D00014F9AB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5021C772A2E52C9000325BF /* User.swift */; };
 		B5021C6C2A2E4C66000325BF /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = B5021C6B2A2E4C66000325BF /* Realm */; };
 		B5021C702A2E4C8E000325BF /* Class.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5021C6F2A2E4C8E000325BF /* Class.swift */; };
 		B5021C722A2E4C9E000325BF /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5021C712A2E4C9E000325BF /* Post.swift */; };
@@ -52,6 +138,29 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		81035C592ADDF21500CADFE2 /* ClassTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassTableViewCell.swift; sourceTree = "<group>"; };
+		81035C5A2ADDF21500CADFE2 /* NotifTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotifTableViewCell.swift; sourceTree = "<group>"; };
+		81035C5B2ADDF21500CADFE2 /* LinkTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkTableViewCell.swift; sourceTree = "<group>"; };
+		81035C5C2ADDF21500CADFE2 /* PostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		81035C5E2ADDF21500CADFE2 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		81035C5F2ADDF21500CADFE2 /* CreateStudentInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateStudentInputViewController.swift; sourceTree = "<group>"; };
+		81035C602ADDF21500CADFE2 /* StudentInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentInputViewController.swift; sourceTree = "<group>"; };
+		81035C612ADDF21500CADFE2 /* ClassesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassesViewController.swift; sourceTree = "<group>"; };
+		81035C622ADDF21500CADFE2 /* JoinClassViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinClassViewController.swift; sourceTree = "<group>"; };
+		81035C632ADDF21500CADFE2 /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
+		81035C642ADDF21500CADFE2 /* ScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
+		81035C652ADDF21500CADFE2 /* AssignmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentViewController.swift; sourceTree = "<group>"; };
+		81035C662ADDF21500CADFE2 /* EditStudentInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditStudentInputViewController.swift; sourceTree = "<group>"; };
+		81035C672ADDF21500CADFE2 /* AlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
+		81035C682ADDF21500CADFE2 /* ClassInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassInfoViewController.swift; sourceTree = "<group>"; };
+		81035C692ADDF21500CADFE2 /* NotificationPrefViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationPrefViewController.swift; sourceTree = "<group>"; };
+		81035C6A2ADDF21500CADFE2 /* CreatePostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatePostViewController.swift; sourceTree = "<group>"; };
+		81035C6B2ADDF21500CADFE2 /* EditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
+		81035C6C2ADDF21500CADFE2 /* CreateClassViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateClassViewController.swift; sourceTree = "<group>"; };
+		81035C6D2ADDF21500CADFE2 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		81035C6E2ADDF21500CADFE2 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		81035C6F2ADDF21500CADFE2 /* NotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
+		81035C702ADDF21500CADFE2 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		8126D2CC29DCEE3B00BD8CA7 /* ClassTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassTableViewCell.swift; sourceTree = "<group>"; };
 		8126D2D029DD13C700BD8CA7 /* LinkTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkTableViewCell.swift; sourceTree = "<group>"; };
 		8126D2D229DD1F0E00BD8CA7 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
@@ -94,6 +203,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81B764852ADF36DC0014F9AB /* RealmSwift in Frameworks */,
+				81B764832ADF36DC0014F9AB /* Realm in Frameworks */,
 				B593B89A2ADF21F200E3552C /* Realm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -102,12 +213,60 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81035CBA2ADF125700CADFE2 /* RealmSwift in Frameworks */,
+				81035CB82ADF125700CADFE2 /* Realm in Frameworks */,
+				81B7648D2ADF390B0014F9AB /* ECWeekView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		81035C582ADDF21500CADFE2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				81035C592ADDF21500CADFE2 /* ClassTableViewCell.swift */,
+				81035C5A2ADDF21500CADFE2 /* NotifTableViewCell.swift */,
+				81035C5B2ADDF21500CADFE2 /* LinkTableViewCell.swift */,
+				81035C5C2ADDF21500CADFE2 /* PostTableViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		81035C5D2ADDF21500CADFE2 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				81035C5E2ADDF21500CADFE2 /* SignupViewController.swift */,
+				81035C5F2ADDF21500CADFE2 /* CreateStudentInputViewController.swift */,
+				81035C602ADDF21500CADFE2 /* StudentInputViewController.swift */,
+				81035C612ADDF21500CADFE2 /* ClassesViewController.swift */,
+				81035C622ADDF21500CADFE2 /* JoinClassViewController.swift */,
+				81035C632ADDF21500CADFE2 /* EventViewController.swift */,
+				81035C642ADDF21500CADFE2 /* ScheduleViewController.swift */,
+				81035C652ADDF21500CADFE2 /* AssignmentViewController.swift */,
+				81035C662ADDF21500CADFE2 /* EditStudentInputViewController.swift */,
+				81035C672ADDF21500CADFE2 /* AlertViewController.swift */,
+				81035C682ADDF21500CADFE2 /* ClassInfoViewController.swift */,
+				81035C692ADDF21500CADFE2 /* NotificationPrefViewController.swift */,
+				81035C6A2ADDF21500CADFE2 /* CreatePostViewController.swift */,
+				81035C6B2ADDF21500CADFE2 /* EditViewController.swift */,
+				81035C6C2ADDF21500CADFE2 /* CreateClassViewController.swift */,
+				81035C6D2ADDF21500CADFE2 /* LoginViewController.swift */,
+				81035C6E2ADDF21500CADFE2 /* ProfileViewController.swift */,
+				81035C6F2ADDF21500CADFE2 /* NotificationsViewController.swift */,
+				81035C702ADDF21500CADFE2 /* SettingsViewController.swift */,
+				B53ED10E29BF7AD50087A59A /* ViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		81035CB62ADF121C00CADFE2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		B53ED0FE29BF7AD50087A59A = {
 			isa = PBXGroup;
 			children = (
@@ -115,6 +274,7 @@
 				B53ED12029BF7ADA0087A59A /* Middle_School_Management_AppTests */,
 				B53ED12A29BF7ADA0087A59A /* Middle_School_Management_AppUITests */,
 				B53ED10829BF7AD50087A59A /* Products */,
+				81035CB62ADF121C00CADFE2 /* Frameworks */,
 				B593B8942ADF106F00E3552C /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -132,17 +292,14 @@
 		B53ED10929BF7AD50087A59A /* Middle_School_Management_App */ = {
 			isa = PBXGroup;
 			children = (
+				81035C5D2ADDF21500CADFE2 /* Controllers */,
+				81035C582ADDF21500CADFE2 /* Views */,
 				B53ED10A29BF7AD50087A59A /* AppDelegate.swift */,
 				B53ED10C29BF7AD50087A59A /* SceneDelegate.swift */,
-				B53ED10E29BF7AD50087A59A /* ViewController.swift */,
 				B53ED11029BF7AD50087A59A /* Main.storyboard */,
 				B53ED11329BF7AD90087A59A /* Assets.xcassets */,
 				B53ED11529BF7AD90087A59A /* LaunchScreen.storyboard */,
 				B53ED11829BF7AD90087A59A /* Info.plist */,
-				8126D2CC29DCEE3B00BD8CA7 /* ClassTableViewCell.swift */,
-				8126D2D029DD13C700BD8CA7 /* LinkTableViewCell.swift */,
-				8126D2D229DD1F0E00BD8CA7 /* PostTableViewCell.swift */,
-				8126D2D629E3225E00BD8CA7 /* NotifTableViewCell.swift */,
 				B5021C6F2A2E4C8E000325BF /* Class.swift */,
 				B5021C712A2E4C9E000325BF /* Post.swift */,
 				B5021C732A2E4DDE000325BF /* ClassController.swift */,
@@ -219,6 +376,8 @@
 			);
 			name = Middle_School_Management_AppTests;
 			packageProductDependencies = (
+				81B764822ADF36DC0014F9AB /* Realm */,
+				81B764842ADF36DC0014F9AB /* RealmSwift */,
 				B593B8992ADF21F200E3552C /* Realm */,
 			);
 			productName = Middle_School_Management_AppTests;
@@ -239,6 +398,11 @@
 				B53ED12929BF7ADA0087A59A /* PBXTargetDependency */,
 			);
 			name = Middle_School_Management_AppUITests;
+			packageProductDependencies = (
+				81035CB72ADF125700CADFE2 /* Realm */,
+				81035CB92ADF125700CADFE2 /* RealmSwift */,
+				81B7648C2ADF390B0014F9AB /* ECWeekView */,
+			);
 			productName = Middle_School_Management_AppUITests;
 			productReference = B53ED12729BF7ADA0087A59A /* Middle_School_Management_AppUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -324,17 +488,36 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8126D2D329DD1F0E00BD8CA7 /* PostTableViewCell.swift in Sources */,
-				8126D2D729E3225E00BD8CA7 /* NotifTableViewCell.swift in Sources */,
-				8126D2CD29DCEE3B00BD8CA7 /* ClassTableViewCell.swift in Sources */,
+				81035CA12ADDF21500CADFE2 /* CreatePostViewController.swift in Sources */,
+				81035C8C2ADDF21500CADFE2 /* EventViewController.swift in Sources */,
+				81035CA72ADDF21500CADFE2 /* CreateClassViewController.swift in Sources */,
+				81035CAD2ADDF21500CADFE2 /* ProfileViewController.swift in Sources */,
 				B53ED10F29BF7AD50087A59A /* ViewController.swift in Sources */,
+				81035C712ADDF21500CADFE2 /* ClassTableViewCell.swift in Sources */,
+				81035CB02ADDF21500CADFE2 /* NotificationsViewController.swift in Sources */,
+				81035C772ADDF21500CADFE2 /* LinkTableViewCell.swift in Sources */,
+				81035C8F2ADDF21500CADFE2 /* ScheduleViewController.swift in Sources */,
 				B5021C762A2E4DE9000325BF /* PostController.swift in Sources */,
+				81035C862ADDF21500CADFE2 /* ClassesViewController.swift in Sources */,
+				81035CAA2ADDF21500CADFE2 /* LoginViewController.swift in Sources */,
 				B5021C702A2E4C8E000325BF /* Class.swift in Sources */,
+				81035C982ADDF21500CADFE2 /* AlertViewController.swift in Sources */,
 				B53ED10B29BF7AD50087A59A /* AppDelegate.swift in Sources */,
+				81035C742ADDF21500CADFE2 /* NotifTableViewCell.swift in Sources */,
 				B5021C742A2E4DDE000325BF /* ClassController.swift in Sources */,
+				81035C7D2ADDF21500CADFE2 /* SignupViewController.swift in Sources */,
+				81035C7A2ADDF21500CADFE2 /* PostTableViewCell.swift in Sources */,
+				81035C952ADDF21500CADFE2 /* EditStudentInputViewController.swift in Sources */,
+				81035CB32ADDF21500CADFE2 /* SettingsViewController.swift in Sources */,
 				B5021C782A2E52C9000325BF /* User.swift in Sources */,
+				81035CA42ADDF21500CADFE2 /* EditViewController.swift in Sources */,
+				81035C922ADDF21500CADFE2 /* AssignmentViewController.swift in Sources */,
+				81035C9B2ADDF21500CADFE2 /* ClassInfoViewController.swift in Sources */,
 				B5021C722A2E4C9E000325BF /* Post.swift in Sources */,
-				8126D2D129DD13C700BD8CA7 /* LinkTableViewCell.swift in Sources */,
+				81035C832ADDF21500CADFE2 /* StudentInputViewController.swift in Sources */,
+				81035C892ADDF21500CADFE2 /* JoinClassViewController.swift in Sources */,
+				81035C802ADDF21500CADFE2 /* CreateStudentInputViewController.swift in Sources */,
+				81035C9E2ADDF21500CADFE2 /* NotificationPrefViewController.swift in Sources */,
 				B53ED10D29BF7AD50087A59A /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -343,8 +526,37 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81B764872ADF38910014F9AB /* Class.swift in Sources */,
+				81B764882ADF38910014F9AB /* Post.swift in Sources */,
+				81B764892ADF38910014F9AB /* ClassController.swift in Sources */,
+				81B7648A2ADF38910014F9AB /* PostController.swift in Sources */,
+				81B7648B2ADF38910014F9AB /* User.swift in Sources */,
+				81B764862ADF37E70014F9AB /* ViewController.swift in Sources */,
+				81035CAB2ADDF21500CADFE2 /* LoginViewController.swift in Sources */,
+				81035C7E2ADDF21500CADFE2 /* SignupViewController.swift in Sources */,
+				81035C8D2ADDF21500CADFE2 /* EventViewController.swift in Sources */,
+				81035C752ADDF21500CADFE2 /* NotifTableViewCell.swift in Sources */,
+				81035C902ADDF21500CADFE2 /* ScheduleViewController.swift in Sources */,
+				81035CA52ADDF21500CADFE2 /* EditViewController.swift in Sources */,
+				81035CAE2ADDF21500CADFE2 /* ProfileViewController.swift in Sources */,
+				81035C842ADDF21500CADFE2 /* StudentInputViewController.swift in Sources */,
+				81035C722ADDF21500CADFE2 /* ClassTableViewCell.swift in Sources */,
+				81035CA82ADDF21500CADFE2 /* CreateClassViewController.swift in Sources */,
+				81035C932ADDF21500CADFE2 /* AssignmentViewController.swift in Sources */,
+				81035C872ADDF21500CADFE2 /* ClassesViewController.swift in Sources */,
+				81035C812ADDF21500CADFE2 /* CreateStudentInputViewController.swift in Sources */,
+				81035C9C2ADDF21500CADFE2 /* ClassInfoViewController.swift in Sources */,
+				81035C7B2ADDF21500CADFE2 /* PostTableViewCell.swift in Sources */,
+				81035C9F2ADDF21500CADFE2 /* NotificationPrefViewController.swift in Sources */,
+				81035C8A2ADDF21500CADFE2 /* JoinClassViewController.swift in Sources */,
+				81035CB12ADDF21500CADFE2 /* NotificationsViewController.swift in Sources */,
 				B593B8932ADEDE7500E3552C /* ClassControllerTests.swift in Sources */,
 				B53ED12229BF7ADA0087A59A /* Middle_School_Management_AppTests.swift in Sources */,
+				81035C782ADDF21500CADFE2 /* LinkTableViewCell.swift in Sources */,
+				81035C992ADDF21500CADFE2 /* AlertViewController.swift in Sources */,
+				81035CA22ADDF21500CADFE2 /* CreatePostViewController.swift in Sources */,
+				81035C962ADDF21500CADFE2 /* EditStudentInputViewController.swift in Sources */,
+				81035CB42ADDF21500CADFE2 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,8 +564,37 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81B7648E2AE045D00014F9AB /* User.swift in Sources */,
+				81B764802ADF34990014F9AB /* Post.swift in Sources */,
+				81B764812ADF34990014F9AB /* PostController.swift in Sources */,
+				81B7647E2ADF34730014F9AB /* Class.swift in Sources */,
+				81B7647F2ADF34730014F9AB /* ClassController.swift in Sources */,
+				81B7647D2ADF33DA0014F9AB /* ViewController.swift in Sources */,
+				81035CA62ADDF21500CADFE2 /* EditViewController.swift in Sources */,
+				81035C912ADDF21500CADFE2 /* ScheduleViewController.swift in Sources */,
+				81035CA92ADDF21500CADFE2 /* CreateClassViewController.swift in Sources */,
+				81035C792ADDF21500CADFE2 /* LinkTableViewCell.swift in Sources */,
+				81035C7F2ADDF21500CADFE2 /* SignupViewController.swift in Sources */,
 				B53ED12E29BF7ADA0087A59A /* Middle_School_Management_AppUITestsLaunchTests.swift in Sources */,
+				81035CA02ADDF21500CADFE2 /* NotificationPrefViewController.swift in Sources */,
+				81035C822ADDF21500CADFE2 /* CreateStudentInputViewController.swift in Sources */,
+				81035CB52ADDF21500CADFE2 /* SettingsViewController.swift in Sources */,
+				81035C942ADDF21500CADFE2 /* AssignmentViewController.swift in Sources */,
+				81035C9D2ADDF21500CADFE2 /* ClassInfoViewController.swift in Sources */,
+				81035CAC2ADDF21500CADFE2 /* LoginViewController.swift in Sources */,
+				81035C972ADDF21500CADFE2 /* EditStudentInputViewController.swift in Sources */,
 				B53ED12C29BF7ADA0087A59A /* Middle_School_Management_AppUITests.swift in Sources */,
+				81035C8E2ADDF21500CADFE2 /* EventViewController.swift in Sources */,
+				81035CA32ADDF21500CADFE2 /* CreatePostViewController.swift in Sources */,
+				81035CB22ADDF21500CADFE2 /* NotificationsViewController.swift in Sources */,
+				81035CAF2ADDF21500CADFE2 /* ProfileViewController.swift in Sources */,
+				81035C8B2ADDF21500CADFE2 /* JoinClassViewController.swift in Sources */,
+				81035C762ADDF21500CADFE2 /* NotifTableViewCell.swift in Sources */,
+				81035C9A2ADDF21500CADFE2 /* AlertViewController.swift in Sources */,
+				81035C732ADDF21500CADFE2 /* ClassTableViewCell.swift in Sources */,
+				81035C882ADDF21500CADFE2 /* ClassesViewController.swift in Sources */,
+				81035C7C2ADDF21500CADFE2 /* PostTableViewCell.swift in Sources */,
+				81035C852ADDF21500CADFE2 /* StudentInputViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -715,6 +956,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		81035CB72ADF125700CADFE2 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B5021C6A2A2E4C66000325BF /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		81035CB92ADF125700CADFE2 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B5021C6A2A2E4C66000325BF /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
 		8126D2D929E3A39B00BD8CA7 /* CalendarKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8126D2D829E3A39B00BD8CA7 /* XCRemoteSwiftPackageReference "CalendarKit" */;
@@ -726,6 +977,21 @@
 			productName = KVKCalendar;
 		};
 		8126D2DF29E5DFC100BD8CA7 /* ECWeekView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8126D2DE29E5DFC100BD8CA7 /* XCRemoteSwiftPackageReference "swift-week-view" */;
+			productName = ECWeekView;
+		};
+		81B764822ADF36DC0014F9AB /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B5021C6A2A2E4C66000325BF /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		81B764842ADF36DC0014F9AB /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B5021C6A2A2E4C66000325BF /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+		81B7648C2ADF390B0014F9AB /* ECWeekView */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8126D2DE29E5DFC100BD8CA7 /* XCRemoteSwiftPackageReference "swift-week-view" */;
 			productName = ECWeekView;
