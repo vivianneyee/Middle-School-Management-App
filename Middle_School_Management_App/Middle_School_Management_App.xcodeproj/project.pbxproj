@@ -78,10 +78,6 @@
 		81035CB52ADDF21500CADFE2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C702ADDF21500CADFE2 /* SettingsViewController.swift */; };
 		81035CB82ADF125700CADFE2 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 81035CB72ADF125700CADFE2 /* Realm */; };
 		81035CBA2ADF125700CADFE2 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 81035CB92ADF125700CADFE2 /* RealmSwift */; };
-		8126D2CD29DCEE3B00BD8CA7 /* ClassTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8126D2CC29DCEE3B00BD8CA7 /* ClassTableViewCell.swift */; };
-		8126D2D129DD13C700BD8CA7 /* LinkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8126D2D029DD13C700BD8CA7 /* LinkTableViewCell.swift */; };
-		8126D2D329DD1F0E00BD8CA7 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8126D2D229DD1F0E00BD8CA7 /* PostTableViewCell.swift */; };
-		8126D2D729E3225E00BD8CA7 /* NotifTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8126D2D629E3225E00BD8CA7 /* NotifTableViewCell.swift */; };
 		8126D2DA29E3A39B00BD8CA7 /* CalendarKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8126D2D929E3A39B00BD8CA7 /* CalendarKit */; };
 		8126D2DD29E5188400BD8CA7 /* KVKCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 8126D2DC29E5188400BD8CA7 /* KVKCalendar */; };
 		8126D2E029E5DFC100BD8CA7 /* ECWeekView in Frameworks */ = {isa = PBXBuildFile; productRef = 8126D2DF29E5DFC100BD8CA7 /* ECWeekView */; };
@@ -119,6 +115,8 @@
 		B593B8982ADF1FE800E3552C /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B593B8972ADF1FE800E3552C /* RealmSwift */; };
 		B593B89A2ADF21F200E3552C /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = B593B8992ADF21F200E3552C /* Realm */; };
 		B593B89C2AE0438500E3552C /* PostControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B593B89B2AE0438500E3552C /* PostControllerTests.swift */; };
+		B5E143232AE09E5600EAAA4C /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E143222AE09E5600EAAA4C /* Schedule.swift */; };
+		B5E143252AE0A08600EAAA4C /* ScheduleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E143242AE0A08600EAAA4C /* ScheduleController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -162,10 +160,6 @@
 		81035C6E2ADDF21500CADFE2 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		81035C6F2ADDF21500CADFE2 /* NotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		81035C702ADDF21500CADFE2 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		8126D2CC29DCEE3B00BD8CA7 /* ClassTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassTableViewCell.swift; sourceTree = "<group>"; };
-		8126D2D029DD13C700BD8CA7 /* LinkTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkTableViewCell.swift; sourceTree = "<group>"; };
-		8126D2D229DD1F0E00BD8CA7 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
-		8126D2D629E3225E00BD8CA7 /* NotifTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifTableViewCell.swift; sourceTree = "<group>"; };
 		B5021C6F2A2E4C8E000325BF /* Class.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Class.swift; sourceTree = "<group>"; };
 		B5021C712A2E4C9E000325BF /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		B5021C732A2E4DDE000325BF /* ClassController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassController.swift; sourceTree = "<group>"; };
@@ -186,6 +180,8 @@
 		B53ED12D29BF7ADA0087A59A /* Middle_School_Management_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Middle_School_Management_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		B593B8922ADEDE7500E3552C /* ClassControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassControllerTests.swift; sourceTree = "<group>"; };
 		B593B89B2AE0438500E3552C /* PostControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostControllerTests.swift; sourceTree = "<group>"; };
+		B5E143222AE09E5600EAAA4C /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
+		B5E143242AE0A08600EAAA4C /* ScheduleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -305,8 +301,10 @@
 				B5021C6F2A2E4C8E000325BF /* Class.swift */,
 				B5021C712A2E4C9E000325BF /* Post.swift */,
 				B5021C732A2E4DDE000325BF /* ClassController.swift */,
+				B5E143222AE09E5600EAAA4C /* Schedule.swift */,
 				B5021C752A2E4DE9000325BF /* PostController.swift */,
 				B5021C772A2E52C9000325BF /* User.swift */,
+				B5E143242AE0A08600EAAA4C /* ScheduleController.swift */,
 			);
 			path = Middle_School_Management_App;
 			sourceTree = "<group>";
@@ -505,6 +503,7 @@
 				81035CAA2ADDF21500CADFE2 /* LoginViewController.swift in Sources */,
 				B5021C702A2E4C8E000325BF /* Class.swift in Sources */,
 				81035C982ADDF21500CADFE2 /* AlertViewController.swift in Sources */,
+				B5E143252AE0A08600EAAA4C /* ScheduleController.swift in Sources */,
 				B53ED10B29BF7AD50087A59A /* AppDelegate.swift in Sources */,
 				81035C742ADDF21500CADFE2 /* NotifTableViewCell.swift in Sources */,
 				B5021C742A2E4DDE000325BF /* ClassController.swift in Sources */,
@@ -513,6 +512,7 @@
 				81035C952ADDF21500CADFE2 /* EditStudentInputViewController.swift in Sources */,
 				81035CB32ADDF21500CADFE2 /* SettingsViewController.swift in Sources */,
 				B5021C782A2E52C9000325BF /* User.swift in Sources */,
+				B5E143232AE09E5600EAAA4C /* Schedule.swift in Sources */,
 				81035CA42ADDF21500CADFE2 /* EditViewController.swift in Sources */,
 				81035C922ADDF21500CADFE2 /* AssignmentViewController.swift in Sources */,
 				81035C9B2ADDF21500CADFE2 /* ClassInfoViewController.swift in Sources */,
