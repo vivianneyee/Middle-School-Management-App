@@ -19,39 +19,46 @@ class PostContoller {
     // CREATE
     
     // create a new Event object
-    func createEvent(classObj: Class, title: String, desc: String, date: Date, files: List<String>) {
+    func createEvent(classObj: Class, title: String, desc: String, startDate: Date, endDate: Date) -> Event {
         let newEvent = Event()
         newEvent.title = title
         newEvent.desc = desc
-        newEvent.date = date
-        newEvent.files = files
+        newEvent.date = Date()
+        newEvent.startDate = startDate
+        newEvent.endDate = endDate
         newEvent.postType = "EVENT"
         
         try! realm.write {
             realm.add(newEvent)
             classObj.events.append(newEvent)
         }
+        
+        return newEvent
     }
     
     // create a new Assignment object
-    func createAssignment(classObj: Class, title: String, desc: String, date: Date, dueDate: Date, files: List<String>) {
+    func createAssignment(classObj: Class, title: String, desc: String, dueDate: Date) -> Assignment {
         let newAssignment = Assignment()
         newAssignment.title = title
-        newAssignment.date = date
-        newAssignment.files = files
+        newAssignment.date = Date()
+        newAssignment.desc = desc
+        newAssignment.dueDate = dueDate
         newAssignment.postType = "ASSIGNMENT"
         
         try! realm.write {
             realm.add(newAssignment)
             classObj.assignments.append(newAssignment)
         }
+        
+        return newAssignment
     }
     
     // create new Alert object
-    func createAlert(classObj:Class, title: String, date: Date, priority: String) {
+    func createAlert(classObj:Class, title: String, desc: String, priority: String) -> Alert {
         let newAlert = Alert()
         newAlert.title = title
-        newAlert.date = date
+        newAlert.date = Date()
+        newAlert.desc = desc
         newAlert.priority = priority
         newAlert.postType = "ALERT"
         
@@ -59,13 +66,16 @@ class PostContoller {
             realm.add(newAlert)
             classObj.alerts.append(newAlert)
         }
+        
+        return newAlert
     }
     
     // create a new StudnetInput object
-    func createStudentInput(classObj:Class, title: String, date: Date, inputType: String) {
+    func createStudentInput(classObj:Class, title: String, desc: String, inputType: String) -> StudentInput {
         let newStudentInput = StudentInput()
         newStudentInput.title = title
-        newStudentInput.date = date
+        newStudentInput.date = Date()
+        newStudentInput.desc = desc
         newStudentInput.inputType = inputType
         newStudentInput.postType = "STUDENTINPUT"
         
@@ -73,6 +83,8 @@ class PostContoller {
             realm.add(newStudentInput)
             classObj.studentInputs.append(newStudentInput)
         }
+        
+        return newStudentInput
     }
     
     // READ
@@ -117,11 +129,10 @@ class PostContoller {
     // UPDATE
     
     // update an event object
-    func updateEvent(eventObj: Event, title: String, desc: String, files: List<String>, startDate: Date, endDate: Date) {
+    func updateEvent(eventObj: Event, title: String, desc: String, startDate: Date, endDate: Date) {
         try! realm.write {
             eventObj.title = title
             eventObj.desc = desc
-            eventObj.files = files
             eventObj.startDate = startDate
             eventObj.endDate = endDate
         }

@@ -18,12 +18,13 @@ class ClassController {
     // CREATE
     
     // create a new class
-    func createClass(name: String, color: String) {
+    func createClass(name: String, color: String) -> Class {
         let code = generateClassCode(realm: realm)
         let newClass = Class(name: name, color: color, code: code)
         try! realm.write {
              realm.add(newClass)
         }
+        return newClass
     }
     
     // READ
@@ -40,12 +41,6 @@ class ClassController {
             $0.code == code
         }[0]
         return classObj
-    }
-    
-    // ***** FOR TESTING *****
-    func getFirstClass() -> Class {
-        let classes = getAllClasses()
-        return classes[0]
     }
     
     // UPDATE
