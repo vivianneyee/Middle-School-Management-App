@@ -43,6 +43,20 @@ class SignupViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         
+        // Code for registering user - implement with data from input fields
+//        let authManager = AuthManager()
+
+        
+//        authManager.registerUser(email: email, password: password, confirmPassword: confirmPassword, role: role) { result in
+//            switch result {
+//            case .success(let data):
+//                print("registration successful")
+//            case .failure(let error):
+//                print ("Registration failed with error: \(error)")
+//            }
+//        }
+//
+        
         // Add the action for the loginButton
         signupButton.addTarget(self, action: #selector(signupButtonTapped), for: .touchUpInside)
 
