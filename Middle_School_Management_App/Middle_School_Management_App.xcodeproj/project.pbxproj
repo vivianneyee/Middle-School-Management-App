@@ -93,15 +93,14 @@
 		81B764882ADF38910014F9AB /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5021C712A2E4C9E000325BF /* Post.swift */; };
 		81B764892ADF38910014F9AB /* ClassController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5021C732A2E4DDE000325BF /* ClassController.swift */; };
 		81B7648A2ADF38910014F9AB /* PostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5021C752A2E4DE9000325BF /* PostController.swift */; };
-		81B7648B2ADF38910014F9AB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5021C772A2E52C9000325BF /* User.swift */; };
+		81B7648B2ADF38910014F9AB /* (null) in Sources */ = {isa = PBXBuildFile; };
 		81B7648D2ADF390B0014F9AB /* ECWeekView in Frameworks */ = {isa = PBXBuildFile; productRef = 81B7648C2ADF390B0014F9AB /* ECWeekView */; };
-		81B7648E2AE045D00014F9AB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5021C772A2E52C9000325BF /* User.swift */; };
+		81B7648E2AE045D00014F9AB /* (null) in Sources */ = {isa = PBXBuildFile; };
 		B5021C6C2A2E4C66000325BF /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = B5021C6B2A2E4C66000325BF /* Realm */; };
 		B5021C702A2E4C8E000325BF /* Class.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5021C6F2A2E4C8E000325BF /* Class.swift */; };
 		B5021C722A2E4C9E000325BF /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5021C712A2E4C9E000325BF /* Post.swift */; };
 		B5021C742A2E4DDE000325BF /* ClassController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5021C732A2E4DDE000325BF /* ClassController.swift */; };
 		B5021C762A2E4DE9000325BF /* PostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5021C752A2E4DE9000325BF /* PostController.swift */; };
-		B5021C782A2E52C9000325BF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5021C772A2E52C9000325BF /* User.swift */; };
 		B53ED10B29BF7AD50087A59A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53ED10A29BF7AD50087A59A /* AppDelegate.swift */; };
 		B53ED10D29BF7AD50087A59A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53ED10C29BF7AD50087A59A /* SceneDelegate.swift */; };
 		B53ED10F29BF7AD50087A59A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53ED10E29BF7AD50087A59A /* ViewController.swift */; };
@@ -111,12 +110,13 @@
 		B53ED12229BF7ADA0087A59A /* Middle_School_Management_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53ED12129BF7ADA0087A59A /* Middle_School_Management_AppTests.swift */; };
 		B53ED12C29BF7ADA0087A59A /* Middle_School_Management_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53ED12B29BF7ADA0087A59A /* Middle_School_Management_AppUITests.swift */; };
 		B53ED12E29BF7ADA0087A59A /* Middle_School_Management_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53ED12D29BF7ADA0087A59A /* Middle_School_Management_AppUITestsLaunchTests.swift */; };
+		B593B87F2AC8A2DB00E3552C /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B593B87E2AC8A2DB00E3552C /* AuthManager.swift */; };
 		B593B8932ADEDE7500E3552C /* ClassControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B593B8922ADEDE7500E3552C /* ClassControllerTests.swift */; };
 		B593B8982ADF1FE800E3552C /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B593B8972ADF1FE800E3552C /* RealmSwift */; };
 		B593B89A2ADF21F200E3552C /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = B593B8992ADF21F200E3552C /* Realm */; };
 		B593B89C2AE0438500E3552C /* PostControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B593B89B2AE0438500E3552C /* PostControllerTests.swift */; };
 		B5E143232AE09E5600EAAA4C /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E143222AE09E5600EAAA4C /* Schedule.swift */; };
-		B5E143252AE0A08600EAAA4C /* ScheduleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E143242AE0A08600EAAA4C /* ScheduleController.swift */; };
+		B5EE10532AF179BB0059EE8B /* BSON in Frameworks */ = {isa = PBXBuildFile; productRef = B5EE10522AF179BB0059EE8B /* BSON */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -164,7 +164,6 @@
 		B5021C712A2E4C9E000325BF /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		B5021C732A2E4DDE000325BF /* ClassController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassController.swift; sourceTree = "<group>"; };
 		B5021C752A2E4DE9000325BF /* PostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostController.swift; sourceTree = "<group>"; };
-		B5021C772A2E52C9000325BF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B53ED10729BF7AD50087A59A /* Middle_School_Management_App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Middle_School_Management_App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B53ED10A29BF7AD50087A59A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B53ED10C29BF7AD50087A59A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -178,10 +177,10 @@
 		B53ED12729BF7ADA0087A59A /* Middle_School_Management_AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Middle_School_Management_AppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B53ED12B29BF7ADA0087A59A /* Middle_School_Management_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Middle_School_Management_AppUITests.swift; sourceTree = "<group>"; };
 		B53ED12D29BF7ADA0087A59A /* Middle_School_Management_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Middle_School_Management_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B593B87E2AC8A2DB00E3552C /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		B593B8922ADEDE7500E3552C /* ClassControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassControllerTests.swift; sourceTree = "<group>"; };
 		B593B89B2AE0438500E3552C /* PostControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostControllerTests.swift; sourceTree = "<group>"; };
 		B5E143222AE09E5600EAAA4C /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
-		B5E143242AE0A08600EAAA4C /* ScheduleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +190,7 @@
 			files = (
 				8126D2DA29E3A39B00BD8CA7 /* CalendarKit in Frameworks */,
 				8126D2DD29E5188400BD8CA7 /* KVKCalendar in Frameworks */,
+				B5EE10532AF179BB0059EE8B /* BSON in Frameworks */,
 				B5021C6C2A2E4C66000325BF /* Realm in Frameworks */,
 				B593B8982ADF1FE800E3552C /* RealmSwift in Frameworks */,
 				8126D2E029E5DFC100BD8CA7 /* ECWeekView in Frameworks */,
@@ -303,8 +303,7 @@
 				B5021C732A2E4DDE000325BF /* ClassController.swift */,
 				B5E143222AE09E5600EAAA4C /* Schedule.swift */,
 				B5021C752A2E4DE9000325BF /* PostController.swift */,
-				B5021C772A2E52C9000325BF /* User.swift */,
-				B5E143242AE0A08600EAAA4C /* ScheduleController.swift */,
+				B593B87E2AC8A2DB00E3552C /* AuthManager.swift */,
 			);
 			path = Middle_School_Management_App;
 			sourceTree = "<group>";
@@ -357,6 +356,7 @@
 				8126D2DF29E5DFC100BD8CA7 /* ECWeekView */,
 				B5021C6B2A2E4C66000325BF /* Realm */,
 				B593B8972ADF1FE800E3552C /* RealmSwift */,
+				B5EE10522AF179BB0059EE8B /* BSON */,
 			);
 			productName = Middle_School_Management_App;
 			productReference = B53ED10729BF7AD50087A59A /* Middle_School_Management_App.app */;
@@ -445,6 +445,7 @@
 				8126D2DB29E5188400BD8CA7 /* XCRemoteSwiftPackageReference "KVKCalendar" */,
 				8126D2DE29E5DFC100BD8CA7 /* XCRemoteSwiftPackageReference "swift-week-view" */,
 				B5021C6A2A2E4C66000325BF /* XCRemoteSwiftPackageReference "realm-swift" */,
+				B5EE10512AF179BB0059EE8B /* XCRemoteSwiftPackageReference "BSON" */,
 			);
 			productRefGroup = B53ED10829BF7AD50087A59A /* Products */;
 			projectDirPath = "";
@@ -489,6 +490,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B593B87F2AC8A2DB00E3552C /* AuthManager.swift in Sources */,
 				81035CA12ADDF21500CADFE2 /* CreatePostViewController.swift in Sources */,
 				81035C8C2ADDF21500CADFE2 /* EventViewController.swift in Sources */,
 				81035CA72ADDF21500CADFE2 /* CreateClassViewController.swift in Sources */,
@@ -503,7 +505,6 @@
 				81035CAA2ADDF21500CADFE2 /* LoginViewController.swift in Sources */,
 				B5021C702A2E4C8E000325BF /* Class.swift in Sources */,
 				81035C982ADDF21500CADFE2 /* AlertViewController.swift in Sources */,
-				B5E143252AE0A08600EAAA4C /* ScheduleController.swift in Sources */,
 				B53ED10B29BF7AD50087A59A /* AppDelegate.swift in Sources */,
 				81035C742ADDF21500CADFE2 /* NotifTableViewCell.swift in Sources */,
 				B5021C742A2E4DDE000325BF /* ClassController.swift in Sources */,
@@ -511,7 +512,6 @@
 				81035C7A2ADDF21500CADFE2 /* PostTableViewCell.swift in Sources */,
 				81035C952ADDF21500CADFE2 /* EditStudentInputViewController.swift in Sources */,
 				81035CB32ADDF21500CADFE2 /* SettingsViewController.swift in Sources */,
-				B5021C782A2E52C9000325BF /* User.swift in Sources */,
 				B5E143232AE09E5600EAAA4C /* Schedule.swift in Sources */,
 				81035CA42ADDF21500CADFE2 /* EditViewController.swift in Sources */,
 				81035C922ADDF21500CADFE2 /* AssignmentViewController.swift in Sources */,
@@ -533,7 +533,7 @@
 				81B764882ADF38910014F9AB /* Post.swift in Sources */,
 				81B764892ADF38910014F9AB /* ClassController.swift in Sources */,
 				81B7648A2ADF38910014F9AB /* PostController.swift in Sources */,
-				81B7648B2ADF38910014F9AB /* User.swift in Sources */,
+				81B7648B2ADF38910014F9AB /* (null) in Sources */,
 				81B764862ADF37E70014F9AB /* ViewController.swift in Sources */,
 				81035CAB2ADDF21500CADFE2 /* LoginViewController.swift in Sources */,
 				81035C7E2ADDF21500CADFE2 /* SignupViewController.swift in Sources */,
@@ -568,7 +568,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81B7648E2AE045D00014F9AB /* User.swift in Sources */,
+				81B7648E2AE045D00014F9AB /* (null) in Sources */,
 				81B764802ADF34990014F9AB /* Post.swift in Sources */,
 				81B764812ADF34990014F9AB /* PostController.swift in Sources */,
 				81B7647E2ADF34730014F9AB /* Class.swift in Sources */,
@@ -957,6 +957,14 @@
 				kind = branch;
 			};
 		};
+		B5EE10512AF179BB0059EE8B /* XCRemoteSwiftPackageReference "BSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/OpenKitten/BSON.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1014,6 +1022,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B5021C6A2A2E4C66000325BF /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = Realm;
+		};
+		B5EE10522AF179BB0059EE8B /* BSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B5EE10512AF179BB0059EE8B /* XCRemoteSwiftPackageReference "BSON" */;
+			productName = BSON;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
