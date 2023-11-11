@@ -117,6 +117,7 @@
 		B593B89C2AE0438500E3552C /* PostControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B593B89B2AE0438500E3552C /* PostControllerTests.swift */; };
 		B5E143232AE09E5600EAAA4C /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E143222AE09E5600EAAA4C /* Schedule.swift */; };
 		B5EE10532AF179BB0059EE8B /* BSON in Frameworks */ = {isa = PBXBuildFile; productRef = B5EE10522AF179BB0059EE8B /* BSON */; };
+		B5EE10592AFFFBE10059EE8B /* ScheduleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EE10582AFFFBE10059EE8B /* ScheduleController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -181,6 +182,7 @@
 		B593B8922ADEDE7500E3552C /* ClassControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassControllerTests.swift; sourceTree = "<group>"; };
 		B593B89B2AE0438500E3552C /* PostControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostControllerTests.swift; sourceTree = "<group>"; };
 		B5E143222AE09E5600EAAA4C /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
+		B5EE10582AFFFBE10059EE8B /* ScheduleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -304,6 +306,7 @@
 				B5E143222AE09E5600EAAA4C /* Schedule.swift */,
 				B5021C752A2E4DE9000325BF /* PostController.swift */,
 				B593B87E2AC8A2DB00E3552C /* AuthManager.swift */,
+				B5EE10582AFFFBE10059EE8B /* ScheduleController.swift */,
 			);
 			path = Middle_School_Management_App;
 			sourceTree = "<group>";
@@ -504,6 +507,7 @@
 				81035C862ADDF21500CADFE2 /* ClassesViewController.swift in Sources */,
 				81035CAA2ADDF21500CADFE2 /* LoginViewController.swift in Sources */,
 				B5021C702A2E4C8E000325BF /* Class.swift in Sources */,
+				B5EE10592AFFFBE10059EE8B /* ScheduleController.swift in Sources */,
 				81035C982ADDF21500CADFE2 /* AlertViewController.swift in Sources */,
 				B53ED10B29BF7AD50087A59A /* AppDelegate.swift in Sources */,
 				81035C742ADDF21500CADFE2 /* NotifTableViewCell.swift in Sources */,
