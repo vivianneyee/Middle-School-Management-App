@@ -64,7 +64,7 @@ class ClassController {
     }
     
     // get a class by its id
-    func getClassById(id: ObjectId, completion: @escaping (Result<Data, Error>) -> Void) {
+    func getClassById(id: String, completion: @escaping (Result<Data, Error>) -> Void) {
         let url = URL(string: "http://localhost:3000/class/classes/\(id)")!
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
@@ -126,7 +126,7 @@ class ClassController {
     }
     
     // update a class
-    func updateClass(id: ObjectId, className: String, color: String, completion: @escaping (Result<Data, Error>) -> Void) {
+    func updateClass(id: String, className: String, color: String, completion: @escaping (Result<Data, Error>) -> Void) {
         let url = URL(string: "http://localhost:3000/class/classes/\(id)")!
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
@@ -171,7 +171,7 @@ class ClassController {
     }
     
     // delete a class
-    func deleteClass(id: ObjectId, completion: @escaping (Result<Data, Error>) -> Void) {
+    func deleteClass(id: String, completion: @escaping (Result<Data, Error>) -> Void) {
         let url = URL(string: "http://localhost:3000/class/classes/\(id)")!
         var request = URLRequest(url: url)
         request.httpMethod = "DELETE"
