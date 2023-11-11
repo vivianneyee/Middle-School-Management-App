@@ -9,84 +9,195 @@ import Foundation
 import RealmSwift
 
 class ClassController {
-    private let realm: Realm
+
+    init() {}
     
-    init(realm: Realm) {
-        self.realm = realm
+    enum NetworkError: Error {
+        case emptyResponse
+        case invalidResponse
+        case serverError(String)
     }
-    
-    // CREATE
     
     // create a new class
-    func createClass(name: String, color: String) -> Class {
-        let code = generateClassCode(realm: realm)
-        let newClass = Class(name: name, color: color, code: code)
-        try! realm.write {
-             realm.add(newClass)
-        }
-        return newClass
-    }
-    
-    // READ
-    
-    // return all classes in db
-    func getAllClasses() -> Results<Class> {
-        return realm.objects(Class.self)
-    }
-    
-    // get a specific class by its code
-    func getClassByCode(code: String) -> Class {
-        let classes = getAllClasses()
-        let classObj = classes.where {
-            $0.code == code
-        }[0]
-        return classObj
-    }
-    
-    // UPDATE
-    
-    // update a class
-    func updateClass(classObj: Class, name: String, color: String) {
-        try! realm.write {
-            classObj.name = name
-            classObj.color = color
-        }
-    }
-    
-    // DELETE
-    
-    // delete a class
-    func deleteClass(classObj: Class) {
-        try! realm.write {
-            realm.delete(classObj)
-        }
-    }
-    
-    // OTHER
-    
-    // generate random 6-character code made up of 3 letters and 3 numbers
-    private func generateCode() -> String {
-        var code = ""
-        let letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-        let nums = "1234567890"
-        for _ in 0..<3 {
-            let letterIndex = Int.random(in: 0..<letters.count)
-            code.append(letters[letters.index(letters.startIndex, offsetBy: letterIndex)])
-        }
-        for _ in 0..<3 {
-            let numIndex = Int.random(in: 0..<nums.count)
-            code.append(nums[nums.index(nums.startIndex, offsetBy: numIndex)])
+    func createClass(className: String, color: String, completion: @escaping (Result<Data, Error>) -> Void) {
+        let url = URL(string: "http://localhost:3000/class/classes")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+
+                
+        let body: [String: Any] = [
+            "className": className,
+            "color": color
+        ]
+        
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: body)
+            request.httpBody = jsonData
+        } catch {
+            completion(.failure(error))
+            return
         }
         
-        return code
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            // handle error
+            if let error = error {
+                completion(.failure(error))
+                print("Could not create class")
+                return
+            }
+            
+            // check for successful response status
+            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 201 else {
+                completion(.failure(NetworkError.invalidResponse))
+                return
+            }
+            
+            // check that response data is not empty
+            guard let responseData = data else {
+                completion(.failure(NetworkError.emptyResponse))
+                return
+            }
+            
+            completion(.success(responseData))
+        }.resume()
     }
     
-    // use generateCode() to create a random class code and ensure it is not already in use
-    private func generateClassCode(realm: Realm) -> String {
-        var code = generateCode()
-        while realm.objects(Class.self).filter("code == %@", code).count > 0 {
-            code = generateCode()
+    // get a class by its id
+    func getClassById(id: ObjectId, completion: @escaping (Result<Data, Error>) -> Void) {
+        let url = URL(string: "http://localhost:3000/class/classes/\(id)")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            // handle error
+            if let error = error {
+                completion(.failure(error))
+                print("Could not find class")
+                return
+            }
+            
+            // check for successful response status
+            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                completion(.failure(NetworkError.invalidResponse))
+                return
+            }
+            
+            // check that response data is not empty
+            guard let responseData = data else {
+                completion(.failure(NetworkError.emptyResponse))
+                return
+            }
+            
+            completion(.success(responseData))
+                        
+        }.resume()
+    }
+    
+    // get a class by its code
+    func getClassByCode(code: String, completion: @escaping (Result<Data, Error>) -> Void) {
+        let url = URL(string: "http://localhost:3000/class/classes/\(code)")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            // handle error
+            if let error = error {
+                completion(.failure(error))
+                print("Could not find class")
+                return
+            }
+            
+            // check for successful response status
+            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                completion(.failure(NetworkError.invalidResponse))
+                return
+            }
+            
+            // check that response data is not empty
+            guard let responseData = data else {
+                completion(.failure(NetworkError.emptyResponse))
+                return
+            }
+            
+            completion(.success(responseData))
+            
+        }.resume()
+    }
+    
+    // update a class
+    func updateClass(id: ObjectId, className: String, color: String, completion: @escaping (Result<Data, Error>) -> Void) {
+        let url = URL(string: "http://localhost:3000/class/classes/\(id)")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "PUT"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let body: [String: Any] = [
+            "className": className,
+            "color": color
+        ]
+        
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: body)
+            request.httpBody = jsonData
+        } catch {
+            completion(.failure(error))
+            return
         }
-        return code
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            // handle error
+            if let error = error {
+                completion(.failure(error))
+                print("Could not find class")
+                return
+            }
+            
+            // check for successful response status
+            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                completion(.failure(NetworkError.invalidResponse))
+                return
+            }
+            
+            // check that response data is not empty
+            guard let responseData = data else {
+                completion(.failure(NetworkError.emptyResponse))
+                return
+            }
+            
+            completion(.success(responseData))
+            
+        }.resume()
+    }
+    
+    // delete a class
+    func deleteClass(id: ObjectId, completion: @escaping (Result<Data, Error>) -> Void) {
+        let url = URL(string: "http://localhost:3000/class/classes/\(id)")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "DELETE"
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            // handle error
+            if let error = error {
+                completion(.failure(error))
+                print("Could not find class")
+                return
+            }
+            
+            // check for successful response status
+            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                completion(.failure(NetworkError.invalidResponse))
+                return
+            }
+            
+            // check that response data is not empty
+            guard let responseData = data else {
+                completion(.failure(NetworkError.emptyResponse))
+                return
+            }
+            
+            completion(.success(responseData))
+            
+        }.resume()
     }
 }
