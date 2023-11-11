@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const authRoutes = require('./routes/authRoutes')
-// const { connectToDatabase } = require('./config/database')
+const classRoutes = require('./routes/classRoutes')
 const { MongoClient, ServerApiVersion } = require('mongodb')
 const mongoose = require('mongoose')
 
@@ -27,6 +27,7 @@ async function connectToDatabase() {
 
 app.use(express.json())
 app.use('/auth', authRoutes);
+app.use('/class', classRoutes);
 
 connectToDatabase().then(() => {
     app.listen(3000, () => {
