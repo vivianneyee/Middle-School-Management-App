@@ -3,6 +3,7 @@ const app = express()
 const authRoutes = require('./routes/authRoutes')
 const classRoutes = require('./routes/classRoutes')
 const scheduleRoutes = require('./routes/scheduleRoutes')
+const userRoutes = require('./routes/userRoutes')
 const { MongoClient, ServerApiVersion } = require('mongodb')
 const mongoose = require('mongoose')
 
@@ -30,6 +31,7 @@ app.use(express.json())
 app.use('/auth', authRoutes)
 app.use('/class', classRoutes)
 app.use('/schedule', scheduleRoutes)
+app.use('/user', userRoutes)
 
 connectToDatabase().then(() => {
     app.listen(3000, () => {
