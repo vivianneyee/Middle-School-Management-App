@@ -119,7 +119,19 @@ WireFrame:
 - started working on presentation
 - talked to client about progress
 - discussed design changes with client
-  
+
+10-27-2023
+- updated client about progress
+- discussed progress and issues (with work-arounds)
+- discussed what to work on for the next sprint
+- discussed feasibility of certain features to bring up with client next meeting
+
+11-03-2023
+- updated client about progress/any issues regarding timing+design
+- discussed progress and issues 
+- discussed what to work on for the next sprint, updated github issues board+tickets
+- began looking into Apple app store deployment process
+
 ## Sprints
 #### Winter Semester 2023
 | Sprint | Start Date | End Date |
