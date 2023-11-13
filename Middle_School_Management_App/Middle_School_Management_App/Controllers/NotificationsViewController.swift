@@ -10,14 +10,24 @@ import UIKit
 import ECWeekView
 import SwiftDate
 import RealmSwift
+import UserNotifications
 
 
-class NotificationsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class NotificationsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UNUserNotificationCenterDelegate {
     @IBOutlet weak var table: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        // Request user permission for notifications
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+            if granted {
+                print("Notification permission granted")
+            } else {
+                print("Notification permission denied")
+            }
+        }
+        UNUserNotificationCenter.current().delegate = self
+
         //        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didTapAdd))
         
         table.dataSource = self
@@ -61,4 +71,36 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 120
     }
+    
+    // UserDefaults key for storing notification preferences
+    let notificationPreferenceKey = "isNotificationsEnabled"
+
+    // Function to register or unregister for push notifications
+    func updateNotificationStatus() {
+        let isNotificationsEnabled = UserDefaults.standard.bool(forKey: notificationPreferenceKey)
+
+        if isNotificationsEnabled {
+            // Register for push notifications
+            // Implement your push notification registration logic here
+        } else {
+            // Unregister for push notifications
+            // Implement your push notification unregistration logic here
+        }
+    }
+
+    // Function to toggle notification preference
+    func toggleNotificationPreference() {
+        var isNotificationsEnabled = UserDefaults.standard.bool(forKey: notificationPreferenceKey)
+        isNotificationsEnabled.toggle()
+        UserDefaults.standard.set(isNotificationsEnabled, forKey: notificationPreferenceKey)
+
+        // Update notification registration status
+        updateNotificationStatus()
+    }
+
+    // Example of calling the toggle function when the user interacts with the switch
+    @IBAction func notificationSwitchValueChanged(_ sender: UISwitch) {
+        toggleNotificationPreference()
+    }
+
 }
