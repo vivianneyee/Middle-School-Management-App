@@ -19,7 +19,7 @@ class AuthManager {
     }
     
     func registerUser(email: String, password: String, confirmPassword: String, role: String, completion: @escaping (Result<Data, Error>) -> Void) {
-        let url = URL(string: "http://localhost:3000/auth/register")!
+        let url = URL(string: "http://127.0.0.1:3000/auth/register")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")

@@ -97,6 +97,23 @@ class LoginViewController: UIViewController {
     @objc func loginButtonTapped() {
         print("button tapped")
         // Handle the login button tap here
+        // Get the values from the text fields
+        guard let email = emailTextField.text,
+        let password = passwordTextField.text else {
+        // Handle error if any of the fields is empty
+        print("Please fill in all fields.")
+        return
+        }
+        // Code for registering user - implement with data from input fields
+        let authManager = AuthManager()
+        authManager.loginUser(email: email, password: password) { result in
+            switch result {
+            case .success(let data):
+                print("Login successful")
+            case .failure(let error):
+                print ("Login failed with error: \(error)")
+            }
+        }
 
         // If login is successful, navigate to the "home" view controller
         let vc = storyboard?.instantiateViewController(identifier: "home") as! UITabBarController

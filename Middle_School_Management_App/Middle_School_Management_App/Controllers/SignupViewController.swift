@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import ECWeekView
 import SwiftDate
-//import RealmSwift
+import RealmSwift
 
 class SignupViewController: UIViewController {
     // Email or username input field
@@ -38,24 +38,22 @@ class SignupViewController: UIViewController {
         button.tintColor = .white
         return button
     }()
+    
+    // Confirm Password input field
+    private let confirmPasswordTextField: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "Confirm Password"
+        textField.borderStyle = .roundedRect
+        textField.isSecureTextEntry = true
+        return textField
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         
-        // Code for registering user - implement with data from input fields
-//        let authManager = AuthManager()
-
         
-//        authManager.registerUser(email: email, password: password, confirmPassword: confirmPassword, role: role) { result in
-//            switch result {
-//            case .success(let data):
-//                print("registration successful")
-//            case .failure(let error):
-//                print ("Registration failed with error: \(error)")
-//            }
-//        }
-//
+
         
         // Add the action for the loginButton
         signupButton.addTarget(self, action: #selector(signupButtonTapped), for: .touchUpInside)
@@ -63,12 +61,14 @@ class SignupViewController: UIViewController {
        // Add subviews
        view.addSubview(emailTextField)
        view.addSubview(passwordTextField)
+       view.addSubview(confirmPasswordTextField)
        view.addSubview(signupButton)
 
        // Set up constraints
        emailTextField.translatesAutoresizingMaskIntoConstraints = false
        passwordTextField.translatesAutoresizingMaskIntoConstraints = false
        signupButton.translatesAutoresizingMaskIntoConstraints = false
+       confirmPasswordTextField.translatesAutoresizingMaskIntoConstraints = false
 
        NSLayoutConstraint.activate([
            emailTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -80,9 +80,14 @@ class SignupViewController: UIViewController {
            passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 20),
            passwordTextField.widthAnchor.constraint(equalToConstant: 200),
            passwordTextField.heightAnchor.constraint(equalToConstant: 40),
+           
+           confirmPasswordTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+           confirmPasswordTextField.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 20),
+           confirmPasswordTextField.widthAnchor.constraint(equalToConstant: 200),
+           confirmPasswordTextField.heightAnchor.constraint(equalToConstant: 40),
 
            signupButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-           signupButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 20),
+           signupButton.topAnchor.constraint(equalTo: confirmPasswordTextField.bottomAnchor, constant: 20),
            signupButton.widthAnchor.constraint(equalToConstant: 200),
            signupButton.heightAnchor.constraint(equalToConstant: 40),
        ])
@@ -91,11 +96,47 @@ class SignupViewController: UIViewController {
     @objc func signupButtonTapped() {
         print("button tapped")
         // Handle the login button tap here
+        // Get the values from the text fields
+        guard let email = emailTextField.text,
+              let password = passwordTextField.text,
+              let confirmPassword = confirmPasswordTextField.text else {
+            // Handle error if any of the fields is empty
+            print("Please fill in all fields.")
+            return
+        }
 
+        // Check if password and confirm password match
+        guard password == confirmPassword else {
+            print("Password and Confirm Password do not match.")
+            showPasswordMismatchAlert()
+            return
+        }
+        
+        // Code for registering user - implement with data from input fields
+        let authManager = AuthManager()
+        let role = "STUDENT"
+        
+        authManager.registerUser(email: email, password: password, confirmPassword: confirmPassword, role: role) { result in
+            switch result {
+            case .success(let data):
+                print("registration successful")
+            case .failure(let error):
+                print ("Registration failed with error: \(error)")
+            }
+        }
+        
         // If login is successful, navigate to the "home" view controller
         let vc = storyboard?.instantiateViewController(identifier: "home") as! UITabBarController
         // add sign up logic
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true, completion: nil)
+    }
+    
+    // Function to show a pop-up for password mismatch
+    private func showPasswordMismatchAlert() {
+        let alert = UIAlertController(title: "Error", message: "Password and Confirm Password do not match.", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
     }
 }
