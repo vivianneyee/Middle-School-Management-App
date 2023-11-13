@@ -1,10 +1,17 @@
 const express = require('express')
 const app = express()
+
+// import routes
 const authRoutes = require('./routes/authRoutes')
 const classRoutes = require('./routes/classRoutes')
 const scheduleRoutes = require('./routes/scheduleRoutes')
 const userRoutes = require('./routes/userRoutes')
-const { MongoClient, ServerApiVersion } = require('mongodb')
+const notificationRoutes = require('./routes/notificationRoutes')
+const eventRoutes = require('./routes/eventRoutes')
+const alertRoutes = require('./routes/alertRoutes')
+const assignmentRoutes = require('./routes/assignmentRoutes')
+
+const { ServerApiVersion } = require('mongodb')
 const mongoose = require('mongoose')
 
 const uri = 'mongodb+srv://admin:Password123@dev.06pypjt.mongodb.net/?retryWrites=true&w=majority'
@@ -32,6 +39,10 @@ app.use('/auth', authRoutes)
 app.use('/class', classRoutes)
 app.use('/schedule', scheduleRoutes)
 app.use('/user', userRoutes)
+app.use('/event', eventRoutes)
+app.use('/alert', alertRoutes)
+app.use('/assignment', assignmentRoutes)
+app.use('/notification', notificationRoutes)
 
 connectToDatabase().then(() => {
     app.listen(3000, () => {
