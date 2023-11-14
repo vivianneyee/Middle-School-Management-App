@@ -59,9 +59,6 @@ class LoginViewController: UIViewController {
         
         // Add the action for the sign up link
         signupButton.addTarget(self, action: #selector(signupLinkTapped), for: .touchUpInside)
-//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(signupLinkTapped))
-//        signupLink.addGestureRecognizer(tapGesture)
-//        signupLink.isUserInteractionEnabled = true
 
        // Add subviews
        view.addSubview(emailTextField)
