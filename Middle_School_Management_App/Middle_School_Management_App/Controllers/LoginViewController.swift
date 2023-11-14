@@ -40,11 +40,14 @@ class LoginViewController: UIViewController {
     }()
     
     // Link to signup
-    private let signupLink: UILabel = {
-        let label = UILabel()
-        label.text = "Create an account"
-        label.textColor = .systemBlue
-        return label
+    private let signupButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Create an account", for: .normal)
+        button.setTitleColor(.blue, for: .normal)
+        button.layer.cornerRadius = 5
+        button.backgroundColor = .clear
+        button.tintColor = .white
+        return button
     }()
     
     override func viewDidLoad() {
@@ -55,21 +58,22 @@ class LoginViewController: UIViewController {
         loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
         
         // Add the action for the sign up link
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(signupLinkTapped))
-        signupLink.addGestureRecognizer(tapGesture)
-        signupLink.isUserInteractionEnabled = true
+        signupButton.addTarget(self, action: #selector(signupLinkTapped), for: .touchUpInside)
+//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(signupLinkTapped))
+//        signupLink.addGestureRecognizer(tapGesture)
+//        signupLink.isUserInteractionEnabled = true
 
        // Add subviews
        view.addSubview(emailTextField)
        view.addSubview(passwordTextField)
        view.addSubview(loginButton)
-       view.addSubview(signupLink)
+       view.addSubview(signupButton)
 
        // Set up constraints
        emailTextField.translatesAutoresizingMaskIntoConstraints = false
        passwordTextField.translatesAutoresizingMaskIntoConstraints = false
        loginButton.translatesAutoresizingMaskIntoConstraints = false
-       signupLink.translatesAutoresizingMaskIntoConstraints = false
+       signupButton.translatesAutoresizingMaskIntoConstraints = false
 
        NSLayoutConstraint.activate([
            emailTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -87,10 +91,10 @@ class LoginViewController: UIViewController {
            loginButton.widthAnchor.constraint(equalToConstant: 200),
            loginButton.heightAnchor.constraint(equalToConstant: 40),
            
-           signupLink.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-           signupLink.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 20),
-           signupLink.widthAnchor.constraint(equalToConstant: 200),
-           signupLink.heightAnchor.constraint(equalToConstant: 40)
+           signupButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 60),
+           signupButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 5),
+           signupButton.widthAnchor.constraint(equalToConstant: 200),
+           signupButton.heightAnchor.constraint(equalToConstant: 40)
        ])
     }
     
@@ -111,7 +115,9 @@ class LoginViewController: UIViewController {
 
         // If login is successful, navigate to the "home" view controller
         let vc = storyboard?.instantiateViewController(identifier: "signup") as! SignupViewController
-        navigationController?.pushViewController(vc, animated: true)
+        vc.modalPresentationStyle = .popover
+        present(vc, animated: true, completion: nil)
+//        navigationController?.pushViewController(vc, animated: true)
     }
 
 }
