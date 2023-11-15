@@ -25,7 +25,7 @@ class AuthManager {
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
                 
         let body: [String: Any] = [
-            "email": email,
+            "email": email.lowercased(),
             "password": password,
             "confirmPassword": confirmPassword,
             "role": role
