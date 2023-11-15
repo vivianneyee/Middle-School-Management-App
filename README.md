@@ -132,6 +132,15 @@ WireFrame:
 - discussed what to work on for the next sprint, updated github issues board+tickets
 - began looking into Apple app store deployment process
 
+11-12-2023
+- created a document outlining steps for client to set up the app locally
+- met with the client to help her set up the app locally
+- discussed work for next sprint
+
+11-15-2023
+- discussed an issue with the API endpoint for user registration
+- debugged issue and pushed solution
+
 ## Sprints
 #### Winter Semester 2023
 | Sprint | Start Date | End Date |
