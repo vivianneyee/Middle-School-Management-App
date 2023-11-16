@@ -1,4 +1,7 @@
 const Class = require('../models/Class')
+const Event = require('../models/Event')
+const Assignment = require('../models/Assignment')
+const Alert = require('../models/Alert')
 
 // create class
 exports.createClass = async (req, res) => {
@@ -49,8 +52,16 @@ exports.getClassById = async (req, res) => {
         if (!retrievedClass) {
             return res.status(404),json({ error: 'Class not found' })
         } else {
-            return res.status(200).json({ message: 'Class retrieved successfully', retrievedClass})
-        }
+            return res.status(200).json({message: 'Class retrieved successfully', class: {
+                _id: retrievedClass._id,
+                className: retrievedClass.className, 
+                color: retrievedClass.color, 
+                code: retrievedClass.code, 
+                events: retrievedClass.events, 
+                assignments: retrievedClass.assignments,
+                alerts: retrievedClass.alerts,
+                studentInputs: retrievedClass.studentInputs
+            }})        }
     } catch (error) {
         console.error(error)
         return res.status(500).json({ error: 'Internal Server Error' })
@@ -106,7 +117,152 @@ exports.updateClass = async (req, res) => {
             return res.status(404).json({ error: 'Class not found' })
         }
 
-        res.status(200).json(updatedClass)
+        // return class on success
+        return res.status(200).json({message: 'Class updated successfully', class: {
+            _id: retrievedClass._id,
+            className: retrievedClass.className, 
+            color: retrievedClass.color, 
+            code: retrievedClass.code, 
+            events: retrievedClass.events, 
+            assignments: retrievedClass.assignments,
+            alerts: retrievedClass.alerts,
+            studentInputs: retrievedClass.studentInputs
+        }})    
+    } catch (error) {
+        console.error(error)
+        res.status(500).json({ error: 'Internal Server Error' })
+    }
+}
+
+// add event to class
+exports.addEvent = async (req, res) => {
+    const classId = req.params.id
+    const { eventId } = req.body
+
+    try {
+        // find the class by id
+        const updatedClass = await Class.findById(classId)
+
+        // find the event by id
+        const addedEvent = await Event.findById(eventId)
+
+        if (!updatedClass) {
+            // 404 if class with given id does not exist
+            return res.status(404).json({ error: 'Class not found' })
+        }
+
+        if (!addedEvent) {
+            // 404 if event with given id does not exist
+            return res.status(404).json({ error: 'Event not found' })
+        }
+
+        // add event to class.events and save
+        updatedClass.events.push(addedEvent)
+        await updatedClass.save()
+
+        // create notification for this event
+
+        // return class on success
+        return res.status(200).json({message: 'Event added to class successfully', class: {
+            _id: retrievedClass._id,
+            className: retrievedClass.className, 
+            color: retrievedClass.color, 
+            code: retrievedClass.code, 
+            events: retrievedClass.events, 
+            assignments: retrievedClass.assignments,
+            alerts: retrievedClass.alerts,
+            studentInputs: retrievedClass.studentInputs
+        }})    
+    } catch (error) {
+        console.error(error)
+        res.status(500).json({ error: 'Internal Server Error' })
+    }
+}
+
+// add assignment to class
+exports.addAssignment = async (req, res) => {
+    const classId = req.params.id
+    const { assignmentId } = req.body
+
+    try {
+        // find the class by id
+        const updatedClass = await Class.findById(classId)
+
+        // find the assignment by id
+        const addedAssignment = await Event.findById(assignmentId)
+
+        if (!updatedClass) {
+            // 404 if class with given id does not exist
+            return res.status(404).json({ error: 'Class not found' })
+        }
+
+        if (!addedAssignment) {
+            // 404 if assignment with given id does not exist
+            return res.status(404).json({ error: 'Event not found' })
+        }
+
+        // add assignment to class.assignments and save
+        updatedClass.assignments.push(addedAssignment)
+        await updatedClass.save()
+
+        // create a notification for this assignment
+
+        // return class on success
+        return res.status(200).json({message: 'Assignment added to class successfully', class: {
+            _id: retrievedClass._id,
+            className: retrievedClass.className, 
+            color: retrievedClass.color, 
+            code: retrievedClass.code, 
+            events: retrievedClass.events, 
+            assignments: retrievedClass.assignments,
+            alerts: retrievedClass.alerts,
+            studentInputs: retrievedClass.studentInputs
+        }})    
+    } catch (error) {
+        console.error(error)
+        res.status(500).json({ error: 'Internal Server Error' })
+    }
+}
+
+// add alert to class
+exports.addAlert = async (req, res) => {
+    const classId = req.params.id
+    const { alertId } = req.body
+
+    try {
+        // find the class by id
+        const updatedClass = await Class.findById(classId)
+
+        // find the alert by id
+        const addedAlert = await Alert.findById(alertId)
+
+        if (!updatedClass) {
+            // 404 if class with given id does not exist
+            return res.status(404).json({ error: 'Class not found' })
+        }
+
+        if (!addedAlert) {
+            // 404 if alert with given id does not exist
+            return res.status(404).json({ error: 'Alert not found' })
+        }
+
+        // add alert to class.alerts and save
+        updatedClass.alerts.push(addedAlert)
+        await updatedClass.save()
+
+        // create notificaiton for this alert
+
+        // return class on success
+        return res.status(200).json({message: 'Alert added to class successfully', class: {
+            _id: retrievedClass._id,
+            className: retrievedClass.className, 
+            color: retrievedClass.color, 
+            code: retrievedClass.code, 
+            events: retrievedClass.events, 
+            assignments: retrievedClass.assignments,
+            alerts: retrievedClass.alerts,
+            studentInputs: retrievedClass.studentInputs
+        }})    
     } catch (error) {
         console.error(error)
         res.status(500).json({ error: 'Internal Server Error' })
