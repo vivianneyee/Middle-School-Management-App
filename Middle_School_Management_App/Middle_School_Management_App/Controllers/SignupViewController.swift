@@ -52,9 +52,6 @@ class SignupViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         
-        
-
-        
         // Add the action for the loginButton
         signupButton.addTarget(self, action: #selector(signupButtonTapped), for: .touchUpInside)
 
@@ -94,7 +91,6 @@ class SignupViewController: UIViewController {
     }
     
     @objc func signupButtonTapped() {
-        print("button tapped")
         // Handle the login button tap here
         // Get the values from the text fields
         guard let email = emailTextField.text,
@@ -116,26 +112,32 @@ class SignupViewController: UIViewController {
         let authManager = AuthManager()
         let role = "STUDENT"
         
-        authManager.registerUser(email: email, password: password, confirmPassword: confirmPassword, role: role) { result in
+        authManager.registerUser(email: email, password: password, confirmPassword: confirmPassword, role: role) { [self] result in
             switch result {
             case .success(let data):
                 print("registration successful")
+                DispatchQueue.main.async {
+                    // If login is successful, navigate to the "home" view controller
+                    let vc = storyboard?.instantiateViewController(identifier: "home") as! UITabBarController
+                    vc.modalPresentationStyle = .fullScreen
+                    self.present(vc, animated: true, completion: nil)
+                }
             case .failure(let error):
                 print ("Registration failed with error: \(error)")
+                DispatchQueue.main.async {
+                    let alert = UIAlertController(title: "Registration failed", message: "Unable to register. Please try again later.", preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "Close", style: .default)
+                    alert.addAction(okAction)
+                    self.present(alert, animated: true, completion: nil)
+                }
             }
         }
-        
-        // If login is successful, navigate to the "home" view controller
-        let vc = storyboard?.instantiateViewController(identifier: "home") as! UITabBarController
-        // add sign up logic
-        vc.modalPresentationStyle = .fullScreen
-        present(vc, animated: true, completion: nil)
     }
     
     // Function to show a pop-up for password mismatch
     private func showPasswordMismatchAlert() {
         let alert = UIAlertController(title: "Error", message: "Password and Confirm Password do not match.", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        let okAction = UIAlertAction(title: "Close", style: .default, handler: nil)
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
     }
