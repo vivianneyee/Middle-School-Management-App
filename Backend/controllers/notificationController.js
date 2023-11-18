@@ -35,7 +35,12 @@ exports.getNotificationById = async (req, res) => {
             return res.status(404),json({ error: 'Notification not found' })
         } else {
             // return 200 and noitification if successful
-            return res.status(200).json({ message: 'Notification retrieved successfully', retrievedNotification})
+            return res.status(200).json({ message: 'Notification retrieved successfully', 
+                _id: retrievedNotification._id,
+                className: retrievedNotification.className,
+                title: retrievedNotification.title,
+                datePosted: retrievedNotification.datePosted
+            })
         }
     } catch (error) {
         // catch server error
