@@ -114,6 +114,7 @@
 		B5633BE92B01780900DE8A80 /* EventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5633BE82B01780800DE8A80 /* EventController.swift */; };
 		B5633BEB2B018EDB00DE8A80 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5633BEA2B018EDB00DE8A80 /* AlertController.swift */; };
 		B5633BED2B018FEA00DE8A80 /* AssignmentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5633BEC2B018FEA00DE8A80 /* AssignmentController.swift */; };
+		B5633BEF2B02829700DE8A80 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5633BEE2B02829600DE8A80 /* NotificationController.swift */; };
 		B593B87F2AC8A2DB00E3552C /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B593B87E2AC8A2DB00E3552C /* AuthManager.swift */; };
 		B593B8932ADEDE7500E3552C /* ClassControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B593B8922ADEDE7500E3552C /* ClassControllerTests.swift */; };
 		B593B8982ADF1FE800E3552C /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B593B8972ADF1FE800E3552C /* RealmSwift */; };
@@ -186,6 +187,7 @@
 		B5633BE82B01780800DE8A80 /* EventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventController.swift; sourceTree = "<group>"; };
 		B5633BEA2B018EDB00DE8A80 /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 		B5633BEC2B018FEA00DE8A80 /* AssignmentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentController.swift; sourceTree = "<group>"; };
+		B5633BEE2B02829600DE8A80 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
 		B593B87E2AC8A2DB00E3552C /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		B593B8922ADEDE7500E3552C /* ClassControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassControllerTests.swift; sourceTree = "<group>"; };
 		B593B89B2AE0438500E3552C /* PostControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostControllerTests.swift; sourceTree = "<group>"; };
@@ -319,6 +321,7 @@
 				B5633BE82B01780800DE8A80 /* EventController.swift */,
 				B5633BEA2B018EDB00DE8A80 /* AlertController.swift */,
 				B5633BEC2B018FEA00DE8A80 /* AssignmentController.swift */,
+				B5633BEE2B02829600DE8A80 /* NotificationController.swift */,
 			);
 			path = Middle_School_Management_App;
 			sourceTree = "<group>";
@@ -537,6 +540,7 @@
 				B5633BEB2B018EDB00DE8A80 /* AlertController.swift in Sources */,
 				81035C9B2ADDF21500CADFE2 /* ClassInfoViewController.swift in Sources */,
 				B5021C722A2E4C9E000325BF /* Post.swift in Sources */,
+				B5633BEF2B02829700DE8A80 /* NotificationController.swift in Sources */,
 				81035C832ADDF21500CADFE2 /* StudentInputViewController.swift in Sources */,
 				81035C892ADDF21500CADFE2 /* JoinClassViewController.swift in Sources */,
 				81035C802ADDF21500CADFE2 /* CreateStudentInputViewController.swift in Sources */,
