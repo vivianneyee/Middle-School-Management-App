@@ -2,6 +2,7 @@ const Class = require('../models/Class')
 const Event = require('../models/Event')
 const Assignment = require('../models/Assignment')
 const Alert = require('../models/Alert')
+const User = require('../models/User')
 
 // create class
 exports.createClass = async (req, res) => {
@@ -60,7 +61,8 @@ exports.getClassById = async (req, res) => {
                 events: retrievedClass.events, 
                 assignments: retrievedClass.assignments,
                 alerts: retrievedClass.alerts,
-                studentInputs: retrievedClass.studentInputs
+                studentInputs: retrievedClass.studentInputs,
+                users: retrievedClass.users
             }})        }
     } catch (error) {
         console.error(error)
@@ -89,7 +91,8 @@ exports.getClassByCode = async (req, res) => {
                 events: retrievedClass.events, 
                 assignments: retrievedClass.assignments,
                 alerts: retrievedClass.alerts,
-                studentInputs: retrievedClass.studentInputs
+                studentInputs: retrievedClass.studentInputs,
+                users: retrievedClass.users
             }})
         } else {
             // 404 if class does not exist
@@ -126,7 +129,8 @@ exports.updateClass = async (req, res) => {
             events: retrievedClass.events, 
             assignments: retrievedClass.assignments,
             alerts: retrievedClass.alerts,
-            studentInputs: retrievedClass.studentInputs
+            studentInputs: retrievedClass.studentInputs,
+            users: retrievedClass.users
         }})    
     } catch (error) {
         console.error(error)
@@ -171,7 +175,8 @@ exports.addEvent = async (req, res) => {
             events: retrievedClass.events, 
             assignments: retrievedClass.assignments,
             alerts: retrievedClass.alerts,
-            studentInputs: retrievedClass.studentInputs
+            studentInputs: retrievedClass.studentInputs,
+            users: retrievedClass.users
         }})    
     } catch (error) {
         console.error(error)
@@ -216,7 +221,8 @@ exports.addAssignment = async (req, res) => {
             events: retrievedClass.events, 
             assignments: retrievedClass.assignments,
             alerts: retrievedClass.alerts,
-            studentInputs: retrievedClass.studentInputs
+            studentInputs: retrievedClass.studentInputs,
+            users: retrievedClass.users
         }})    
     } catch (error) {
         console.error(error)
@@ -261,7 +267,52 @@ exports.addAlert = async (req, res) => {
             events: retrievedClass.events, 
             assignments: retrievedClass.assignments,
             alerts: retrievedClass.alerts,
-            studentInputs: retrievedClass.studentInputs
+            studentInputs: retrievedClass.studentInputs,
+            users: retrievedClass.users
+        }})    
+    } catch (error) {
+        console.error(error)
+        res.status(500).json({ error: 'Internal Server Error' })
+    }
+}
+
+// add a user to class
+exports.addUser = async (req, res) => {
+    const classId = req.params.id
+    const { userId } = req.body
+
+    try {
+        // find the class by id
+        const updatedClass = await Class.findById(classId)
+
+        // find the user by id
+        const addedUser = await User.findById(userId)
+
+        if (!updatedClass) {
+            // 404 if class with given id does not exist
+            return res.status(404).json({ error: 'Class not found' })
+        }
+
+        if (!addedUser) {
+            // 404 if user with given id does not exist
+            return res.status(404).json({ error: 'User not found' })
+        }
+
+        // add alert to class.alerts and save
+        updatedClass.users.push(addedUser)
+        await updatedClass.save()
+
+        // return class on success
+        return res.status(200).json({message: 'User added to class successfully', class: {
+            _id: retrievedClass._id,
+            className: retrievedClass.className, 
+            color: retrievedClass.color, 
+            code: retrievedClass.code, 
+            events: retrievedClass.events, 
+            assignments: retrievedClass.assignments,
+            alerts: retrievedClass.alerts,
+            studentInputs: retrievedClass.studentInputs,
+            users: retrievedClass.users
         }})    
     } catch (error) {
         console.error(error)
