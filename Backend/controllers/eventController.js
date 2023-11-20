@@ -37,7 +37,13 @@ exports.getEventById = async (req, res) => {
             return res.status(404),json({ error: 'Event not found' })
         } else {
             // return 200 and event if successful
-            return res.status(200).json({ message: 'Event retrieved successfully', retrievedEvent})
+            return res.status(200).json({ message: 'Event retrieved successfully', 
+                _id: retrievedEvent._id,
+                title: retrievedEvent.title,
+                datePosted: retrievedEvent.datePosted,
+                startDate: retrievedEvent.startDate,
+                endDate: retrievedEvent.endDate
+            })
         }
     } catch (error) {
         // catch server error
@@ -62,7 +68,13 @@ exports.updateEvent = async (req, res) => {
         }
 
         // on success return 200 status, success message, and updated event
-        res.status(200).json({ message: 'Event updated successfully', updatedEvent })
+        return res.status(200).json({ message: 'Event retrieved successfully', 
+            _id: retrievedEvent._id,
+            title: retrievedEvent.title,
+            datePosted: retrievedEvent.datePosted,
+            startDate: retrievedEvent.startDate,
+            endDate: retrievedEvent.endDate
+        })    
     } catch (error) {
         // catch server error
         console.error(error)

@@ -36,7 +36,13 @@ exports.getAlertById = async (req, res) => {
             return res.status(404),json({ error: 'Alert not found' })
         } else {
             // return 200 and alert if successful
-            return res.status(200).json({ message: 'Alert retrieved successfully', retrievedAlert})
+            return res.status(200).json({ message: 'Alert retrieved successfully',
+                _id: retrievedAlert._id,
+                title: retrievedAlert.title,
+                description: retrievedAlert.description,
+                datePosted: retrievedAlert.datePosted,
+                priority: retrievedAlert.priority
+            })
         }
     } catch (error) {
         // catch server error
@@ -61,7 +67,13 @@ exports.updateAlert = async (req, res) => {
         }
 
         // on success return 200 status, success message, and updated alert
-        res.status(200).json({ message: 'Alert updated successfully', updatedAlert })
+        res.status(200).json({ message: 'Alert updated successfully',
+            _id: retrievedAlert._id,
+            title: retrievedAlert.title,
+            description: retrievedAlert.description,
+            datePosted: retrievedAlert.datePosted,
+            priority: retrievedAlert.priority
+        })
     } catch (error) {
         // catch server error
         console.error(error)

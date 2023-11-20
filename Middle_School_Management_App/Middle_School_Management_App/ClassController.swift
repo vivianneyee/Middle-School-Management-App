@@ -170,6 +170,180 @@ class ClassController {
         }.resume()
     }
     
+    // add event to class
+    func addEvent(id: String, eventId: String, completion: @escaping (Result<Data, Error>) -> Void) {
+        let url = URL(string: "http://localhost:3000/class/classes/event/\(id)")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "PUT"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let body: [String: Any] = [
+            "eventId": eventId        ]
+        
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: body)
+            request.httpBody = jsonData
+        } catch {
+            completion(.failure(error))
+            return
+        }
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            // handle error
+            if let error = error {
+                completion(.failure(error))
+                print("Could not add event to class")
+                return
+            }
+            
+            // check for successful response status
+            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                completion(.failure(NetworkError.invalidResponse))
+                return
+            }
+            
+            // check that response data is not empty
+            guard let responseData = data else {
+                completion(.failure(NetworkError.emptyResponse))
+                return
+            }
+            
+            completion(.success(responseData))
+            
+        }.resume()
+    }
+    
+    
+    // add assignment to class
+    func addAssignment(id: String, assignmentId: String, completion: @escaping (Result<Data, Error>) -> Void) {
+        let url = URL(string: "http://localhost:3000/class/classes/assignment/\(id)")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "PUT"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let body: [String: Any] = [
+            "assignmentId": assignmentId        ]
+        
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: body)
+            request.httpBody = jsonData
+        } catch {
+            completion(.failure(error))
+            return
+        }
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            // handle error
+            if let error = error {
+                completion(.failure(error))
+                print("Could not add assignment to class")
+                return
+            }
+            
+            // check for successful response status
+            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                completion(.failure(NetworkError.invalidResponse))
+                return
+            }
+            
+            // check that response data is not empty
+            guard let responseData = data else {
+                completion(.failure(NetworkError.emptyResponse))
+                return
+            }
+            
+            completion(.success(responseData))
+            
+        }.resume()
+    }
+    
+    // add alert to class
+    func addAlert(id: String, alertId: String, completion: @escaping (Result<Data, Error>) -> Void) {
+        let url = URL(string: "http://localhost:3000/class/classes/alert/\(id)")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "PUT"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let body: [String: Any] = [
+            "alertId": alertId        ]
+        
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: body)
+            request.httpBody = jsonData
+        } catch {
+            completion(.failure(error))
+            return
+        }
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            // handle error
+            if let error = error {
+                completion(.failure(error))
+                print("Could not add alert to class")
+                return
+            }
+            
+            // check for successful response status
+            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                completion(.failure(NetworkError.invalidResponse))
+                return
+            }
+            
+            // check that response data is not empty
+            guard let responseData = data else {
+                completion(.failure(NetworkError.emptyResponse))
+                return
+            }
+            
+            completion(.success(responseData))
+            
+        }.resume()
+    }
+    
+    // add user to class
+    func addUser(id: String, userId: String, completion: @escaping (Result<Data, Error>) -> Void) {
+        let url = URL(string: "http://localhost:3000/class/classes/user/\(id)")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "PUT"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let body: [String: Any] = [
+            "userId": userId
+        ]
+        
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: body)
+            request.httpBody = jsonData
+        } catch {
+            completion(.failure(error))
+            return
+        }
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            // handle error
+            if let error = error {
+                completion(.failure(error))
+                print("Could not add user to class")
+                return
+            }
+            
+            // check for successful response status
+            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                completion(.failure(NetworkError.invalidResponse))
+                return
+            }
+            
+            // check that response data is not empty
+            guard let responseData = data else {
+                completion(.failure(NetworkError.emptyResponse))
+                return
+            }
+            
+            completion(.success(responseData))
+            
+        }.resume()
+    }
+    
     // delete a class
     func deleteClass(id: String, completion: @escaping (Result<Data, Error>) -> Void) {
         let url = URL(string: "http://localhost:3000/class/classes/\(id)")!

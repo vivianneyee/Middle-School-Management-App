@@ -13,9 +13,11 @@ const assignmentRoutes = require('./routes/assignmentRoutes')
 
 const { ServerApiVersion } = require('mongodb')
 const mongoose = require('mongoose')
+const bodyParser = require('body-parser')
 
 const uri = 'mongodb+srv://admin:Password123@dev.06pypjt.mongodb.net/?retryWrites=true&w=majority'
 let client;
+app.use(bodyParser.json())
 
 async function connectToDatabase() {
     mongoose.connect(uri, {

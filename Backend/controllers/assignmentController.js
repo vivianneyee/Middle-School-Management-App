@@ -1,5 +1,4 @@
 const Assignment = require('../models/Assignment')
-
 // create a new assignment
 exports.createAssignment = async (req, res) => {
 
@@ -36,7 +35,13 @@ exports.getAssignmentById = async (req, res) => {
             return res.status(404),json({ error: 'Assignment not found' })
         } else {
             // return 200 and assignment if successful
-            return res.status(200).json({ message: 'Assignment retrieved successfully', retrievedAssignment})
+            return res.status(200).json({ message: 'Assignment retrieved successfully', 
+                _id: retrievedAssignment._id,
+                title: retrievedAssignment.title,
+                description: retrievedAssignment.description,
+                datePosted: retrievedAssignment.datePosted,
+                dueDate: retrievedAssignment.dueDate
+            })
         }
     } catch (error) {
         // catch server error
@@ -61,7 +66,13 @@ exports.updateAssignment = async (req, res) => {
         }
 
         // on success return 200 status, success message, and updated assignment
-        res.status(200).json({ message: 'Assignment updated successfully', updatedAssignment })
+        res.status(200).json({ message: 'Assignment updated successfully', 
+            _id: retrievedAssignment._id,
+            title: retrievedAssignment.title,
+            description: retrievedAssignment.description,
+            datePosted: retrievedAssignment.datePosted,
+            dueDate: retrievedAssignment.dueDate
+        })
     } catch (error) {
         // catch server error
         console.error(error)
