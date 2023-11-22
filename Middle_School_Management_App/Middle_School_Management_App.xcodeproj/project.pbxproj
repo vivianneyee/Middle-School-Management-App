@@ -108,6 +108,7 @@
 		B53ED12C29BF7ADA0087A59A /* Middle_School_Management_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53ED12B29BF7ADA0087A59A /* Middle_School_Management_AppUITests.swift */; };
 		B53ED12E29BF7ADA0087A59A /* Middle_School_Management_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53ED12D29BF7ADA0087A59A /* Middle_School_Management_AppUITestsLaunchTests.swift */; };
 		B553D0432B0D7B3D00935749 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B553D0422B0D7B3D00935749 /* User.swift */; };
+		B553D0452B0D7D0F00935749 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = B553D0442B0D7D0F00935749 /* Notification.swift */; };
 		B5633BE72B00517600DE8A80 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5633BE62B00517600DE8A80 /* UserController.swift */; };
 		B5633BE92B01780900DE8A80 /* EventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5633BE82B01780800DE8A80 /* EventController.swift */; };
 		B5633BEB2B018EDB00DE8A80 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5633BEA2B018EDB00DE8A80 /* AlertController.swift */; };
@@ -181,6 +182,7 @@
 		B53ED12B29BF7ADA0087A59A /* Middle_School_Management_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Middle_School_Management_AppUITests.swift; sourceTree = "<group>"; };
 		B53ED12D29BF7ADA0087A59A /* Middle_School_Management_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Middle_School_Management_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		B553D0422B0D7B3D00935749 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		B553D0442B0D7D0F00935749 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		B5633BE62B00517600DE8A80 /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
 		B5633BE82B01780800DE8A80 /* EventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventController.swift; sourceTree = "<group>"; };
 		B5633BEA2B018EDB00DE8A80 /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
@@ -320,6 +322,7 @@
 				B5633BEC2B018FEA00DE8A80 /* AssignmentController.swift */,
 				B5633BEE2B02829600DE8A80 /* NotificationController.swift */,
 				B553D0422B0D7B3D00935749 /* User.swift */,
+				B553D0442B0D7D0F00935749 /* Notification.swift */,
 			);
 			path = Middle_School_Management_App;
 			sourceTree = "<group>";
@@ -526,6 +529,7 @@
 				81035C982ADDF21500CADFE2 /* AlertViewController.swift in Sources */,
 				B553D0432B0D7B3D00935749 /* User.swift in Sources */,
 				B53ED10B29BF7AD50087A59A /* AppDelegate.swift in Sources */,
+				B553D0452B0D7D0F00935749 /* Notification.swift in Sources */,
 				81035C742ADDF21500CADFE2 /* NotifTableViewCell.swift in Sources */,
 				B5021C742A2E4DDE000325BF /* ClassController.swift in Sources */,
 				81035C7D2ADDF21500CADFE2 /* SignupViewController.swift in Sources */,

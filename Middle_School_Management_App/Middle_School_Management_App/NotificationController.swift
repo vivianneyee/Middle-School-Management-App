@@ -63,7 +63,7 @@ class NotificationController {
     }
     
     // get a notification by its id
-    func getNotificationById(id: String, completion: @escaping (Result<Data, Error>) -> Void) {
+    func getNotificationById(id: String, completion: @escaping (Result<Notification, Error>) -> Void) {
         let url = URL(string: "http://localhost:3000/notification/notifications/\(id)")!
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
@@ -88,7 +88,13 @@ class NotificationController {
                 return
             }
             
-            completion(.success(responseData))
+            do {
+                let decoder = JSONDecoder()
+                let notificationObject = try decoder.decode(Notification.self, from: responseData)
+                completion(.success(notificationObject))
+            } catch {
+                completion(.failure(error))
+            }
                         
         }.resume()
     }

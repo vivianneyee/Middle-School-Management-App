@@ -72,7 +72,7 @@ class ScheduleController {
     }
     
     // get a schedule by its id
-    func getScheduleById(id: String, completion: @escaping (Result<Data, Error>) -> Void) {
+    func getScheduleById(id: String, completion: @escaping (Result<Schedule, Error>) -> Void) {
         let url = URL(string: "http://localhost:3000/schedule/schedules/\(id)")!
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
@@ -97,13 +97,19 @@ class ScheduleController {
                 return
             }
             
-            completion(.success(responseData))
+            do {
+                let decoder = JSONDecoder()
+                let scheduleObject = try decoder.decode(Schedule.self, from: responseData)
+                completion(.success(scheduleObject))
+            } catch {
+                completion(.failure(error))
+            }
                         
         }.resume()
     }
     
     // update a schedule
-    func updateSchedule(id: String, day1: [String], day2: [String], day3: [String], day4: [String], day5: [String], day6: [String], day7: [String], day8: [String], day9: [String], day10: [String], completion: @escaping (Result<Data, Error>) -> Void) {
+    func updateSchedule(id: String, day1: [String], day2: [String], day3: [String], day4: [String], day5: [String], day6: [String], day7: [String], day8: [String], day9: [String], day10: [String], completion: @escaping (Result<Schedule, Error>) -> Void) {
         let url = URL(string: "http://localhost:3000/schedule/schedules/\(id)")!
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
@@ -150,7 +156,13 @@ class ScheduleController {
                 return
             }
             
-            completion(.success(responseData))
+            do {
+                let decoder = JSONDecoder()
+                let scheduleObject = try decoder.decode(Schedule.self, from: responseData)
+                completion(.success(scheduleObject))
+            } catch {
+                completion(.failure(error))
+            }
             
         }.resume()
     }

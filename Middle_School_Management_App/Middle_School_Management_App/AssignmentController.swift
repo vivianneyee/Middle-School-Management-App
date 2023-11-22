@@ -64,7 +64,7 @@ class AssignmentController {
     }
     
     // get an assignment by its id
-    func getAssignmentById(id: String, completion: @escaping (Result<Data, Error>) -> Void) {
+    func getAssignmentById(id: String, completion: @escaping (Result<Assignment, Error>) -> Void) {
         let url = URL(string: "http://localhost:3000/assignment/assignments/\(id)")!
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
@@ -89,13 +89,19 @@ class AssignmentController {
                 return
             }
             
-            completion(.success(responseData))
+            do {
+                let decoder = JSONDecoder()
+                let assignmentObject = try decoder.decode(Assignment.self, from: responseData)
+                completion(.success(assignmentObject))
+            } catch {
+                completion(.failure(error))
+            }
                         
         }.resume()
     }
     
     // update an assignment
-    func updateAssignment(id: String, title: String, description: String, dueDate: Date, completion: @escaping (Result<Data, Error>) -> Void) {
+    func updateAssignment(id: String, title: String, description: String, dueDate: Date, completion: @escaping (Result<Assignment, Error>) -> Void) {
         let url = URL(string: "http://localhost:3000/assignment/assignments/\(id)")!
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
@@ -135,7 +141,13 @@ class AssignmentController {
                 return
             }
             
-            completion(.success(responseData))
+            do {
+                let decoder = JSONDecoder()
+                let assignmentObject = try decoder.decode(Assignment.self, from: responseData)
+                completion(.success(assignmentObject))
+            } catch {
+                completion(.failure(error))
+            }
             
         }.resume()
     }

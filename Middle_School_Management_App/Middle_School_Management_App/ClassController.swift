@@ -64,7 +64,7 @@ class ClassController {
     }
     
     // get a class by its id
-    func getClassById(id: String, completion: @escaping (Result<Data, Error>) -> Void) {
+    func getClassById(id: String, completion: @escaping (Result<Class, Error>) -> Void) {
         let url = URL(string: "http://localhost:3000/class/classes/\(id)")!
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
@@ -89,13 +89,20 @@ class ClassController {
                 return
             }
             
-            completion(.success(responseData))
+            do {
+                let decoder = JSONDecoder()
+                let classObject = try decoder.decode(Class.self, from: responseData)
+                completion(.success(classObject))
+            } catch {
+                completion(.failure(error))
+            }
+            
                         
         }.resume()
     }
     
     // get a class by its code
-    func getClassByCode(code: String, completion: @escaping (Result<Data, Error>) -> Void) {
+    func getClassByCode(code: String, completion: @escaping (Result<Class, Error>) -> Void) {
         let url = URL(string: "http://localhost:3000/class/classes/\(code)")!
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
@@ -120,13 +127,19 @@ class ClassController {
                 return
             }
             
-            completion(.success(responseData))
+            do {
+                let decoder = JSONDecoder()
+                let classObject = try decoder.decode(Class.self, from: responseData)
+                completion(.success(classObject))
+            } catch {
+                completion(.failure(error))
+            }
             
         }.resume()
     }
     
     // update a class
-    func updateClass(id: String, className: String, color: String, completion: @escaping (Result<Data, Error>) -> Void) {
+    func updateClass(id: String, className: String, color: String, completion: @escaping (Result<Class, Error>) -> Void) {
         let url = URL(string: "http://localhost:3000/class/classes/\(id)")!
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
@@ -165,13 +178,19 @@ class ClassController {
                 return
             }
             
-            completion(.success(responseData))
+            do {
+                let decoder = JSONDecoder()
+                let classObject = try decoder.decode(Class.self, from: responseData)
+                completion(.success(classObject))
+            } catch {
+                completion(.failure(error))
+            }
             
         }.resume()
     }
     
     // add event to class
-    func addEvent(id: String, eventId: String, completion: @escaping (Result<Data, Error>) -> Void) {
+    func addEvent(id: String, eventId: String, completion: @escaping (Result<Class, Error>) -> Void) {
         let url = URL(string: "http://localhost:3000/class/classes/event/\(id)")!
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
@@ -208,14 +227,20 @@ class ClassController {
                 return
             }
             
-            completion(.success(responseData))
+            do {
+                let decoder = JSONDecoder()
+                let classObject = try decoder.decode(Class.self, from: responseData)
+                completion(.success(classObject))
+            } catch {
+                completion(.failure(error))
+            }
             
         }.resume()
     }
     
     
     // add assignment to class
-    func addAssignment(id: String, assignmentId: String, completion: @escaping (Result<Data, Error>) -> Void) {
+    func addAssignment(id: String, assignmentId: String, completion: @escaping (Result<Class, Error>) -> Void) {
         let url = URL(string: "http://localhost:3000/class/classes/assignment/\(id)")!
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
@@ -252,13 +277,19 @@ class ClassController {
                 return
             }
             
-            completion(.success(responseData))
+            do {
+                let decoder = JSONDecoder()
+                let classObject = try decoder.decode(Class.self, from: responseData)
+                completion(.success(classObject))
+            } catch {
+                completion(.failure(error))
+            }
             
         }.resume()
     }
     
     // add alert to class
-    func addAlert(id: String, alertId: String, completion: @escaping (Result<Data, Error>) -> Void) {
+    func addAlert(id: String, alertId: String, completion: @escaping (Result<Class, Error>) -> Void) {
         let url = URL(string: "http://localhost:3000/class/classes/alert/\(id)")!
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
@@ -295,13 +326,19 @@ class ClassController {
                 return
             }
             
-            completion(.success(responseData))
+            do {
+                let decoder = JSONDecoder()
+                let classObject = try decoder.decode(Class.self, from: responseData)
+                completion(.success(classObject))
+            } catch {
+                completion(.failure(error))
+            }
             
         }.resume()
     }
     
     // add user to class
-    func addUser(id: String, userId: String, completion: @escaping (Result<Data, Error>) -> Void) {
+    func addUser(id: String, userId: String, completion: @escaping (Result<Class, Error>) -> Void) {
         let url = URL(string: "http://localhost:3000/class/classes/user/\(id)")!
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
@@ -339,7 +376,13 @@ class ClassController {
                 return
             }
             
-            completion(.success(responseData))
+            do {
+                let decoder = JSONDecoder()
+                let classObject = try decoder.decode(Class.self, from: responseData)
+                completion(.success(classObject))
+            } catch {
+                completion(.failure(error))
+            }
             
         }.resume()
     }
