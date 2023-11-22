@@ -16,7 +16,13 @@ exports.createAlert = async (req, res) => {
 
         await newAlert.save()
 
-        return res.status(201).json({ message: 'Alert created successfully' })
+        return res.status(201).json({ message: 'Alert created successfully',
+            _id: retrievedAlert._id,
+            title: retrievedAlert.title,
+            description: retrievedAlert.description,
+            datePosted: retrievedAlert.datePosted,
+            priority: retrievedAlert.priority 
+        })
     } catch (error) {
         // catch server error
         console.error(error)
