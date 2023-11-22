@@ -50,6 +50,7 @@ class ClassInfoViewController: UIViewController, UITableViewDataSource, UITableV
         
         if (labelCell == "Events") {
             let vc = storyboard?.instantiateViewController(identifier: "event") as! EventViewController
+            vc.className = self.title!
             navigationController?.pushViewController(vc, animated: true)
             vc.title = "Events"
         } else if (labelCell == "Assignments") {
@@ -59,6 +60,7 @@ class ClassInfoViewController: UIViewController, UITableViewDataSource, UITableV
         } else if (labelCell == "Alerts") {
             let vc = storyboard?.instantiateViewController(identifier: "alert") as! AlertViewController
             navigationController?.pushViewController(vc, animated: true)
+            vc.className = self.title!
             vc.title = "Alerts"
         } else if (labelCell == "Student Input") {
             let vc = storyboard?.instantiateViewController(identifier: "sInput") as! StudentInputViewController

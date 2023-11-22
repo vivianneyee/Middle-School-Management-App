@@ -195,17 +195,17 @@ class SettingsViewController: UIViewController {
         print("button tapped")
         // Handle the login button tap here
 
-        // If login is successful, navigate to the "home" view controller
-        let vc = storyboard?.instantiateViewController(identifier: "changepass") as! ChangePasswordViewController
-        navigationController?.pushViewController(vc, animated: true)
+//        // If login is successful, navigate to the "home" view controller
+//        let vc = storyboard?.instantiateViewController(identifier: "changepass") as! ChangePasswordViewController
+//        navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc func editScheTapped() {
         print("button tapped")
         // Handle the login button tap here
-
-        // If login is successful, navigate to the "home" view controller
-        let vc = storyboard?.instantiateViewController(identifier: "editsche") as! EditScheduleViewController
-        navigationController?.pushViewController(vc, animated: true)
+//
+//        // If login is successful, navigate to the "home" view controller
+//        let vc = storyboard?.instantiateViewController(identifier: "editsche") as! EditScheduleViewController
+//        navigationController?.pushViewController(vc, animated: true)
     }
 }

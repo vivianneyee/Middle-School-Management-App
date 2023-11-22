@@ -14,7 +14,8 @@ import RealmSwift
 class EventViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var table: UITableView!
-    
+    var className: String = ""
+
     override func viewDidLoad() {
         super.viewDidLoad()
         

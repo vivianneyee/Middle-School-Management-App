@@ -13,6 +13,7 @@ import RealmSwift
 
 class AlertViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var table: UITableView!
+    var className: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +27,7 @@ class AlertViewController: UIViewController, UITableViewDataSource, UITableViewD
     @objc func didTapAdd() {
         let vc = storyboard?.instantiateViewController(identifier: "createPost") as! CreatePostViewController
         navigationController?.pushViewController(vc, animated: true)
-        
+        vc.className = self.className
         vc.title = "Create New Alert"
     }
     
