@@ -65,7 +65,7 @@ class EventController {
     }
     
     // get an event by its id
-    func getEventById(id: String, completion: @escaping (Result<Data, Error>) -> Void) {
+    func getEventById(id: String, completion: @escaping (Result<Event, Error>) -> Void) {
         let url = URL(string: "http://localhost:3000/event/events/\(id)")!
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
@@ -90,13 +90,19 @@ class EventController {
                 return
             }
             
-            completion(.success(responseData))
+            do {
+                let decoder = JSONDecoder()
+                let eventObject = try decoder.decode(Event.self, from: responseData)
+                completion(.success(eventObject))
+            } catch {
+                completion(.failure(error))
+            }
                         
         }.resume()
     }
     
     // update an event
-    func updateEvent(id: String, title: String, description: String, startDate: Date, endDate: Date, completion: @escaping (Result<Data, Error>) -> Void) {
+    func updateEvent(id: String, title: String, description: String, startDate: Date, endDate: Date, completion: @escaping (Result<Event, Error>) -> Void) {
         let url = URL(string: "http://localhost:3000/event/events/\(id)")!
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
@@ -137,7 +143,13 @@ class EventController {
                 return
             }
             
-            completion(.success(responseData))
+            do {
+                let decoder = JSONDecoder()
+                let eventObject = try decoder.decode(Event.self, from: responseData)
+                completion(.success(eventObject))
+            } catch {
+                completion(.failure(error))
+            }
             
         }.resume()
     }
