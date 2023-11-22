@@ -11,11 +11,26 @@ import ECWeekView
 import SwiftDate
 import RealmSwift
 
-class SignupViewController: UIViewController, UITextFieldDelegate {
+class SignupViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+    // user type input field
+    private let userTypeTextField: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "Select user type"
+        textField.borderStyle = .roundedRect
+        return textField
+    }()
+    
+    private let userTypePickerView: UIPickerView = {
+        let pickerView = UIPickerView()
+        return pickerView
+    }()
+    
+    let options = ["Admin", "Teacher", "Student"]
+    
     // Email or username input field
     private let emailTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "Email or Username"
+        textField.placeholder = "Email"
         textField.borderStyle = .roundedRect
         return textField
     }()
@@ -79,9 +94,11 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         // Add the action for the loginButton
         signupButton.addTarget(self, action: #selector(signupButtonTapped), for: .touchUpInside)
         emailTextField.delegate = self
-
+        userTypePickerView.delegate = self
+        userTypeTextField.inputView = userTypePickerView
 
        // Add subviews
+       view.addSubview(userTypeTextField)
        view.addSubview(emailTextField)
        view.addSubview(emailErrorLabel)
        view.addSubview(passwordErrorLabel)
@@ -91,6 +108,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
        view.addSubview(signupButton)
 
        // Set up constraints
+       userTypeTextField.translatesAutoresizingMaskIntoConstraints = false
        emailTextField.translatesAutoresizingMaskIntoConstraints = false
        emailErrorLabel.translatesAutoresizingMaskIntoConstraints = false
        passwordTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -100,8 +118,13 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
        confirmPasswordErrorLabel.translatesAutoresizingMaskIntoConstraints = false
 
        NSLayoutConstraint.activate([
+            userTypeTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            userTypeTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100),
+            userTypeTextField.widthAnchor.constraint(equalToConstant: 200),
+            userTypeTextField.heightAnchor.constraint(equalToConstant: 40),
+            
            emailTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-           emailTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100),
+           emailTextField.topAnchor.constraint(equalTo: userTypeTextField.bottomAnchor, constant: 20),
            emailTextField.widthAnchor.constraint(equalToConstant: 200),
            emailTextField.heightAnchor.constraint(equalToConstant: 40),
            
@@ -137,12 +160,38 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
        ])
     }
     
+    // MARK: - UIPickerViewDataSource
+
+    // Number of components in the picker view (columns)
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+
+    // Number of rows in the picker view
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return options.count
+    }
+
+    // MARK: - UIPickerViewDelegate
+
+    // Title for each row in the picker view
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return options[row]
+    }
+
+    // Handle selection in the picker view
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        userTypeTextField.text = options[row]
+        userTypeTextField.resignFirstResponder() // Hide the picker view after selection
+    }
+    
     @objc func signupButtonTapped() {
         // Handle the login button tap here
         // Get the values from the text fields
         guard let email = emailTextField.text,
               let password = passwordTextField.text,
-              let confirmPassword = confirmPasswordTextField.text else {
+              let confirmPassword = confirmPasswordTextField.text,
+              let userType = userTypeTextField.text else {
             // Handle error if any of the fields is empty
             print("Please fill in all fields.")
             return
@@ -157,9 +206,8 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         
         // Code for registering user - implement with data from input fields
         let authManager = AuthManager()
-        let role = "STUDENT"
         
-        authManager.registerUser(email: email, password: password, confirmPassword: confirmPassword, role: role) { [self] result in
+        authManager.registerUser(email: email, password: password, confirmPassword: confirmPassword, role: userType) { [self] result in
             switch result {
             case .success(let data):
                 print("registration successful")

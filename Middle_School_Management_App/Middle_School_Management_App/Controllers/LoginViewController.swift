@@ -15,7 +15,7 @@ class LoginViewController: UIViewController {
     // Email or username input field
     private let emailTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "Email or Username"
+        textField.placeholder = "Email"
         textField.borderStyle = .roundedRect
         return textField
     }()
