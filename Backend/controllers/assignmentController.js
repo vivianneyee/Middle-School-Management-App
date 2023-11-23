@@ -15,7 +15,13 @@ exports.createAssignment = async (req, res) => {
 
         await newAssignment.save()
 
-        return res.status(201).json({ message: 'Assignment created successfully' })
+        return res.status(201).json({ message: 'Assignment created successfully', 
+            _id: retrievedAssignment._id,
+            title: retrievedAssignment.title,
+            description: retrievedAssignment.description,
+            datePosted: retrievedAssignment.datePosted,
+            dueDate: retrievedAssignment.dueDate
+        })
     } catch (error) {
         // catch server error
         console.error(error)

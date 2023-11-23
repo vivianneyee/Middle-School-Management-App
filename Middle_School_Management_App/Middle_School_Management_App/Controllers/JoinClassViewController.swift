@@ -23,4 +23,26 @@ class JoinClassViewController: UIViewController {
     @IBAction func tappedSubmit() {
         // add submit stuff
     }
+    
+    func joinClassWithCode(userId: String, classCode: String) {
+        let classController = ClassController()
+        let userController = UserController()
+        
+        classController.getClassByCode(code: classCode) { result in
+            switch result {
+            case .success(let classObject):
+                print("Class retrieved successfully: \(classObject.className)")
+                userController.joinClass(id: userId, classId: classObject._id) { result in
+                    switch result {
+                    case .success(let userObject):
+                        print("Class joined successfully: \(userObject)")
+                    case .failure(let error):
+                        print("Could not join class: \(error)")
+                    }
+                }
+            case .failure(let error):
+                print("Error retrieving class: \(error)")
+            }
+        }
+    }
 }

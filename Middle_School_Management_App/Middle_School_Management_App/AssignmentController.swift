@@ -18,7 +18,7 @@ class AssignmentController {
     }
     
     // create a new assignment
-    func createAssignment(title: String, description: String, dueDate: Date, completion: @escaping (Result<Data, Error>) -> Void) {
+    func createAssignment(title: String, description: String, dueDate: Date, completion: @escaping (Result<Assignment, Error>) -> Void) {
         let url = URL(string: "http://localhost:3000/assignment/assignments")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -59,7 +59,13 @@ class AssignmentController {
                 return
             }
             
-            completion(.success(responseData))
+            do {
+                let decoder = JSONDecoder()
+                let assignmentObject = try decoder.decode(Assignment.self, from: responseData)
+                completion(.success(assignmentObject))
+            } catch {
+                completion(.failure(error))
+            }
         }.resume()
     }
     

@@ -17,7 +17,13 @@ exports.createEvent = async (req, res) => {
 
         await newEvent.save()
 
-        return res.status(201).json({ message: 'Event created successfully' })
+        return res.status(201).json({ message: 'Event created successfully', 
+            _id: retrievedEvent._id,
+            title: retrievedEvent.title,
+            datePosted: retrievedEvent.datePosted,
+            startDate: retrievedEvent.startDate,
+            endDate: retrievedEvent.endDate 
+        })
     } catch (error) {
         // catch server error
         console.error(error)

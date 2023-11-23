@@ -18,7 +18,7 @@ class AlertController {
     }
     
     // create a new alert
-    func createAlert(title: String, description: String, priority: String, completion: @escaping (Result<Data, Error>) -> Void) {
+    func createAlert(title: String, description: String, priority: String, completion: @escaping (Result<Alert, Error>) -> Void) {
         let url = URL(string: "http://localhost:3000/alert/alerts")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -59,7 +59,13 @@ class AlertController {
                 return
             }
             
-            completion(.success(responseData))
+            do {
+                let decoder = JSONDecoder()
+                let alertObject = try decoder.decode(Alert.self, from: responseData)
+                completion(.success(alertObject))
+            } catch {
+                completion(.failure(error))
+            }
         }.resume()
     }
     
