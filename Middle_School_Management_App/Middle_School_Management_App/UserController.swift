@@ -18,7 +18,7 @@ class UserController {
     }
     
     // get a user by id
-    func getUserById(id: String, completion: @escaping (Result<Data, Error>) -> Void) {
+    func getUserById(id: String, completion: @escaping (Result<User, Error>) -> Void) {
         let url = URL(string: "http://localhost:3000/user/users/\(id)")!
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
@@ -43,13 +43,19 @@ class UserController {
                 return
             }
             
-            completion(.success(responseData))
+            do {
+                let decoder = JSONDecoder()
+                let userObject = try decoder.decode(User.self, from: responseData)
+                completion(.success(userObject))
+            } catch {
+                completion(.failure(error))
+            }
                         
         }.resume()
     }
     
     // update user schedule
-    func setSchedule(id: String, scheduleId: String, completion: @escaping (Result<Data, Error>) -> Void) {
+    func setSchedule(id: String, scheduleId: String, completion: @escaping (Result<User, Error>) -> Void) {
         let url = URL(string: "http://localhost:3000/user/users/\(id)")!
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
@@ -87,13 +93,19 @@ class UserController {
                 return
             }
             
-            completion(.success(responseData))
+            do {
+                let decoder = JSONDecoder()
+                let userObject = try decoder.decode(User.self, from: responseData)
+                completion(.success(userObject))
+            } catch {
+                completion(.failure(error))
+            }
             
         }.resume()
     }
     
     // add class to user
-    func joinClass(id: String, classId: String, completion: @escaping (Result<Data, Error>) -> Void) {
+    func joinClass(id: String, classId: String, completion: @escaping (Result<User, Error>) -> Void) {
         let url = URL(string: "http://localhost:3000/user/users/\(id)")!
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
@@ -131,13 +143,19 @@ class UserController {
                 return
             }
             
-            completion(.success(responseData))
+            do {
+                let decoder = JSONDecoder()
+                let userObject = try decoder.decode(User.self, from: responseData)
+                completion(.success(userObject))
+            } catch {
+                completion(.failure(error))
+            }
             
         }.resume()
     }
     
     // add notification to user
-    func addNotification(id: String, notificationId: String, completion: @escaping (Result<Data, Error>) -> Void) {
+    func addNotification(id: String, notificationId: String, completion: @escaping (Result<User, Error>) -> Void) {
         let url = URL(string: "http://localhost:3000/user/users/\(id)")!
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
@@ -175,7 +193,13 @@ class UserController {
                 return
             }
             
-            completion(.success(responseData))
+            do {
+                let decoder = JSONDecoder()
+                let userObject = try decoder.decode(User.self, from: responseData)
+                completion(.success(userObject))
+            } catch {
+                completion(.failure(error))
+            }
             
         }.resume()
     }
