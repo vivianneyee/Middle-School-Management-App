@@ -15,7 +15,12 @@ exports.createNotification = async (req, res) => {
 
         await newNotification.save()
 
-        return res.status(201).json({ message: 'Notification created successfully' })
+        return res.status(201).json({ message: 'Notification created successfully', 
+            _id: retrievedNotification._id,
+            className: retrievedNotification.className,
+            title: retrievedNotification.title,
+            datePosted: retrievedNotification.datePosted
+        })
     } catch (error) {
         // catch server error
         console.error(error)

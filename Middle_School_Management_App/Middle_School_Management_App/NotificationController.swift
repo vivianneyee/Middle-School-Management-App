@@ -18,7 +18,7 @@ class NotificationController {
     }
     
     // create a new notification
-    func createNotification(className: String, title: String, completion: @escaping (Result<Data, Error>) -> Void) {
+    func createNotification(className: String, title: String, completion: @escaping (Result<Notification, Error>) -> Void) {
         let url = URL(string: "http://localhost:3000/notification/notifications")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -58,7 +58,13 @@ class NotificationController {
                 return
             }
             
-            completion(.success(responseData))
+            do {
+                let decoder = JSONDecoder()
+                let notificationObject = try decoder.decode(Notification.self, from: responseData)
+                completion(.success(notificationObject))
+            } catch {
+                completion(.failure(error))
+            }
         }.resume()
     }
     

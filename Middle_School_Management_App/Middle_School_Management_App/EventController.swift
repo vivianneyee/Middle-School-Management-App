@@ -18,7 +18,7 @@ class EventController {
     }
     
     // create a new event
-    func createEvent(title: String, description: String, startDate: Date, endDate: Date, completion: @escaping (Result<Data, Error>) -> Void) {
+    func createEvent(title: String, description: String, startDate: Date, endDate: Date, completion: @escaping (Result<Event, Error>) -> Void) {
         let url = URL(string: "http://localhost:3000/event/events")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -60,7 +60,13 @@ class EventController {
                 return
             }
             
-            completion(.success(responseData))
+            do {
+                let decoder = JSONDecoder()
+                let eventObject = try decoder.decode(Event.self, from: responseData)
+                completion(.success(eventObject))
+            } catch {
+                completion(.failure(error))
+            }
         }.resume()
     }
     
