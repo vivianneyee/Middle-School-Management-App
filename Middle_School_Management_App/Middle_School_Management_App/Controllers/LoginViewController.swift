@@ -104,22 +104,31 @@ class LoginViewController: UIViewController {
         print("Please fill in all fields.")
         return
         }
-        // Code for registering user - implement with data from input fields
+        // Code for logging in user - implement with data from input fields
         let authManager = AuthManager()
-        authManager.loginUser(email: email, password: password) { result in
+        authManager.loginUser(email: email, password: password) { [self] result in
             switch result {
             case .success(let data):
                 print("Login successful")
+                DispatchQueue.main.async {
+                    // If login is successful, navigate to the "home" view controller
+                    let vc = self.storyboard?.instantiateViewController(identifier: "home") as! CustomTabBarController
+                    // add sign in logic
+                    vc.modalPresentationStyle = .fullScreen
+                    // pass the user id to the next storyboard
+                     vc.userID = data._id
+                    self.present(vc, animated: true, completion: nil)
+                }
             case .failure(let error):
                 print ("Login failed with error: \(error)")
+                DispatchQueue.main.async {
+                    let alert = UIAlertController(title: "Login failed", message: "Unable to login. Please try again later.", preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "Close", style: .default)
+                    alert.addAction(okAction)
+                    self.present(alert, animated: true, completion: nil)
+                }
             }
         }
-
-        // If login is successful, navigate to the "home" view controller
-        let vc = storyboard?.instantiateViewController(identifier: "home") as! UITabBarController
-        // add sign in logic
-        vc.modalPresentationStyle = .fullScreen
-        present(vc, animated: true, completion: nil)
     }
     
     @objc func signupLinkTapped() {

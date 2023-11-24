@@ -14,6 +14,7 @@ import RealmSwift
 class ClassesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var table: UITableView!
+    var userID: String = ""
     
     struct ClassInfo {
         let subject: String

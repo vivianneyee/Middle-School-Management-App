@@ -14,6 +14,7 @@ import RealmSwift
 
 class NotificationsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var table: UITableView!
+    var userID: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()

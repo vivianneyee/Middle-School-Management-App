@@ -12,7 +12,7 @@ import SwiftDate
 import RealmSwift
 
 class JoinClassViewController: UIViewController {
-    
+    var userID: String = ""
     @IBOutlet var field: UITextField!
     @IBOutlet var button: UIButton!
     

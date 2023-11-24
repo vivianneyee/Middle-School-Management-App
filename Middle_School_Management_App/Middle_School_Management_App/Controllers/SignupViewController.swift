@@ -213,7 +213,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
                 print("registration successful")
                 DispatchQueue.main.async {
                     // If login is successful, navigate to the "home" view controller
-                    let vc = storyboard?.instantiateViewController(identifier: "home") as! UITabBarController
+                    let vc = self.storyboard?.instantiateViewController(identifier: "home") as! UITabBarController
                     vc.modalPresentationStyle = .fullScreen
                     self.present(vc, animated: true, completion: nil)
                 }

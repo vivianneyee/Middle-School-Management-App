@@ -10,7 +10,7 @@ import SwiftDate
 import RealmSwift
 
 class ProfileViewController: UIViewController {
-    
+    var userID: String = ""
     @IBAction func tapToSettings(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(identifier: "settings") as! SettingsViewController
         navigationController?.pushViewController(vc, animated: true)
