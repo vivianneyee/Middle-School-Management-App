@@ -81,6 +81,7 @@
 		8126D2DA29E3A39B00BD8CA7 /* CalendarKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8126D2D929E3A39B00BD8CA7 /* CalendarKit */; };
 		8126D2DD29E5188400BD8CA7 /* KVKCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 8126D2DC29E5188400BD8CA7 /* KVKCalendar */; };
 		8126D2E029E5DFC100BD8CA7 /* ECWeekView in Frameworks */ = {isa = PBXBuildFile; productRef = 8126D2DF29E5DFC100BD8CA7 /* ECWeekView */; };
+		817204F02B15587700344564 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817204EF2B15587700344564 /* CustomTabBarController.swift */; };
 		81B7647D2ADF33DA0014F9AB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53ED10E29BF7AD50087A59A /* ViewController.swift */; };
 		81B7647E2ADF34730014F9AB /* Class.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5021C6F2A2E4C8E000325BF /* Class.swift */; };
 		81B7647F2ADF34730014F9AB /* ClassController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5021C732A2E4DDE000325BF /* ClassController.swift */; };
@@ -165,6 +166,7 @@
 		81035C6E2ADDF21500CADFE2 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		81035C6F2ADDF21500CADFE2 /* NotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		81035C702ADDF21500CADFE2 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		817204EF2B15587700344564 /* CustomTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		B5021C6F2A2E4C8E000325BF /* Class.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Class.swift; sourceTree = "<group>"; };
 		B5021C712A2E4C9E000325BF /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		B5021C732A2E4DDE000325BF /* ClassController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassController.swift; sourceTree = "<group>"; };
@@ -246,6 +248,7 @@
 		81035C5D2ADDF21500CADFE2 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				817204EF2B15587700344564 /* CustomTabBarController.swift */,
 				81035C5E2ADDF21500CADFE2 /* SignupViewController.swift */,
 				81035C5F2ADDF21500CADFE2 /* CreateStudentInputViewController.swift */,
 				81035C602ADDF21500CADFE2 /* StudentInputViewController.swift */,
@@ -511,6 +514,7 @@
 			files = (
 				B593B87F2AC8A2DB00E3552C /* AuthManager.swift in Sources */,
 				81035CA12ADDF21500CADFE2 /* CreatePostViewController.swift in Sources */,
+				817204F02B15587700344564 /* CustomTabBarController.swift in Sources */,
 				81035C8C2ADDF21500CADFE2 /* EventViewController.swift in Sources */,
 				81035CA72ADDF21500CADFE2 /* CreateClassViewController.swift in Sources */,
 				B5633BED2B018FEA00DE8A80 /* AssignmentController.swift in Sources */,

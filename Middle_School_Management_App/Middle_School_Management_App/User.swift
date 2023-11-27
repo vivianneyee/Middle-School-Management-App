@@ -12,6 +12,11 @@ struct LoginResponse: Decodable {
     let user: User
 }
 
+struct SignupResponse: Decodable {
+    let message: String
+    let _id: String
+}
+
 struct GetUserResponse: Decodable {
     let message: String
     let _id: String

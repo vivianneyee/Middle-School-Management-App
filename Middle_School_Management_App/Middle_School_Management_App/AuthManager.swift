@@ -18,7 +18,7 @@ class AuthManager {
         case serverError(String)
     }
     
-    func registerUser(email: String, password: String, confirmPassword: String, role: String, completion: @escaping (Result<Data, Error>) -> Void) {
+    func registerUser(email: String, password: String, confirmPassword: String, role: String, completion: @escaping (Result<SignupResponse, Error>) -> Void) {
         let url = URL(string: "http://127.0.0.1:3000/auth/register")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -59,7 +59,16 @@ class AuthManager {
                 return
             }
             
-            completion(.success(responseData))
+            do {
+                let decoder = JSONDecoder()
+                let userObject = try decoder.decode(SignupResponse.self, from: responseData)
+                completion(.success(userObject))
+            } catch {
+                completion(.failure(error))
+            }
+            
+            
+//            completion(.success(responseData))
             
         }.resume()
         

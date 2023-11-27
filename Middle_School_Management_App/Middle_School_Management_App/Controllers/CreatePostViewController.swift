@@ -99,11 +99,11 @@ class CreatePostViewController: UIViewController, UIPickerViewDelegate, UIPicker
                }
         // call function to create new alert
             // CHANGE THIS TO PASS THE ACTUAL CLASS OBJECT
-            let classObj = Class(name: self.className, color: UIColor.red.hexString, code: "1111")
-            let realm = try! Realm() // Instantiate a Realm instance
-            let postController = PostContoller(realm: realm)
+//            let classObj = Class(name: self.className, color: UIColor.red.hexString, code: "1111")
+//            let realm = try! Realm() // Instantiate a Realm instance
+//            let postController = PostContoller(realm: realm)
 
-            let result = postController.createAlert(classObj: classObj, title: title, desc: desc, priority: priority)
+//            let result = postController.createAlert(classObj: classObj, title: title, desc: desc, priority: priority)
 //            if result != nil {
 //                print("new alert created successfully")
 //            } else {
