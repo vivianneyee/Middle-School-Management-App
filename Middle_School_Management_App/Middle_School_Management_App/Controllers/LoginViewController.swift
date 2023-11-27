@@ -42,10 +42,11 @@ class LoginViewController: UIViewController {
     }()
     
     // Link to signup
-    private let signupLink: UILabel = {
-        let label = UILabel()
-        label.text = "Create an account"
-        label.textColor = .systemBlue
+    private let signupLink: UIButton = {
+        let label = UIButton(type: .system)
+        label.setTitle("Create an account", for: .normal)
+        label.backgroundColor = .clear
+        label.setTitleColor(UIColor.systemBlue, for: .normal)
         return label
     }()
     
@@ -57,9 +58,10 @@ class LoginViewController: UIViewController {
         loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
         
         // Add the action for the sign up link
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(signupLinkTapped))
-        signupLink.addGestureRecognizer(tapGesture)
-        signupLink.isUserInteractionEnabled = true
+        signupLink.addTarget(self, action: #selector(signupLinkTapped), for: .touchUpInside)
+//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(signupLinkTapped))
+//        signupLink.addGestureRecognizer(tapGesture)
+//        signupLink.isUserInteractionEnabled = true
 
        // Add subviews
        view.addSubview(emailTextField)
