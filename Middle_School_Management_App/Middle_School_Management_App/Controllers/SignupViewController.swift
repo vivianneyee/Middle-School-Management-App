@@ -32,6 +32,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
         let textField = UITextField()
         textField.placeholder = "Email"
         textField.borderStyle = .roundedRect
+        textField.autocapitalizationType = .none
         return textField
     }()
     
@@ -49,6 +50,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
         textField.placeholder = "Password"
         textField.borderStyle = .roundedRect
         textField.isSecureTextEntry = true
+        textField.autocapitalizationType = .none
         return textField
     }()
     
@@ -76,6 +78,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
         textField.placeholder = "Confirm Password"
         textField.borderStyle = .roundedRect
         textField.isSecureTextEntry = true
+        textField.autocapitalizationType = .none
         return textField
     }()
     

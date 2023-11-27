@@ -47,6 +47,7 @@ class ScheduleViewController: UIViewController, ECWeekViewDataSource, ECWeekView
         weekView.delegate = self
         weekView.styler = myStyler
         weekView.initDate = DateInRegion()
+        print("schedule page userID: ", self.userID)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -99,44 +100,50 @@ class ScheduleViewController: UIViewController, ECWeekViewDataSource, ECWeekView
             switch result {
             case .success(let user):
                 // Access the schedule property of the user
-                let schedules = user.schedule
-                // Get the schedule index for the current weekday
-                let scheduleIndex = (weekday - 2) % 10
-                
-                // Get the schedule for the current weekday
-                let day1Sche = schedules.day1
-                let day2Sche = schedules.day2
-                let day3Sche = schedules.day3
-                let day4Sche = schedules.day4
-                let day5Sche = schedules.day5
-                let day6Sche = schedules.day6
-                let day7Sche = schedules.day7
-                let day8Sche = schedules.day8
-                let day9Sche = schedules.day9
-                let day10Sche = schedules.day10
-                
-                let scheduleArray = [day1Sche, day2Sche, day3Sche, day4Sche, day5Sche, day6Sche, day7Sche, day8Sche, day9Sche, day10Sche]
-                
-                let schedule = scheduleArray[scheduleIndex]
-                
-                var events = [ECWeekViewEvent]()
-                
-                for (index, className) in schedule.enumerated() {
-                    let startHour = 9 + index
-                    let startDate = date.dateBySet(hour: startHour, min: 0, secs: 0)!
-                    let endDate = date.dateBySet(hour: startHour + 1, min: 0, secs: 0)!
+                if let schedules = user.schedule {
+                    // Get the schedule index for the current weekday
+                    let scheduleIndex = (weekday - 2) % 10
                     
-                    // Create a new event for the class
-                    let event = ECWeekViewEvent(title: className, subtitle: "Period " + String(index+1), start: startDate, end: endDate)
+                    // Get the schedule for the current weekday
+                    let day1Sche = schedules.day1
+                    let day2Sche = schedules.day2
+                    let day3Sche = schedules.day3
+                    let day4Sche = schedules.day4
+                    let day5Sche = schedules.day5
+                    let day6Sche = schedules.day6
+                    let day7Sche = schedules.day7
+                    let day8Sche = schedules.day8
+                    let day9Sche = schedules.day9
+                    let day10Sche = schedules.day10
+                    
+                    let scheduleArray = [day1Sche, day2Sche, day3Sche, day4Sche, day5Sche, day6Sche, day7Sche, day8Sche, day9Sche, day10Sche]
+                    
+                    let schedule = scheduleArray[scheduleIndex]
+                    
+                    var events = [ECWeekViewEvent]()
+                    
+                    for (index, className) in schedule.enumerated() {
+                        let startHour = 9 + index
+                        let startDate = date.dateBySet(hour: startHour, min: 0, secs: 0)!
+                        let endDate = date.dateBySet(hour: startHour + 1, min: 0, secs: 0)!
+                        
+                        // Create a new event for the class
+                        let event = ECWeekViewEvent(title: className, subtitle: "Period " + String(index+1), start: startDate, end: endDate)
 
-                    
-                    events.append(event)
+                        
+                        events.append(event)
+                    }
+                    DispatchQueue.global(qos: .background).async {
+                        eventCompletion(events)
+                    }
+                } else {
+                    // Handle nil schedule here
+                    DispatchQueue.global(qos: .background).async {
+                        eventCompletion([])
+                    }
                 }
-                DispatchQueue.global(qos: .background).async {
-                    eventCompletion(events)
-                }
-                
             case .failure(let error):
+
                 print("Error: \(error)")
             }
         }

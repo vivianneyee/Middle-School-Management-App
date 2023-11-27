@@ -17,22 +17,25 @@ class CustomTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("userID after login: ", self.userID)
         // Access each view controller in the tab bar and pass the data
         if let viewControllers = self.viewControllers {
             for viewController in viewControllers {
-                if let firstVC = viewController as? NotificationsViewController {
-                    firstVC.userID = userID
-                } else if let secondVC = viewController as? ScheduleViewController {
-                    secondVC.userID = userID
-                } else if let thirdVC = viewController as? ClassesViewController {
-                    thirdVC.userID = userID
-                } else if let fourthVC = viewController as? JoinClassViewController {
-                    fourthVC.userID = userID
-                } else if let fifthVC = viewController as? ProfileViewController {
-                    fifthVC.userID = userID
+                if let navController = viewController as? UINavigationController {
+                    if let firstVC = navController.viewControllers.first as? NotificationsViewController {
+                        firstVC.userID = self.userID
+                    } else if let secondVC = navController.viewControllers.first as? ScheduleViewController {
+                        secondVC.userID = self.userID
+                    } else if let thirdVC = navController.viewControllers.first as? ClassesViewController {
+                        thirdVC.userID = self.userID
+                    } else if let fourthVC = navController.viewControllers.first as? JoinClassViewController {
+                        fourthVC.userID = self.userID
+                    } else if let fifthVC = navController.viewControllers.first as? ProfileViewController {
+                        fifthVC.userID = self.userID
+                    }
                 }
             }
+            
         }
-        
     }
 }

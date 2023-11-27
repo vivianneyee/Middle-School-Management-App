@@ -17,6 +17,7 @@ class LoginViewController: UIViewController {
         let textField = UITextField()
         textField.placeholder = "Email"
         textField.borderStyle = .roundedRect
+        textField.autocapitalizationType = .none
         return textField
     }()
 
@@ -26,6 +27,7 @@ class LoginViewController: UIViewController {
         textField.placeholder = "Password"
         textField.borderStyle = .roundedRect
         textField.isSecureTextEntry = true
+        textField.autocapitalizationType = .none
         return textField
     }()
 
@@ -107,6 +109,7 @@ class LoginViewController: UIViewController {
         // Code for logging in user - implement with data from input fields
         let authManager = AuthManager()
         authManager.loginUser(email: email, password: password) { [self] result in
+            print(result)
             switch result {
             case .success(let data):
                 print("Login successful")
@@ -116,7 +119,9 @@ class LoginViewController: UIViewController {
                     // add sign in logic
                     vc.modalPresentationStyle = .fullScreen
                     // pass the user id to the next storyboard
-                     vc.userID = data._id
+                    print(data)
+                    print(data.user._id)
+                    vc.userID = data.user._id
                     self.present(vc, animated: true, completion: nil)
                 }
             case .failure(let error):
