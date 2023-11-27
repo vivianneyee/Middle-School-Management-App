@@ -2,8 +2,9 @@ const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb')
 const bcrypt = require('bcrypt')
 const User = require('../models/User')
 
+const saltRounds = 10
+
 exports.register = async (req, res) => {
-    // const userId = new ObjectId()
     const { email, password, confirmPassword, role } = req.body
     
     // check if passwords match, return 400 error if not
@@ -23,7 +24,6 @@ exports.register = async (req, res) => {
 
         // create new user
         const user = new User({
-            // _id: userId,
             email: email,
             hashedPassword: hashedPassword,
             role: role
@@ -31,7 +31,7 @@ exports.register = async (req, res) => {
 
         await user.save()
 
-        return res.status(200).json({ message: 'User registered successfully' })
+        return res.status(200).json({ message: 'User registered successfully', userId: user._id })
     } catch (error) {
         // catch server error
         console.error(error)

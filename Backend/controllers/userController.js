@@ -17,9 +17,11 @@ exports.getUserById = async(req, res) => {
         res.status(200).json({ message: 'User retrieved successfully',
             _id: retrievedUser._id,
             email: retrievedUser.email,
+            role: retrievedUser.role,
             schedule: retrievedUser.schedule,
             classes: retrievedUser.classes,
-            notifications: retrievedUser.notifications
+            notifications: retrievedUser.notifications,
+            schedule: retrievedUser.schedule
         })
     } catch (error) {
         // catch server error
