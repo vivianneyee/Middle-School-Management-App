@@ -15,8 +15,9 @@ class LoginViewController: UIViewController {
     // Email or username input field
     private let emailTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "Email or Username"
+        textField.placeholder = "Email"
         textField.borderStyle = .roundedRect
+        textField.autocapitalizationType = .none
         return textField
     }()
 
@@ -26,6 +27,7 @@ class LoginViewController: UIViewController {
         textField.placeholder = "Password"
         textField.borderStyle = .roundedRect
         textField.isSecureTextEntry = true
+        textField.autocapitalizationType = .none
         return textField
     }()
 
@@ -98,12 +100,41 @@ class LoginViewController: UIViewController {
     @objc func loginButtonTapped() {
         print("button tapped")
         // Handle the login button tap here
-
-        // If login is successful, navigate to the "home" view controller
-        let vc = storyboard?.instantiateViewController(identifier: "home") as! UITabBarController
-        // add sign in logic
-        vc.modalPresentationStyle = .fullScreen
-        present(vc, animated: true, completion: nil)
+        // Get the values from the text fields
+        guard let email = emailTextField.text,
+        let password = passwordTextField.text else {
+        // Handle error if any of the fields is empty
+        print("Please fill in all fields.")
+        return
+        }
+        // Code for logging in user - implement with data from input fields
+        let authManager = AuthManager()
+        authManager.loginUser(email: email, password: password) { [self] result in
+            print(result)
+            switch result {
+            case .success(let data):
+                print("Login successful")
+                DispatchQueue.main.async {
+                    // If login is successful, navigate to the "home" view controller
+                    let vc = self.storyboard?.instantiateViewController(identifier: "home") as! CustomTabBarController
+                    // add sign in logic
+                    vc.modalPresentationStyle = .fullScreen
+                    // pass the user id to the next storyboard
+                    print(data)
+                    print(data.user._id)
+                    vc.userID = data.user._id
+                    self.present(vc, animated: true, completion: nil)
+                }
+            case .failure(let error):
+                print ("Login failed with error: \(error)")
+                DispatchQueue.main.async {
+                    let alert = UIAlertController(title: "Login failed", message: "Unable to login. Please try again later.", preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "Close", style: .default)
+                    alert.addAction(okAction)
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
+        }
     }
     
     @objc func signupLinkTapped() {

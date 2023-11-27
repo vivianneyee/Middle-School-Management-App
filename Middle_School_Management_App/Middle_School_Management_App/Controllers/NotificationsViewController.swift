@@ -15,6 +15,7 @@ import UserNotifications
 
 class NotificationsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UNUserNotificationCenterDelegate {
     @IBOutlet weak var table: UITableView!
+    var userID: String = "default"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +33,7 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
         
         table.dataSource = self
         table.delegate = self
+        print("notif page userID: ", self.userID)
         
     }
     

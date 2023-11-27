@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Tab Bar Controller-->
+        <!--Custom Tab Bar Controller-->
         <scene sceneID="TJd-Zf-dP2">
             <objects>
-                <tabBarController storyboardIdentifier="home" id="2Ai-bY-qNs" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="home" id="2Ai-bY-qNs" customClass="CustomTabBarController" customModule="Middle_School_Management_App" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="WZv-cr-Uhp">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

@@ -19,13 +19,13 @@ class AuthManager {
     }
     
     func registerUser(email: String, password: String, confirmPassword: String, role: String, completion: @escaping (Result<Data, Error>) -> Void) {
-        let url = URL(string: "http://localhost:3000/auth/register")!
+        let url = URL(string: "http://127.0.0.1:3000/auth/register")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
                 
         let body: [String: Any] = [
-            "email": email,
+            "email": email.lowercased(),
             "password": password,
             "confirmPassword": confirmPassword,
             "role": role
@@ -65,8 +65,8 @@ class AuthManager {
         
     }
     
-    func loginUser(email: String, password: String, completion: @escaping (Result<User, Error>) -> Void) {
-        let url = URL(string: "http://localhost:3000/auth/login")!
+    func loginUser(email: String, password: String, completion: @escaping (Result<LoginResponse, Error>) -> Void) {
+        let url = URL(string: "http://127.0.0.1:3000/auth/login")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -105,7 +105,7 @@ class AuthManager {
 
             do {
                 let decoder = JSONDecoder()
-                let userObject = try decoder.decode(User.self, from: responseData)
+                let userObject = try decoder.decode(LoginResponse.self, from: responseData)
                 completion(.success(userObject))
             } catch {
                 completion(.failure(error))

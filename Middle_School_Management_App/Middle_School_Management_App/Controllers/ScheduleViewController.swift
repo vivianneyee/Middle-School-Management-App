@@ -14,7 +14,8 @@ import RealmSwift
 class ScheduleViewController: UIViewController, ECWeekViewDataSource, ECWeekViewDelegate, ECWeekViewStyler {
     
     @IBOutlet private var weekView: ECWeekView!
-    
+    var userID: String = ""
+    let userController = UserController()
     func weekViewStylerHeaderView(_ weekView: ECWeekView, with date: DateInRegion, in cell: UICollectionViewCell) -> UIView? {
         let headerView = UIView(frame: CGRect(x: 0, y: 5, width: cell.bounds.width, height: 40))
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: headerView.bounds.width, height: headerView.bounds.height))
@@ -46,6 +47,7 @@ class ScheduleViewController: UIViewController, ECWeekViewDataSource, ECWeekView
         weekView.delegate = self
         weekView.styler = myStyler
         weekView.initDate = DateInRegion()
+        print("schedule page userID: ", self.userID)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -78,46 +80,73 @@ class ScheduleViewController: UIViewController, ECWeekViewDataSource, ECWeekView
         ]
         
         // Create an array of schedules
-        let schedules = [
-            ["6B - Art", "6A - Art", "Gym", "Music", "French", "Social Studies", "Planning Time"],
-            ["Gym", "6A - Art", "Music", "French", "Planning Time", "Languages", "Social Studies"],
-            ["Music", "6A - Art", "6B - Art", "Gym", "Social Studies", "Languages", "French"],
-            ["Social Studies", "Languages", "6B - Art", "6A - Art", "Planning Time", "Gym", "Music"],
-            ["6A - Art", "Music", "Languages", "Social Studies", "6B - Art", "French", "Gym"],
-            ["6B - Art", "Planning Time", "6A - Art", "Gym", "French", "Music", "Languages"],
-            ["French", "Social Studies", "6A - Art", "Music", "Gym", "Languages", "Math"],
-            ["Languages", "Social Studies", "6A - Art", "6B - Art", "Music", "Gym", "Planning Time"],
-            ["Gym", "6A - Art", "Music", "French", "6B - Art", "Planning Time", "Languages"],
-            ["Music", "6A - Art", "6B - Art", "Social Studies", "Languages", "Planning Time", "Gym"]
-        ]
-        
-        // Get the schedule index for the current weekday
-        let scheduleIndex = (weekday - 2) % 10
-        
-        // Get the schedule for the current weekday
-        let schedule = schedules[scheduleIndex]
-        
-        var events = [ECWeekViewEvent]()
-        for (index, className) in schedule.enumerated() {
-            let startHour = 9 + index
-            let startDate = date.dateBySet(hour: startHour, min: 0, secs: 0)!
-            let endDate = date.dateBySet(hour: startHour + 1, min: 0, secs: 0)!
-            
-            // Create a new event for the class
-            let event = ECWeekViewEvent(title: className, subtitle: "Period " + String(index+1), start: startDate, end: endDate)
-            
-            // Set the event color based on the class
-            //            if let color = classes[className] {
-            //                event.color = color
-            //            }
-            
-            events.append(event)
+//        let schedules = [
+//            ["6B - Art", "6A - Art", "Gym", "Music", "French", "Social Studies", "Planning Time"],
+//            ["Gym", "6A - Art", "Music", "French", "Planning Time", "Languages", "Social Studies"],
+//            ["Music", "6A - Art", "6B - Art", "Gym", "Social Studies", "Languages", "French"],
+//            ["Social Studies", "Languages", "6B - Art", "6A - Art", "Planning Time", "Gym", "Music"],
+//            ["6A - Art", "Music", "Languages", "Social Studies", "6B - Art", "French", "Gym"],
+//            ["6B - Art", "Planning Time", "6A - Art", "Gym", "French", "Music", "Languages"],
+//            ["French", "Social Studies", "6A - Art", "Music", "Gym", "Languages", "Math"],
+//            ["Languages", "Social Studies", "6A - Art", "6B - Art", "Music", "Gym", "Planning Time"],
+//            ["Gym", "6A - Art", "Music", "French", "6B - Art", "Planning Time", "Languages"],
+//            ["Music", "6A - Art", "6B - Art", "Social Studies", "Languages", "Planning Time", "Gym"]
+//        ]
+//        let schedules = userController.getUserById(id: userID) { Result<User, Error> in
+//
+//        }
+//        var schedules = Schedule()
+        userController.getUserById(id: userID) { result in
+            switch result {
+            case .success(let user):
+                // Access the schedule property of the user
+                if let schedules = user.schedule {
+                    // Get the schedule index for the current weekday
+                    let scheduleIndex = (weekday - 2) % 10
+                    
+                    // Get the schedule for the current weekday
+                    let day1Sche = schedules.day1
+                    let day2Sche = schedules.day2
+                    let day3Sche = schedules.day3
+                    let day4Sche = schedules.day4
+                    let day5Sche = schedules.day5
+                    let day6Sche = schedules.day6
+                    let day7Sche = schedules.day7
+                    let day8Sche = schedules.day8
+                    let day9Sche = schedules.day9
+                    let day10Sche = schedules.day10
+                    
+                    let scheduleArray = [day1Sche, day2Sche, day3Sche, day4Sche, day5Sche, day6Sche, day7Sche, day8Sche, day9Sche, day10Sche]
+                    
+                    let schedule = scheduleArray[scheduleIndex]
+                    
+                    var events = [ECWeekViewEvent]()
+                    
+                    for (index, className) in schedule.enumerated() {
+                        let startHour = 9 + index
+                        let startDate = date.dateBySet(hour: startHour, min: 0, secs: 0)!
+                        let endDate = date.dateBySet(hour: startHour + 1, min: 0, secs: 0)!
+                        
+                        // Create a new event for the class
+                        let event = ECWeekViewEvent(title: className, subtitle: "Period " + String(index+1), start: startDate, end: endDate)
+
+                        
+                        events.append(event)
+                    }
+                    DispatchQueue.global(qos: .background).async {
+                        eventCompletion(events)
+                    }
+                } else {
+                    // Handle nil schedule here
+                    DispatchQueue.global(qos: .background).async {
+                        eventCompletion([])
+                    }
+                }
+            case .failure(let error):
+
+                print("Error: \(error)")
+            }
         }
-        
-        DispatchQueue.global(qos: .background).async {
-            eventCompletion(events)
-        }
-        
         return nil
     }
     
