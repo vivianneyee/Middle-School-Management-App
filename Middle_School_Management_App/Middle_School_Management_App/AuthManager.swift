@@ -65,7 +65,7 @@ class AuthManager {
         
     }
     
-    func loginUser(email: String, password: String, completion: @escaping (Result<Data, Error>) -> Void) {
+    func loginUser(email: String, password: String, completion: @escaping (Result<User, Error>) -> Void) {
         let url = URL(string: "http://localhost:3000/auth/login")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -103,13 +103,14 @@ class AuthManager {
                 return
             }
 
-            completion(.success(responseData))
+            do {
+                let decoder = JSONDecoder()
+                let userObject = try decoder.decode(User.self, from: responseData)
+                completion(.success(userObject))
+            } catch {
+                completion(.failure(error))
+            }
             
         }.resume()
-    }
-    
-    // delete user from db
-    func deleteUser(user: User) {
-        // TODO
     }
 }

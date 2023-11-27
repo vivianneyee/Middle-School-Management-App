@@ -1,14 +1,13 @@
 //
-//  ScheduleController.swift
+//  AssignmentController.swift
 //  Middle_School_Management_App
 //
-//  Created by Vivianne Yee on 2023-11-11.
+//  Created by Vivianne Yee on 2023-11-12.
 //
 
 import Foundation
-import RealmSwift
 
-class ScheduleController {
+class AssignmentController {
 
     init() {}
     
@@ -18,25 +17,18 @@ class ScheduleController {
         case serverError(String)
     }
     
-    // create a new schedule
-    func createSchedule(day1: [String], day2: [String], day3: [String], day4: [String], day5: [String], day6: [String], day7: [String], day8: [String], day9: [String], day10: [String], completion: @escaping (Result<Data, Error>) -> Void) {
-        let url = URL(string: "http://localhost:3000/schedule/schedules")!
+    // create a new assignment
+    func createAssignment(title: String, description: String, dueDate: Date, completion: @escaping (Result<Assignment, Error>) -> Void) {
+        let url = URL(string: "http://localhost:3000/assignment/assignments")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
 
                 
         let body: [String: Any] = [
-            "day1": day1,
-            "day2": day2,
-            "day3": day3,
-            "day4": day4,
-            "day5": day5,
-            "day6": day6,
-            "day7": day7,
-            "day8": day8,
-            "day9": day9,
-            "day10": day10
+            "title": title,
+            "description": description,
+            "dueDate": dueDate
         ]
         
         do {
@@ -51,7 +43,7 @@ class ScheduleController {
             // handle error
             if let error = error {
                 completion(.failure(error))
-                print("Could not create schedule")
+                print("Could not create assignment")
                 return
             }
             
@@ -67,13 +59,19 @@ class ScheduleController {
                 return
             }
             
-            completion(.success(responseData))
+            do {
+                let decoder = JSONDecoder()
+                let assignmentObject = try decoder.decode(Assignment.self, from: responseData)
+                completion(.success(assignmentObject))
+            } catch {
+                completion(.failure(error))
+            }
         }.resume()
     }
     
-    // get a schedule by its id
-    func getScheduleById(id: String, completion: @escaping (Result<Schedule, Error>) -> Void) {
-        let url = URL(string: "http://localhost:3000/schedule/schedules/\(id)")!
+    // get an assignment by its id
+    func getAssignmentById(id: String, completion: @escaping (Result<Assignment, Error>) -> Void) {
+        let url = URL(string: "http://localhost:3000/assignment/assignments/\(id)")!
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         
@@ -81,7 +79,7 @@ class ScheduleController {
             // handle error
             if let error = error {
                 completion(.failure(error))
-                print("Could not find schedule")
+                print("Could not retrieve assignment")
                 return
             }
             
@@ -99,8 +97,8 @@ class ScheduleController {
             
             do {
                 let decoder = JSONDecoder()
-                let scheduleObject = try decoder.decode(Schedule.self, from: responseData)
-                completion(.success(scheduleObject))
+                let assignmentObject = try decoder.decode(Assignment.self, from: responseData)
+                completion(.success(assignmentObject))
             } catch {
                 completion(.failure(error))
             }
@@ -108,24 +106,17 @@ class ScheduleController {
         }.resume()
     }
     
-    // update a schedule
-    func updateSchedule(id: String, day1: [String], day2: [String], day3: [String], day4: [String], day5: [String], day6: [String], day7: [String], day8: [String], day9: [String], day10: [String], completion: @escaping (Result<Schedule, Error>) -> Void) {
-        let url = URL(string: "http://localhost:3000/schedule/schedules/\(id)")!
+    // update an assignment
+    func updateAssignment(id: String, title: String, description: String, dueDate: Date, completion: @escaping (Result<Assignment, Error>) -> Void) {
+        let url = URL(string: "http://localhost:3000/assignment/assignments/\(id)")!
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
         let body: [String: Any] = [
-            "day1": day1,
-            "day2": day2,
-            "day3": day3,
-            "day4": day4,
-            "day5": day5,
-            "day6": day6,
-            "day7": day7,
-            "day8": day8,
-            "day9": day9,
-            "day10": day10
+            "title": title,
+            "description": description,
+            "dueDate": dueDate
         ]
         
         do {
@@ -140,7 +131,7 @@ class ScheduleController {
             // handle error
             if let error = error {
                 completion(.failure(error))
-                print("Could not update schedule")
+                print("Could not update assignment")
                 return
             }
             
@@ -158,8 +149,8 @@ class ScheduleController {
             
             do {
                 let decoder = JSONDecoder()
-                let scheduleObject = try decoder.decode(Schedule.self, from: responseData)
-                completion(.success(scheduleObject))
+                let assignmentObject = try decoder.decode(Assignment.self, from: responseData)
+                completion(.success(assignmentObject))
             } catch {
                 completion(.failure(error))
             }
@@ -167,9 +158,9 @@ class ScheduleController {
         }.resume()
     }
     
-    // delete a schedule
-    func deleteSchedule(id: String, completion: @escaping (Result<Data, Error>) -> Void) {
-        let url = URL(string: "http://localhost:3000/schedule/schedules/\(id)")!
+    // delete an assignment
+    func deleteAssignment(id: String, completion: @escaping (Result<Data, Error>) -> Void) {
+        let url = URL(string: "http://localhost:3000/assignment/assignments/\(id)")!
         var request = URLRequest(url: url)
         request.httpMethod = "DELETE"
         
@@ -177,7 +168,7 @@ class ScheduleController {
             // handle error
             if let error = error {
                 completion(.failure(error))
-                print("Could not delete schedule")
+                print("Could not delete assignment")
                 return
             }
             

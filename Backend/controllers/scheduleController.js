@@ -40,7 +40,19 @@ exports.getScheduleById = async (req, res) => {
         if (!retrievedSchedule) {
             return res.status(404),json({ error: 'Schedule not found' })
         } else {
-            return res.status(200).json({ message: 'Schedule retrieved successfully', retrievedSchedule})
+            return res.status(200).json({ message: 'Schedule retrieved successfully', 
+                _id: retrievedSchedule._id,
+                day1: retrievedSchedule.day1,
+                day2: retrievedSchedule.day2,
+                day3: retrievedSchedule.day3,
+                day4: retrievedSchedule.day4,
+                day5: retrievedSchedule.day5,
+                day6: retrievedSchedule.day6,
+                day7: retrievedSchedule.day7,
+                day8: retrievedSchedule.day8,
+                day9: retrievedSchedule.day9,
+                day10: retrievedSchedule.day10
+            })
         }
     } catch (error) {
         // catch server error
@@ -63,7 +75,19 @@ exports.updateSchedule = async (req, res) => {
             return res.status(404).json({ error: 'Schedule not found' })
         }
 
-        res.status(200).json({ message: 'Schedule updated successfully', updateSchedule})
+        return res.status(200).json({ message: 'Schedule updated successfully', 
+            _id: retrievedSchedule._id,
+            day1: retrievedSchedule.day1,
+            day2: retrievedSchedule.day2,
+            day3: retrievedSchedule.day3,
+            day4: retrievedSchedule.day4,
+            day5: retrievedSchedule.day5,
+            day6: retrievedSchedule.day6,
+            day7: retrievedSchedule.day7,
+            day8: retrievedSchedule.day8,
+            day9: retrievedSchedule.day9,
+            day10: retrievedSchedule.day10
+        })
     } catch (error) {
         // catch server error 
         console.error(error)

@@ -64,7 +64,7 @@ class ClassController {
     }
     
     // get a class by its id
-    func getClassById(id: String, completion: @escaping (Result<Data, Error>) -> Void) {
+    func getClassById(id: String, completion: @escaping (Result<Class, Error>) -> Void) {
         let url = URL(string: "http://localhost:3000/class/classes/\(id)")!
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
@@ -89,13 +89,20 @@ class ClassController {
                 return
             }
             
-            completion(.success(responseData))
+            do {
+                let decoder = JSONDecoder()
+                let classObject = try decoder.decode(Class.self, from: responseData)
+                completion(.success(classObject))
+            } catch {
+                completion(.failure(error))
+            }
+            
                         
         }.resume()
     }
     
     // get a class by its code
-    func getClassByCode(code: String, completion: @escaping (Result<Data, Error>) -> Void) {
+    func getClassByCode(code: String, completion: @escaping (Result<Class, Error>) -> Void) {
         let url = URL(string: "http://localhost:3000/class/classes/\(code)")!
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
@@ -120,13 +127,19 @@ class ClassController {
                 return
             }
             
-            completion(.success(responseData))
+            do {
+                let decoder = JSONDecoder()
+                let classObject = try decoder.decode(Class.self, from: responseData)
+                completion(.success(classObject))
+            } catch {
+                completion(.failure(error))
+            }
             
         }.resume()
     }
     
     // update a class
-    func updateClass(id: String, className: String, color: String, completion: @escaping (Result<Data, Error>) -> Void) {
+    func updateClass(id: String, className: String, color: String, completion: @escaping (Result<Class, Error>) -> Void) {
         let url = URL(string: "http://localhost:3000/class/classes/\(id)")!
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
@@ -165,7 +178,211 @@ class ClassController {
                 return
             }
             
-            completion(.success(responseData))
+            do {
+                let decoder = JSONDecoder()
+                let classObject = try decoder.decode(Class.self, from: responseData)
+                completion(.success(classObject))
+            } catch {
+                completion(.failure(error))
+            }
+            
+        }.resume()
+    }
+    
+    // add event to class
+    func addEvent(id: String, eventId: String, completion: @escaping (Result<Class, Error>) -> Void) {
+        let url = URL(string: "http://localhost:3000/class/classes/event/\(id)")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "PUT"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let body: [String: Any] = [
+            "eventId": eventId        ]
+        
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: body)
+            request.httpBody = jsonData
+        } catch {
+            completion(.failure(error))
+            return
+        }
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            // handle error
+            if let error = error {
+                completion(.failure(error))
+                print("Could not add event to class")
+                return
+            }
+            
+            // check for successful response status
+            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                completion(.failure(NetworkError.invalidResponse))
+                return
+            }
+            
+            // check that response data is not empty
+            guard let responseData = data else {
+                completion(.failure(NetworkError.emptyResponse))
+                return
+            }
+            
+            do {
+                let decoder = JSONDecoder()
+                let classObject = try decoder.decode(Class.self, from: responseData)
+                completion(.success(classObject))
+            } catch {
+                completion(.failure(error))
+            }
+            
+        }.resume()
+    }
+    
+    
+    // add assignment to class
+    func addAssignment(id: String, assignmentId: String, completion: @escaping (Result<Class, Error>) -> Void) {
+        let url = URL(string: "http://localhost:3000/class/classes/assignment/\(id)")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "PUT"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let body: [String: Any] = [
+            "assignmentId": assignmentId        ]
+        
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: body)
+            request.httpBody = jsonData
+        } catch {
+            completion(.failure(error))
+            return
+        }
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            // handle error
+            if let error = error {
+                completion(.failure(error))
+                print("Could not add assignment to class")
+                return
+            }
+            
+            // check for successful response status
+            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                completion(.failure(NetworkError.invalidResponse))
+                return
+            }
+            
+            // check that response data is not empty
+            guard let responseData = data else {
+                completion(.failure(NetworkError.emptyResponse))
+                return
+            }
+            
+            do {
+                let decoder = JSONDecoder()
+                let classObject = try decoder.decode(Class.self, from: responseData)
+                completion(.success(classObject))
+            } catch {
+                completion(.failure(error))
+            }
+            
+        }.resume()
+    }
+    
+    // add alert to class
+    func addAlert(id: String, alertId: String, completion: @escaping (Result<Class, Error>) -> Void) {
+        let url = URL(string: "http://localhost:3000/class/classes/alert/\(id)")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "PUT"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let body: [String: Any] = [
+            "alertId": alertId        ]
+        
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: body)
+            request.httpBody = jsonData
+        } catch {
+            completion(.failure(error))
+            return
+        }
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            // handle error
+            if let error = error {
+                completion(.failure(error))
+                print("Could not add alert to class")
+                return
+            }
+            
+            // check for successful response status
+            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                completion(.failure(NetworkError.invalidResponse))
+                return
+            }
+            
+            // check that response data is not empty
+            guard let responseData = data else {
+                completion(.failure(NetworkError.emptyResponse))
+                return
+            }
+            
+            do {
+                let decoder = JSONDecoder()
+                let classObject = try decoder.decode(Class.self, from: responseData)
+                completion(.success(classObject))
+            } catch {
+                completion(.failure(error))
+            }
+            
+        }.resume()
+    }
+    
+    // add user to class
+    func addUser(id: String, userId: String, completion: @escaping (Result<Class, Error>) -> Void) {
+        let url = URL(string: "http://localhost:3000/class/classes/user/\(id)")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "PUT"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let body: [String: Any] = [
+            "userId": userId
+        ]
+        
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: body)
+            request.httpBody = jsonData
+        } catch {
+            completion(.failure(error))
+            return
+        }
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            // handle error
+            if let error = error {
+                completion(.failure(error))
+                print("Could not add user to class")
+                return
+            }
+            
+            // check for successful response status
+            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                completion(.failure(NetworkError.invalidResponse))
+                return
+            }
+            
+            // check that response data is not empty
+            guard let responseData = data else {
+                completion(.failure(NetworkError.emptyResponse))
+                return
+            }
+            
+            do {
+                let decoder = JSONDecoder()
+                let classObject = try decoder.decode(Class.self, from: responseData)
+                completion(.success(classObject))
+            } catch {
+                completion(.failure(error))
+            }
             
         }.resume()
     }

@@ -14,7 +14,13 @@ exports.getUserById = async(req, res) => {
         }
 
         // return success status and message along with retrieved user
-        res.status(200).json({ message: 'User retrieved successfully', retrievedUser })
+        res.status(200).json({ message: 'User retrieved successfully',
+            _id: retrievedUser._id,
+            email: retrievedUser.email,
+            schedule: retrievedUser.schedule,
+            classes: retrievedUser.classes,
+            notifications: retrievedUser.notifications
+        })
     } catch (error) {
         // catch server error
         console.error(error)
@@ -58,7 +64,13 @@ exports.setSchedule = async (req, res) => {
         }
 
         // return success status and message along with updated user
-        res.status(200).json({ message: 'Schedule set successfully', updatedUser })
+        res.status(200).json({ message: 'Schedule set successfully',
+            _id: retrievedUser._id,
+            email: retrievedUser.email,
+            schedule: retrievedUser.schedule,
+            classes: retrievedUser.classes,
+            notifications: retrievedUser.notifications
+        })
     } catch (error) {
         // catch server error
         console.error(error)
@@ -83,7 +95,13 @@ exports.addClass = async (req, res) => {
         }
 
         // return success status and message along with upated user
-        res.status(200).json({ message: 'Class added successfully', updatedUser})
+        res.status(200).json({ message: 'Class added successfully',
+            _id: retrievedUser._id,
+            email: retrievedUser.email,
+            schedule: retrievedUser.schedule,
+            classes: retrievedUser.classes,
+            notifications: retrievedUser.notifications
+        })    
     } catch (error) {
         // catch server error
         console.error(error)
@@ -107,8 +125,8 @@ exports.addNotification = async (req, res) => {
             return res.status(404).json({ error: 'User not found' })
         }
 
-        // return success status and message along with upated user
-        res.status(200).json({ message: 'Notification added successfully', updatedUser})
+        // return success status and message
+        res.status(200).json({ message: 'Notification added successfully'})
     } catch (error) {
         // catch server error
         console.error(error)

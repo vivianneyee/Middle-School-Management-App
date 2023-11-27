@@ -21,7 +21,6 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Settings"
-        
 //        do {
 //            let realm = try Realm()
 //
@@ -36,6 +35,15 @@ class SettingsViewController: UIViewController {
         
         // Add the action for the edit schedule button
         editScheButton.addTarget(self, action: #selector(editScheTapped), for: .touchUpInside)
+    }
+    
+    func weekViewDidClickOnEvent(_ weekView: ECWeekView, event: ECWeekViewEvent, view: UIView) {
+        //        eventDetailLauncher.event = event
+        //        eventDetailLauncher.present()
+    }
+    
+    func weekViewDidClickOnFreeTime(_ weekView: ECWeekView, date: DateInRegion) {
+        print(#function, "date:", date.toString())
     }
 
 //    func createClass(realm: Realm, name: String, color: String) {
