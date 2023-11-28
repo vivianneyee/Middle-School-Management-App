@@ -105,8 +105,8 @@ class UserController {
     }
     
     // add class to user
-    func joinClass(id: String, classId: String, completion: @escaping (Result<User, Error>) -> Void) {
-        let url = URL(string: "http://localhost:3000/user/users/\(id)")!
+    func joinClass(id: String, classId: String, completion: @escaping (Result<JoinClassResponse, Error>) -> Void) {
+        let url = URL(string: "http://localhost:3000/user/users/\(id)/classes")!
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -145,7 +145,7 @@ class UserController {
             
             do {
                 let decoder = JSONDecoder()
-                let userObject = try decoder.decode(User.self, from: responseData)
+                let userObject = try decoder.decode(JoinClassResponse.self, from: responseData)
                 completion(.success(userObject))
             } catch {
                 completion(.failure(error))

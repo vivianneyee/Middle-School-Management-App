@@ -1,4 +1,5 @@
 const User = require('../models/User')
+const Class = require('../models/Class')
 
 // get user by id
 exports.getUserById = async(req, res) => {
@@ -20,8 +21,7 @@ exports.getUserById = async(req, res) => {
             role: retrievedUser.role,
             schedule: retrievedUser.schedule,
             classes: retrievedUser.classes,
-            notifications: retrievedUser.notifications,
-            schedule: retrievedUser.schedule
+            notifications: retrievedUser.notifications
         })
     } catch (error) {
         // catch server error
@@ -67,11 +67,11 @@ exports.setSchedule = async (req, res) => {
 
         // return success status and message along with updated user
         res.status(200).json({ message: 'Schedule set successfully',
-            _id: retrievedUser._id,
-            email: retrievedUser.email,
-            schedule: retrievedUser.schedule,
-            classes: retrievedUser.classes,
-            notifications: retrievedUser.notifications
+            _id: updatedUser._id,
+            email: updatedUser.email,
+            schedule: updatedUser.schedule,
+            classes: updatedUser.classes,
+            notifications: updatedUser.notifications
         })
     } catch (error) {
         // catch server error
@@ -90,7 +90,8 @@ exports.addClass = async (req, res) => {
         const updatedUser = await User.findById(userId)
 
         if (updatedUser) {
-            updatedUser.classes.push(classId)
+            const retrievedClass = await Class.findById(classId)
+            updatedUser.classes.push(retrievedClass)
         } else {
             // 404 if user cannot be found
             return res.status(404).json({ error: 'User not found' })
@@ -98,11 +99,11 @@ exports.addClass = async (req, res) => {
 
         // return success status and message along with upated user
         res.status(200).json({ message: 'Class added successfully',
-            _id: retrievedUser._id,
-            email: retrievedUser.email,
-            schedule: retrievedUser.schedule,
-            classes: retrievedUser.classes,
-            notifications: retrievedUser.notifications
+            _id: updatedUser._id,
+            email: updatedUser.email,
+            schedule: updatedUser.schedule,
+            classes: updatedUser.classes,
+            notifications: updatedUser.notifications
         })    
     } catch (error) {
         // catch server error

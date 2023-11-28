@@ -96,7 +96,7 @@ class ScheduleViewController: UIViewController, ECWeekViewDataSource, ECWeekView
 //
 //        }
 //        var schedules = Schedule()
-        userController.getUserById(id: userID) { result in
+        userController.getUserById(id: self.userID) { result in
             switch result {
             case .success(let user):
                 // Access the schedule property of the user

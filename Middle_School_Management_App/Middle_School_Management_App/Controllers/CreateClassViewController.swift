@@ -12,7 +12,8 @@ import SwiftDate
 import RealmSwift
 
 class CreateClassViewController: UIViewController {
-    
+    var userID: String = ""
+
     @IBOutlet var field: UITextField!
     @IBOutlet var colour: UIColorWell!
     @IBOutlet var button: UIButton!
@@ -39,13 +40,41 @@ class CreateClassViewController: UIViewController {
 
         // add submit stuff
         let classController = ClassController()
+        let userController = UserController()
         let colourString = selectedColour.hexString
-        classController.createClass(className: className, color: colourString) { result in
+        classController.createClass(className: className, color: colourString) { [self] result in
             switch result {
-            case .success(let data):
-                print("registration successful")
+            case .success(let resData1):
+                print("create class successful")
+                print(resData1)
+                classController.addUser(id: resData1.newClass._id, userId: self.userID) { [self] result in
+                    switch result {
+                    case .success(let resData2):
+                        print("add user successful")
+                        DispatchQueue.main.async {
+                            if let navigationController = self.navigationController {
+                                navigationController.popViewController(animated: true)
+                            }
+                        }
+                    case .failure(let error):
+                        print("add user to class failed with error: \(error)")
+                    }
+                }
+//                userController.joinClass(id: self.userID, classId: resData1.newClass._id) { result in
+//                    switch result {
+//                    case .success(let resData2):
+//                        print("join class after create class successful")
+//                        DispatchQueue.main.async {
+//                            if let navigationController = self.navigationController {
+//                                navigationController.popViewController(animated: true)
+//                            }
+//                        }
+//                    case .failure(let error):
+//                        print("join class after create class failed with error: \(error)")
+//                    }
+//                }
             case .failure(let error):
-                print ("Registration failed with error: \(error)")
+                print ("create class failed with error: \(error)")
             }
         }
     }

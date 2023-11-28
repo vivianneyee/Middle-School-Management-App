@@ -70,19 +70,40 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
                     self.data = dataResponse.classes
                 }
             case .failure(let error):
-                print ("Login failed with error: \(error)")
-                DispatchQueue.main.async {
-                    let alert = UIAlertController(title: "Login failed", message: "Unable to login. Please try again later.", preferredStyle: .alert)
-                    let okAction = UIAlertAction(title: "Close", style: .default)
-                    alert.addAction(okAction)
-                    self.present(alert, animated: true, completion: nil)
-                }
+                print ("get classes failed with error: \(error)")
             }
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Fetch user data every time the view is about to appear
+        let userController = UserController()
+        userController.getUserById(id: self.userID) { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let dataResponse):
+                print("re load user data successful")
+                DispatchQueue.main.async {
+                    print(dataResponse)
+                    print(dataResponse._id)
+                    print("classes", dataResponse.classes)
+                    self.data = dataResponse.classes
+                    // Reload the table view
+                    self.table.reloadData()
+                }
+            case .failure(let error):
+                print ("get classes failed with error: \(error)")
+            }
+        }
+    }
+
+    
     @objc func didTapAdd() {
         let vc = storyboard?.instantiateViewController(identifier: "createClass") as! CreateClassViewController
+        vc.userID = self.userID
         navigationController?.pushViewController(vc, animated: true)
     }
     

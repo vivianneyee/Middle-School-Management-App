@@ -19,7 +19,7 @@ class ClassController {
     }
     
     // create a new class
-    func createClass(className: String, color: String, completion: @escaping (Result<Data, Error>) -> Void) {
+    func createClass(className: String, color: String, completion: @escaping (Result<CreateClassResponse, Error>) -> Void) {
         let url = URL(string: "http://localhost:3000/class/classes")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -59,7 +59,15 @@ class ClassController {
                 return
             }
             
-            completion(.success(responseData))
+            do {
+                let decoder = JSONDecoder()
+                let obj = try decoder.decode(CreateClassResponse.self, from: responseData)
+                completion(.success(obj))
+            } catch {
+                completion(.failure(error))
+            }
+            
+//            completion(.success(responseData))
         }.resume()
     }
     
@@ -338,7 +346,7 @@ class ClassController {
     }
     
     // add user to class
-    func addUser(id: String, userId: String, completion: @escaping (Result<Class, Error>) -> Void) {
+    func addUser(id: String, userId: String, completion: @escaping (Result<AddUserToClassResponse, Error>) -> Void) {
         let url = URL(string: "http://localhost:3000/class/classes/user/\(id)")!
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
@@ -378,7 +386,7 @@ class ClassController {
             
             do {
                 let decoder = JSONDecoder()
-                let classObject = try decoder.decode(Class.self, from: responseData)
+                let classObject = try decoder.decode(AddUserToClassResponse.self, from: responseData)
                 completion(.success(classObject))
             } catch {
                 completion(.failure(error))

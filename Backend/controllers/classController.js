@@ -35,7 +35,7 @@ exports.createClass = async (req, res) => {
 
         await newClass.save()
 
-        return res.status(201).json({ message: 'Class created successfully' })
+        return res.status(201).json({ message: 'Class created successfully', newClass: newClass })
     } catch (error) {
         // catch server error
         console.error(error)
@@ -300,19 +300,20 @@ exports.addUser = async (req, res) => {
 
         // add alert to class.alerts and save
         updatedClass.users.push(addedUser)
+        addedUser.classes.push(updatedClass)
         await updatedClass.save()
 
         // return class on success
         return res.status(200).json({message: 'User added to class successfully', class: {
-            _id: retrievedClass._id,
-            className: retrievedClass.className, 
-            color: retrievedClass.color, 
-            code: retrievedClass.code, 
-            events: retrievedClass.events, 
-            assignments: retrievedClass.assignments,
-            alerts: retrievedClass.alerts,
-            studentInputs: retrievedClass.studentInputs,
-            users: retrievedClass.users
+            _id: updatedClass._id,
+            className: updatedClass.className, 
+            color: updatedClass.color, 
+            code: updatedClass.code, 
+            events: updatedClass.events, 
+            assignments: updatedClass.assignments,
+            alerts: updatedClass.alerts,
+            studentInputs: updatedClass.studentInputs,
+            users: updatedClass.users
         }})    
     } catch (error) {
         console.error(error)

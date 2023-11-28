@@ -7,6 +7,17 @@
 
 import Foundation
 
+struct CreateClassResponse: Decodable {
+    let message: String
+    let newClass: Class
+}
+
+struct AddUserToClassResponse: Decodable {
+    let message: String
+    let `class`: Class
+}
+
+
 struct Class: Decodable {
     let _id: String
     let className: String
