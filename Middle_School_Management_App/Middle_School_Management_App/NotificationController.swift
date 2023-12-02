@@ -18,7 +18,7 @@ class NotificationController {
     }
     
     // create a new notification
-    func createNotification(className: String, title: String, completion: @escaping (Result<Notification, Error>) -> Void) {
+    func createNotification(className: String, title: String, completion: @escaping (Result<CreateNotificationResponse, Error>) -> Void) {
         let url = URL(string: "http://localhost:3000/notification/notifications")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -60,7 +60,7 @@ class NotificationController {
             
             do {
                 let decoder = JSONDecoder()
-                let notificationObject = try decoder.decode(Notification.self, from: responseData)
+                let notificationObject = try decoder.decode(CreateNotificationResponse.self, from: responseData)
                 completion(.success(notificationObject))
             } catch {
                 completion(.failure(error))
@@ -69,7 +69,7 @@ class NotificationController {
     }
     
     // get a notification by its id
-    func getNotificationById(id: String, completion: @escaping (Result<Notification, Error>) -> Void) {
+    func getNotificationById(id: String, completion: @escaping (Result<CreateNotificationResponse, Error>) -> Void) {
         let url = URL(string: "http://localhost:3000/notification/notifications/\(id)")!
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
@@ -96,7 +96,7 @@ class NotificationController {
             
             do {
                 let decoder = JSONDecoder()
-                let notificationObject = try decoder.decode(Notification.self, from: responseData)
+                let notificationObject = try decoder.decode(CreateNotificationResponse.self, from: responseData)
                 completion(.success(notificationObject))
             } catch {
                 completion(.failure(error))

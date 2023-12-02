@@ -48,6 +48,7 @@ class ScheduleViewController: UIViewController, ECWeekViewDataSource, ECWeekView
         weekView.styler = myStyler
         weekView.initDate = DateInRegion()
         print("schedule page userID: ", self.userID)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didTapAdd))
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -191,6 +192,14 @@ class ScheduleViewController: UIViewController, ECWeekViewDataSource, ECWeekView
         
         return eventView
     }
+    
+        @objc func didTapAdd() {
+            let vc = storyboard?.instantiateViewController(identifier: "createSche") as! CreateScheduleViewController
+            navigationController?.pushViewController(vc, animated: true)
+    
+//            vc.title = "Create New Event"
+        }
+    
 }
 
 class MyWeekViewStyler: ECWeekViewStyler {

@@ -23,10 +23,10 @@ struct Class: Decodable {
     let className: String
     let color: String
     let code: String
-    let events: [Event]
-    let assignments: [Assignment]
-    let alerts: [Alert]
-    let users: [User]
+    let events: [String]
+    let assignments: [String]
+    let alerts: [String]
+    let users: [String]
     
     enum CodingKeys: String, CodingKey {
         case _id
@@ -45,9 +45,9 @@ struct Class: Decodable {
         self.className = try container.decode(String.self, forKey: .className)
         self.color = try container.decode(String.self, forKey: .color)
         self.code = try container.decode(String.self, forKey: .code)
-        self.events = try container.decode([Event].self, forKey: .events)
-        self.assignments = try container.decode([Assignment].self, forKey: .assignments)
-        self.alerts = try container.decode([Alert].self, forKey: .alerts)
-        self.users = try container.decode([User].self, forKey: .users)
+        self.events = try container.decode([String].self, forKey: .events)
+        self.assignments = try container.decode([String].self, forKey: .assignments)
+        self.alerts = try container.decode([String].self, forKey: .alerts)
+        self.users = try container.decode([String].self, forKey: .users)
     }
 }

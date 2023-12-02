@@ -17,12 +17,13 @@ exports.createEvent = async (req, res) => {
 
         await newEvent.save()
 
-        return res.status(201).json({ message: 'Event created successfully', 
-            _id: retrievedEvent._id,
-            title: retrievedEvent.title,
-            datePosted: retrievedEvent.datePosted,
-            startDate: retrievedEvent.startDate,
-            endDate: retrievedEvent.endDate 
+        return res.status(201).json({ message: 'Event created successfully', event: {
+            _id: newEvent._id,
+            title: newEvent.title,
+            description: newEvent.description,
+            datePosted: newEvent.datePosted,
+            startDate: newEvent.startDate,
+            endDate: newEvent.endDate }
         })
     } catch (error) {
         // catch server error
@@ -43,12 +44,13 @@ exports.getEventById = async (req, res) => {
             return res.status(404),json({ error: 'Event not found' })
         } else {
             // return 200 and event if successful
-            return res.status(200).json({ message: 'Event retrieved successfully', 
+            return res.status(200).json({ message: 'Event retrieved successfully', event: {
                 _id: retrievedEvent._id,
                 title: retrievedEvent.title,
+                description: retrievedEvent.description,
                 datePosted: retrievedEvent.datePosted,
                 startDate: retrievedEvent.startDate,
-                endDate: retrievedEvent.endDate
+                endDate: retrievedEvent.endDate }
             })
         }
     } catch (error) {
@@ -75,11 +77,12 @@ exports.updateEvent = async (req, res) => {
 
         // on success return 200 status, success message, and updated event
         return res.status(200).json({ message: 'Event retrieved successfully', 
-            _id: retrievedEvent._id,
-            title: retrievedEvent.title,
-            datePosted: retrievedEvent.datePosted,
-            startDate: retrievedEvent.startDate,
-            endDate: retrievedEvent.endDate
+            _id: updatedEvent._id,
+            title: updatedEvent.title,
+            description: updatedEvent.description,
+            datePosted: updatedEvent.datePosted,
+            startDate: updatedEvent.startDate,
+            endDate: updatedEvent.endDate
         })    
     } catch (error) {
         // catch server error

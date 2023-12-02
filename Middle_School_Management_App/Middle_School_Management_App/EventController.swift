@@ -18,18 +18,20 @@ class EventController {
     }
     
     // create a new event
-    func createEvent(title: String, description: String, startDate: Date, endDate: Date, completion: @escaping (Result<Event, Error>) -> Void) {
+    func createEvent(title: String, description: String, startDate: Date, endDate: Date, completion: @escaping (Result<GetEventResponse, Error>) -> Void) {
         let url = URL(string: "http://localhost:3000/event/events")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
 
-                
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ" // Use the appropriate date format
+        
         let body: [String: Any] = [
             "title": title,
             "description": description,
-            "startDate": startDate,
-            "endDate": endDate
+            "startDate": formatter.string(from: startDate),
+            "endDate": formatter.string(from: endDate)
         ]
         
         do {
@@ -62,7 +64,7 @@ class EventController {
             
             do {
                 let decoder = JSONDecoder()
-                let eventObject = try decoder.decode(Event.self, from: responseData)
+                let eventObject = try decoder.decode(GetEventResponse.self, from: responseData)
                 completion(.success(eventObject))
             } catch {
                 completion(.failure(error))
@@ -71,7 +73,7 @@ class EventController {
     }
     
     // get an event by its id
-    func getEventById(id: String, completion: @escaping (Result<Event, Error>) -> Void) {
+    func getEventById(id: String, completion: @escaping (Result<GetEventResponse, Error>) -> Void) {
         let url = URL(string: "http://localhost:3000/event/events/\(id)")!
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
@@ -98,7 +100,7 @@ class EventController {
             
             do {
                 let decoder = JSONDecoder()
-                let eventObject = try decoder.decode(Event.self, from: responseData)
+                let eventObject = try decoder.decode(GetEventResponse.self, from: responseData)
                 completion(.success(eventObject))
             } catch {
                 completion(.failure(error))
@@ -108,17 +110,20 @@ class EventController {
     }
     
     // update an event
-    func updateEvent(id: String, title: String, description: String, startDate: Date, endDate: Date, completion: @escaping (Result<Event, Error>) -> Void) {
+    func updateEvent(id: String, title: String, description: String, startDate: Date, endDate: Date, completion: @escaping (Result<GetEventResponse, Error>) -> Void) {
         let url = URL(string: "http://localhost:3000/event/events/\(id)")!
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ" // Use the appropriate date format
+        
         let body: [String: Any] = [
             "title": title,
             "description": description,
-            "startDate": startDate,
-            "endDate": endDate
+            "startDate": formatter.string(from: startDate),
+            "endDate": formatter.string(from: endDate)
         ]
         
         do {
@@ -151,7 +156,7 @@ class EventController {
             
             do {
                 let decoder = JSONDecoder()
-                let eventObject = try decoder.decode(Event.self, from: responseData)
+                let eventObject = try decoder.decode(GetEventResponse.self, from: responseData)
                 completion(.success(eventObject))
             } catch {
                 completion(.failure(error))

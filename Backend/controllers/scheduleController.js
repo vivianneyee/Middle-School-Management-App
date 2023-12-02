@@ -38,7 +38,7 @@ exports.getScheduleById = async (req, res) => {
         const retrievedSchedule = await Schedule.findById(scheduleId)
 
         if (!retrievedSchedule) {
-            return res.status(404),json({ error: 'Schedule not found' })
+            return res.status(404).json({ error: 'Schedule not found' })
         } else {
             return res.status(200).json({ message: 'Schedule retrieved successfully', 
                 _id: retrievedSchedule._id,

@@ -15,12 +15,12 @@ exports.createAssignment = async (req, res) => {
 
         await newAssignment.save()
 
-        return res.status(201).json({ message: 'Assignment created successfully', 
-            _id: retrievedAssignment._id,
-            title: retrievedAssignment.title,
-            description: retrievedAssignment.description,
-            datePosted: retrievedAssignment.datePosted,
-            dueDate: retrievedAssignment.dueDate
+        return res.status(201).json({ message: 'Assignment created successfully', assignment: {
+            _id: newAssignment._id,
+            title: newAssignment.title,
+            description: newAssignment.description,
+            datePosted: newAssignment.datePosted,
+            dueDate: newAssignment.dueDate }
         })
     } catch (error) {
         // catch server error
@@ -41,12 +41,12 @@ exports.getAssignmentById = async (req, res) => {
             return res.status(404),json({ error: 'Assignment not found' })
         } else {
             // return 200 and assignment if successful
-            return res.status(200).json({ message: 'Assignment retrieved successfully', 
+            return res.status(200).json({ message: 'Assignment retrieved successfully', assignment: {
                 _id: retrievedAssignment._id,
                 title: retrievedAssignment.title,
                 description: retrievedAssignment.description,
                 datePosted: retrievedAssignment.datePosted,
-                dueDate: retrievedAssignment.dueDate
+                dueDate: retrievedAssignment.dueDate }
             })
         }
     } catch (error) {
@@ -72,12 +72,12 @@ exports.updateAssignment = async (req, res) => {
         }
 
         // on success return 200 status, success message, and updated assignment
-        res.status(200).json({ message: 'Assignment updated successfully', 
-            _id: retrievedAssignment._id,
-            title: retrievedAssignment.title,
-            description: retrievedAssignment.description,
-            datePosted: retrievedAssignment.datePosted,
-            dueDate: retrievedAssignment.dueDate
+        res.status(200).json({ message: 'Assignment updated successfully', assignment : {
+            _id: updatedAssignment._id,
+            title: updatedAssignment.title,
+            description: updatedAssignment.description,
+            datePosted: updatedAssignment.datePosted,
+            dueDate: updatedAssignment.dueDate }
         })
     } catch (error) {
         // catch server error

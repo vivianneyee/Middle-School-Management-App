@@ -1,5 +1,6 @@
 const User = require('../models/User')
 const Class = require('../models/Class')
+const Notification = require('../models/Notification')
 
 // get user by id
 exports.getUserById = async(req, res) => {
@@ -87,11 +88,22 @@ exports.addClass = async (req, res) => {
 
     try {
         // find user by id
+        // const updatedUser = await User.findById(userId)
+        // const retrievedClass = await Class.findById(classId)
         const updatedUser = await User.findById(userId)
+        const retrievedClass = await Class.findById(classId)
 
-        if (updatedUser) {
-            const retrievedClass = await Class.findById(classId)
-            updatedUser.classes.push(retrievedClass)
+        if (updatedUser && retrievedClass) {
+            // const retrievedClass = await Class.findById(classId)
+            updatedUser.classes.push(classId)
+            // await updatedUser.save();
+            // retrievedClass.users.push(updatedUser)
+            // await retrievedClass.save();
+            // Save both updatedUser and retrievedClass after changes
+
+            console.log("updatedUser ", updatedUser)
+            // console.log("updateduser classes, users ", updatedUser.classes[0].users)
+
         } else {
             // 404 if user cannot be found
             return res.status(404).json({ error: 'User not found' })
@@ -100,10 +112,10 @@ exports.addClass = async (req, res) => {
         // return success status and message along with upated user
         res.status(200).json({ message: 'Class added successfully',
             _id: updatedUser._id,
-            email: updatedUser.email,
-            schedule: updatedUser.schedule,
-            classes: updatedUser.classes,
-            notifications: updatedUser.notifications
+            // email: updatedUser.email,
+            // schedule: updatedUser.schedule,
+            // classes: updatedUser.classes,
+            // notifications: updatedUser.notifications
         })    
     } catch (error) {
         // catch server error
@@ -120,16 +132,24 @@ exports.addNotification = async (req, res) => {
     try {
         // find user by id 
         const updatedUser = await User.findById(userId)
+        const retrievedNotification = await Notification.findById(notificationId)
 
-        if (updatedUser) {
+        if (updatedUser && retrievedNotification) {
             updatedUser.notifications.push(notificationId)
+            await updatedUser.save()
+            console.log("updatedUser ", updatedUser)
         } else {
             // 404 if user cannot be found
             return res.status(404).json({ error: 'User not found' })
         }
 
         // return success status and message
-        res.status(200).json({ message: 'Notification added successfully'})
+        res.status(200).json({ message: 'Notification added successfully', _id: updatedUser._id,
+        email: updatedUser.email,
+        role: updatedUser.role,
+        schedule: updatedUser.schedule,
+        classes: updatedUser.classes,
+        notifications: updatedUser.notifications})
     } catch (error) {
         // catch server error
         console.error(error)

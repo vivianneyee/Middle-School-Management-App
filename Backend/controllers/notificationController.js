@@ -15,11 +15,12 @@ exports.createNotification = async (req, res) => {
 
         await newNotification.save()
 
-        return res.status(201).json({ message: 'Notification created successfully', 
-            _id: retrievedNotification._id,
-            className: retrievedNotification.className,
-            title: retrievedNotification.title,
-            datePosted: retrievedNotification.datePosted
+        return res.status(201).json({ message: 'Notification created successfully', notification: {
+            _id: newNotification._id,
+            className: newNotification.className,
+            title: newNotification.title,
+            datePosted: newNotification.datePosted
+        }
         })
     } catch (error) {
         // catch server error
@@ -40,11 +41,11 @@ exports.getNotificationById = async (req, res) => {
             return res.status(404),json({ error: 'Notification not found' })
         } else {
             // return 200 and noitification if successful
-            return res.status(200).json({ message: 'Notification retrieved successfully', 
+            return res.status(200).json({ message: 'Notification retrieved successfully', notification : {
                 _id: retrievedNotification._id,
                 className: retrievedNotification.className,
                 title: retrievedNotification.title,
-                datePosted: retrievedNotification.datePosted
+                datePosted: retrievedNotification.datePosted }
             })
         }
     } catch (error) {

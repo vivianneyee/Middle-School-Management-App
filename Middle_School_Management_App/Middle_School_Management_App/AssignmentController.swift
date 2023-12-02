@@ -18,17 +18,19 @@ class AssignmentController {
     }
     
     // create a new assignment
-    func createAssignment(title: String, description: String, dueDate: Date, completion: @escaping (Result<Assignment, Error>) -> Void) {
+    func createAssignment(title: String, description: String, dueDate: Date, completion: @escaping (Result<GetAssignmentResponse, Error>) -> Void) {
         let url = URL(string: "http://localhost:3000/assignment/assignments")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ" // Use the appropriate date format
                 
         let body: [String: Any] = [
             "title": title,
             "description": description,
-            "dueDate": dueDate
+            "dueDate": formatter.string(from: dueDate)
         ]
         
         do {
@@ -61,7 +63,7 @@ class AssignmentController {
             
             do {
                 let decoder = JSONDecoder()
-                let assignmentObject = try decoder.decode(Assignment.self, from: responseData)
+                let assignmentObject = try decoder.decode(GetAssignmentResponse.self, from: responseData)
                 completion(.success(assignmentObject))
             } catch {
                 completion(.failure(error))
@@ -70,7 +72,7 @@ class AssignmentController {
     }
     
     // get an assignment by its id
-    func getAssignmentById(id: String, completion: @escaping (Result<Assignment, Error>) -> Void) {
+    func getAssignmentById(id: String, completion: @escaping (Result<GetAssignmentResponse, Error>) -> Void) {
         let url = URL(string: "http://localhost:3000/assignment/assignments/\(id)")!
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
@@ -97,7 +99,7 @@ class AssignmentController {
             
             do {
                 let decoder = JSONDecoder()
-                let assignmentObject = try decoder.decode(Assignment.self, from: responseData)
+                let assignmentObject = try decoder.decode(GetAssignmentResponse.self, from: responseData)
                 completion(.success(assignmentObject))
             } catch {
                 completion(.failure(error))
@@ -107,16 +109,19 @@ class AssignmentController {
     }
     
     // update an assignment
-    func updateAssignment(id: String, title: String, description: String, dueDate: Date, completion: @escaping (Result<Assignment, Error>) -> Void) {
+    func updateAssignment(id: String, title: String, description: String, dueDate: Date, completion: @escaping (Result<GetAssignmentResponse, Error>) -> Void) {
         let url = URL(string: "http://localhost:3000/assignment/assignments/\(id)")!
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ" // Use the appropriate date format
+                
         let body: [String: Any] = [
             "title": title,
             "description": description,
-            "dueDate": dueDate
+            "dueDate": formatter.string(from: dueDate)
         ]
         
         do {
@@ -149,7 +154,7 @@ class AssignmentController {
             
             do {
                 let decoder = JSONDecoder()
-                let assignmentObject = try decoder.decode(Assignment.self, from: responseData)
+                let assignmentObject = try decoder.decode(GetAssignmentResponse.self, from: responseData)
                 completion(.success(assignmentObject))
             } catch {
                 completion(.failure(error))

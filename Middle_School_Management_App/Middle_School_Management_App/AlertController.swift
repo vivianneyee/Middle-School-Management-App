@@ -18,7 +18,7 @@ class AlertController {
     }
     
     // create a new alert
-    func createAlert(title: String, description: String, priority: String, completion: @escaping (Result<Alert, Error>) -> Void) {
+    func createAlert(title: String, description: String, priority: String, completion: @escaping (Result<GetAlertResponse, Error>) -> Void) {
         let url = URL(string: "http://localhost:3000/alert/alerts")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -61,7 +61,7 @@ class AlertController {
             
             do {
                 let decoder = JSONDecoder()
-                let alertObject = try decoder.decode(Alert.self, from: responseData)
+                let alertObject = try decoder.decode(GetAlertResponse.self, from: responseData)
                 completion(.success(alertObject))
             } catch {
                 completion(.failure(error))
@@ -70,7 +70,7 @@ class AlertController {
     }
     
     // get an alert by its id
-    func getAlertById(id: String, completion: @escaping (Result<Alert, Error>) -> Void) {
+    func getAlertById(id: String, completion: @escaping (Result<GetAlertResponse, Error>) -> Void) {
         let url = URL(string: "http://localhost:3000/alert/alerts/\(id)")!
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
@@ -97,7 +97,7 @@ class AlertController {
             
             do {
                 let decoder = JSONDecoder()
-                let alertObject = try decoder.decode(Alert.self, from: responseData)
+                let alertObject = try decoder.decode(GetAlertResponse.self, from: responseData)
                 completion(.success(alertObject))
             } catch {
                 completion(.failure(error))
@@ -107,7 +107,7 @@ class AlertController {
     }
     
     // update an alert
-    func updateAlert(id: String, title: String, description: String, priority: String, completion: @escaping (Result<Alert, Error>) -> Void) {
+    func updateAlert(id: String, title: String, description: String, priority: String, completion: @escaping (Result<GetAlertResponse, Error>) -> Void) {
         let url = URL(string: "http://localhost:3000/alert/alerts/\(id)")!
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
@@ -149,7 +149,7 @@ class AlertController {
             
             do {
                 let decoder = JSONDecoder()
-                let alertObject = try decoder.decode(Alert.self, from: responseData)
+                let alertObject = try decoder.decode(GetAlertResponse.self, from: responseData)
                 completion(.success(alertObject))
             } catch {
                 completion(.failure(error))

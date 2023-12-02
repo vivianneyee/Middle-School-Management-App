@@ -15,8 +15,8 @@ import UserNotifications
 
 class NotificationsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UNUserNotificationCenterDelegate {
     @IBOutlet weak var table: UITableView!
-    var userID: String = "default"
-    
+    var userID: String = ""
+    var allNotifs: [Notification] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         // Request user permission for notifications
@@ -35,6 +35,306 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
         table.delegate = self
         print("notif page userID: ", self.userID)
         
+        let userController = UserController()
+        let classContoller = ClassController()
+        let notifController = NotificationController()
+        let alertController = AlertController()
+        let eventController = EventController()
+        let assController = AssignmentController()
+        self.allNotifs.removeAll()
+//         get user by id
+        userController.getUserById(id: self.userID){ [self] result in
+            switch result {
+            case .success(let dataResponse):
+                print("get user success")
+                for n in dataResponse.notifications {
+                    notifController.getNotificationById(id: n) { [self] result in
+                        switch result {
+                        case .success(let dataResponse):
+                            print("get notif success")
+                            self.allNotifs.append(dataResponse.notification)
+                            DispatchQueue.main.async {
+                                print("self.allNotifs", self.allNotifs)
+                                self.table.reloadData()
+                            }
+                        case .failure(let error):
+                            print("get notif failed", error)
+                        }
+                        
+                    }
+                }
+            case .failure(let error):
+                print("get user failure")
+            }
+        }
+        
+        
+//        // get user by id
+//        userController.getUserById(id: self.userID){ [self] result in
+//            switch result {
+//            case .success(let dataResponse):
+//                print("Login successful")
+//
+//                    print(dataResponse)
+//                    print(dataResponse._id)
+//                    print("classes", dataResponse.classes)
+//                // iterate through user's classes
+//                for c in dataResponse.classes {
+//                    classContoller.getClassById(id: c){ [self] result in
+//                        switch result {
+//                        case .success(let dataResponse):
+//                            var classTitle = dataResponse.class.className
+//                            print(dataResponse)
+//                            // for each class, go through each alert
+//                            for al in dataResponse.class.alerts {
+//                                alertController.getAlertById(id: al) { [self] result in
+//                                    switch result {
+//                                    case .success(let dataResponse):
+//                                        print(dataResponse)
+//                                        notifController.createNotification(className: classTitle, title: dataResponse.title ) { [self] result in
+//                                            switch result {
+//                                            case .success(let dataResponse):
+//                                                print(dataResponse)
+//                                                // create a new notification object for each one and append to the allNotifs array
+//                                                let newNotif = Notification(_id: dataResponse._id, className: dataResponse.className, title: dataResponse.title, datePosted: dataResponse.datePosted)
+////                                                self.allNotifs.append(newNotif)
+//                                            case .failure(let error):
+//                                                print("error", error)
+//                                            }
+//                                        }
+//                                    case .failure(let error):
+//                                        print("error", error)
+//                                    }
+//                                }
+//                                DispatchQueue.main.async {
+//                                    self.table.reloadData()
+//                                }
+//                            }
+//                            // for each class, go through each event
+//                            for ev in dataResponse.class.events {
+//                                eventController.getEventById(id: ev) { [self] result in
+//                                    switch result {
+//                                    case .success(let dataResponse):
+//                                        print(dataResponse)
+//                                        notifController.createNotification(className: classTitle, title: dataResponse.title ) { [self] result in
+//                                            switch result {
+//                                            case .success(let dataResponse):
+//                                                print(dataResponse)
+//                                                // create a new notification object for each one and append to the allNotifs array
+//                                                let newNotif = Notification(_id: dataResponse._id, className: dataResponse.className, title: dataResponse.title, datePosted: dataResponse.datePosted)
+//                                                self.allNotifs.append(newNotif)
+//                                            case .failure(let error):
+//                                                print("error", error)
+//                                            }
+//                                        }
+//                                    case .failure(let error):
+//                                        print("error", error)
+//                                    }
+//                                }
+//                                DispatchQueue.main.async {
+//                                    self.table.reloadData()
+//                                }
+//                            }
+//                            // for each class, go through each assignment
+//                            for ass in dataResponse.class.assignments {
+//                                assController.getAssignmentById(id: ass) { [self] result in
+//                                    switch result {
+//                                    case .success(let dataResponse):
+//                                        print(dataResponse)
+//                                        notifController.createNotification(className: classTitle, title: dataResponse.title ) { [self] result in
+//                                            switch result {
+//                                            case .success(let dataResponse):
+//                                                print(dataResponse)
+//                                                // create a new notification object for each one and append to the allNotifs array
+//                                                let newNotif = Notification(_id: dataResponse._id, className: dataResponse.className, title: dataResponse.title, datePosted: dataResponse.datePosted)
+//                                                self.allNotifs.append(newNotif)
+//                                            case .failure(let error):
+//                                                print("error", error)
+//                                            }
+//                                        }
+//                                    case .failure(let error):
+//                                        print("error", error)
+//                                    }
+//                                }
+//                                for n in allNotifs {
+//                                    userController.addNotification(id: self.userID, notificationId: n._id) { [self] result in
+//                                        switch result {
+//                                        case .success(let dataResponse):
+//                                            print(dataResponse)
+//                                        case .failure(let error):
+//                                            print ("add notif to user failed with error: \(error)")
+//                                        }
+//                                    }
+//                                }
+//                                DispatchQueue.main.async {
+//                                    self.table.reloadData()
+//                                }
+//                            }
+//
+//                        case .failure(let error):
+//                            print ("get classes failed with error: \(error)")
+//                        }
+//                        //                    self.data = dataResponse.classes
+//                    }
+//                }
+//            case .failure(let error):
+//                print ("get classes failed with error: \(error)")
+//            }
+//        }
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let userController = UserController()
+        let classContoller = ClassController()
+        let notifController = NotificationController()
+        let alertController = AlertController()
+        let eventController = EventController()
+        let assController = AssignmentController()
+      self.allNotifs.removeAll()
+        userController.getUserById(id: self.userID){ [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let dataResponse):
+                print("get user success")
+                for n in dataResponse.notifications {
+                    notifController.getNotificationById(id: n) { [self] result in
+                        switch result {
+                        case .success(let dataResponse):
+                            print("get notif success")
+                            self.allNotifs.append(dataResponse.notification)
+                            DispatchQueue.main.async {
+                                print("self.allNotifs", self.allNotifs)
+                                self.table.reloadData()
+                            }
+                        case .failure(let error):
+                            print("get notif failed", error)
+                        }
+                        
+                    }
+                }
+            case .failure(let error):
+                print("get user failure")
+            }
+        }
+        DispatchQueue.main.async {
+            self.table.reloadData()
+        }
+//        // get user by id
+//        userController.getUserById(id: self.userID){ [weak self] result in
+//            guard let self = self else { return }
+//            switch result {
+//            case .success(let dataResponse):
+//                print("Login successful")
+//
+//                    print(dataResponse)
+//                    print(dataResponse._id)
+//                    print("classes", dataResponse.classes)
+//                // iterate through user's classes
+//                for c in dataResponse.classes {
+//                    classContoller.getClassById(id: c){ [self] result in
+//                        switch result {
+//                        case .success(let dataResponse):
+//                            var classTitle = dataResponse.class.className
+//                            print(dataResponse)
+//                            // for each class, go through each alert
+//                            for al in dataResponse.class.alerts {
+//                                alertController.getAlertById(id: al) { [self] result in
+//                                    switch result {
+//                                    case .success(let dataResponse):
+//                                        print(dataResponse)
+//                                        notifController.createNotification(className: classTitle, title: dataResponse.title ) { [self] result in
+//                                            switch result {
+//                                            case .success(let dataResponse):
+//                                                print(dataResponse)
+//                                                // create a new notification object for each one and append to the allNotifs array
+//                                                let newNotif = Notification(_id: dataResponse._id, className: dataResponse.className, title: dataResponse.title, datePosted: dataResponse.datePosted)
+//                                                self.allNotifs.append(newNotif)
+//                                            case .failure(let error):
+//                                                print("error", error)
+//                                            }
+//                                        }
+//                                    case .failure(let error):
+//                                        print("error", error)
+//                                    }
+//                                }
+//                                DispatchQueue.main.async {
+//                                    self.table.reloadData()
+//                                }
+//                            }
+//                            // for each class, go through each event
+//                            for ev in dataResponse.class.events {
+//                                eventController.getEventById(id: ev) { [self] result in
+//                                    switch result {
+//                                    case .success(let dataResponse):
+//                                        print(dataResponse)
+//                                        notifController.createNotification(className: classTitle, title: dataResponse.title ) { [self] result in
+//                                            switch result {
+//                                            case .success(let dataResponse):
+//                                                print(dataResponse)
+//                                                // create a new notification object for each one and append to the allNotifs array
+//                                                let newNotif = Notification(_id: dataResponse._id, className: dataResponse.className, title: dataResponse.title, datePosted: dataResponse.datePosted)
+//                                                self.allNotifs.append(newNotif)
+//                                            case .failure(let error):
+//                                                print("error", error)
+//                                            }
+//                                        }
+//                                    case .failure(let error):
+//                                        print("error", error)
+//                                    }
+//                                }
+//                                DispatchQueue.main.async {
+//                                    self.table.reloadData()
+//                                }
+//                            }
+//                            // for each class, go through each assignment
+//                            for ass in dataResponse.class.assignments {
+//                                assController.getAssignmentById(id: ass) { [self] result in
+//                                    switch result {
+//                                    case .success(let dataResponse):
+//                                        print(dataResponse)
+//                                        notifController.createNotification(className: classTitle, title: dataResponse.title ) { [self] result in
+//                                            switch result {
+//                                            case .success(let dataResponse):
+//                                                print(dataResponse)
+//                                                // create a new notification object for each one and append to the allNotifs array
+//                                                let newNotif = Notification(_id: dataResponse._id, className: dataResponse.className, title: dataResponse.title, datePosted: dataResponse.datePosted)
+//                                                self.allNotifs.append(newNotif)
+//                                            case .failure(let error):
+//                                                print("error", error)
+//                                            }
+//                                        }
+//                                    case .failure(let error):
+//                                        print("error", error)
+//                                    }
+//                                }
+//                                for n in self.allNotifs {
+//                                    userController.addNotification(id: self.userID, notificationId: n._id) { [self] result in
+//                                        switch result {
+//                                        case .success(let dataResponse):
+//                                            print(dataResponse)
+//                                        case .failure(let error):
+//                                            print ("add notif to user failed with error: \(error)")
+//                                        }
+//                                    }
+//                                }
+//                                DispatchQueue.main.async {
+//                                    self.table.reloadData()
+//                                }
+//                            }
+//
+//                        case .failure(let error):
+//                            print ("get classes failed with error: \(error)")
+//                        }
+//                        //                    self.data = dataResponse.classes
+//                    }
+//                }
+//            case .failure(let error):
+//                print ("get classes failed with error: \(error)")
+//            }
+//        }
     }
     
     //    @objc func didTapAdd() {
@@ -56,16 +356,31 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
         let eventCell = allNotifs[indexPath.row]
         let cell = table.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! NotifTableViewCell
         
-        let date = Calendar.current.date(from: eventCell.date)
+//        // Create an instance of Calendar
+//        let calendar = Calendar.current
+//
+//        // Extract components from the Date
+//        let date = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: eventCell.datePosted)
+//        let date = Calendar.current.date(from: eventCell.datePosted)
         let formatter = DateFormatter()
         formatter.dateFormat = "MMMM dd yyyy"
         
         
-        cell.date.text = formatter.string(from : date!)
+//        cell.date.text = formatter.string(from : eventCell.datePosted)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         
-        cell.className.text = eventCell.name
+        if let date = dateFormatter.date(from: eventCell.datePosted) {
+            dateFormatter.dateFormat = "MMMM dd yyyy"
+            let formattedDate = dateFormatter.string(from: date)
+            cell.date.text = formattedDate
+        } else {
+            cell.date.text = eventCell.datePosted
+        }
+        cell.className.text = eventCell.className
         
-        cell.notif.text = eventCell.notif
+        cell.notif.text = eventCell.title
         
         return cell
     }

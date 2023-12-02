@@ -51,7 +51,7 @@ exports.getClassById = async (req, res) => {
         const retrievedClass = await Class.findById(classId)
 
         if (!retrievedClass) {
-            return res.status(404),json({ error: 'Class not found' })
+            return res.status(404).json({ error: 'Class not found' })
         } else {
             return res.status(200).json({message: 'Class retrieved successfully', class: {
                 _id: retrievedClass._id,
@@ -73,8 +73,7 @@ exports.getClassById = async (req, res) => {
 
 // get class by class code
 exports.getClassByCode = async (req, res) => {
-
-    const { code } = req.body
+    const code = req.params.code
 
     try {
         // try to find class with code from request body
@@ -91,7 +90,7 @@ exports.getClassByCode = async (req, res) => {
                 events: retrievedClass.events, 
                 assignments: retrievedClass.assignments,
                 alerts: retrievedClass.alerts,
-                studentInputs: retrievedClass.studentInputs,
+                // studentInputs: retrievedClass.studentInputs,
                 users: retrievedClass.users
             }})
         } else {
@@ -168,15 +167,15 @@ exports.addEvent = async (req, res) => {
 
         // return class on success
         return res.status(200).json({message: 'Event added to class successfully', class: {
-            _id: retrievedClass._id,
-            className: retrievedClass.className, 
-            color: retrievedClass.color, 
-            code: retrievedClass.code, 
-            events: retrievedClass.events, 
-            assignments: retrievedClass.assignments,
-            alerts: retrievedClass.alerts,
-            studentInputs: retrievedClass.studentInputs,
-            users: retrievedClass.users
+            _id: updatedClass._id,
+            className: updatedClass.className, 
+            color: updatedClass.color, 
+            code: updatedClass.code, 
+            events: updatedClass.events, 
+            assignments: updatedClass.assignments,
+            alerts: updatedClass.alerts,
+            studentInputs: updatedClass.studentInputs,
+            users: updatedClass.users
         }})    
     } catch (error) {
         console.error(error)
@@ -194,7 +193,7 @@ exports.addAssignment = async (req, res) => {
         const updatedClass = await Class.findById(classId)
 
         // find the assignment by id
-        const addedAssignment = await Event.findById(assignmentId)
+        const addedAssignment = await Assignment.findById(assignmentId)
 
         if (!updatedClass) {
             // 404 if class with given id does not exist
@@ -214,15 +213,15 @@ exports.addAssignment = async (req, res) => {
 
         // return class on success
         return res.status(200).json({message: 'Assignment added to class successfully', class: {
-            _id: retrievedClass._id,
-            className: retrievedClass.className, 
-            color: retrievedClass.color, 
-            code: retrievedClass.code, 
-            events: retrievedClass.events, 
-            assignments: retrievedClass.assignments,
-            alerts: retrievedClass.alerts,
-            studentInputs: retrievedClass.studentInputs,
-            users: retrievedClass.users
+            _id: updatedClass._id,
+            className: updatedClass.className, 
+            color: updatedClass.color, 
+            code: updatedClass.code, 
+            events: updatedClass.events, 
+            assignments: updatedClass.assignments,
+            alerts: updatedClass.alerts,
+            studentInputs: updatedClass.studentInputs,
+            users: updatedClass.users
         }})    
     } catch (error) {
         console.error(error)
@@ -253,22 +252,22 @@ exports.addAlert = async (req, res) => {
         }
 
         // add alert to class.alerts and save
-        updatedClass.alerts.push(addedAlert)
+        updatedClass.alerts.push(alertId)
         await updatedClass.save()
 
         // create notificaiton for this alert
 
         // return class on success
         return res.status(200).json({message: 'Alert added to class successfully', class: {
-            _id: retrievedClass._id,
-            className: retrievedClass.className, 
-            color: retrievedClass.color, 
-            code: retrievedClass.code, 
-            events: retrievedClass.events, 
-            assignments: retrievedClass.assignments,
-            alerts: retrievedClass.alerts,
-            studentInputs: retrievedClass.studentInputs,
-            users: retrievedClass.users
+            _id: updatedClass._id,
+            className: updatedClass.className, 
+            color: updatedClass.color, 
+            code: updatedClass.code, 
+            events: updatedClass.events, 
+            assignments: updatedClass.assignments,
+            alerts: updatedClass.alerts,
+            studentInputs: updatedClass.studentInputs,
+            users: updatedClass.users
         }})    
     } catch (error) {
         console.error(error)
@@ -299,9 +298,10 @@ exports.addUser = async (req, res) => {
         }
 
         // add alert to class.alerts and save
-        updatedClass.users.push(addedUser)
-        addedUser.classes.push(updatedClass)
+        updatedClass.users.push(userId)
         await updatedClass.save()
+        addedUser.classes.push(classId)
+        await addedUser.save()
 
         // return class on success
         return res.status(200).json({message: 'User added to class successfully', class: {

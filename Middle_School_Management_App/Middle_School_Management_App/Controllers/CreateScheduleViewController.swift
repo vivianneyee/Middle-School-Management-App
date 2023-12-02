@@ -1,8 +1,8 @@
 //
-//  CreatePostViewController.swift
+//  CreateScheduleViewController.swift
 //  Middle_School_Management_App
 //
-//  Created by Vivienne Cruz on 2023-10-15.
+//  Created by Vivienne Cruz on 2023-11-30.
 //
 
 import Foundation
@@ -12,14 +12,15 @@ import SwiftDate
 import RealmSwift
 
 // EVENT, ASSIGNMENT, ALERT
-class CreatePostViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class CreateScheduleViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     @IBOutlet weak var dateTF: UITextField!
     @IBOutlet weak var priorityTF: UITextField!
     @IBOutlet weak var titleTF: UITextField!
     @IBOutlet weak var descTF: UITextField!
     
     var className: String = ""
-    
+    var userID: String = ""
+    var classID: String = ""
     // Array of options for the priority dropdown
     let priorityOptions = ["Low", "Medium", "High"]
 
@@ -89,7 +90,6 @@ class CreatePostViewController: UIViewController, UIPickerViewDelegate, UIPicker
     @IBAction func tappedCreate() {
         // add create stuff
         if self.title == "Create New Alert" {
-            
             guard let title = titleTF.text,
                let desc = descTF.text,
                let priority = priorityTF.text else {
@@ -97,6 +97,13 @@ class CreatePostViewController: UIViewController, UIPickerViewDelegate, UIPicker
                print("Please fill in all fields.")
                return
                }
+            createAlert(title: title, description: desc, priority: priority, classId: self.classID)
+            DispatchQueue.main.async {
+                if let navigationController = self.navigationController {
+                    navigationController.popViewController(animated: true)
+                }
+            }
+            
         // call function to create new alert
             // CHANGE THIS TO PASS THE ACTUAL CLASS OBJECT
 //            let classObj = Class(name: self.className, color: UIColor.red.hexString, code: "1111")
@@ -117,7 +124,12 @@ class CreatePostViewController: UIViewController, UIPickerViewDelegate, UIPicker
 //                    print ("New alert failed with error: \(error)")
 //                }
 //            }
-        } else {
+        } else if self.title == "Create New Assignment" {
+            
+        } else if self.title == "Create New Event" {
+            
+        }
+        else {
             print("No title set for this view controller.")
         }
     }
@@ -134,12 +146,12 @@ class CreatePostViewController: UIViewController, UIPickerViewDelegate, UIPicker
             case .success(let eventObject):
                 print("Event created successfully")
                 // add event to class
-                classController.addEvent(id: classId, eventId: eventObject._id) { result in
+                classController.addEvent(id: classId, eventId: eventObject.event._id) { [self] result in
                     switch result {
                     case .success(let classObject):
                         print("Event added successfully to class: \(classObject)")
                         // create notification for post
-                        self.createNotifForPost(classId: classId, postTitle: eventObject.title)
+                        self.createNotifForPost(classId: classId, postTitle: eventObject.event.title)
                     case .failure(let error):
                         print("Error adding event: \(error)")
                     }
@@ -162,12 +174,12 @@ class CreatePostViewController: UIViewController, UIPickerViewDelegate, UIPicker
             case .success(let assignmentObject):
                 print("Assignment created successfully")
                 // add assignment to class
-                classController.addAssignment(id: classId, assignmentId: assignmentObject._id) { result in
+                classController.addAssignment(id: classId, assignmentId: assignmentObject.assignment._id) { result in
                     switch result {
                     case .success(let classObject):
                         print("Assignment added successfully to class: \(classObject)")
                         // create notification for post
-                        self.createNotifForPost(classId: classId, postTitle: assignmentObject.title)
+                        self.createNotifForPost(classId: classId, postTitle: assignmentObject.assignment.title)
                     case .failure(let error):
                         print("Error adding assignment: \(error)")
                     }
@@ -190,12 +202,12 @@ class CreatePostViewController: UIViewController, UIPickerViewDelegate, UIPicker
             case .success(let alertObject):
                 print("Alert created successfully")
                 // add alert to class
-                classController.addAssignment(id: classId, assignmentId: alertObject._id) { result in
+                classController.addAlert(id: classId, alertId: alertObject.alert._id) { result in
                     switch result {
                     case .success(let classObject):
                         print("Assignment added successfully to class: \(classObject)")
                         // create notification for post
-                        self.createNotifForPost(classId: classId, postTitle: alertObject.title)
+                        self.createNotifForPost(classId: classId, postTitle: alertObject.alert.title)
                     case .failure(let error):
                         print("Error adding alert: \(error)")
                     }
@@ -220,8 +232,8 @@ class CreatePostViewController: UIViewController, UIPickerViewDelegate, UIPicker
                 print("Class retrieved successfully: \(classObject)")
                 
                 // get class users and name
-                let users = classObject.users
-                let className = classObject.className
+                let users = classObject.class.users
+                let className = classObject.class.className
                 
                 // create a notification for the class post
                 notificationController.createNotification(className: className, title: postTitle) { result in
@@ -230,7 +242,8 @@ class CreatePostViewController: UIViewController, UIPickerViewDelegate, UIPicker
                         // loop through users and add notification for each user
                         print("Notification created successfully: \(notificationObject)")
                         for user in users {
-                            userController.addNotification(id: user._id, notificationId: notificationObject._id) { result in
+                            print("user ", user)
+                            userController.addNotification(id: user, notificationId: notificationObject.notification._id) { result in
                                 switch result {
                                 case .success(let userObject):
                                     print("Notification added successfully for user \(userObject)")
