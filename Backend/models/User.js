@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema({
     }],
     schedule: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Schedule' // ref to schedule model
+        ref: 'Schedule' // ref to schedule model,
     },
     notifications: [{
         type: mongoose.Schema.Types.ObjectId,

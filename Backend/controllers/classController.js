@@ -105,6 +105,41 @@ exports.getClassByCode = async (req, res) => {
     
 }
 
+// get class by class name
+exports.getClassByName = async (req, res) => {
+    const className = req.params.className
+
+    try {
+        // try to find class with code from request body
+        const retrievedClass = await Class.findOne({ className: className }).exec()
+            
+        // check if class with that code exists
+        if (retrievedClass) {
+            // return class if it exists
+            return res.status(200).json({message: 'Class retrieved successfully', class: {
+                _id: retrievedClass._id,
+                className: retrievedClass.className, 
+                color: retrievedClass.color, 
+                code: retrievedClass.code, 
+                events: retrievedClass.events, 
+                assignments: retrievedClass.assignments,
+                alerts: retrievedClass.alerts,
+                // studentInputs: retrievedClass.studentInputs,
+                users: retrievedClass.users
+            }})
+        } else {
+            // 404 if class does not exist
+            return res.status(404).json({ error: 'Class not found' })
+        }
+    } catch (error) {
+        console.error(error)
+        return res.status(500).json({ error: 'Internal Server Error' })
+    }
+
+    
+}
+
+
 // update class
 exports.updateClass = async (req, res) => {
     const classId = req.params.id

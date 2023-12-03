@@ -55,8 +55,8 @@ class UserController {
     }
     
     // update user schedule
-    func setSchedule(id: String, scheduleId: String, completion: @escaping (Result<User, Error>) -> Void) {
-        let url = URL(string: "http://localhost:3000/user/users/\(id)")!
+    func setSchedule(id: String, scheduleId: String, completion: @escaping (Result<GetUserResponse, Error>) -> Void) {
+        let url = URL(string: "http://localhost:3000/user/users/\(id)/schedule")!
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -95,7 +95,7 @@ class UserController {
             
             do {
                 let decoder = JSONDecoder()
-                let userObject = try decoder.decode(User.self, from: responseData)
+                let userObject = try decoder.decode(GetUserResponse.self, from: responseData)
                 completion(.success(userObject))
             } catch {
                 completion(.failure(error))

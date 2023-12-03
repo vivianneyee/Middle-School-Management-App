@@ -146,6 +146,57 @@ class ClassController {
         }.resume()
     }
     
+    // get a class by its code
+    func getClassByName(className: String, completion: @escaping (Result<AddUserToClassResponse, Error>) -> Void) {
+        print("className", className)
+//        print("url", URL(string: "http://localhost:3000/class/classes/name/\(className)")!)
+        let trimmedClassName = className.trimmingCharacters(in: .whitespaces)
+        print("trimmedClassName", trimmedClassName)
+        // Encode the class name to ensure it's URL-safe
+
+        guard let encodedClassName = trimmedClassName.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed),
+              let url = URL(string: "http://localhost:3000/class/classes/name/\(encodedClassName)") else {
+            // Handle the invalid URL or className here
+            print("url failed")
+            return
+        }
+//        print("url", url)
+//        let url = URL(string: "http://localhost:3000/class/classes/name/\(className)")!
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            // handle error
+            if let error = error {
+                completion(.failure(error))
+                print("Could not find class")
+                return
+            }
+            
+            // check for successful response status
+            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                completion(.failure(NetworkError.invalidResponse))
+                return
+            }
+            
+            // check that response data is not empty
+            guard let responseData = data else {
+                completion(.failure(NetworkError.emptyResponse))
+                return
+            }
+            
+            do {
+                let decoder = JSONDecoder()
+                let classObject = try decoder.decode(AddUserToClassResponse.self, from: responseData)
+                completion(.success(classObject))
+            } catch {
+                completion(.failure(error))
+            }
+            
+        }.resume()
+    }
+    
     // update a class
     func updateClass(id: String, className: String, color: String, completion: @escaping (Result<AddUserToClassResponse, Error>) -> Void) {
         let url = URL(string: "http://localhost:3000/class/classes/\(id)")!

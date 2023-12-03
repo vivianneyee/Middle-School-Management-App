@@ -131,7 +131,6 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
         let userController = UserController()
         let classContoller = ClassController()
         self.data.removeAll()
-        let dispatchGroup = DispatchGroup()
 
             // Start dispatch group
 //            dispatchGroup.enter()

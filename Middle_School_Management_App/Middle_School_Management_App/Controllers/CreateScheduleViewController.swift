@@ -13,124 +13,310 @@ import RealmSwift
 
 // EVENT, ASSIGNMENT, ALERT
 class CreateScheduleViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
-    @IBOutlet weak var dateTF: UITextField!
-    @IBOutlet weak var priorityTF: UITextField!
-    @IBOutlet weak var titleTF: UITextField!
-    @IBOutlet weak var descTF: UITextField!
+    
+//    @IBOutlet weak var dayTF: UITextField!
+    @IBOutlet weak var period1TF: UITextField!
+    @IBOutlet weak var period2TF: UITextField!
+    @IBOutlet weak var period3TF: UITextField!
+    @IBOutlet weak var period4TF: UITextField!
+    @IBOutlet weak var period5TF: UITextField!
+    @IBOutlet weak var period6TF: UITextField!
+    @IBOutlet weak var period7TF: UITextField!
+    @IBOutlet weak var button: UIButton!
+//    @IBOutlet weak var classTF: UITextField!
     
     var className: String = ""
     var userID: String = ""
     var classID: String = ""
+    var scheduleID: String = ""
+    var changedDays: [Int] = [-1]
+    var scheduleData: [[String]] = [["","","","","","",""], ["","","","","","",""], ["","","","","","",""], ["","","","","","",""], ["","","","","","",""], ["","","","","","",""], ["","","","","","",""], ["","","","","","",""], ["","","","","","",""], ["","","","","","",""]]
+    var scheduleDataID: [[String]] = [["","","","","","",""], ["","","","","","",""], ["","","","","","",""], ["","","","","","",""], ["","","","","","",""], ["","","","","","",""], ["","","","","","",""], ["","","","","","",""], ["","","","","","",""], ["","","","","","",""]]
     // Array of options for the priority dropdown
-    let priorityOptions = ["Low", "Medium", "High"]
-
+    let dayOptions = ["Day 1", "Day 2", "Day 3", "Day 4", "Day 5", "Day 6", "Day 7", "Day 8", "Day 9", "Day 10",]
+    let periodOptions = ["Period 1", "Period 2", "Period 3", "Period 4", "Period 5", "Period 6", "Period 7"]
+    var classOptions: [Class] = []
+    var currentDay: Int = 0
     
     // Picker view for the dropdown options
-    let pickerView: UIPickerView = {
+    let periodPickerView: UIPickerView = {
         let pickerView = UIPickerView()
         return pickerView
     }()
 
+    // Picker view for the dropdown options
+    let dayPickerView: UIPickerView = {
+        let pickerView = UIPickerView()
+        return pickerView
+    }()
+    
+    // Picker view for the dropdown options
+    let p1PickerView: UIPickerView = {
+        let pickerView = UIPickerView()
+        return pickerView
+    }()
+    
+    // Picker view for the dropdown options
+    let p2PickerView: UIPickerView = {
+        let pickerView = UIPickerView()
+        return pickerView
+    }()
+    
+    // Picker view for the dropdown options
+    let p3PickerView: UIPickerView = {
+        let pickerView = UIPickerView()
+        return pickerView
+    }()
+    
+    // Picker view for the dropdown options
+    let p4PickerView: UIPickerView = {
+        let pickerView = UIPickerView()
+        return pickerView
+    }()
+    
+    // Picker view for the dropdown options
+    let p5PickerView: UIPickerView = {
+        let pickerView = UIPickerView()
+        return pickerView
+    }()
+    
+    // Picker view for the dropdown options
+    let p6PickerView: UIPickerView = {
+        let pickerView = UIPickerView()
+        return pickerView
+    }()
+    
+    // Picker view for the dropdown options
+    let p7PickerView: UIPickerView = {
+        let pickerView = UIPickerView()
+        return pickerView
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        pickerView.delegate = self
-        
-        // date picker stuff
-        let datePicker = UIDatePicker()
-        datePicker.datePickerMode = .date
-        datePicker.addTarget(self, action: #selector(dateChange(datePicker:)), for: UIControl.Event.valueChanged)
-        datePicker.frame.size = CGSize(width: 0, height: 300)
-        datePicker.preferredDatePickerStyle = .wheels
-        
-        dateTF.inputView = datePicker
-        
-        dateTF.text = formatDate(date: Date())
-        
+        print("curent day", self.currentDay)
+        self.changedDays.append(self.currentDay)
+//        let scrollView = UIScrollView()
+//        scrollView.translatesAutoresizingMaskIntoConstraints = false
+//        view.addSubview(scrollView)
+//
+//        let contentView = UIView()
+//        contentView.translatesAutoresizingMaskIntoConstraints = false
+//        scrollView.addSubview(contentView)
+//
+//        NSLayoutConstraint.activate([
+//            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+//            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+//            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+//            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+//
+//            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+//            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+//            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+//            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+//            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
+//        ])
+
+//        periodPickerView.delegate = self
+//        dayPickerView.delegate = self
+//        classPickerView.delegate = self
+//
+//        periodPickerView.dataSource = self
+//        dayPickerView.dataSource = self
+//        classPickerView.dataSource = self
+        p1PickerView.delegate = self
+        p1PickerView.dataSource = self
+
+        p2PickerView.delegate = self
+        p2PickerView.dataSource = self
+
+        p3PickerView.delegate = self
+        p3PickerView.dataSource = self
+
+        p4PickerView.delegate = self
+        p4PickerView.dataSource = self
+
+        p5PickerView.delegate = self
+        p5PickerView.dataSource = self
+
+        p6PickerView.delegate = self
+        p6PickerView.dataSource = self
+
+        p7PickerView.delegate = self
+        p7PickerView.dataSource = self
+//
         // priority dropdown stuff
-        priorityTF.placeholder = "Select option"
-        priorityTF.inputView = pickerView
-    }
-    
-    @objc func dateChange(datePicker: UIDatePicker) {
-        dateTF.text = formatDate(date: datePicker.date)
-    }
-    
-    func formatDate(date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MMMM dd yyyy"
-        return formatter.string(from: date)
+//        periodTF.placeholder = "Select period"
+//        periodTF.inputView = periodPickerView
+//
+//        dayTF.placeholder = "Select day"
+//        dayTF.inputView = dayPickerView
+//
+        period1TF.placeholder = "Select class for period 1"
+        period1TF.inputView = p1PickerView
+        
+        period2TF.placeholder = "Select class for period 2"
+        period2TF.inputView = p2PickerView
+        
+        period3TF.placeholder = "Select class for period 3"
+        period3TF.inputView = p3PickerView
+        
+        period4TF.placeholder = "Select class for period 4"
+        period4TF.inputView = p4PickerView
+        
+        period5TF.placeholder = "Select class for period 5"
+        period5TF.inputView = p5PickerView
+        
+        period6TF.placeholder = "Select class for period 6"
+        period6TF.inputView = p6PickerView
+        
+        period7TF.placeholder = "Select class for period 7"
+        period7TF.inputView = p7PickerView
+        
+        let userController = UserController()
+        let classController = ClassController()
+        userController.getUserById(id: self.userID){ [self] result in
+            switch result {
+            case .success(let user):
+                print("get user success")
+                let userClasses = user.classes
+                for cl in userClasses {
+                    classController.getClassById(id: cl){ [self] result in
+                        switch result {
+                        case .success(let classResult):
+                            print("get class success", classResult)
+                            self.classOptions.append(classResult.class)
+                        case .failure(let error):
+                            print("get class failed ", error)
+                        }
+                    }
+                }
+            case .failure(let error):
+                print("get user failed ", error)
+            }
+        }
     }
     
     // MARK: - UIPickerViewDataSource
-
     // Number of components in the picker view (columns)
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+    func numberOfComponents(in periodPickerView: UIPickerView) -> Int {
         return 1
     }
 
+    // MARK: - UIPickerViewDelegate
+            
     // Number of rows in the picker view
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return priorityOptions.count
+        return self.classOptions.count
     }
-
-    // MARK: - UIPickerViewDelegate
 
     // Title for each row in the picker view
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return priorityOptions[row]
+        return self.classOptions[row].className
     }
 
     // Handle selection in the picker view
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        priorityTF.text = priorityOptions[row]
-        priorityTF.resignFirstResponder() // Hide the picker view after selection
-    }
-    
-    @IBAction func tappedCreate() {
-        // add create stuff
-        if self.title == "Create New Alert" {
-            guard let title = titleTF.text,
-               let desc = descTF.text,
-               let priority = priorityTF.text else {
-               // Handle error if any of the fields is empty
-               print("Please fill in all fields.")
-               return
-               }
-            createAlert(title: title, description: desc, priority: priority, classId: self.classID)
-            DispatchQueue.main.async {
-                if let navigationController = self.navigationController {
-                    navigationController.popViewController(animated: true)
-                }
-            }
-            
-        // call function to create new alert
-            // CHANGE THIS TO PASS THE ACTUAL CLASS OBJECT
-//            let classObj = Class(name: self.className, color: UIColor.red.hexString, code: "1111")
-//            let realm = try! Realm() // Instantiate a Realm instance
-//            let postController = PostContoller(realm: realm)
-
-//            let result = postController.createAlert(classObj: classObj, title: title, desc: desc, priority: priority)
-//            if result != nil {
-//                print("new alert created successfully")
-//            } else {
-//                print ("New alert failed with error: \(error)")
-//            }
-//            { result in
-//                switch result {
-//                case .success(let data):
-//                    print("new alert created successfully")
-//                case .failure(let error):
-//                    print ("New alert failed with error: \(error)")
-//                }
-//            }
-        } else if self.title == "Create New Assignment" {
-            
-        } else if self.title == "Create New Event" {
-            
+        if pickerView == self.p1PickerView {
+            self.scheduleDataID[self.currentDay][0] = self.classOptions[row]._id
+            period1TF.text = self.classOptions[row].className
+            period1TF.resignFirstResponder() // Hide the picker view after selection
+        } else if pickerView == self.p2PickerView {
+            period2TF.text = self.classOptions[row].className
+            period2TF.resignFirstResponder() // Hide the picker view after selection
+        } else if pickerView == self.p3PickerView {
+            period3TF.text = self.classOptions[row].className
+            period3TF.resignFirstResponder() // Hide the picker view after selection
+        } else if pickerView == self.p4PickerView {
+            period4TF.text = self.classOptions[row].className
+            period4TF.resignFirstResponder() // Hide the picker view after selection
+        }else if pickerView == self.p5PickerView {
+            period5TF.text = self.classOptions[row].className
+            period5TF.resignFirstResponder() // Hide the picker view after selection
+        }else if pickerView == self.p6PickerView {
+            period6TF.text = self.classOptions[row].className
+            period6TF.resignFirstResponder() // Hide the picker view after selection
         }
         else {
-            print("No title set for this view controller.")
+            period7TF.text = self.classOptions[row].className
+            period7TF.resignFirstResponder() // Hide the picker view after selection
+        }
+    }
+            
+    @IBAction func tappedCreate() {
+        // add create stuff
+        guard let period1 = period1TF.text,
+        let period2 = period2TF.text,
+        let period3 = period3TF.text,
+        let period4 = period4TF.text,
+        let period5 = period5TF.text,
+        let period6 = period6TF.text,
+        let period7 = period7TF.text else {
+           // Handle error if any of the fields is empty
+           print("Please fill in all fields.")
+           return
+           }
+//        switch day {
+//        case "Day 1":
+//            daySelected =
+//        default:
+//            <#code#>
+//        }
+        
+//        if self.title == "Edit Day" + String(self.currentDay) + " Schedule" {
+//            // editing
+//            let userController = UserController()
+//            let scheduleController = ScheduleController()
+//            userController.getUserById(id: self.userID){ [self] result in
+//                switch result {
+//                case .success(let user):
+//                    print("get user success")
+//                    scheduleController.getScheduleById(id: user.schedule._id){ [self] result in
+//                        switch result {
+//                        case .success(let sch):
+//                            print("get schedule success/exists")
+//                            // edit schedule
+//                            // set user schedule
+//                        case .failure(let error):
+//                            print("get schedule failed/does not exist")
+//                            // create schedule
+//                            // set user schedule
+//                        }
+//                    }
+//                case .failure(let error):
+//                    print("get user failed")
+//                }
+//            }
+//        } else {
+//            // creating
+//        }
+//
+        
+        self.scheduleData[self.currentDay][0] += period1
+        self.scheduleData[self.currentDay][1] += period2
+        self.scheduleData[self.currentDay][2] += period3
+        self.scheduleData[self.currentDay][3] += period4
+        self.scheduleData[self.currentDay][4] += period5
+        self.scheduleData[self.currentDay][5] += period6
+        self.scheduleData[self.currentDay][6] += period7
+        
+        DispatchQueue.main.async {
+            print("scheduleData before going back to prev vc", self.scheduleData)
+            print("changedDays before going back", self.changedDays)
+//            let vc = self.storyboard?.instantiateViewController(identifier: "scheInfo") as! ScheduleInfoViewController
+//            vc.scheduleData = self.scheduleData
+//            if let navigationController = self.navigationController {
+//                navigationController.popViewController(animated: true)
+//            }
+            
+            if let navigationController = self.navigationController {
+                // Assign the updated scheduleData before popping the view controller
+                if let vc = navigationController.viewControllers.first(where: { $0 is ScheduleInfoViewController }) as? ScheduleInfoViewController {
+                    vc.scheduleData = self.scheduleData
+                    vc.changedDays = self.changedDays
+                }
+                navigationController.popViewController(animated: true)
+            }
         }
     }
     

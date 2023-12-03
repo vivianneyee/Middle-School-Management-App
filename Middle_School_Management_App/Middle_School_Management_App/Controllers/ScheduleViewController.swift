@@ -16,6 +16,7 @@ class ScheduleViewController: UIViewController, ECWeekViewDataSource, ECWeekView
     @IBOutlet private var weekView: ECWeekView!
     var userID: String = ""
     let userController = UserController()
+    let scheduleController = ScheduleController()
     func weekViewStylerHeaderView(_ weekView: ECWeekView, with date: DateInRegion, in cell: UICollectionViewCell) -> UIView? {
         let headerView = UIView(frame: CGRect(x: 0, y: 5, width: cell.bounds.width, height: 40))
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: headerView.bounds.width, height: headerView.bounds.height))
@@ -35,10 +36,22 @@ class ScheduleViewController: UIViewController, ECWeekViewDataSource, ECWeekView
     var showsDateHeader: Bool = true
     
     var dateHeaderHeight: CGFloat = 12
-    var myStyler: ECWeekViewStyler = MyWeekViewStyler()
-    
-    
-    
+    var myStyler: MyWeekViewStyler = MyWeekViewStyler()
+    var scheduleID: String = ""
+    // Get the schedule for the current weekday
+    var day1Sche: [String] = []
+    var day2Sche: [String] = []
+    var day3Sche: [String] = []
+    var day4Sche: [String] = []
+    var day5Sche: [String] = []
+    var day6Sche: [String] = []
+    var day7Sche: [String] = []
+    var day8Sche: [String] = []
+    var day9Sche: [String] = []
+    var day10Sche: [String] = []
+    var scheduleArray: [[String]] = [[]]
+    var classToColour: [String:String] = ["":""]
+    let classController = ClassController()
     //    let eventDetailLauncher = EventDetailLauncher()
     
     override func viewDidLoad() {
@@ -49,12 +62,73 @@ class ScheduleViewController: UIViewController, ECWeekViewDataSource, ECWeekView
         weekView.initDate = DateInRegion()
         print("schedule page userID: ", self.userID)
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didTapAdd))
+//        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(didTapEdit))
+        userController.getUserById(id: self.userID) { [self] result in
+            switch result {
+            case .success(let user):
+                print("able to get user on schedule page", user)
+//                if let scheduleID = user.schedule?._id {
+                scheduleController.getScheduleById(id: user.schedule) { [self] result in
+                        switch result {
+                        case .success(let schedule):
+                            print("schedule exists", schedule)
+                            DispatchQueue.main.async {
+                                self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(self.didTapEdit))
+                            }
+                            print("testing")
+                            self.day1Sche = schedule.day1
+                            self.day2Sche = schedule.day2
+                            self.day3Sche = schedule.day3
+                            self.day4Sche = schedule.day4
+                            self.day5Sche = schedule.day5
+                            self.day6Sche = schedule.day6
+                            self.day7Sche = schedule.day7
+                            self.day8Sche = schedule.day8
+                            self.day9Sche = schedule.day9
+                            self.day10Sche = schedule.day10
+                                
+                            self.scheduleArray = [day1Sche, day2Sche, day3Sche, day4Sche, day5Sche, day6Sche, day7Sche, day8Sche, day9Sche, day10Sche]
+                            for d in scheduleArray {
+                                print("for d in scheduleArray {")
+                                for c in d {
+                                    print("Current class name", c)
+                                    if !(c.isEmpty) {
+                                        classController.getClassByName(className: c) { [self] result in
+                                            switch result {
+                                            case .success(let cl):
+                                                print("get class by name successs", cl)
+                                                self.classToColour.updateValue(cl.class.color, forKey: cl.class.className)
+                                            case .failure(let error):
+                                                print("get class by name failed", error)
+                                            }
+                                            
+                                        }
+                                    } else {
+                                        print("no class for that period, c:", c)
+                                    }
+                                }
+                            }
+                            myStyler.classToColour = self.classToColour
+                        case .failure (let error):
+                            print("failed to get schedule", error)
+                        }
+                    }
+//                } else {
+//                    print("user has no schedule?")
+//                }
+            case .failure(let error):
+                print("failed to get user on schedule page", error)
+            }
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         weekView.dataSource = self
         weekView.delegate = self
+//        DispatchQueue.main.async {
+//            weekView.reloadData()
+//        }
     }
     
     func weekViewGenerateEvents(_ weekView: ECWeekView, date: DateInRegion, eventCompletion: @escaping ([ECWeekViewEvent]?) -> Void) -> [ECWeekViewEvent]? {
@@ -68,18 +142,18 @@ class ScheduleViewController: UIViewController, ECWeekViewDataSource, ECWeekView
         }
         
         // Create a dictionary of classes and their colors
-        let classes = [
-            "Math": UIColor.red,
-            "6B - Art": UIColor.blue,
-            "6A - Art": UIColor.blue,
-            "Gym": UIColor.green,
-            "Music": UIColor.yellow,
-            "French": UIColor.purple,
-            "Social Studies": UIColor.orange,
-            "Planning Time": UIColor.cyan,
-            "Languages": UIColor.systemPink
-        ]
-        
+//        let classes = [
+//            "Math": UIColor.red,
+//            "6B - Art": UIColor.blue,
+//            "6A - Art": UIColor.blue,
+//            "Gym": UIColor.green,
+//            "Music": UIColor.yellow,
+//            "French": UIColor.purple,
+//            "Social Studies": UIColor.orange,
+//            "Planning Time": UIColor.cyan,
+//            "Languages": UIColor.systemPink
+//        ]
+//
         // Create an array of schedules
 //        let schedules = [
 //            ["6B - Art", "6A - Art", "Gym", "Music", "French", "Social Studies", "Planning Time"],
@@ -97,29 +171,75 @@ class ScheduleViewController: UIViewController, ECWeekViewDataSource, ECWeekView
 //
 //        }
 //        var schedules = Schedule()
-        userController.getUserById(id: self.userID) { result in
+        userController.getUserById(id: self.userID) { [self] result in
             switch result {
             case .success(let user):
-                // Access the schedule property of the user
-                if let schedules = user.schedule {
-                    // Get the schedule index for the current weekday
+//                if let scheduleID = user.schedule?._id {
+                    self.scheduleID = scheduleID
+                    // Access the schedule property of the user
+                    let schedules = user.schedule
+                        // Get the schedule index for the current weekday
                     let scheduleIndex = (weekday - 2) % 10
+                scheduleController.getScheduleById(id: schedules) { [self] result in
+                        switch result {
+                        case .success(let schedule):
+                            print("schedule exists")
+                            DispatchQueue.main.async {
+                                self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(self.didTapEdit))
+                            }
+                            self.day1Sche = schedule.day1
+                            self.day2Sche = schedule.day2
+                            self.day3Sche = schedule.day3
+                            self.day4Sche = schedule.day4
+                            self.day5Sche = schedule.day5
+                            self.day6Sche = schedule.day6
+                            self.day7Sche = schedule.day7
+                            self.day8Sche = schedule.day8
+                            self.day9Sche = schedule.day9
+                            self.day10Sche = schedule.day10
+                                
+                            self.scheduleArray = [day1Sche, day2Sche, day3Sche, day4Sche, day5Sche, day6Sche, day7Sche, day8Sche, day9Sche, day10Sche]
+                            for d in scheduleArray {
+                                for c in d {
+                                    print("Current class name", c)
+                                    if !(c.isEmpty) {
+                                        classController.getClassByName(className: c) { [self] result in
+                                            switch result {
+                                            case .success(let cl):
+                                                print("get class by name successs", cl)
+                                                self.classToColour.updateValue(cl.class.color, forKey: cl.class.className)
+                                            case .failure(let error):
+                                                print("get class by name failed", error)
+                                            }
+                                            
+                                        }
+                                    } else {
+                                        print("no class for that period, c:", c)
+                                    }
+                                }
+                            }
+                            myStyler.classToColour = self.classToColour
+                            print("self.classToColour", self.classToColour)
+                        case .failure (let error):
+                            print("failed to get schedule", error)
+                        }
+                    }
+                        
+//                        // Get the schedule for the current weekday
+//                    self.day1Sche = schedules.day1
+//                    self.day2Sche = schedules.day2
+//                    self.day3Sche = schedules.day3
+//                    self.day4Sche = schedules.day4
+//                    self.day5Sche = schedules.day5
+//                    self.day6Sche = schedules.day6
+//                    self.day7Sche = schedules.day7
+//                    self.day8Sche = schedules.day8
+//                    self.day9Sche = schedules.day9
+//                    self.day10Sche = schedules.day10
+                        
+                    self.scheduleArray = [day1Sche, day2Sche, day3Sche, day4Sche, day5Sche, day6Sche, day7Sche, day8Sche, day9Sche, day10Sche]
                     
-                    // Get the schedule for the current weekday
-                    let day1Sche = schedules.day1
-                    let day2Sche = schedules.day2
-                    let day3Sche = schedules.day3
-                    let day4Sche = schedules.day4
-                    let day5Sche = schedules.day5
-                    let day6Sche = schedules.day6
-                    let day7Sche = schedules.day7
-                    let day8Sche = schedules.day8
-                    let day9Sche = schedules.day9
-                    let day10Sche = schedules.day10
-                    
-                    let scheduleArray = [day1Sche, day2Sche, day3Sche, day4Sche, day5Sche, day6Sche, day7Sche, day8Sche, day9Sche, day10Sche]
-                    
-                    let schedule = scheduleArray[scheduleIndex]
+                    let schedule = self.scheduleArray[scheduleIndex]
                     
                     var events = [ECWeekViewEvent]()
                     
@@ -137,12 +257,18 @@ class ScheduleViewController: UIViewController, ECWeekViewDataSource, ECWeekView
                     DispatchQueue.global(qos: .background).async {
                         eventCompletion(events)
                     }
-                } else {
-                    // Handle nil schedule here
-                    DispatchQueue.global(qos: .background).async {
-                        eventCompletion([])
-                    }
-                }
+//                } else {
+//                    // Handle the case where scheduleID is nil
+//                    // Perhaps set a default value or show an error message
+//                }
+//                self.scheduleID = user.schedule!._id
+               
+//                } else {
+//                    // Handle nil schedule here
+//                    DispatchQueue.global(qos: .background).async {
+//                        eventCompletion([])
+//                    }
+//                }
             case .failure(let error):
 
                 print("Error: \(error)")
@@ -166,43 +292,104 @@ class ScheduleViewController: UIViewController, ECWeekViewDataSource, ECWeekView
         eventView.layer.cornerRadius = 10
         eventView.layer.masksToBounds = true
         
+        // go through schedule array
+        // get each class id
+        // get class by id and get the corresponding color and then set the color for each class
         // Create a dictionary of classes and their colors
-        let classes = [
-            "Math": UIColor.red,
-            "6B - Art": UIColor.blue,
-            "6A - Art": UIColor.blue,
-            "Gym": UIColor.green,
-            "Music": UIColor.yellow,
-            "French": UIColor.purple,
-            "Social Studies": UIColor.orange,
-            "Planning Time": UIColor.cyan,
-            "Languages": UIColor.systemPink
-        ]
+//        let classes = [
+//            "Math": UIColor.red,
+//            "6B - Art": UIColor.blue,
+//            "6A - Art": UIColor.blue,
+//            "Gym": UIColor.green,
+//            "Music": UIColor.yellow,
+//            "French": UIColor.purple,
+//            "Social Studies": UIColor.orange,
+//            "Planning Time": UIColor.cyan,
+//            "Languages": UIColor.systemPink
+//        ]
+//
         
-        
-        if let classColor = classes[event.title] {
-            print(classes)
-            eventView.backgroundColor = UIColor.clear
-            eventView.layer.borderColor = classColor.cgColor // Set border color to match background color
-            eventView.layer.borderWidth = 1.0 // Set border width to 1.0 point
-        } else {
-            eventView.backgroundColor = UIColor.gray
+        if let classColor = classToColour[event.title] {
+            if let color = UIColor(hex: classColor) {
+                eventView.backgroundColor = color.withAlphaComponent(0.25)
+                eventView.layer.borderColor = color.withAlphaComponent(0.25).cgColor // Set border color to match background color
+                eventView.layer.borderWidth = 1.0 // Set border width to 1.0 point
+                
+                if eventView.backgroundColor == UIColor.blue || eventView.backgroundColor == UIColor.purple {
+                    let labelTitle = UILabel(frame: CGRect(x: 5, y: 2, width: eventView.bounds.width - 5, height: eventView.bounds.height / 2))
+                    let labelSub = UILabel(frame: CGRect(x: 5, y: eventView.bounds.height / 2, width: eventView.bounds.width - 5, height: eventView.bounds.height / 2))
+                    labelTitle.text = event.title
+                    labelTitle.font = font
+                    labelTitle.textColor = UIColor.white // Change text color as desired
+                    labelTitle.textAlignment = .left
+                    labelTitle.numberOfLines = 0
+                    labelTitle.sizeToFit()
+                    
+                    labelSub.text = event.subtitle
+                    labelSub.font = font
+                    labelSub.textColor = UIColor.white // Change text color as desired
+                    labelSub.textAlignment = .left
+                    labelSub.numberOfLines = 0
+                    labelSub.sizeToFit()
+                    
+                    eventView.addSubview(labelTitle)
+                    eventView.addSubview(labelSub)
+                    
+                } else {
+                    let labelTitle = UILabel(frame: CGRect(x: 5, y: 2, width: eventView.bounds.width - 5, height: eventView.bounds.height / 2))
+                    let labelSub = UILabel(frame: CGRect(x: 5, y: eventView.bounds.height / 2, width: eventView.bounds.width - 5, height: eventView.bounds.height / 2))
+                    labelTitle.text = event.title
+                    labelTitle.font = font
+                    labelTitle.textColor = UIColor.black // Change text color as desired
+                    labelTitle.textAlignment = .left
+                    labelTitle.numberOfLines = 0
+                    labelTitle.sizeToFit()
+                    
+                    labelSub.text = event.subtitle
+                    labelSub.font = font
+                    labelSub.textColor = UIColor.black // Change text color as desired
+                    labelSub.textAlignment = .left
+                    labelSub.numberOfLines = 0
+                    labelSub.sizeToFit()
+                    
+                    eventView.addSubview(labelTitle)
+                    eventView.addSubview(labelSub)
+                }
+            } else {
+                eventView.backgroundColor = UIColor.clear
+            }
         }
+        
         
         
         return eventView
     }
     
         @objc func didTapAdd() {
-            let vc = storyboard?.instantiateViewController(identifier: "createSche") as! CreateScheduleViewController
+            let vc = storyboard?.instantiateViewController(identifier: "scheInfo") as! ScheduleInfoViewController
             navigationController?.pushViewController(vc, animated: true)
     
-//            vc.title = "Create New Event"
+            vc.title = "Create New Schedule"
+            vc.scheduleID = self.scheduleID
+            vc.userID = self.userID
         }
+    
+    @objc func didTapEdit() {
+        let vc = storyboard?.instantiateViewController(identifier: "scheInfo") as! ScheduleInfoViewController
+        navigationController?.pushViewController(vc, animated: true)
+
+        vc.title = "Edit Schedule"
+        vc.scheduleID = self.scheduleID
+        vc.userID = self.userID
+    }
     
 }
 
 class MyWeekViewStyler: ECWeekViewStyler {
+    var classToColour: [String:String] = ["":""]
+    func updateClassColors(_ colors: [String: String]) {
+            classToColour = colors
+        }
     func weekViewStylerHeaderView(_ weekView: ECWeekView, with date: DateInRegion, in cell: UICollectionViewCell) -> UIView? {
         
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: cell.bounds.width, height: 12))
@@ -231,70 +418,139 @@ class MyWeekViewStyler: ECWeekViewStyler {
         let eventView = UIView(frame: eventContainer)
         eventView.layer.cornerRadius = 0
         eventView.layer.masksToBounds = true
-        
+    
         // Create a dictionary of classes and their colors
-        let classes = [
-            "Math": UIColor.red,
-            "6B - Art": UIColor.blue,
-            "6A - Art": UIColor.blue,
-            "Gym": UIColor.green,
-            "Music": UIColor.yellow,
-            "French": UIColor.purple,
-            "Social Studies": UIColor.orange,
-            "Planning Time": UIColor.cyan,
-            "Languages": UIColor.systemPink
-        ]
-        
-        
-        if let classColor = classes[event.title] {
-            print(classes)
-            eventView.backgroundColor = classColor.withAlphaComponent(0.25)
-            eventView.layer.borderColor = classColor.withAlphaComponent(0.25).cgColor // Set border color to match background color
-            eventView.layer.borderWidth = 1.0 // Set border width to 1.0 point
-            
-            if eventView.backgroundColor == UIColor.blue || eventView.backgroundColor == UIColor.purple {
-                let labelTitle = UILabel(frame: CGRect(x: 5, y: 2, width: eventView.bounds.width - 5, height: eventView.bounds.height / 2))
-                let labelSub = UILabel(frame: CGRect(x: 5, y: eventView.bounds.height / 2, width: eventView.bounds.width - 5, height: eventView.bounds.height / 2))
-                labelTitle.text = event.title
-                labelTitle.font = font
-                labelTitle.textColor = UIColor.white // Change text color as desired
-                labelTitle.textAlignment = .left
-                labelTitle.numberOfLines = 0
-                labelTitle.sizeToFit()
+//        let classes = [
+//            "Math": UIColor.red,
+//            "6B - Art": UIColor.blue,
+//            "6A - Art": UIColor.blue,
+//            "Gym": UIColor.green,
+//            "Music": UIColor.yellow,
+//            "French": UIColor.purple,
+//            "Social Studies": UIColor.orange,
+//            "Planning Time": UIColor.cyan,
+//            "Languages": UIColor.systemPink
+//        ]
+//
+        if let classColor = classToColour[event.title] {
+            if let color = UIColor(hex: classColor) {
+                eventView.backgroundColor = color.withAlphaComponent(0.25)
+                eventView.layer.borderColor = color.withAlphaComponent(0.25).cgColor // Set border color to match background color
+                eventView.layer.borderWidth = 1.0 // Set border width to 1.0 point
                 
-                labelSub.text = event.subtitle
-                labelSub.font = font
-                labelSub.textColor = UIColor.white // Change text color as desired
-                labelSub.textAlignment = .left
-                labelSub.numberOfLines = 0
-                labelSub.sizeToFit()
-                
-                eventView.addSubview(labelTitle)
-                eventView.addSubview(labelSub)
+                if eventView.backgroundColor == UIColor.blue || eventView.backgroundColor == UIColor.purple {
+                    let labelTitle = UILabel(frame: CGRect(x: 5, y: 2, width: eventView.bounds.width - 5, height: eventView.bounds.height / 2))
+                    let labelSub = UILabel(frame: CGRect(x: 5, y: eventView.bounds.height / 2, width: eventView.bounds.width - 5, height: eventView.bounds.height / 2))
+                    labelTitle.text = event.title
+                    labelTitle.font = font
+                    labelTitle.textColor = UIColor.white // Change text color as desired
+                    labelTitle.textAlignment = .left
+                    labelTitle.numberOfLines = 0
+                    labelTitle.sizeToFit()
+                    
+                    labelSub.text = event.subtitle
+                    labelSub.font = font
+                    labelSub.textColor = UIColor.white // Change text color as desired
+                    labelSub.textAlignment = .left
+                    labelSub.numberOfLines = 0
+                    labelSub.sizeToFit()
+                    
+                    eventView.addSubview(labelTitle)
+                    eventView.addSubview(labelSub)
+                    
+                } else {
+                    let labelTitle = UILabel(frame: CGRect(x: 5, y: 2, width: eventView.bounds.width - 5, height: eventView.bounds.height / 2))
+                    let labelSub = UILabel(frame: CGRect(x: 5, y: eventView.bounds.height / 2, width: eventView.bounds.width - 5, height: eventView.bounds.height / 2))
+                    labelTitle.text = event.title
+                    labelTitle.font = font
+                    labelTitle.textColor = UIColor.black // Change text color as desired
+                    labelTitle.textAlignment = .left
+                    labelTitle.numberOfLines = 0
+                    labelTitle.sizeToFit()
+                    
+                    labelSub.text = event.subtitle
+                    labelSub.font = font
+                    labelSub.textColor = UIColor.black // Change text color as desired
+                    labelSub.textAlignment = .left
+                    labelSub.numberOfLines = 0
+                    labelSub.sizeToFit()
+                    
+                    eventView.addSubview(labelTitle)
+                    eventView.addSubview(labelSub)
+                }
             } else {
-                let labelTitle = UILabel(frame: CGRect(x: 5, y: 2, width: eventView.bounds.width - 5, height: eventView.bounds.height / 2))
-                let labelSub = UILabel(frame: CGRect(x: 5, y: eventView.bounds.height / 2, width: eventView.bounds.width - 5, height: eventView.bounds.height / 2))
-                labelTitle.text = event.title
-                labelTitle.font = font
-                labelTitle.textColor = UIColor.black // Change text color as desired
-                labelTitle.textAlignment = .left
-                labelTitle.numberOfLines = 0
-                labelTitle.sizeToFit()
-                
-                labelSub.text = event.subtitle
-                labelSub.font = font
-                labelSub.textColor = UIColor.black // Change text color as desired
-                labelSub.textAlignment = .left
-                labelSub.numberOfLines = 0
-                labelSub.sizeToFit()
-                
-                eventView.addSubview(labelTitle)
-                eventView.addSubview(labelSub)
+                eventView.backgroundColor = UIColor.clear
             }
-        } else {
-            eventView.backgroundColor = UIColor.gray
         }
         
+        
+//        if let classColor = classes[event.title] {
+//            print(classes)
+//            eventView.backgroundColor = classColor.withAlphaComponent(0.25)
+//            eventView.layer.borderColor = classColor.withAlphaComponent(0.25).cgColor // Set border color to match background color
+//            eventView.layer.borderWidth = 1.0 // Set border width to 1.0 point
+//
+//            if eventView.backgroundColor == UIColor.blue || eventView.backgroundColor == UIColor.purple {
+//                let labelTitle = UILabel(frame: CGRect(x: 5, y: 2, width: eventView.bounds.width - 5, height: eventView.bounds.height / 2))
+//                let labelSub = UILabel(frame: CGRect(x: 5, y: eventView.bounds.height / 2, width: eventView.bounds.width - 5, height: eventView.bounds.height / 2))
+//                labelTitle.text = event.title
+//                labelTitle.font = font
+//                labelTitle.textColor = UIColor.white // Change text color as desired
+//                labelTitle.textAlignment = .left
+//                labelTitle.numberOfLines = 0
+//                labelTitle.sizeToFit()
+//
+//                labelSub.text = event.subtitle
+//                labelSub.font = font
+//                labelSub.textColor = UIColor.white // Change text color as desired
+//                labelSub.textAlignment = .left
+//                labelSub.numberOfLines = 0
+//                labelSub.sizeToFit()
+//
+//                eventView.addSubview(labelTitle)
+//                eventView.addSubview(labelSub)
+//            } else {
+//                let labelTitle = UILabel(frame: CGRect(x: 5, y: 2, width: eventView.bounds.width - 5, height: eventView.bounds.height / 2))
+//                let labelSub = UILabel(frame: CGRect(x: 5, y: eventView.bounds.height / 2, width: eventView.bounds.width - 5, height: eventView.bounds.height / 2))
+//                labelTitle.text = event.title
+//                labelTitle.font = font
+//                labelTitle.textColor = UIColor.black // Change text color as desired
+//                labelTitle.textAlignment = .left
+//                labelTitle.numberOfLines = 0
+//                labelTitle.sizeToFit()
+//
+//                labelSub.text = event.subtitle
+//                labelSub.font = font
+//                labelSub.textColor = UIColor.black // Change text color as desired
+//                labelSub.textAlignment = .left
+//                labelSub.numberOfLines = 0
+//                labelSub.sizeToFit()
+//
+//                eventView.addSubview(labelTitle)
+//                eventView.addSubview(labelSub)
+//            }
+//        } else {
+//            eventView.backgroundColor = UIColor.gray
+//        }
+//
         return eventView
     }
 }
+//extension UIColor {
+//    convenience init?(hex: String) {
+//        var hexSanitized = hex.trimmingCharacters(in: .whitespacesAndNewlines)
+//        hexSanitized = hexSanitized.replacingOccurrences(of: "#", with: "")
+//
+//        var rgb: UInt64 = 0
+//
+//        guard Scanner(string: hexSanitized).scanHexInt64(&rgb) else {
+//            return nil
+//        }
+//
+//        let red = CGFloat((rgb & 0xFF0000) >> 16) / 255.0
+//        let green = CGFloat((rgb & 0x00FF00) >> 8) / 255.0
+//        let blue = CGFloat(rgb & 0x0000FF) / 255.0
+//
+//        self.init(red: red, green: green, blue: blue, alpha: 1.0)
+//    }
+//}

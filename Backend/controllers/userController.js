@@ -8,7 +8,7 @@ exports.getUserById = async(req, res) => {
     
     try {
         // find user by id
-        const retrievedUser = await User.findById(userId)
+        const retrievedUser = await User.findById(userId).select('email role schedule classes notifications')
 
         if (!retrievedUser) {
             // 404 if user cannot be found
@@ -70,6 +70,7 @@ exports.setSchedule = async (req, res) => {
         res.status(200).json({ message: 'Schedule set successfully',
             _id: updatedUser._id,
             email: updatedUser.email,
+            role: updatedUser.role,
             schedule: updatedUser.schedule,
             classes: updatedUser.classes,
             notifications: updatedUser.notifications

@@ -81,6 +81,8 @@
 		811C57842B19804600997FFE /* CreateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811C57832B19804600997FFE /* CreateEventViewController.swift */; };
 		811C57862B19805900997FFE /* CreateAssignmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811C57852B19805900997FFE /* CreateAssignmentViewController.swift */; };
 		811C57882B19819F00997FFE /* CreateScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811C57872B19819F00997FFE /* CreateScheduleViewController.swift */; };
+		811C578A2B1BF1FB00997FFE /* ScheduleInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811C57892B1BF1FB00997FFE /* ScheduleInfoViewController.swift */; };
+		811C578C2B1BF2DB00997FFE /* ScheduleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811C578B2B1BF2DB00997FFE /* ScheduleTableViewCell.swift */; };
 		8126D2DA29E3A39B00BD8CA7 /* CalendarKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8126D2D929E3A39B00BD8CA7 /* CalendarKit */; };
 		8126D2DD29E5188400BD8CA7 /* KVKCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 8126D2DC29E5188400BD8CA7 /* KVKCalendar */; };
 		8126D2E029E5DFC100BD8CA7 /* ECWeekView in Frameworks */ = {isa = PBXBuildFile; productRef = 8126D2DF29E5DFC100BD8CA7 /* ECWeekView */; };
@@ -172,6 +174,8 @@
 		811C57832B19804600997FFE /* CreateEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventViewController.swift; sourceTree = "<group>"; };
 		811C57852B19805900997FFE /* CreateAssignmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAssignmentViewController.swift; sourceTree = "<group>"; };
 		811C57872B19819F00997FFE /* CreateScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateScheduleViewController.swift; sourceTree = "<group>"; };
+		811C57892B1BF1FB00997FFE /* ScheduleInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleInfoViewController.swift; sourceTree = "<group>"; };
+		811C578B2B1BF2DB00997FFE /* ScheduleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleTableViewCell.swift; sourceTree = "<group>"; };
 		817204EF2B15587700344564 /* CustomTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		B5021C6F2A2E4C8E000325BF /* Class.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Class.swift; sourceTree = "<group>"; };
 		B5021C712A2E4C9E000325BF /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
@@ -247,6 +251,7 @@
 				81035C5A2ADDF21500CADFE2 /* NotifTableViewCell.swift */,
 				81035C5B2ADDF21500CADFE2 /* LinkTableViewCell.swift */,
 				81035C5C2ADDF21500CADFE2 /* PostTableViewCell.swift */,
+				811C578B2B1BF2DB00997FFE /* ScheduleTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -278,6 +283,7 @@
 				811C57832B19804600997FFE /* CreateEventViewController.swift */,
 				811C57852B19805900997FFE /* CreateAssignmentViewController.swift */,
 				811C57872B19819F00997FFE /* CreateScheduleViewController.swift */,
+				811C57892B1BF1FB00997FFE /* ScheduleInfoViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -523,6 +529,7 @@
 			files = (
 				B593B87F2AC8A2DB00E3552C /* AuthManager.swift in Sources */,
 				81035CA12ADDF21500CADFE2 /* CreateAlertViewController.swift in Sources */,
+				811C578A2B1BF1FB00997FFE /* ScheduleInfoViewController.swift in Sources */,
 				817204F02B15587700344564 /* CustomTabBarController.swift in Sources */,
 				81035C8C2ADDF21500CADFE2 /* EventViewController.swift in Sources */,
 				81035CA72ADDF21500CADFE2 /* CreateClassViewController.swift in Sources */,
@@ -546,6 +553,7 @@
 				B53ED10B29BF7AD50087A59A /* AppDelegate.swift in Sources */,
 				B553D0452B0D7D0F00935749 /* Notification.swift in Sources */,
 				81035C742ADDF21500CADFE2 /* NotifTableViewCell.swift in Sources */,
+				811C578C2B1BF2DB00997FFE /* ScheduleTableViewCell.swift in Sources */,
 				B5021C742A2E4DDE000325BF /* ClassController.swift in Sources */,
 				811C57882B19819F00997FFE /* CreateScheduleViewController.swift in Sources */,
 				81035C7D2ADDF21500CADFE2 /* SignupViewController.swift in Sources */,

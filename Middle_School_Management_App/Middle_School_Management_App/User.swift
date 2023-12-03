@@ -61,7 +61,7 @@ struct GetUserResponse: Decodable {
 //    let hashedPassword: String
     let role: String
     let classes: [String]
-    let schedule: Schedule?
+    let schedule: String
     let notifications: [String]
     
     enum CodingKeys: String, CodingKey {
@@ -83,7 +83,7 @@ struct GetUserResponse: Decodable {
 //        self.hashedPassword = try container.decode(String.self, forKey: .hashedPassword)
         self.role = try container.decode(String.self, forKey: .role)
         self.classes = try container.decode([String].self, forKey: .classes)
-        self.schedule = try? container.decode(Schedule.self, forKey: .schedule)
+        self.schedule = try container.decode(String.self, forKey: .schedule)
          self.notifications = try container.decode([String].self, forKey: .notifications)
     }
 }
@@ -94,7 +94,7 @@ struct User: Decodable {
 //    let hashedPassword: String
     let role: String
     let classes: [String]
-    let schedule: Schedule?
+    let schedule: String
      let notifications: [String]
     
     enum CodingKeys: String, CodingKey {
@@ -114,7 +114,7 @@ struct User: Decodable {
 //        self.hashedPassword = try container.decode(String.self, forKey: .hashedPassword)
         self.role = try container.decode(String.self, forKey: .role)
         self.classes = try container.decode([String].self, forKey: .classes)
-        self.schedule = try? container.decode(Schedule.self, forKey: .schedule)
+        self.schedule = try container.decode(String.self, forKey: .schedule)
          self.notifications = try container.decode([String].self, forKey: .notifications)
     }
 }
