@@ -57,41 +57,41 @@ class AlertViewController: UIViewController, UITableViewDataSource, UITableViewD
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        let alertController = AlertController()
-        let classController = ClassController()
-        self.alertData.removeAll()
-        classController.getClassById(id: self.classID){ [weak self] result in
-            guard let self = self else { return }
-            switch result {
-            case .success(let dataResponse):
-                var classTitle = dataResponse.class.className
-                print(dataResponse)
-                // for each class, go through each alert
-                for al in dataResponse.class.alerts {
-                    alertController.getAlertById(id: al) { [self] result in
-                        switch result {
-                        case .success(let dataResponse):
-                            print(dataResponse)
-                            self.alertData.append(dataResponse.alert)
-                            DispatchQueue.main.async {
-                                print("self.alertData", self.alertData)
-                                self.table.reloadData()
-                            }
-                        case .failure(let error):
-                            print("error", error)
-                        }
-                    }
-                    
-                }
-            case .failure(let error):
-                print("error", error)
-                
-            }
-        }
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        
+//        let alertController = AlertController()
+//        let classController = ClassController()
+//        self.alertData.removeAll()
+//        classController.getClassById(id: self.classID){ [weak self] result in
+//            guard let self = self else { return }
+//            switch result {
+//            case .success(let dataResponse):
+//                var classTitle = dataResponse.class.className
+//                print(dataResponse)
+//                // for each class, go through each alert
+//                for al in dataResponse.class.alerts {
+//                    alertController.getAlertById(id: al) { [self] result in
+//                        switch result {
+//                        case .success(let dataResponse):
+//                            print(dataResponse)
+//                            self.alertData.append(dataResponse.alert)
+//                            DispatchQueue.main.async {
+//                                print("self.alertData", self.alertData)
+//                                self.table.reloadData()
+//                            }
+//                        case .failure(let error):
+//                            print("error", error)
+//                        }
+//                    }
+//                    
+//                }
+//            case .failure(let error):
+//                print("error", error)
+//                
+//            }
+//        }
+//    }
     
     @objc func didTapAdd() {
         let vc = storyboard?.instantiateViewController(identifier: "createAlert") as! CreateAlertViewController

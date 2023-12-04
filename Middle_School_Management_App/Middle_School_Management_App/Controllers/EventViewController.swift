@@ -57,41 +57,41 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        let eventController = EventController()
-        let classController = ClassController()
-        self.eventData.removeAll()
-        classController.getClassById(id: self.classID){ [weak self] result in
-            guard let self = self else { return }
-            switch result {
-            case .success(let dataResponse):
-                var classTitle = dataResponse.class.className
-                print(dataResponse)
-                // for each class, go through each alert
-                for ev in dataResponse.class.events {
-                    eventController.getEventById(id: ev) { [self] result in
-                        switch result {
-                        case .success(let dataResponse):
-                            print(dataResponse)
-                            self.eventData.append(dataResponse.event)
-                            DispatchQueue.main.async {
-                                print("self.eventData ", self.eventData )
-                                self.table.reloadData()
-                            }
-                        case .failure(let error):
-                            print("error", error)
-                        }
-                    }
-                }
-            case .failure(let error):
-                print("error", error)
-                
-            }
-            
-        }
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        
+//        let eventController = EventController()
+//        let classController = ClassController()
+//        self.eventData.removeAll()
+//        classController.getClassById(id: self.classID){ [weak self] result in
+//            guard let self = self else { return }
+//            switch result {
+//            case .success(let dataResponse):
+//                var classTitle = dataResponse.class.className
+//                print(dataResponse)
+//                // for each class, go through each alert
+//                for ev in dataResponse.class.events {
+//                    eventController.getEventById(id: ev) { [self] result in
+//                        switch result {
+//                        case .success(let dataResponse):
+//                            print(dataResponse)
+//                            self.eventData.append(dataResponse.event)
+//                            DispatchQueue.main.async {
+//                                print("self.eventData ", self.eventData )
+//                                self.table.reloadData()
+//                            }
+//                        case .failure(let error):
+//                            print("error", error)
+//                        }
+//                    }
+//                }
+//            case .failure(let error):
+//                print("error", error)
+//                
+//            }
+//            
+//        }
+//    }
     
     @objc func didTapAdd() {
         let vc = storyboard?.instantiateViewController(identifier: "createEvent") as! CreateEventViewController

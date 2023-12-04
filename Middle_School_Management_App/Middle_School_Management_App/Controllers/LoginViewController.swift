@@ -12,6 +12,13 @@ import SwiftDate
 //import RealmSwift
 
 class LoginViewController: UIViewController {
+    // logo view
+    private let logo: UIImageView = {
+        let image = UIImageView()
+        image.image = UIImage(named: "EDYou_Logo")
+        return image
+    }()
+    
     // Email or username input field
     private let emailTextField: UITextField = {
         let textField = UITextField()
@@ -63,20 +70,27 @@ class LoginViewController: UIViewController {
         signupButton.addTarget(self, action: #selector(signupLinkTapped), for: .touchUpInside)
 
        // Add subviews
+       view.addSubview(logo)
        view.addSubview(emailTextField)
        view.addSubview(passwordTextField)
        view.addSubview(loginButton)
        view.addSubview(signupButton)
 
        // Set up constraints
+       logo.translatesAutoresizingMaskIntoConstraints = false
        emailTextField.translatesAutoresizingMaskIntoConstraints = false
        passwordTextField.translatesAutoresizingMaskIntoConstraints = false
        loginButton.translatesAutoresizingMaskIntoConstraints = false
        signupButton.translatesAutoresizingMaskIntoConstraints = false
 
        NSLayoutConstraint.activate([
+           logo.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+           logo.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100),
+           logo.widthAnchor.constraint(equalToConstant: 200),
+           logo.heightAnchor.constraint(equalToConstant: 100),
+           
            emailTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-           emailTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100),
+           emailTextField.topAnchor.constraint(equalTo: logo.bottomAnchor, constant: 20),
            emailTextField.widthAnchor.constraint(equalToConstant: 200),
            emailTextField.heightAnchor.constraint(equalToConstant: 40),
 

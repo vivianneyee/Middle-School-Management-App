@@ -1,6 +1,7 @@
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb')
 const bcrypt = require('bcrypt')
 const User = require('../models/User')
+const Schedule = require('../models/Schedule')
 
 const saltRounds = 10
 
@@ -22,11 +23,26 @@ exports.register = async (req, res) => {
         // hash password
         const hashedPassword = await bcrypt.hash(password, 10)
 
+        const newSchedule = new Schedule({
+            day1: ["", "", "", "", "", "", ""],
+            day2: ["", "", "", "", "", "", ""],
+            day3: ["", "", "", "", "", "", ""],
+            day4: ["", "", "", "", "", "", ""],
+            day5: ["", "", "", "", "", "", ""],
+            day6: ["", "", "", "", "", "", ""],
+            day7: ["", "", "", "", "", "", ""],
+            day8: ["", "", "", "", "", "", ""],
+            day9: ["", "", "", "", "", "", ""],
+            day10: ["", "", "", "", "", "", ""]
+        })
+
+        await newSchedule.save()
         // create new user
         const user = new User({
             email: email,
             hashedPassword: hashedPassword,
-            role: role
+            role: role,
+            schedule: newSchedule
         })
 
         await user.save()

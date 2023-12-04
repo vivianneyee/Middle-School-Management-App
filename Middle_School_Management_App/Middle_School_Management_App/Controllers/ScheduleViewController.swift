@@ -11,10 +11,12 @@ import ECWeekView
 import SwiftDate
 import RealmSwift
 
-class ScheduleViewController: UIViewController, ECWeekViewDataSource, ECWeekViewDelegate, ECWeekViewStyler {
-    
+class ScheduleViewController: UIViewController, ECWeekViewDataSource, ECWeekViewDelegate {
+    @IBOutlet weak var todayLabel: UILabel!
+    @IBOutlet weak var todayDateLabel: UILabel!
     @IBOutlet private var weekView: ECWeekView!
     var userID: String = ""
+    var currentWeek: Int = 0 // Variable to track the current week
     let userController = UserController()
     let scheduleController = ScheduleController()
     func weekViewStylerHeaderView(_ weekView: ECWeekView, with date: DateInRegion, in cell: UICollectionViewCell) -> UIView? {
@@ -71,9 +73,11 @@ class ScheduleViewController: UIViewController, ECWeekViewDataSource, ECWeekView
                 scheduleController.getScheduleById(id: user.schedule) { [self] result in
                         switch result {
                         case .success(let schedule):
+                            self.scheduleID = user.schedule
                             print("schedule exists", schedule)
                             DispatchQueue.main.async {
                                 self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(self.didTapEdit))
+                                navigationItem.rightBarButtonItem?.isHidden = true
                             }
                             print("testing")
                             self.day1Sche = schedule.day1
@@ -91,12 +95,12 @@ class ScheduleViewController: UIViewController, ECWeekViewDataSource, ECWeekView
                             for d in scheduleArray {
                                 print("for d in scheduleArray {")
                                 for c in d {
-                                    print("Current class name", c)
+//                                    print("Current class name", c)
                                     if !(c.isEmpty) {
                                         classController.getClassByName(className: c) { [self] result in
                                             switch result {
                                             case .success(let cl):
-                                                print("get class by name successs", cl)
+//                                                print("get class by name successs", cl)
                                                 self.classToColour.updateValue(cl.class.color, forKey: cl.class.className)
                                             case .failure(let error):
                                                 print("get class by name failed", error)
@@ -104,7 +108,7 @@ class ScheduleViewController: UIViewController, ECWeekViewDataSource, ECWeekView
                                             
                                         }
                                     } else {
-                                        print("no class for that period, c:", c)
+//                                        print("no class for that period, c:", c)
                                     }
                                 }
                             }
@@ -133,6 +137,9 @@ class ScheduleViewController: UIViewController, ECWeekViewDataSource, ECWeekView
     
     func weekViewGenerateEvents(_ weekView: ECWeekView, date: DateInRegion, eventCompletion: @escaping ([ECWeekViewEvent]?) -> Void) -> [ECWeekViewEvent]? {
         let weekday = date.weekday
+        // Determine the current week (odd or even) based on the date
+        currentWeek = date.weekOfYear
+        
         if weekday == 7 || weekday == 1 {
             // No classes on Saturday and Sunday
             DispatchQueue.global(qos: .background).async {
@@ -140,46 +147,37 @@ class ScheduleViewController: UIViewController, ECWeekViewDataSource, ECWeekView
             }
             return nil
         }
-        
-        // Create a dictionary of classes and their colors
-//        let classes = [
-//            "Math": UIColor.red,
-//            "6B - Art": UIColor.blue,
-//            "6A - Art": UIColor.blue,
-//            "Gym": UIColor.green,
-//            "Music": UIColor.yellow,
-//            "French": UIColor.purple,
-//            "Social Studies": UIColor.orange,
-//            "Planning Time": UIColor.cyan,
-//            "Languages": UIColor.systemPink
-//        ]
-//
-        // Create an array of schedules
-//        let schedules = [
-//            ["6B - Art", "6A - Art", "Gym", "Music", "French", "Social Studies", "Planning Time"],
-//            ["Gym", "6A - Art", "Music", "French", "Planning Time", "Languages", "Social Studies"],
-//            ["Music", "6A - Art", "6B - Art", "Gym", "Social Studies", "Languages", "French"],
-//            ["Social Studies", "Languages", "6B - Art", "6A - Art", "Planning Time", "Gym", "Music"],
-//            ["6A - Art", "Music", "Languages", "Social Studies", "6B - Art", "French", "Gym"],
-//            ["6B - Art", "Planning Time", "6A - Art", "Gym", "French", "Music", "Languages"],
-//            ["French", "Social Studies", "6A - Art", "Music", "Gym", "Languages", "Math"],
-//            ["Languages", "Social Studies", "6A - Art", "6B - Art", "Music", "Gym", "Planning Time"],
-//            ["Gym", "6A - Art", "Music", "French", "6B - Art", "Planning Time", "Languages"],
-//            ["Music", "6A - Art", "6B - Art", "Social Studies", "Languages", "Planning Time", "Gym"]
-//        ]
-//        let schedules = userController.getUserById(id: userID) { Result<User, Error> in
-//
-//        }
-//        var schedules = Schedule()
         userController.getUserById(id: self.userID) { [self] result in
             switch result {
             case .success(let user):
 //                if let scheduleID = user.schedule?._id {
-                    self.scheduleID = scheduleID
-                    // Access the schedule property of the user
-                    let schedules = user.schedule
-                        // Get the schedule index for the current weekday
-                    let scheduleIndex = (weekday - 2) % 10
+                self.scheduleID = scheduleID
+                // Access the schedule property of the user
+                let schedules = user.schedule
+//                        // Get the schedule index for the current weekday
+//                    let scheduleIndex = (weekday - 2) % 10
+                
+                // Calculate the schedule index based on alternating weeks
+//                let scheduleIndex = ((currentWeek - 1) % 2) * 5 + (weekday - 2)
+                // Calculate the schedule index based on the week number
+                let currentWeek = date.weekOfYear
+                let isEvenWeek = currentWeek % 2 == 0
+                
+                var scheduleIndex = weekday - 2
+                
+                if isEvenWeek {
+                    // Add 5 to the index for even weeks to start from day6Sche
+                    scheduleIndex += 5
+                }
+                
+                // Make sure the scheduleIndex stays within the range
+                scheduleIndex = scheduleIndex % 10
+                           
+                
+//                if scheduleIndex < 0 {
+//                    // Handle negative index (if weekday is Sunday or before)
+//                    scheduleIndex += 7 // Adjust to the correct index in your schedule array
+//                }
                 scheduleController.getScheduleById(id: schedules) { [self] result in
                         switch result {
                         case .success(let schedule):
@@ -206,7 +204,7 @@ class ScheduleViewController: UIViewController, ECWeekViewDataSource, ECWeekView
                                         classController.getClassByName(className: c) { [self] result in
                                             switch result {
                                             case .success(let cl):
-                                                print("get class by name successs", cl)
+//                                                print("get class by name successs", cl)
                                                 self.classToColour.updateValue(cl.class.color, forKey: cl.class.className)
                                             case .failure(let error):
                                                 print("get class by name failed", error)
@@ -238,6 +236,8 @@ class ScheduleViewController: UIViewController, ECWeekViewDataSource, ECWeekView
 //                    self.day10Sche = schedules.day10
                         
                     self.scheduleArray = [day1Sche, day2Sche, day3Sche, day4Sche, day5Sche, day6Sche, day7Sche, day8Sche, day9Sche, day10Sche]
+                
+                if scheduleIndex >= 0 && scheduleIndex < self.scheduleArray.count {
                     
                     let schedule = self.scheduleArray[scheduleIndex]
                     
@@ -250,25 +250,31 @@ class ScheduleViewController: UIViewController, ECWeekViewDataSource, ECWeekView
                         
                         // Create a new event for the class
                         let event = ECWeekViewEvent(title: className, subtitle: "Period " + String(index+1), start: startDate, end: endDate)
-
+                        
                         
                         events.append(event)
                     }
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "EEEE MMMM d yyyy"
+                    dateFormatter.locale = Locale(identifier: "en_US_POSIX") // Set locale to English (United States) for month and day names
+
+                    let currentDate = Date()
+                    let formattedDate = dateFormatter.string(from: currentDate)
+                    DispatchQueue.main.async {
+                        self.todayLabel.text = "Today:"
+                        self.todayDateLabel.text = formattedDate
+                    }
+//                    print("events", events)
                     DispatchQueue.global(qos: .background).async {
                         eventCompletion(events)
                     }
-//                } else {
-//                    // Handle the case where scheduleID is nil
-//                    // Perhaps set a default value or show an error message
-//                }
-//                self.scheduleID = user.schedule!._id
-               
-//                } else {
-//                    // Handle nil schedule here
-//                    DispatchQueue.global(qos: .background).async {
-//                        eventCompletion([])
-//                    }
-//                }
+                    
+                } else {
+                    // Handle nil schedule here
+                    DispatchQueue.global(qos: .background).async {
+                        eventCompletion([])
+                    }
+                }
             case .failure(let error):
 
                 print("Error: \(error)")
@@ -286,93 +292,93 @@ class ScheduleViewController: UIViewController, ECWeekViewDataSource, ECWeekView
         print(#function, "date:", date.toString())
     }
     
-    // Creates the view for an event
-    func weekViewStylerECEventView(_ weekView: ECWeekView, eventContainer: CGRect, event: ECWeekViewEvent) -> UIView {
-        let eventView = UIView(frame: eventContainer)
-        eventView.layer.cornerRadius = 10
-        eventView.layer.masksToBounds = true
-        
-        // go through schedule array
-        // get each class id
-        // get class by id and get the corresponding color and then set the color for each class
-        // Create a dictionary of classes and their colors
-//        let classes = [
-//            "Math": UIColor.red,
-//            "6B - Art": UIColor.blue,
-//            "6A - Art": UIColor.blue,
-//            "Gym": UIColor.green,
-//            "Music": UIColor.yellow,
-//            "French": UIColor.purple,
-//            "Social Studies": UIColor.orange,
-//            "Planning Time": UIColor.cyan,
-//            "Languages": UIColor.systemPink
-//        ]
+//    // Creates the view for an event
+//    func weekViewStylerECEventView(_ weekView: ECWeekView, eventContainer: CGRect, event: ECWeekViewEvent) -> UIView {
+//        let eventView = UIView(frame: eventContainer)
+//        eventView.layer.cornerRadius = 10
+//        eventView.layer.masksToBounds = true
 //
-        
-        if let classColor = classToColour[event.title] {
-            if let color = UIColor(hex: classColor) {
-                eventView.backgroundColor = color.withAlphaComponent(0.25)
-                eventView.layer.borderColor = color.withAlphaComponent(0.25).cgColor // Set border color to match background color
-                eventView.layer.borderWidth = 1.0 // Set border width to 1.0 point
-                
-                if eventView.backgroundColor == UIColor.blue || eventView.backgroundColor == UIColor.purple {
-                    let labelTitle = UILabel(frame: CGRect(x: 5, y: 2, width: eventView.bounds.width - 5, height: eventView.bounds.height / 2))
-                    let labelSub = UILabel(frame: CGRect(x: 5, y: eventView.bounds.height / 2, width: eventView.bounds.width - 5, height: eventView.bounds.height / 2))
-                    labelTitle.text = event.title
-                    labelTitle.font = font
-                    labelTitle.textColor = UIColor.white // Change text color as desired
-                    labelTitle.textAlignment = .left
-                    labelTitle.numberOfLines = 0
-                    labelTitle.sizeToFit()
-                    
-                    labelSub.text = event.subtitle
-                    labelSub.font = font
-                    labelSub.textColor = UIColor.white // Change text color as desired
-                    labelSub.textAlignment = .left
-                    labelSub.numberOfLines = 0
-                    labelSub.sizeToFit()
-                    
-                    eventView.addSubview(labelTitle)
-                    eventView.addSubview(labelSub)
-                    
-                } else {
-                    let labelTitle = UILabel(frame: CGRect(x: 5, y: 2, width: eventView.bounds.width - 5, height: eventView.bounds.height / 2))
-                    let labelSub = UILabel(frame: CGRect(x: 5, y: eventView.bounds.height / 2, width: eventView.bounds.width - 5, height: eventView.bounds.height / 2))
-                    labelTitle.text = event.title
-                    labelTitle.font = font
-                    labelTitle.textColor = UIColor.black // Change text color as desired
-                    labelTitle.textAlignment = .left
-                    labelTitle.numberOfLines = 0
-                    labelTitle.sizeToFit()
-                    
-                    labelSub.text = event.subtitle
-                    labelSub.font = font
-                    labelSub.textColor = UIColor.black // Change text color as desired
-                    labelSub.textAlignment = .left
-                    labelSub.numberOfLines = 0
-                    labelSub.sizeToFit()
-                    
-                    eventView.addSubview(labelTitle)
-                    eventView.addSubview(labelSub)
-                }
-            } else {
-                eventView.backgroundColor = UIColor.clear
-            }
-        }
-        
-        
-        
-        return eventView
+//        // go through schedule array
+//        // get each class id
+//        // get class by id and get the corresponding color and then set the color for each class
+//        // Create a dictionary of classes and their colors
+////        let classes = [
+////            "Math": UIColor.red,
+////            "6B - Art": UIColor.blue,
+////            "6A - Art": UIColor.blue,
+////            "Gym": UIColor.green,
+////            "Music": UIColor.yellow,
+////            "French": UIColor.purple,
+////            "Social Studies": UIColor.orange,
+////            "Planning Time": UIColor.cyan,
+////            "Languages": UIColor.systemPink
+////        ]
+////
+//
+//        if let classColor = classToColour[event.title] {
+//            if let color = UIColor(hex: classColor) {
+//                eventView.backgroundColor = color.withAlphaComponent(0.25)
+//                eventView.layer.borderColor = color.withAlphaComponent(0.25).cgColor // Set border color to match background color
+//                eventView.layer.borderWidth = 1.0 // Set border width to 1.0 point
+//
+//                if eventView.backgroundColor == UIColor.blue || eventView.backgroundColor == UIColor.purple {
+//                    let labelTitle = UILabel(frame: CGRect(x: 5, y: 2, width: eventView.bounds.width - 5, height: eventView.bounds.height / 2))
+//                    let labelSub = UILabel(frame: CGRect(x: 5, y: eventView.bounds.height / 2, width: eventView.bounds.width - 5, height: eventView.bounds.height / 2))
+//                    labelTitle.text = event.title
+//                    labelTitle.font = font
+//                    labelTitle.textColor = UIColor.white // Change text color as desired
+//                    labelTitle.textAlignment = .left
+//                    labelTitle.numberOfLines = 0
+//                    labelTitle.sizeToFit()
+//
+//                    labelSub.text = event.subtitle
+//                    labelSub.font = font
+//                    labelSub.textColor = UIColor.white // Change text color as desired
+//                    labelSub.textAlignment = .left
+//                    labelSub.numberOfLines = 0
+//                    labelSub.sizeToFit()
+//
+//                    eventView.addSubview(labelTitle)
+//                    eventView.addSubview(labelSub)
+//
+//                } else {
+//                    let labelTitle = UILabel(frame: CGRect(x: 5, y: 2, width: eventView.bounds.width - 5, height: eventView.bounds.height / 2))
+//                    let labelSub = UILabel(frame: CGRect(x: 5, y: eventView.bounds.height / 2, width: eventView.bounds.width - 5, height: eventView.bounds.height / 2))
+//                    labelTitle.text = event.title
+//                    labelTitle.font = font
+//                    labelTitle.textColor = UIColor.black // Change text color as desired
+//                    labelTitle.textAlignment = .left
+//                    labelTitle.numberOfLines = 0
+//                    labelTitle.sizeToFit()
+//
+//                    labelSub.text = event.subtitle
+//                    labelSub.font = font
+//                    labelSub.textColor = UIColor.black // Change text color as desired
+//                    labelSub.textAlignment = .left
+//                    labelSub.numberOfLines = 0
+//                    labelSub.sizeToFit()
+//
+//                    eventView.addSubview(labelTitle)
+//                    eventView.addSubview(labelSub)
+//                }
+//            } else {
+//                eventView.backgroundColor = UIColor.clear
+//            }
+//        }
+//
+//
+//
+//        return eventView
+//    }
+//
+    @objc func didTapAdd() {
+        let vc = storyboard?.instantiateViewController(identifier: "scheInfo") as! ScheduleInfoViewController
+        navigationController?.pushViewController(vc, animated: true)
+
+        vc.title = "Create New Schedule"
+        vc.scheduleID = self.scheduleID
+        vc.userID = self.userID
     }
-    
-        @objc func didTapAdd() {
-            let vc = storyboard?.instantiateViewController(identifier: "scheInfo") as! ScheduleInfoViewController
-            navigationController?.pushViewController(vc, animated: true)
-    
-            vc.title = "Create New Schedule"
-            vc.scheduleID = self.scheduleID
-            vc.userID = self.userID
-        }
     
     @objc func didTapEdit() {
         let vc = storyboard?.instantiateViewController(identifier: "scheInfo") as! ScheduleInfoViewController
@@ -392,7 +398,7 @@ class MyWeekViewStyler: ECWeekViewStyler {
         }
     func weekViewStylerHeaderView(_ weekView: ECWeekView, with date: DateInRegion, in cell: UICollectionViewCell) -> UIView? {
         
-        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: cell.bounds.width, height: 12))
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: cell.bounds.width, height: 18))
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: headerView.bounds.width, height: headerView.bounds.height))
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEE d"
@@ -437,28 +443,28 @@ class MyWeekViewStyler: ECWeekViewStyler {
                 eventView.backgroundColor = color.withAlphaComponent(0.25)
                 eventView.layer.borderColor = color.withAlphaComponent(0.25).cgColor // Set border color to match background color
                 eventView.layer.borderWidth = 1.0 // Set border width to 1.0 point
-                
-                if eventView.backgroundColor == UIColor.blue || eventView.backgroundColor == UIColor.purple {
-                    let labelTitle = UILabel(frame: CGRect(x: 5, y: 2, width: eventView.bounds.width - 5, height: eventView.bounds.height / 2))
-                    let labelSub = UILabel(frame: CGRect(x: 5, y: eventView.bounds.height / 2, width: eventView.bounds.width - 5, height: eventView.bounds.height / 2))
-                    labelTitle.text = event.title
-                    labelTitle.font = font
-                    labelTitle.textColor = UIColor.white // Change text color as desired
-                    labelTitle.textAlignment = .left
-                    labelTitle.numberOfLines = 0
-                    labelTitle.sizeToFit()
+//                
+//                if eventView.backgroundColor == UIColor.blue || eventView.backgroundColor == UIColor.purple {
+//                    let labelTitle = UILabel(frame: CGRect(x: 5, y: 2, width: eventView.bounds.width - 5, height: eventView.bounds.height / 2))
+//                    let labelSub = UILabel(frame: CGRect(x: 5, y: eventView.bounds.height / 2, width: eventView.bounds.width - 5, height: eventView.bounds.height / 2))
+//                    labelTitle.text = event.title
+//                    labelTitle.font = font
+//                    labelTitle.textColor = UIColor.white // Change text color as desired
+//                    labelTitle.textAlignment = .left
+//                    labelTitle.numberOfLines = 0
+//                    labelTitle.sizeToFit()
+//                    
+//                    labelSub.text = event.subtitle
+//                    labelSub.font = font
+//                    labelSub.textColor = UIColor.white // Change text color as desired
+//                    labelSub.textAlignment = .left
+//                    labelSub.numberOfLines = 0
+//                    labelSub.sizeToFit()
+//                    
+//                    eventView.addSubview(labelTitle)
+//                    eventView.addSubview(labelSub)
                     
-                    labelSub.text = event.subtitle
-                    labelSub.font = font
-                    labelSub.textColor = UIColor.white // Change text color as desired
-                    labelSub.textAlignment = .left
-                    labelSub.numberOfLines = 0
-                    labelSub.sizeToFit()
-                    
-                    eventView.addSubview(labelTitle)
-                    eventView.addSubview(labelSub)
-                    
-                } else {
+//                } else {
                     let labelTitle = UILabel(frame: CGRect(x: 5, y: 2, width: eventView.bounds.width - 5, height: eventView.bounds.height / 2))
                     let labelSub = UILabel(frame: CGRect(x: 5, y: eventView.bounds.height / 2, width: eventView.bounds.width - 5, height: eventView.bounds.height / 2))
                     labelTitle.text = event.title
@@ -477,7 +483,7 @@ class MyWeekViewStyler: ECWeekViewStyler {
                     
                     eventView.addSubview(labelTitle)
                     eventView.addSubview(labelSub)
-                }
+//                }
             } else {
                 eventView.backgroundColor = UIColor.clear
             }

@@ -180,7 +180,9 @@ class CreateScheduleViewController: UIViewController, UIPickerViewDelegate, UIPi
             case .success(let user):
                 print("get user success")
                 let userClasses = user.classes
+                let userSchedule = user.schedule
                 for cl in userClasses {
+                    print("cl in userClasses passed to get classById", cl)
                     classController.getClassById(id: cl){ [self] result in
                         switch result {
                         case .success(let classResult):
@@ -189,6 +191,101 @@ class CreateScheduleViewController: UIViewController, UIPickerViewDelegate, UIPi
                         case .failure(let error):
                             print("get class failed ", error)
                         }
+                    }
+                }
+                let scheduleController = ScheduleController()
+                scheduleController.getScheduleById(id: self.scheduleID) { [self] result in
+                    switch result {
+                    case .success(let schedule):
+                        print("successfully got user schedule", schedule)
+                        print("Edit Day " + String(self.currentDay+1) + " Schedule")
+                        DispatchQueue.main.async {
+                            if self.title == "Edit Day " + String(self.currentDay+1) + " Schedule" {
+                                if self.currentDay == 0 {
+                                    self.period1TF.text = schedule.day1[0]
+                                    self.period2TF.text = schedule.day1[1]
+                                    self.period3TF.text = schedule.day1[2]
+                                    self.period4TF.text = schedule.day1[3]
+                                    self.period5TF.text = schedule.day1[4]
+                                    self.period6TF.text = schedule.day1[5]
+                                    self.period7TF.text = schedule.day1[6]
+                                } else if self.currentDay == 1 {
+                                    self.period1TF.text = schedule.day2[0]
+                                    self.period2TF.text = schedule.day2[1]
+                                    self.period3TF.text = schedule.day2[2]
+                                    self.period4TF.text = schedule.day2[3]
+                                    self.period5TF.text = schedule.day2[4]
+                                    self.period6TF.text = schedule.day2[5]
+                                    self.period7TF.text = schedule.day2[6]
+                                } else if self.currentDay == 2 {
+                                    self.period1TF.text = schedule.day3[0]
+                                    self.period2TF.text = schedule.day3[1]
+                                    self.period3TF.text = schedule.day3[2]
+                                    self.period4TF.text = schedule.day3[3]
+                                    self.period5TF.text = schedule.day3[4]
+                                    self.period6TF.text = schedule.day3[5]
+                                    self.period7TF.text = schedule.day3[6]
+                                } else if self.currentDay == 3 {
+                                    self.period1TF.text = schedule.day4[0]
+                                    self.period2TF.text = schedule.day4[1]
+                                    self.period3TF.text = schedule.day4[2]
+                                    self.period4TF.text = schedule.day4[3]
+                                    self.period5TF.text = schedule.day4[4]
+                                    self.period6TF.text = schedule.day4[5]
+                                    self.period7TF.text = schedule.day4[6]
+                                } else if self.currentDay == 4 {
+                                    self.period1TF.text = schedule.day5[0]
+                                    self.period2TF.text = schedule.day5[1]
+                                    self.period3TF.text = schedule.day5[2]
+                                    self.period4TF.text = schedule.day5[3]
+                                    self.period5TF.text = schedule.day5[4]
+                                    self.period6TF.text = schedule.day5[5]
+                                    self.period7TF.text = schedule.day5[6]
+                                } else if self.currentDay == 5 {
+                                    self.period1TF.text = schedule.day6[0]
+                                    self.period2TF.text = schedule.day6[1]
+                                    self.period3TF.text = schedule.day6[2]
+                                    self.period4TF.text = schedule.day6[3]
+                                    self.period5TF.text = schedule.day6[4]
+                                    self.period6TF.text = schedule.day6[5]
+                                    self.period7TF.text = schedule.day6[6]
+                                } else if self.currentDay == 6 {
+                                    self.period1TF.text = schedule.day7[0]
+                                    self.period2TF.text = schedule.day7[1]
+                                    self.period3TF.text = schedule.day7[2]
+                                    self.period4TF.text = schedule.day7[3]
+                                    self.period5TF.text = schedule.day7[4]
+                                    self.period6TF.text = schedule.day7[5]
+                                    self.period7TF.text = schedule.day7[6]
+                                } else if self.currentDay == 7 {
+                                    self.period1TF.text = schedule.day8[0]
+                                    self.period2TF.text = schedule.day8[1]
+                                    self.period3TF.text = schedule.day8[2]
+                                    self.period4TF.text = schedule.day8[3]
+                                    self.period5TF.text = schedule.day8[4]
+                                    self.period6TF.text = schedule.day8[5]
+                                    self.period7TF.text = schedule.day8[6]
+                                } else if self.currentDay == 8 {
+                                    self.period1TF.text = schedule.day9[0]
+                                    self.period2TF.text = schedule.day9[1]
+                                    self.period3TF.text = schedule.day9[2]
+                                    self.period4TF.text = schedule.day9[3]
+                                    self.period5TF.text = schedule.day9[4]
+                                    self.period6TF.text = schedule.day9[5]
+                                    self.period7TF.text = schedule.day9[6]
+                                } else {
+                                    self.period1TF.text = schedule.day10[0]
+                                    self.period2TF.text = schedule.day10[1]
+                                    self.period3TF.text = schedule.day10[2]
+                                    self.period4TF.text = schedule.day10[3]
+                                    self.period5TF.text = schedule.day10[4]
+                                    self.period6TF.text = schedule.day10[5]
+                                    self.period7TF.text = schedule.day10[6]
+                                }
+                            }
+                        }
+                    case .failure(let error):
+                        print("failed to get schedule", error)
                     }
                 }
             case .failure(let error):

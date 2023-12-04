@@ -219,38 +219,54 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qVB-3V-lws" customClass="ECWeekView" customModule="ECWeekView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qVB-3V-lws" customClass="ECWeekView" customModule="ECWeekView">
                                 <rect key="frame" x="0.0" y="103" width="393" height="403"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sil-tG-N2O">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sil-tG-N2O">
                                 <rect key="frame" x="0.0" y="514" width="393" height="255"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Today: Day 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qbh-Al-wR3">
-                                        <rect key="frame" x="25" y="18" width="99" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today: Day 2" textAlignment="natural" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qbh-Al-wR3">
+                                        <rect key="frame" x="25" y="18" width="302" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="April 12 2023" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WEs-m3-URy">
-                                        <rect key="frame" x="25" y="47" width="101" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="April 12 2023" textAlignment="natural" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WEs-m3-URy">
+                                        <rect key="frame" x="25" y="47" width="302" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="Qbh-Al-wR3" firstAttribute="leading" secondItem="sil-tG-N2O" secondAttribute="leading" constant="25" id="GXr-Rs-Yuj"/>
+                                    <constraint firstAttribute="trailing" secondItem="Qbh-Al-wR3" secondAttribute="trailing" constant="66" id="IrI-4s-v5r"/>
+                                    <constraint firstItem="Qbh-Al-wR3" firstAttribute="trailing" secondItem="WEs-m3-URy" secondAttribute="trailing" id="X4U-D9-ZEY"/>
+                                    <constraint firstItem="Qbh-Al-wR3" firstAttribute="top" secondItem="sil-tG-N2O" secondAttribute="top" constant="18" id="kCY-Em-Hd6"/>
+                                    <constraint firstItem="WEs-m3-URy" firstAttribute="top" secondItem="Qbh-Al-wR3" secondAttribute="bottom" constant="8" id="miJ-6m-7tC"/>
+                                    <constraint firstItem="Qbh-Al-wR3" firstAttribute="leading" secondItem="WEs-m3-URy" secondAttribute="leading" id="vYE-T9-erj"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ylm-D8-rXo"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="qVB-3V-lws" firstAttribute="leading" secondItem="sil-tG-N2O" secondAttribute="leading" id="7VV-ei-qix"/>
+                            <constraint firstItem="sil-tG-N2O" firstAttribute="bottom" secondItem="ylm-D8-rXo" secondAttribute="bottom" id="Kkh-cM-roH"/>
+                            <constraint firstItem="qVB-3V-lws" firstAttribute="top" secondItem="ylm-D8-rXo" secondAttribute="top" id="LQ4-Dy-6oO"/>
+                            <constraint firstItem="sil-tG-N2O" firstAttribute="top" secondItem="v6y-pl-OeO" secondAttribute="top" constant="514" id="QIR-Az-QsI"/>
+                            <constraint firstItem="qVB-3V-lws" firstAttribute="trailing" secondItem="sil-tG-N2O" secondAttribute="trailing" id="QzC-eM-MPW"/>
+                            <constraint firstItem="qVB-3V-lws" firstAttribute="centerX" secondItem="v6y-pl-OeO" secondAttribute="centerX" id="aQw-Lb-86b"/>
+                            <constraint firstItem="sil-tG-N2O" firstAttribute="top" secondItem="qVB-3V-lws" secondAttribute="bottom" constant="8" id="eTv-h7-Ihd"/>
+                            <constraint firstItem="qVB-3V-lws" firstAttribute="leading" secondItem="ylm-D8-rXo" secondAttribute="leading" id="nxo-GY-AiT"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Schedule" id="2Ra-aL-0ji"/>
                     <connections>
+                        <outlet property="todayDateLabel" destination="WEs-m3-URy" id="g1c-qV-n7X"/>
+                        <outlet property="todayLabel" destination="Qbh-Al-wR3" id="agp-WP-QFk"/>
                         <outlet property="weekView" destination="qVB-3V-lws" id="15t-Ya-VCf"/>
                     </connections>
                 </viewController>
@@ -415,15 +431,6 @@
                                     <action selector="tapToNotifPref:" destination="3YC-c3-JAH" eventType="touchUpInside" id="B7K-SG-jPO"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Jane Doe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eX9-Pv-UJu">
-                                <rect key="frame" x="160" y="337" width="72" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="Un3-ka-8II"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FVc-Wc-LWY">
                                 <rect key="frame" x="136" y="611" width="120" height="35"/>
                                 <constraints>
@@ -435,13 +442,22 @@
                                     <action selector="tapToLogin:" destination="3YC-c3-JAH" eventType="touchUpInside" id="s0r-CF-TD7"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="lue-nx-zgF">
-                                <rect key="frame" x="46" y="146" width="301" height="183"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EDYou_Icon" translatesAutoresizingMaskIntoConstraints="NO" id="lue-nx-zgF">
+                                <rect key="frame" x="46" y="145" width="301" height="184.33333333333337"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Teacher" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BZe-U1-yjv">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Teacher" textAlignment="natural" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BZe-U1-yjv">
                                 <rect key="frame" x="166" y="366" width="61" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="F0N-YY-6D2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jane Doe" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eX9-Pv-UJu">
+                                <rect key="frame" x="26" y="337" width="341" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="Un3-ka-8II"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -463,18 +479,22 @@
                             <constraint firstItem="elW-W9-ieH" firstAttribute="bottom" secondItem="FVc-Wc-LWY" secondAttribute="bottom" constant="123" id="a54-Am-uFh"/>
                             <constraint firstItem="lue-nx-zgF" firstAttribute="centerX" secondItem="eX9-Pv-UJu" secondAttribute="centerX" id="nDM-ye-hFb"/>
                             <constraint firstItem="FVc-Wc-LWY" firstAttribute="top" secondItem="NVw-JA-Kuj" secondAttribute="bottom" constant="39" id="ojS-SJ-1Ru"/>
-                            <constraint firstItem="eX9-Pv-UJu" firstAttribute="leading" secondItem="elW-W9-ieH" secondAttribute="leading" constant="160" id="p09-jZ-TUa"/>
+                            <constraint firstItem="eX9-Pv-UJu" firstAttribute="leading" secondItem="elW-W9-ieH" secondAttribute="leading" constant="26" id="p09-jZ-TUa"/>
                             <constraint firstItem="eX9-Pv-UJu" firstAttribute="centerX" secondItem="iik-T2-oD8" secondAttribute="centerX" id="smM-zg-YWK"/>
                             <constraint firstItem="BZe-U1-yjv" firstAttribute="top" secondItem="eX9-Pv-UJu" secondAttribute="bottom" constant="8" id="xU7-VV-oyx"/>
                             <constraint firstItem="X9N-yv-vwK" firstAttribute="centerX" secondItem="NVw-JA-Kuj" secondAttribute="centerX" id="zNu-M8-kUD"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="My Profile" id="5tJ-sL-uYo"/>
+                    <connections>
+                        <outlet property="userEmailLabel" destination="eX9-Pv-UJu" id="h5q-ba-xJ0"/>
+                        <outlet property="userRoleLabel" destination="BZe-U1-yjv" id="ITh-NU-yxB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lJX-O6-HFb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="jj3-jy-gBH" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4346" y="2372"/>
+            <point key="canvasLocation" x="4345.801526717557" y="2370.4225352112676"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="QYJ-0F-5mP">
@@ -2068,13 +2088,13 @@
         </scene>
     </scenes>
     <resources>
+        <image name="EDYou_Icon" width="264" height="264"/>
         <image name="arrow.right" catalog="system" width="128" height="95"/>
         <image name="bell" catalog="system" width="125" height="128"/>
         <image name="bell.fill" catalog="system" width="123" height="128"/>
         <image name="calendar" catalog="system" width="128" height="107"/>
         <image name="gear" catalog="system" width="128" height="122"/>
         <image name="house.fill" catalog="system" width="128" height="104"/>
-        <image name="person.circle" catalog="system" width="128" height="123"/>
         <image name="person.circle.fill" catalog="system" width="128" height="123"/>
         <image name="pip.exit" catalog="system" width="128" height="98"/>
         <image name="plus.app.fill" catalog="system" width="128" height="114"/>

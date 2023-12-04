@@ -58,41 +58,41 @@ class AssignmentViewController: UIViewController, UITableViewDataSource, UITable
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        let assController = AssignmentController()
-        let classController = ClassController()
-        self.assignData.removeAll()
-        classController.getClassById(id: self.classID){ [weak self] result in
-            guard let self = self else { return }
-            switch result {
-            case .success(let dataResponse):
-                var classTitle = dataResponse.class.className
-                print(dataResponse)
-                // for each class, go through each alert
-                for ass in dataResponse.class.assignments {
-                    assController.getAssignmentById(id: ass) { [self] result in
-                        switch result {
-                        case .success(let dataResponse):
-                            print(dataResponse)
-                            self.assignData.append(dataResponse.assignment)
-                            DispatchQueue.main.async {
-                                print("self.assignData ", self.assignData )
-                                self.table.reloadData()
-                            }
-                        case .failure(let error):
-                            print("error", error)
-                        }
-                    }
-                }
-            case .failure(let error):
-                print("error", error)
-                
-            }
-            
-        }
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        
+//        let assController = AssignmentController()
+//        let classController = ClassController()
+//        self.assignData.removeAll()
+//        classController.getClassById(id: self.classID){ [weak self] result in
+//            guard let self = self else { return }
+//            switch result {
+//            case .success(let dataResponse):
+//                var classTitle = dataResponse.class.className
+//                print(dataResponse)
+//                // for each class, go through each alert
+//                for ass in dataResponse.class.assignments {
+//                    assController.getAssignmentById(id: ass) { [self] result in
+//                        switch result {
+//                        case .success(let dataResponse):
+//                            print(dataResponse)
+//                            self.assignData.append(dataResponse.assignment)
+//                            DispatchQueue.main.async {
+//                                print("self.assignData ", self.assignData )
+//                                self.table.reloadData()
+//                            }
+//                        case .failure(let error):
+//                            print("error", error)
+//                        }
+//                    }
+//                }
+//            case .failure(let error):
+//                print("error", error)
+//                
+//            }
+//            
+//        }
+//    }
     
     @objc func didTapAdd() {
         let vc = storyboard?.instantiateViewController(identifier: "createAss") as! CreateAssignmentViewController
