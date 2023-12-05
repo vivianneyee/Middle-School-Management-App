@@ -20,12 +20,12 @@ const userSchema = new mongoose.Schema({
     }],
     schedule: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Schedule' // ref to schedule model
+        ref: 'Schedule' // ref to schedule model,
     },
-    notifications: {
+    notifications: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Notification' // ref to notification model
-    }
+    }]
 })
 
 userSchema.index({ email: 1 });

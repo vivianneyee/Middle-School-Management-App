@@ -41,37 +41,37 @@ struct DailySche {
 }
 
 // hardcoded data for testing, actual object will have a file field
-let eventData: [PostInfo] = [
-    PostInfo(name: "Unit 2 Test", date: DateComponents(year: 2023, month: 4, day: 18)),
-    PostInfo(name: "Unit 3 Quiz", date: DateComponents(year: 2023, month: 4, day: 22)),
-    PostInfo(name: "Guest Speaker", date: DateComponents(year: 2023, month: 5, day: 12)),
-    PostInfo(name: "Unit 3 Test", date: DateComponents(year: 2023, month: 5, day: 16))
-]
+//let eventData: [PostInfo] = [
+//    PostInfo(name: "Unit 2 Test", date: DateComponents(year: 2023, month: 4, day: 18)),
+//    PostInfo(name: "Unit 3 Quiz", date: DateComponents(year: 2023, month: 4, day: 22)),
+//    PostInfo(name: "Guest Speaker", date: DateComponents(year: 2023, month: 5, day: 12)),
+//    PostInfo(name: "Unit 3 Test", date: DateComponents(year: 2023, month: 5, day: 16))
+//]
 
-let assignData: [PostInfo] = [
-    PostInfo(name: "Assignment 2", date: DateComponents(year: 2023, month: 4, day: 18)),
-    PostInfo(name: "Assignment 3", date: DateComponents(year: 2023, month: 4, day: 24)),
-    PostInfo(name: "Assignment 4", date: DateComponents(year: 2023, month: 5, day: 8))
-]
+//let assignData: [PostInfo] = [
+//    PostInfo(name: "Assignment 2", date: DateComponents(year: 2023, month: 4, day: 18)),
+//    PostInfo(name: "Assignment 3", date: DateComponents(year: 2023, month: 4, day: 24)),
+//    PostInfo(name: "Assignment 4", date: DateComponents(year: 2023, month: 5, day: 8))
+//]
 
-let alertData: [PostInfo] = [
-    PostInfo(name: "Alert 1", date: DateComponents(year: 2023, month: 4, day: 18)),
-    PostInfo(name: "Alert 2", date: DateComponents(year: 2023, month: 4, day: 21)),
-    PostInfo(name: "Alert 3", date: DateComponents(year: 2023, month: 4, day: 26)),
-    PostInfo(name: "Alert 4", date: DateComponents(year: 2023, month: 5, day: 5))
-]
+//let alertData: [PostInfo] = [
+//    PostInfo(name: "Alert 1", date: DateComponents(year: 2023, month: 4, day: 18)),
+//    PostInfo(name: "Alert 2", date: DateComponents(year: 2023, month: 4, day: 21)),
+//    PostInfo(name: "Alert 3", date: DateComponents(year: 2023, month: 4, day: 26)),
+//    PostInfo(name: "Alert 4", date: DateComponents(year: 2023, month: 5, day: 5))
+//]
 
-var allNotifs: [NotifInfo] = [
-    NotifInfo(name: "6A - Art", notif: "Unit 2 Test", date: DateComponents(year: 2023, month: 4, day: 18)),
-    NotifInfo(name: "6B - Art", notif: "Unit 2 Test", date: DateComponents(year: 2023, month: 4, day: 18)),
-    NotifInfo(name: "French", notif: "Assignment 2 Due", date: DateComponents(year: 2023, month: 4, day: 19)),
-    NotifInfo(name: "Junior Girls Volleyball", notif: "Volleyball game", date: DateComponents(year: 2023, month: 4, day: 19)),
-    NotifInfo(name: "Social Studies", notif: "Unit 3 Quiz", date: DateComponents(year: 2023, month: 4, day: 21)),
-    NotifInfo(name:"Music", notif: "Guest Speaker", date: DateComponents(year: 2023, month: 4, day: 22)),
-    NotifInfo(name: "Junior Girls Volleyball", notif: "Volleyball game", date: DateComponents(year: 2023, month: 4, day: 25)),
-    NotifInfo(name:"French", notif: "Assignment 3 Due", date: DateComponents(year: 2023, month: 4, day: 27)),
-    NotifInfo(name: "Track and Field", notif: "Track meet", date: DateComponents(year: 2023, month: 5, day: 1))
-]
+//var allNotifs: [NotifInfo] = [
+//    NotifInfo(name: "6A - Art", notif: "Unit 2 Test", date: DateComponents(year: 2023, month: 4, day: 18)),
+//    NotifInfo(name: "6B - Art", notif: "Unit 2 Test", date: DateComponents(year: 2023, month: 4, day: 18)),
+//    NotifInfo(name: "French", notif: "Assignment 2 Due", date: DateComponents(year: 2023, month: 4, day: 19)),
+//    NotifInfo(name: "Junior Girls Volleyball", notif: "Volleyball game", date: DateComponents(year: 2023, month: 4, day: 19)),
+//    NotifInfo(name: "Social Studies", notif: "Unit 3 Quiz", date: DateComponents(year: 2023, month: 4, day: 21)),
+//    NotifInfo(name:"Music", notif: "Guest Speaker", date: DateComponents(year: 2023, month: 4, day: 22)),
+//    NotifInfo(name: "Junior Girls Volleyball", notif: "Volleyball game", date: DateComponents(year: 2023, month: 4, day: 25)),
+//    NotifInfo(name:"French", notif: "Assignment 3 Due", date: DateComponents(year: 2023, month: 4, day: 27)),
+//    NotifInfo(name: "Track and Field", notif: "Track meet", date: DateComponents(year: 2023, month: 5, day: 1))
+//]
 
 let studentInputData: [StuInput] = [
     StuInput(name: "Input 1", date: DateComponents(year: 2023, month: 4, day: 16), inputType: "Type 1"),

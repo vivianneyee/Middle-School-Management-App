@@ -12,6 +12,13 @@ import SwiftDate
 //import RealmSwift
 
 class LoginViewController: UIViewController {
+    // logo view
+    private let logo: UIImageView = {
+        let image = UIImageView()
+        image.image = UIImage(named: "EDYou_Logo")
+        return image
+    }()
+    
     // Email or username input field
     private let emailTextField: UITextField = {
         let textField = UITextField()
@@ -42,12 +49,14 @@ class LoginViewController: UIViewController {
     }()
     
     // Link to signup
-    private let signupLink: UIButton = {
-        let label = UIButton(type: .system)
-        label.setTitle("Create an account", for: .normal)
-        label.backgroundColor = .clear
-        label.setTitleColor(UIColor.systemBlue, for: .normal)
-        return label
+    private let signupButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Create an account", for: .normal)
+        button.setTitleColor(.blue, for: .normal)
+        button.layer.cornerRadius = 5
+        button.backgroundColor = .clear
+        button.tintColor = .white
+        return button
     }()
     
     override func viewDidLoad() {
@@ -58,26 +67,30 @@ class LoginViewController: UIViewController {
         loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
         
         // Add the action for the sign up link
-        signupLink.addTarget(self, action: #selector(signupLinkTapped), for: .touchUpInside)
-//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(signupLinkTapped))
-//        signupLink.addGestureRecognizer(tapGesture)
-//        signupLink.isUserInteractionEnabled = true
+        signupButton.addTarget(self, action: #selector(signupLinkTapped), for: .touchUpInside)
 
        // Add subviews
+       view.addSubview(logo)
        view.addSubview(emailTextField)
        view.addSubview(passwordTextField)
        view.addSubview(loginButton)
-       view.addSubview(signupLink)
+       view.addSubview(signupButton)
 
        // Set up constraints
+       logo.translatesAutoresizingMaskIntoConstraints = false
        emailTextField.translatesAutoresizingMaskIntoConstraints = false
        passwordTextField.translatesAutoresizingMaskIntoConstraints = false
        loginButton.translatesAutoresizingMaskIntoConstraints = false
-       signupLink.translatesAutoresizingMaskIntoConstraints = false
+       signupButton.translatesAutoresizingMaskIntoConstraints = false
 
        NSLayoutConstraint.activate([
+           logo.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+           logo.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100),
+           logo.widthAnchor.constraint(equalToConstant: 200),
+           logo.heightAnchor.constraint(equalToConstant: 100),
+           
            emailTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-           emailTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100),
+           emailTextField.topAnchor.constraint(equalTo: logo.bottomAnchor, constant: 20),
            emailTextField.widthAnchor.constraint(equalToConstant: 200),
            emailTextField.heightAnchor.constraint(equalToConstant: 40),
 
@@ -91,10 +104,10 @@ class LoginViewController: UIViewController {
            loginButton.widthAnchor.constraint(equalToConstant: 200),
            loginButton.heightAnchor.constraint(equalToConstant: 40),
            
-           signupLink.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-           signupLink.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 20),
-           signupLink.widthAnchor.constraint(equalToConstant: 200),
-           signupLink.heightAnchor.constraint(equalToConstant: 40)
+           signupButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 60),
+           signupButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 5),
+           signupButton.widthAnchor.constraint(equalToConstant: 200),
+           signupButton.heightAnchor.constraint(equalToConstant: 40)
        ])
     }
     
@@ -144,7 +157,9 @@ class LoginViewController: UIViewController {
 
         // If login is successful, navigate to the "home" view controller
         let vc = storyboard?.instantiateViewController(identifier: "signup") as! SignupViewController
-        navigationController?.pushViewController(vc, animated: true)
+        vc.modalPresentationStyle = .popover
+        present(vc, animated: true, completion: nil)
+//        navigationController?.pushViewController(vc, animated: true)
     }
 
 }

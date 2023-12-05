@@ -19,7 +19,7 @@ class ClassController {
     }
     
     // create a new class
-    func createClass(className: String, color: String, completion: @escaping (Result<Data, Error>) -> Void) {
+    func createClass(className: String, color: String, completion: @escaping (Result<CreateClassResponse, Error>) -> Void) {
         let url = URL(string: "http://localhost:3000/class/classes")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -59,16 +59,24 @@ class ClassController {
                 return
             }
             
-            completion(.success(responseData))
+            do {
+                let decoder = JSONDecoder()
+                let obj = try decoder.decode(CreateClassResponse.self, from: responseData)
+                completion(.success(obj))
+            } catch {
+                completion(.failure(error))
+            }
+            
+//            completion(.success(responseData))
         }.resume()
     }
     
     // get a class by its id
-    func getClassById(id: String, completion: @escaping (Result<Class, Error>) -> Void) {
-        let url = URL(string: "http://localhost:3000/class/classes/\(id)")!
+    func getClassById(id: String, completion: @escaping (Result<AddUserToClassResponse, Error>) -> Void) {
+        let url = URL(string: "http://localhost:3000/class/classes/id/\(id)")!
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
-        
+
         URLSession.shared.dataTask(with: request) { data, response, error in
             // handle error
             if let error = error {
@@ -91,7 +99,7 @@ class ClassController {
             
             do {
                 let decoder = JSONDecoder()
-                let classObject = try decoder.decode(Class.self, from: responseData)
+                let classObject = try decoder.decode(AddUserToClassResponse.self, from: responseData)
                 completion(.success(classObject))
             } catch {
                 completion(.failure(error))
@@ -102,8 +110,8 @@ class ClassController {
     }
     
     // get a class by its code
-    func getClassByCode(code: String, completion: @escaping (Result<Class, Error>) -> Void) {
-        let url = URL(string: "http://localhost:3000/class/classes/\(code)")!
+    func getClassByCode(code: String, completion: @escaping (Result<AddUserToClassResponse, Error>) -> Void) {
+        let url = URL(string: "http://localhost:3000/class/classes/code/\(code)")!
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         
@@ -129,7 +137,58 @@ class ClassController {
             
             do {
                 let decoder = JSONDecoder()
-                let classObject = try decoder.decode(Class.self, from: responseData)
+                let classObject = try decoder.decode(AddUserToClassResponse.self, from: responseData)
+                completion(.success(classObject))
+            } catch {
+                completion(.failure(error))
+            }
+            
+        }.resume()
+    }
+    
+    // get a class by its code
+    func getClassByName(className: String, completion: @escaping (Result<AddUserToClassResponse, Error>) -> Void) {
+        print("className", className)
+//        print("url", URL(string: "http://localhost:3000/class/classes/name/\(className)")!)
+        let trimmedClassName = className.trimmingCharacters(in: .whitespaces)
+        print("trimmedClassName", trimmedClassName)
+        // Encode the class name to ensure it's URL-safe
+
+        guard let encodedClassName = trimmedClassName.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed),
+              let url = URL(string: "http://localhost:3000/class/classes/name/\(encodedClassName)") else {
+            // Handle the invalid URL or className here
+            print("url failed")
+            return
+        }
+//        print("url", url)
+//        let url = URL(string: "http://localhost:3000/class/classes/name/\(className)")!
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            // handle error
+            if let error = error {
+                completion(.failure(error))
+                print("Could not find class")
+                return
+            }
+            
+            // check for successful response status
+            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                completion(.failure(NetworkError.invalidResponse))
+                return
+            }
+            
+            // check that response data is not empty
+            guard let responseData = data else {
+                completion(.failure(NetworkError.emptyResponse))
+                return
+            }
+            
+            do {
+                let decoder = JSONDecoder()
+                let classObject = try decoder.decode(AddUserToClassResponse.self, from: responseData)
                 completion(.success(classObject))
             } catch {
                 completion(.failure(error))
@@ -139,7 +198,7 @@ class ClassController {
     }
     
     // update a class
-    func updateClass(id: String, className: String, color: String, completion: @escaping (Result<Class, Error>) -> Void) {
+    func updateClass(id: String, className: String, color: String, completion: @escaping (Result<AddUserToClassResponse, Error>) -> Void) {
         let url = URL(string: "http://localhost:3000/class/classes/\(id)")!
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
@@ -180,7 +239,7 @@ class ClassController {
             
             do {
                 let decoder = JSONDecoder()
-                let classObject = try decoder.decode(Class.self, from: responseData)
+                let classObject = try decoder.decode(AddUserToClassResponse.self, from: responseData)
                 completion(.success(classObject))
             } catch {
                 completion(.failure(error))
@@ -190,8 +249,8 @@ class ClassController {
     }
     
     // add event to class
-    func addEvent(id: String, eventId: String, completion: @escaping (Result<Class, Error>) -> Void) {
-        let url = URL(string: "http://localhost:3000/class/classes/event/\(id)")!
+    func addEvent(id: String, eventId: String, completion: @escaping (Result<AddUserToClassResponse, Error>) -> Void) {
+        let url = URL(string: "http://localhost:3000/class/classes/events/\(id)")!
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -229,7 +288,7 @@ class ClassController {
             
             do {
                 let decoder = JSONDecoder()
-                let classObject = try decoder.decode(Class.self, from: responseData)
+                let classObject = try decoder.decode(AddUserToClassResponse.self, from: responseData)
                 completion(.success(classObject))
             } catch {
                 completion(.failure(error))
@@ -240,8 +299,8 @@ class ClassController {
     
     
     // add assignment to class
-    func addAssignment(id: String, assignmentId: String, completion: @escaping (Result<Class, Error>) -> Void) {
-        let url = URL(string: "http://localhost:3000/class/classes/assignment/\(id)")!
+    func addAssignment(id: String, assignmentId: String, completion: @escaping (Result<AddUserToClassResponse, Error>) -> Void) {
+        let url = URL(string: "http://localhost:3000/class/classes/assignments/\(id)")!
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -279,7 +338,7 @@ class ClassController {
             
             do {
                 let decoder = JSONDecoder()
-                let classObject = try decoder.decode(Class.self, from: responseData)
+                let classObject = try decoder.decode(AddUserToClassResponse.self, from: responseData)
                 completion(.success(classObject))
             } catch {
                 completion(.failure(error))
@@ -289,8 +348,8 @@ class ClassController {
     }
     
     // add alert to class
-    func addAlert(id: String, alertId: String, completion: @escaping (Result<Class, Error>) -> Void) {
-        let url = URL(string: "http://localhost:3000/class/classes/alert/\(id)")!
+    func addAlert(id: String, alertId: String, completion: @escaping (Result<AddUserToClassResponse, Error>) -> Void) {
+        let url = URL(string: "http://localhost:3000/class/classes/alerts/\(id)")!
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -328,7 +387,7 @@ class ClassController {
             
             do {
                 let decoder = JSONDecoder()
-                let classObject = try decoder.decode(Class.self, from: responseData)
+                let classObject = try decoder.decode(AddUserToClassResponse.self, from: responseData)
                 completion(.success(classObject))
             } catch {
                 completion(.failure(error))
@@ -338,7 +397,7 @@ class ClassController {
     }
     
     // add user to class
-    func addUser(id: String, userId: String, completion: @escaping (Result<Class, Error>) -> Void) {
+    func addUser(id: String, userId: String, completion: @escaping (Result<AddUserToClassResponse, Error>) -> Void) {
         let url = URL(string: "http://localhost:3000/class/classes/user/\(id)")!
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
@@ -378,7 +437,7 @@ class ClassController {
             
             do {
                 let decoder = JSONDecoder()
-                let classObject = try decoder.decode(Class.self, from: responseData)
+                let classObject = try decoder.decode(AddUserToClassResponse.self, from: responseData)
                 completion(.success(classObject))
             } catch {
                 completion(.failure(error))

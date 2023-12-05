@@ -12,14 +12,15 @@ import SwiftDate
 import RealmSwift
 
 class ClassInfoViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    
+    var userID: String = ""
+    var classID: String = ""
     @IBOutlet weak var table: UITableView!
     
     let labels: [String] = [
         "Events",
         "Assignments",
-        "Alerts",
-        "Student Input"
+        "Alerts"
+//        "Student Input"
     ]
     
     override func viewDidLoad() {
@@ -50,22 +51,26 @@ class ClassInfoViewController: UIViewController, UITableViewDataSource, UITableV
         
         if (labelCell == "Events") {
             let vc = storyboard?.instantiateViewController(identifier: "event") as! EventViewController
+            vc.className = self.title!
+            vc.userID = self.userID
             navigationController?.pushViewController(vc, animated: true)
             vc.title = "Events"
+            vc.classID = self.classID
         } else if (labelCell == "Assignments") {
             let vc = storyboard?.instantiateViewController(identifier: "assign") as! AssignmentViewController
             navigationController?.pushViewController(vc, animated: true)
             vc.title = "Assignments"
+            vc.userID = self.userID
+            vc.classID = self.classID
+            vc.className = self.title!
         } else if (labelCell == "Alerts") {
             let vc = storyboard?.instantiateViewController(identifier: "alert") as! AlertViewController
             navigationController?.pushViewController(vc, animated: true)
+            vc.className = self.title!
+            vc.userID = self.userID
+            vc.classID = self.classID
             vc.title = "Alerts"
-        } else if (labelCell == "Student Input") {
-            let vc = storyboard?.instantiateViewController(identifier: "sInput") as! StudentInputViewController
-            navigationController?.pushViewController(vc, animated: true)
-            vc.title = "Student Input"
-        }
-        
+        } 
         vc.title = labelCell
     }
     

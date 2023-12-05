@@ -22,6 +22,21 @@ import RealmSwift
 //    var day10 = [String](repeating: "", count: 5)
 //}
 
+struct ScheduleResponse: Decodable {
+    let message: String
+    let _id: String
+    let day1: [String]
+    let day2: [String]
+    let day3: [String]
+    let day4: [String]
+    let day5: [String]
+    let day6: [String]
+    let day7: [String]
+    let day8: [String]
+    let day9: [String]
+    let day10: [String]
+}
+
 struct Schedule: Decodable {
     let _id: String
     let day1: [String]

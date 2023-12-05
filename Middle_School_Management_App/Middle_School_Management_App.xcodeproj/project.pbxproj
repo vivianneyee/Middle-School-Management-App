@@ -55,9 +55,9 @@
 		81035C9E2ADDF21500CADFE2 /* NotificationPrefViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C692ADDF21500CADFE2 /* NotificationPrefViewController.swift */; };
 		81035C9F2ADDF21500CADFE2 /* NotificationPrefViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C692ADDF21500CADFE2 /* NotificationPrefViewController.swift */; };
 		81035CA02ADDF21500CADFE2 /* NotificationPrefViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C692ADDF21500CADFE2 /* NotificationPrefViewController.swift */; };
-		81035CA12ADDF21500CADFE2 /* CreatePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C6A2ADDF21500CADFE2 /* CreatePostViewController.swift */; };
-		81035CA22ADDF21500CADFE2 /* CreatePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C6A2ADDF21500CADFE2 /* CreatePostViewController.swift */; };
-		81035CA32ADDF21500CADFE2 /* CreatePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C6A2ADDF21500CADFE2 /* CreatePostViewController.swift */; };
+		81035CA12ADDF21500CADFE2 /* CreateAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C6A2ADDF21500CADFE2 /* CreateAlertViewController.swift */; };
+		81035CA22ADDF21500CADFE2 /* CreateAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C6A2ADDF21500CADFE2 /* CreateAlertViewController.swift */; };
+		81035CA32ADDF21500CADFE2 /* CreateAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C6A2ADDF21500CADFE2 /* CreateAlertViewController.swift */; };
 		81035CA42ADDF21500CADFE2 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C6B2ADDF21500CADFE2 /* EditViewController.swift */; };
 		81035CA52ADDF21500CADFE2 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C6B2ADDF21500CADFE2 /* EditViewController.swift */; };
 		81035CA62ADDF21500CADFE2 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C6B2ADDF21500CADFE2 /* EditViewController.swift */; };
@@ -78,9 +78,15 @@
 		81035CB52ADDF21500CADFE2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81035C702ADDF21500CADFE2 /* SettingsViewController.swift */; };
 		81035CB82ADF125700CADFE2 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 81035CB72ADF125700CADFE2 /* Realm */; };
 		81035CBA2ADF125700CADFE2 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 81035CB92ADF125700CADFE2 /* RealmSwift */; };
+		811C57842B19804600997FFE /* CreateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811C57832B19804600997FFE /* CreateEventViewController.swift */; };
+		811C57862B19805900997FFE /* CreateAssignmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811C57852B19805900997FFE /* CreateAssignmentViewController.swift */; };
+		811C57882B19819F00997FFE /* CreateScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811C57872B19819F00997FFE /* CreateScheduleViewController.swift */; };
+		811C578A2B1BF1FB00997FFE /* ScheduleInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811C57892B1BF1FB00997FFE /* ScheduleInfoViewController.swift */; };
+		811C578C2B1BF2DB00997FFE /* ScheduleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811C578B2B1BF2DB00997FFE /* ScheduleTableViewCell.swift */; };
 		8126D2DA29E3A39B00BD8CA7 /* CalendarKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8126D2D929E3A39B00BD8CA7 /* CalendarKit */; };
 		8126D2DD29E5188400BD8CA7 /* KVKCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 8126D2DC29E5188400BD8CA7 /* KVKCalendar */; };
 		8126D2E029E5DFC100BD8CA7 /* ECWeekView in Frameworks */ = {isa = PBXBuildFile; productRef = 8126D2DF29E5DFC100BD8CA7 /* ECWeekView */; };
+		817204F02B15587700344564 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817204EF2B15587700344564 /* CustomTabBarController.swift */; };
 		81B7647D2ADF33DA0014F9AB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53ED10E29BF7AD50087A59A /* ViewController.swift */; };
 		81B7647E2ADF34730014F9AB /* Class.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5021C6F2A2E4C8E000325BF /* Class.swift */; };
 		81B7647F2ADF34730014F9AB /* ClassController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5021C732A2E4DDE000325BF /* ClassController.swift */; };
@@ -158,13 +164,19 @@
 		81035C672ADDF21500CADFE2 /* AlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		81035C682ADDF21500CADFE2 /* ClassInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassInfoViewController.swift; sourceTree = "<group>"; };
 		81035C692ADDF21500CADFE2 /* NotificationPrefViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationPrefViewController.swift; sourceTree = "<group>"; };
-		81035C6A2ADDF21500CADFE2 /* CreatePostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatePostViewController.swift; sourceTree = "<group>"; };
+		81035C6A2ADDF21500CADFE2 /* CreateAlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAlertViewController.swift; sourceTree = "<group>"; };
 		81035C6B2ADDF21500CADFE2 /* EditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		81035C6C2ADDF21500CADFE2 /* CreateClassViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateClassViewController.swift; sourceTree = "<group>"; };
 		81035C6D2ADDF21500CADFE2 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		81035C6E2ADDF21500CADFE2 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		81035C6F2ADDF21500CADFE2 /* NotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		81035C702ADDF21500CADFE2 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		811C57832B19804600997FFE /* CreateEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventViewController.swift; sourceTree = "<group>"; };
+		811C57852B19805900997FFE /* CreateAssignmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAssignmentViewController.swift; sourceTree = "<group>"; };
+		811C57872B19819F00997FFE /* CreateScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateScheduleViewController.swift; sourceTree = "<group>"; };
+		811C57892B1BF1FB00997FFE /* ScheduleInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleInfoViewController.swift; sourceTree = "<group>"; };
+		811C578B2B1BF2DB00997FFE /* ScheduleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleTableViewCell.swift; sourceTree = "<group>"; };
+		817204EF2B15587700344564 /* CustomTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		B5021C6F2A2E4C8E000325BF /* Class.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Class.swift; sourceTree = "<group>"; };
 		B5021C712A2E4C9E000325BF /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		B5021C732A2E4DDE000325BF /* ClassController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassController.swift; sourceTree = "<group>"; };
@@ -239,6 +251,7 @@
 				81035C5A2ADDF21500CADFE2 /* NotifTableViewCell.swift */,
 				81035C5B2ADDF21500CADFE2 /* LinkTableViewCell.swift */,
 				81035C5C2ADDF21500CADFE2 /* PostTableViewCell.swift */,
+				811C578B2B1BF2DB00997FFE /* ScheduleTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -246,6 +259,7 @@
 		81035C5D2ADDF21500CADFE2 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				817204EF2B15587700344564 /* CustomTabBarController.swift */,
 				81035C5E2ADDF21500CADFE2 /* SignupViewController.swift */,
 				81035C5F2ADDF21500CADFE2 /* CreateStudentInputViewController.swift */,
 				81035C602ADDF21500CADFE2 /* StudentInputViewController.swift */,
@@ -259,13 +273,17 @@
 				81035C682ADDF21500CADFE2 /* ClassInfoViewController.swift */,
 				81035C692ADDF21500CADFE2 /* NotificationPrefViewController.swift */,
 				81035C6B2ADDF21500CADFE2 /* EditViewController.swift */,
-				81035C6A2ADDF21500CADFE2 /* CreatePostViewController.swift */,
+				81035C6A2ADDF21500CADFE2 /* CreateAlertViewController.swift */,
 				81035C6C2ADDF21500CADFE2 /* CreateClassViewController.swift */,
 				81035C6D2ADDF21500CADFE2 /* LoginViewController.swift */,
 				81035C6E2ADDF21500CADFE2 /* ProfileViewController.swift */,
 				81035C6F2ADDF21500CADFE2 /* NotificationsViewController.swift */,
 				81035C702ADDF21500CADFE2 /* SettingsViewController.swift */,
 				B53ED10E29BF7AD50087A59A /* ViewController.swift */,
+				811C57832B19804600997FFE /* CreateEventViewController.swift */,
+				811C57852B19805900997FFE /* CreateAssignmentViewController.swift */,
+				811C57872B19819F00997FFE /* CreateScheduleViewController.swift */,
+				811C57892B1BF1FB00997FFE /* ScheduleInfoViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -510,11 +528,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				B593B87F2AC8A2DB00E3552C /* AuthManager.swift in Sources */,
-				81035CA12ADDF21500CADFE2 /* CreatePostViewController.swift in Sources */,
+				81035CA12ADDF21500CADFE2 /* CreateAlertViewController.swift in Sources */,
+				811C578A2B1BF1FB00997FFE /* ScheduleInfoViewController.swift in Sources */,
+				817204F02B15587700344564 /* CustomTabBarController.swift in Sources */,
 				81035C8C2ADDF21500CADFE2 /* EventViewController.swift in Sources */,
 				81035CA72ADDF21500CADFE2 /* CreateClassViewController.swift in Sources */,
 				B5633BED2B018FEA00DE8A80 /* AssignmentController.swift in Sources */,
 				81035CAD2ADDF21500CADFE2 /* ProfileViewController.swift in Sources */,
+				811C57842B19804600997FFE /* CreateEventViewController.swift in Sources */,
 				B53ED10F29BF7AD50087A59A /* ViewController.swift in Sources */,
 				B5633BE72B00517600DE8A80 /* UserController.swift in Sources */,
 				81035C712ADDF21500CADFE2 /* ClassTableViewCell.swift in Sources */,
@@ -522,6 +543,7 @@
 				81035C772ADDF21500CADFE2 /* LinkTableViewCell.swift in Sources */,
 				81035C8F2ADDF21500CADFE2 /* ScheduleViewController.swift in Sources */,
 				B5633BE92B01780900DE8A80 /* EventController.swift in Sources */,
+				811C57862B19805900997FFE /* CreateAssignmentViewController.swift in Sources */,
 				81035C862ADDF21500CADFE2 /* ClassesViewController.swift in Sources */,
 				81035CAA2ADDF21500CADFE2 /* LoginViewController.swift in Sources */,
 				B5021C702A2E4C8E000325BF /* Class.swift in Sources */,
@@ -531,7 +553,9 @@
 				B53ED10B29BF7AD50087A59A /* AppDelegate.swift in Sources */,
 				B553D0452B0D7D0F00935749 /* Notification.swift in Sources */,
 				81035C742ADDF21500CADFE2 /* NotifTableViewCell.swift in Sources */,
+				811C578C2B1BF2DB00997FFE /* ScheduleTableViewCell.swift in Sources */,
 				B5021C742A2E4DDE000325BF /* ClassController.swift in Sources */,
+				811C57882B19819F00997FFE /* CreateScheduleViewController.swift in Sources */,
 				81035C7D2ADDF21500CADFE2 /* SignupViewController.swift in Sources */,
 				81035C7A2ADDF21500CADFE2 /* PostTableViewCell.swift in Sources */,
 				81035C952ADDF21500CADFE2 /* EditStudentInputViewController.swift in Sources */,
@@ -583,7 +607,7 @@
 				B593B89C2AE0438500E3552C /* PostControllerTests.swift in Sources */,
 				81035C782ADDF21500CADFE2 /* LinkTableViewCell.swift in Sources */,
 				81035C992ADDF21500CADFE2 /* AlertViewController.swift in Sources */,
-				81035CA22ADDF21500CADFE2 /* CreatePostViewController.swift in Sources */,
+				81035CA22ADDF21500CADFE2 /* CreateAlertViewController.swift in Sources */,
 				81035C962ADDF21500CADFE2 /* EditStudentInputViewController.swift in Sources */,
 				81035CB42ADDF21500CADFE2 /* SettingsViewController.swift in Sources */,
 			);
@@ -613,7 +637,7 @@
 				81035C972ADDF21500CADFE2 /* EditStudentInputViewController.swift in Sources */,
 				B53ED12C29BF7ADA0087A59A /* Middle_School_Management_AppUITests.swift in Sources */,
 				81035C8E2ADDF21500CADFE2 /* EventViewController.swift in Sources */,
-				81035CA32ADDF21500CADFE2 /* CreatePostViewController.swift in Sources */,
+				81035CA32ADDF21500CADFE2 /* CreateAlertViewController.swift in Sources */,
 				81035CB22ADDF21500CADFE2 /* NotificationsViewController.swift in Sources */,
 				81035CAF2ADDF21500CADFE2 /* ProfileViewController.swift in Sources */,
 				81035C8B2ADDF21500CADFE2 /* JoinClassViewController.swift in Sources */,

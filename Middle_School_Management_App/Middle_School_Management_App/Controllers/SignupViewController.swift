@@ -12,6 +12,13 @@ import SwiftDate
 import RealmSwift
 
 class SignupViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+    // logo view
+    private let logo: UIImageView = {
+        let image = UIImageView()
+        image.image = UIImage(named: "EDYou_Logo")
+        return image
+    }()
+    
     // user type input field
     private let userTypeTextField: UITextField = {
         let textField = UITextField()
@@ -101,6 +108,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
         userTypeTextField.inputView = userTypePickerView
 
        // Add subviews
+       view.addSubview(logo)
        view.addSubview(userTypeTextField)
        view.addSubview(emailTextField)
        view.addSubview(emailErrorLabel)
@@ -111,6 +119,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
        view.addSubview(signupButton)
 
        // Set up constraints
+       logo.translatesAutoresizingMaskIntoConstraints = false
        userTypeTextField.translatesAutoresizingMaskIntoConstraints = false
        emailTextField.translatesAutoresizingMaskIntoConstraints = false
        emailErrorLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -121,10 +130,15 @@ class SignupViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
        confirmPasswordErrorLabel.translatesAutoresizingMaskIntoConstraints = false
 
        NSLayoutConstraint.activate([
-            userTypeTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            userTypeTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100),
-            userTypeTextField.widthAnchor.constraint(equalToConstant: 200),
-            userTypeTextField.heightAnchor.constraint(equalToConstant: 40),
+           logo.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+           logo.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100),
+           logo.widthAnchor.constraint(equalToConstant: 200),
+           logo.heightAnchor.constraint(equalToConstant: 100),
+            
+           userTypeTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+           userTypeTextField.topAnchor.constraint(equalTo: logo.bottomAnchor, constant: 20),
+           userTypeTextField.widthAnchor.constraint(equalToConstant: 200),
+           userTypeTextField.heightAnchor.constraint(equalToConstant: 40),
             
            emailTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
            emailTextField.topAnchor.constraint(equalTo: userTypeTextField.bottomAnchor, constant: 20),
@@ -216,8 +230,9 @@ class SignupViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
                 print("registration successful")
                 DispatchQueue.main.async {
                     // If login is successful, navigate to the "home" view controller
-                    let vc = self.storyboard?.instantiateViewController(identifier: "home") as! UITabBarController
+                    let vc = self.storyboard?.instantiateViewController(identifier: "home") as! CustomTabBarController
                     vc.modalPresentationStyle = .fullScreen
+                    vc.userID = data._id
                     self.present(vc, animated: true, completion: nil)
                 }
             case .failure(let error):
@@ -244,7 +259,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
             // validate password on each change
             let currentText = (textField.text ?? "") as NSString
             let newText = currentText.replacingCharacters(in: range, with: string)
-            validatePassword(text: newText)
+//            validatePassword(text: newText)
         }
         
         if textField == confirmPasswordTextField {

@@ -22,7 +22,18 @@ exports.createSchedule = async (req, res) => {
 
         await newSchedule.save()
 
-        return res.status(201).json({ message: 'Schedule created successfully' })
+        return res.status(201).json({ message: 'Schedule created successfully', 
+        _id: newSchedule._id,
+        day1: newSchedule.day1,
+        day2: newSchedule.day2,
+        day3: newSchedule.day3,
+        day4: newSchedule.day4,
+        day5: newSchedule.day5,
+        day6: newSchedule.day6,
+        day7: newSchedule.day7,
+        day8: newSchedule.day8,
+        day9: newSchedule.day9,
+        day10: newSchedule.day10 })
     } catch (error) {
         // catch server error
         console.error(error)
@@ -38,7 +49,7 @@ exports.getScheduleById = async (req, res) => {
         const retrievedSchedule = await Schedule.findById(scheduleId)
 
         if (!retrievedSchedule) {
-            return res.status(404),json({ error: 'Schedule not found' })
+            return res.status(404).json({ error: 'Schedule not found' })
         } else {
             return res.status(200).json({ message: 'Schedule retrieved successfully', 
                 _id: retrievedSchedule._id,
@@ -76,17 +87,17 @@ exports.updateSchedule = async (req, res) => {
         }
 
         return res.status(200).json({ message: 'Schedule updated successfully', 
-            _id: retrievedSchedule._id,
-            day1: retrievedSchedule.day1,
-            day2: retrievedSchedule.day2,
-            day3: retrievedSchedule.day3,
-            day4: retrievedSchedule.day4,
-            day5: retrievedSchedule.day5,
-            day6: retrievedSchedule.day6,
-            day7: retrievedSchedule.day7,
-            day8: retrievedSchedule.day8,
-            day9: retrievedSchedule.day9,
-            day10: retrievedSchedule.day10
+            _id: updateSchedule._id,
+            day1: updateSchedule.day1,
+            day2: updateSchedule.day2,
+            day3: updateSchedule.day3,
+            day4: updateSchedule.day4,
+            day5: updateSchedule.day5,
+            day6: updateSchedule.day6,
+            day7: updateSchedule.day7,
+            day8: updateSchedule.day8,
+            day9: updateSchedule.day9,
+            day10: updateSchedule.day10
         })
     } catch (error) {
         // catch server error 

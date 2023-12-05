@@ -11,6 +11,8 @@ import RealmSwift
 
 class ProfileViewController: UIViewController {
     var userID: String = ""
+    @IBOutlet weak var userRoleLabel: UILabel!
+    @IBOutlet weak var userEmailLabel: UILabel!
     @IBAction func tapToSettings(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(identifier: "settings") as! SettingsViewController
         navigationController?.pushViewController(vc, animated: true)
@@ -34,6 +36,19 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         print("profile page userID: ", self.userID)
+        let userController = UserController()
+        userController.getUserById(id: self.userID) { [self] result in
+            switch result {
+            case .success(let user):
+                print("returned user", user)
+                DispatchQueue.main.async {
+                    self.userEmailLabel.text = user.email
+                    self.userRoleLabel.text = user.role
+                }
+            case .failure(let error):
+                print("failed to return user", error)
+            }
+        }
     }
     
     
