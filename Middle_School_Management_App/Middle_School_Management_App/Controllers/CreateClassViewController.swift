@@ -51,25 +51,25 @@ class CreateClassViewController: UIViewController {
                     switch result {
                     case .success(let resData2):
                         print("add user successful")
-//                        DispatchQueue.main.async {
-//                            if let navigationController = self.navigationController {
-//                                navigationController.popViewController(animated: true)
-//                            }
-//                        }
-                        userController.joinClass(id: self.userID, classId: resData1.newClass._id) { [self] result in
-                            switch result {
-                            case .success(let resData2):
-                                print("join class after create class successful")
-                                print(resData2)
-                                DispatchQueue.main.async {
-                                    if let navigationController = self.navigationController {
-                                        navigationController.popViewController(animated: true)
-                                    }
-                                }
-                            case .failure(let error):
-                                print("join class after create class failed with error: \(error)")
+                        DispatchQueue.main.async {
+                            if let navigationController = self.navigationController {
+                                navigationController.popViewController(animated: true)
                             }
                         }
+//                        userController.joinClass(id: self.userID, classId: resData1.newClass._id) { [self] result in
+//                            switch result {
+//                            case .success(let resData2):
+//                                print("join class after create class successful")
+//                                print(resData2)
+//                                DispatchQueue.main.async {
+//                                    if let navigationController = self.navigationController {
+//                                        navigationController.popViewController(animated: true)
+//                                    }
+//                                }
+//                            case .failure(let error):
+//                                print("join class after create class failed with error: \(error)")
+//                            }
+//                        }
                     case .failure(let error):
                         print("add user to class failed with error: \(error)")
                     }

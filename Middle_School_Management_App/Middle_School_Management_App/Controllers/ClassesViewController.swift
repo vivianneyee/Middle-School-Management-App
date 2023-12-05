@@ -29,6 +29,9 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
         let userController = UserController()
         let classContoller = ClassController()
         self.data.removeAll()
+        DispatchQueue.main.async {
+            self.table.reloadData()
+        }
 
         userController.getUserById(id: self.userID){ [self] result in
             switch result {
@@ -47,10 +50,10 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
                         case .success(let dataResponse):
                             print("get class success", dataResponse)
                             self.data.append(dataResponse.class)
-                            DispatchQueue.main.async {
-                                print("self.data", self.data)
-                                self.table.reloadData()
-                            }
+//                            DispatchQueue.main.async {
+//                                print("self.data", self.data)
+//                                self.table.reloadData()
+//                            }
                         case .failure(let error):
                             print ("get classes failed with error: \(error)")
                         }
@@ -61,9 +64,9 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
                 print ("get classes failed with error: \(error)")
             }
         }
-//        DispatchQueue.main.async {
-//            self.table.reloadData()
-//        }
+        DispatchQueue.main.async {
+            self.table.reloadData()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -92,6 +95,9 @@ class ClassesViewController: UIViewController, UITableViewDataSource, UITableVie
         let userController = UserController()
         let classContoller = ClassController()
         self.data.removeAll()
+        DispatchQueue.main.async {
+            self.table.reloadData()
+        }
 
             // Start dispatch group
 //            dispatchGroup.enter()

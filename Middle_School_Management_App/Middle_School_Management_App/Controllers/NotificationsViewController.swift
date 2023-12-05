@@ -194,6 +194,9 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
         let eventController = EventController()
         let assController = AssignmentController()
       self.allNotifs.removeAll()
+        DispatchQueue.main.async {
+            self.table.reloadData()
+        }
         userController.getUserById(id: self.userID){ [weak self] result in
             guard let self = self else { return }
             switch result {
@@ -398,7 +401,7 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
 //            self.present(alert, animated: true, completion: nil)
 //        }
 //    }
-//    
+//
     // UserDefaults key for storing notification preferences
     let notificationPreferenceKey = "isNotificationsEnabled"
 
