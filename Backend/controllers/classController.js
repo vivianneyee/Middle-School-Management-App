@@ -195,7 +195,7 @@ exports.addEvent = async (req, res) => {
         }
 
         // add event to class.events and save
-        updatedClass.events.push(addedEvent)
+        updatedClass.events.push(eventId)
         await updatedClass.save()
 
         // create notification for this event
@@ -241,11 +241,11 @@ exports.addAssignment = async (req, res) => {
         }
 
         // add assignment to class.assignments and save
-        updatedClass.assignments.push(addedAssignment)
+        updatedClass.assignments.push(assignmentId)
         await updatedClass.save()
 
         // create a notification for this assignment
-
+        console.log("updated class", updatedClass)
         // return class on success
         return res.status(200).json({message: 'Assignment added to class successfully', class: {
             _id: updatedClass._id,
