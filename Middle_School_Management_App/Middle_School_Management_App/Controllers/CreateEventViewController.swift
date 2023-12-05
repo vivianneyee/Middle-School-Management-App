@@ -117,26 +117,27 @@ class CreateEventViewController: UIViewController {
             let classController = ClassController()
             
             // create new event
-            eventController.updateEvent(id: self.eventID, title: title, description: description, startDate: startDate, endDate: endDate) { result in
-                switch result {
-                case .success(let eventObject):
-                    print("Event created successfully")
-//                    // add event to class
-//                    print("classId ", classId, " eventObject.event._id ", eventObject.event._id)
-//                    classController.addEvent(id: classId, eventId: eventObject.event._id) { [self] result in
-//                        switch result {
-//                        case .success(let classObject):
-//                            print("Event added successfully to class: \(classObject)")
-//                            // create notification for post
-//                            self.createNotifForPost(classId: classId, postTitle: eventObject.event.title)
-//                        case .failure(let error):
-//                            print("Error adding event: \(error)")
-//                        }
-//                    }
-                case .failure(let error):
-                    print("Error creating event: \(error)")
-                }
-            }
+            self.updateEvent(id: self.eventID, title: title, description: desc, startDate: startDate, endDate: endDate, classId: self.classID)
+//            (id: self.eventID, title: title, description: description, startDate: startDate, endDate: endDate) { result in
+//                switch result {
+//                case .success(let eventObject):
+//                    print("Event updated successfully1")
+////                    // add event to class
+////                    print("classId ", classId, " eventObject.event._id ", eventObject.event._id)
+////                    classController.addEvent(id: classId, eventId: eventObject.event._id) { [self] result in
+////                        switch result {
+////                        case .success(let classObject):
+////                            print("Event added successfully to class: \(classObject)")
+////                            // create notification for post
+////                            self.createNotifForPost(classId: classId, postTitle: eventObject.event.title)
+////                        case .failure(let error):
+////                            print("Error adding event: \(error)")
+////                        }
+////                    }
+//                case .failure(let error):
+//                    print("Error creating event: \(error)")
+//                }
+//            }
             DispatchQueue.main.async {
                 if let navigationController = self.navigationController {
                     navigationController.popViewController(animated: true)
@@ -236,6 +237,60 @@ class CreateEventViewController: UIViewController {
             }
         }
     }
+    
+    
+    // update an event and create notification for updated event
+    func updateEvent(id: String, title: String, description: String, startDate: Date, endDate: Date, classId: String) {
+        // use event controller
+        let eventController = EventController()
+        
+        // update event and save
+        eventController.updateEvent(id: id, title: title, description: description, startDate: startDate, endDate: endDate) { result in
+            switch result {
+            case .success(let eventObject):
+                print("Event updated successfully")
+                self.createNotifForPost(classId: classId, postTitle: eventObject.event.title)
+                print("here")
+            case .failure(let error):
+                print("Error updating event: \(error)")
+            }
+        }
+    }
+    
+    // update assignment and create notification for updated assignment
+    func updateAssignment(id: String, title: String, description: String, dueDate: Date, classId: String) {
+        // use assignment controller
+        let assignmentController = AssignmentController()
+        
+        // update assignment and save
+        assignmentController.updateAssignment(id: id, title: title, description: description, dueDate: dueDate) { result in
+            switch result {
+            case .success(let assignmentObject):
+                print("Assignment updated successfully")
+                self.createNotifForPost(classId: classId, postTitle: assignmentObject.assignment.title)
+            case .failure(let error):
+                print("Error updating assignment: \(error)")
+            }
+        }
+    }
+    
+    // update alert and create notification for updated alert
+    func updateAlert(id: String, title: String, description: String, priority: String, classId: String) {
+        // use alert controller
+        let alertController = AlertController()
+        
+        // update alert and save
+        alertController.updateAlert(id: id, title: title, description: description, priority: priority) { result in
+            switch result {
+            case .success(let alertObject):
+                print("Alert created successfully")
+                self.createNotifForPost(classId: classId, postTitle: alertObject.alert.title)
+            case .failure(let error):
+                print("Error updating alert: \(error)")
+            }
+        }
+    }
+        
     
     // create notification for a post and add to notifications of each class member
     func createNotifForPost(classId: String, postTitle: String) {

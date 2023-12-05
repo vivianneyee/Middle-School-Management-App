@@ -132,7 +132,7 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         }
         
         cell.name.text = eventCell.title
-        
+        cell.desc.text = eventCell.description
         return cell
     }
     
@@ -149,5 +149,6 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         vc.title = "Edit " + eventCell.title
         vc.eventID = eventCell._id
         vc.eventName = eventCell.title
+        vc.classID = self.classID
     }
 }

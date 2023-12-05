@@ -73,12 +73,12 @@ exports.updateAlert = async (req, res) => {
         }
 
         // on success return 200 status, success message, and updated alert
-        res.status(200).json({ message: 'Alert updated successfully',
+        res.status(200).json({ message: 'Alert updated successfully', alert: {
             _id: updatedAlert._id,
             title: updatedAlert.title,
             description: updatedAlert.description,
             datePosted: updatedAlert.datePosted,
-            priority: updatedAlert.priority
+            priority: updatedAlert.priority }
         })
     } catch (error) {
         // catch server error

@@ -101,27 +101,27 @@ class CreateAssignmentViewController: UIViewController {
             // use necessary controllers
             let assignmentController = AssignmentController()
             let classController = ClassController()
-            
+            self.updateAssignment(id: self.assID, title: title, description: desc, dueDate: date, classId: self.classID)
             // create new assignment
-            assignmentController.updateAssignment(id: self.assID, title: title, description: desc, dueDate: date) { result in
-                switch result {
-                case .success(let assignmentObject):
-                    print("Assignment updated successfully")
-                    // add assignment to class
-//                    classController.addAssignment(id: self.classID, assignmentId: assignmentObject.assignment._id) { result in
-//                        switch result {
-//                        case .success(let classObject):
-//                            print("Assignment added successfully to class: \(classObject)")
-//                            // create notification for post
-//                            //                            self.createNotifForPost(classId: self.classID, postTitle: assignmentObject.assignment.title)
-//                        case .failure(let error):
-//                            print("Error adding assignment: \(error)")
-//                        }
-//                    }
-                case .failure(let error):
-                    print("Error creating assignment: \(error)")
-                }
-            }
+//            assignmentController.updateAssignment(id: self.assID, title: title, description: desc, dueDate: date) { result in
+//                switch result {
+//                case .success(let assignmentObject):
+//                    print("Assignment updated successfully")
+//                    // add assignment to class
+////                    classController.addAssignment(id: self.classID, assignmentId: assignmentObject.assignment._id) { result in
+////                        switch result {
+////                        case .success(let classObject):
+////                            print("Assignment added successfully to class: \(classObject)")
+////                            // create notification for post
+////                            //                            self.createNotifForPost(classId: self.classID, postTitle: assignmentObject.assignment.title)
+////                        case .failure(let error):
+////                            print("Error adding assignment: \(error)")
+////                        }
+////                    }
+//                case .failure(let error):
+//                    print("Error creating assignment: \(error)")
+//                }
+//            }
             DispatchQueue.main.async {
                 if let navigationController = self.navigationController {
                     navigationController.popViewController(animated: true)

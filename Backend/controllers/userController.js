@@ -97,7 +97,7 @@ exports.addClass = async (req, res) => {
         if (updatedUser && retrievedClass) {
             // const retrievedClass = await Class.findById(classId)
             updatedUser.classes.push(classId)
-            // await updatedUser.save();
+            await updatedUser.save();
             // retrievedClass.users.push(updatedUser)
             // await retrievedClass.save();
             // Save both updatedUser and retrievedClass after changes

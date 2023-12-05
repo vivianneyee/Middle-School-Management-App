@@ -133,7 +133,7 @@ class AssignmentViewController: UIViewController, UITableViewDataSource, UITable
         
         
         cell.name.text = eventCell.title
-        
+        cell.desc.text = eventCell.description
         return cell
     }
     
@@ -149,5 +149,6 @@ class AssignmentViewController: UIViewController, UITableViewDataSource, UITable
         vc.title = "Edit " + eventCell.title
         vc.assID = eventCell._id
         vc.assName = eventCell.title
+        vc.classID = self.classID
     }
 }

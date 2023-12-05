@@ -389,6 +389,16 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
         return 120
     }
     
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let notifsCell = self.allNotifs[indexPath.row]
+//        DispatchQueue.main.async {
+//            let alert = UIAlertController(title: notifsCell.className + " - " + notifsCell.title, message: "Date posted: " + notifsCell.datePosted, preferredStyle: .alert)
+//            let okAction = UIAlertAction(title: "Close", style: .default)
+//            alert.addAction(okAction)
+//            self.present(alert, animated: true, completion: nil)
+//        }
+//    }
+//    
     // UserDefaults key for storing notification preferences
     let notificationPreferenceKey = "isNotificationsEnabled"
 

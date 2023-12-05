@@ -76,13 +76,13 @@ exports.updateEvent = async (req, res) => {
         }
 
         // on success return 200 status, success message, and updated event
-        return res.status(200).json({ message: 'Event retrieved successfully', 
+        return res.status(200).json({ message: 'Event retrieved successfully', event:{
             _id: updatedEvent._id,
             title: updatedEvent.title,
             description: updatedEvent.description,
             datePosted: updatedEvent.datePosted,
             startDate: updatedEvent.startDate,
-            endDate: updatedEvent.endDate
+            endDate: updatedEvent.endDate }
         })    
     } catch (error) {
         // catch server error

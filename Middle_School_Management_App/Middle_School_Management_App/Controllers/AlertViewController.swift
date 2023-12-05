@@ -132,7 +132,7 @@ class AlertViewController: UIViewController, UITableViewDataSource, UITableViewD
         }
         
         cell.name.text = eventCell.title
-        
+        cell.desc.text = eventCell.description
         return cell
     }
     
